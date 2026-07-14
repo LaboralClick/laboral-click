@@ -1,0 +1,199 @@
+---
+const titulo = "Promociones";
+---
+
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promociones - Laboral Click</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #1a1a2e; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+    
+    header { background-color: white; box-shadow: 0 2px 25px rgba(0,0,0,0.08); padding: 12px 0; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 28px; font-weight: 700; color: #0a2463; text-decoration: none; }
+    .logo span { color: #c9a028; display: block; font-size: 13px; font-weight: 500; letter-spacing: 1px; }
+    .nav-links { display: flex; list-style: none; gap: 28px; }
+    .nav-links a { text-decoration: none; color: #1a1a2e; font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: #c9a028; }
+    .btn-whatsapp { background-color: #25D366; color: white; padding: 11px 22px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 7px; }
+    
+    .page-hero { background: linear-gradient(150deg, #0a2463 0%, #1a3a7a 100%); color: white; padding: 70px 0; text-align: center; }
+    .page-hero h1 { font-size: 38px; margin-bottom: 10px; }
+    .page-hero p { font-size: 18px; color: #f0c040; }
+    
+    .promos { padding: 60px 0; }
+    .promo-card { background: white; border-radius: 12px; padding: 35px; margin-bottom: 30px; box-shadow: 0 3px 20px rgba(0,0,0,0.08); display: grid; grid-template-columns: auto 1fr auto; gap: 25px; align-items: center; border-left: 6px solid #c9a028; position: relative; overflow: hidden; }
+    .promo-card.destacada { border-left-color: #25D366; background: linear-gradient(135deg, #f0fdf4 0%, white 100%); }
+    .promo-card.destacada::before { content: '🔥 MAS POPULAR'; position: absolute; top: 15px; right: -30px; background: #25D366; color: white; padding: 5px 40px; font-size: 11px; font-weight: 700; transform: rotate(45deg); }
+    
+    .promo-badge { background: #c9a028; color: #0a2463; padding: 8px 16px; border-radius: 25px; font-weight: 700; font-size: 13px; text-align: center; white-space: nowrap; }
+    .promo-badge.verde { background: #25D366; color: white; }
+    
+    .promo-info h2 { font-size: 24px; color: #0a2463; margin-bottom: 8px; }
+    .promo-info p { color: #6B7280; line-height: 1.6; margin-bottom: 8px; }
+    .promo-info ul { padding-left: 20px; color: #6B7280; line-height: 1.8; margin-bottom: 10px; }
+    .promo-info .vigencia { font-size: 13px; color: #dc3545; font-weight: 600; }
+    .promo-info .precio { font-size: 28px; font-weight: 700; color: #0a2463; margin: 8px 0; }
+    .promo-info .precio-anterior { text-decoration: line-through; color: #dc3545; font-size: 16px; margin-right: 10px; }
+    
+    .promo-cta { text-align: center; }
+    .btn-promo { background: #25D366; color: white; padding: 14px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; white-space: nowrap; }
+    .btn-promo:hover { background: #1da851; }
+    
+    footer { background: #060f2e; color: white; padding: 40px 0 20px; font-size: 14px; margin-top: 60px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; text-align: left; }
+    .footer-col h4 { color: #f0c040; margin-bottom: 12px; font-size: 16px; }
+    .footer-col p { opacity: 0.85; line-height: 1.6; margin-bottom: 6px; }
+    .footer-col a { color: #f0c040; text-decoration: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; }
+    .disclaimer-text { opacity: 0.65; font-size: 12px; margin-bottom: 8px; font-style: italic; }
+    .privacidad-text { opacity: 0.75; font-size: 13px; margin-bottom: 8px; }
+    .copy { opacity: 0.6; font-size: 12px; margin-top: 10px; }
+    
+    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; text-decoration: none; box-shadow: 0 5px 25px rgba(37,211,102,0.5); z-index: 1000; }
+
+    @media (max-width: 768px) {
+      .promo-card { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">Laboral Click<span>Asesoria Legal sin Enredos</span></a>
+        <ul class="nav-links">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li><li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>🎯 Promociones</h1>
+      <p>Aprovecha nuestras ofertas para tu empresa</p>
+    </div>
+  </section>
+
+  <section class="promos">
+    <div class="container">
+
+      <!-- Promocion 1 - Destacada -->
+      <div class="promo-card destacada">
+        <div class="promo-badge verde">1a Consulta<br>GRATIS</div>
+        <div class="promo-info">
+          <h2>Primera Asesoria Sin Costo</h2>
+          <p>Vamos a tu empresa, analizamos tu situacion laboral y te damos recomendaciones iniciales. Sin compromiso, sin costo.</p>
+          <p class="vigencia">⏰ Vigencia: Todo el a&ntilde;o</p>
+        </div>
+        <div class="promo-cta">
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20mi%20primera%20consulta%20gratis" class="btn-promo" target="_blank">💬 Agendar Gratis</a>
+        </div>
+      </div>
+
+        <!-- Promocion 2 - Paquete Profesional -->
+            <!-- Promocion 2 - Paquete Profesional -->
+      <div class="promo-card">
+        <div class="promo-badge verde">-60%<br>POR HOY</div>
+        <div class="promo-info">
+          <h2>Oferta en Paquete Profesional</h2>
+          <p><strong>El mismo Paquete Profesional que ves en nuestra página de Precios, hoy con un descuento excepcional.</strong></p>
+          <ul>
+            <li>📋 Contratos laborales personalizados</li>
+            <li>📖 Reglamento Interior de Trabajo</li>
+            <li>📞 Asesoria laboral incluida</li>
+            <li>🏢 Visitas a tu empresa sin costo extra</li>
+            <li>🔒 Resguardo seguro de tu documentacion</li>
+          </ul>
+          <p class="precio"><span class="precio-anterior">$8,500 MXN/mes</span> <strong>$3,400 MXN primer mes</strong></p>
+          <p class="vigencia">⏰ Precio especial POR HOY. Luego $8,500 MXN/mes.</p>
+        </div>
+        <div class="promo-cta">
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Profesional%20con%2060%25%20de%20descuento%20POR%20HOY" class="btn-promo" target="_blank">💬 Aprovechar Primer Mes con 60% Off</a>
+        </div>
+      </div>
+
+      <!-- Promocion 3 - Referidos -->
+      <div class="promo-card">
+        <div class="promo-badge">👥<br>REFIERE</div>
+        <div class="promo-info">
+          <h2>Programa de Referidos</h2>
+          <p>Recomiendanos con otro empresario y ambos reciben <strong>1 consulta gratis</strong> adicional. No hay limite de referidos.</p>
+          <p class="vigencia">⏰ Vigencia permanente</p>
+        </div>
+        <div class="promo-cta">
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20participar%20en%20el%20programa%20de%20referidos" class="btn-promo" target="_blank">💬 Quiero Referir</a>
+        </div>
+      </div>
+
+      <!-- Promocion 4 - Auditoria -->
+      <div class="promo-card">
+        <div class="promo-badge">📅<br>CIERRE</div>
+        <div class="promo-info">
+          <h2>Auditoria de Cierre de A&ntilde;o</h2>
+          <p>Revisamos tus expedientes y obligaciones laborales antes de terminar el a&ntilde;o. <strong>Incluye:</strong></p>
+          <ul>
+            <li>📁 Revision completa de expedientes del personal</li>
+            <li>🏥 Verificacion de altas y pagos IMSS/INFONAVIT</li>
+            <li>📊 Calculo correcto de aguinaldos y prestaciones</li>
+            <li>📝 Validacion de contratos y documentos</li>
+            <li>📋 Reporte de riesgos y recomendaciones</li>
+          </ul>
+          <p class="vigencia">⏰ Noviembre - Diciembre</p>
+        </div>
+        <div class="promo-cta">
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20apartar%20mi%20auditoria%20de%20cierre%20de%20a%C3%B1o" class="btn-promo" target="_blank">💬 Apartar Lugar</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Laboral Click</h4>
+          <p>Asesoria Legal sin Enredos para PyMEs. Vamos a tu empresa, hablamos claro y resolvemos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>📍 Ubicacion</h4>
+          <p>Col. Narvarte, Benito Juarez<br>Ciudad de Mexico, CDMX</p>
+          <p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>⚖️ Informacion Legal</h4>
+          <p><a href="/aviso">Aviso de Privacidad</a></p>
+          <p><a href="/terminos">Terminos y Condiciones</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La informacion en este sitio es de caracter orientativo. Para asesoria legal personalizada, contactanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos estan protegidos conforme a la Ley Federal de Proteccion de Datos Personales.</p>
+        <p class="copy">&copy; 2025 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+</body>
+</html>

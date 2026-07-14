@@ -1,0 +1,183 @@
+---
+const titulo = "Aviso de Privacidad";
+---
+
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso de Privacidad - Laboral Click</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #1a1a2e; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
+    
+    header { background-color: white; box-shadow: 0 2px 25px rgba(0,0,0,0.08); padding: 12px 0; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 28px; font-weight: 700; color: #0a2463; text-decoration: none; }
+    .logo span { color: #c9a028; display: block; font-size: 13px; font-weight: 500; letter-spacing: 1px; }
+    .nav-links { display: flex; list-style: none; gap: 28px; }
+    .nav-links a { text-decoration: none; color: #1a1a2e; font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: #c9a028; }
+    .btn-whatsapp { background-color: #25D366; color: white; padding: 11px 22px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 7px; }
+    .menu-toggle { display: none; font-size: 30px; background: none; border: none; color: #0a2463; cursor: pointer; }
+    
+    .page-hero { background: linear-gradient(150deg, #0a2463 0%, #1a3a7a 100%); color: white; padding: 70px 0; text-align: center; }
+    .page-hero h1 { font-size: 38px; margin-bottom: 10px; }
+    .page-hero p { font-size: 18px; color: #f0c040; }
+    
+    .legal-content { max-width: 900px; margin: 60px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 3px 20px rgba(0,0,0,0.06); }
+    .legal-content h2 { color: #0a2463; font-size: 24px; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #f0c040; }
+    .legal-content h2:first-child { margin-top: 0; }
+    .legal-content p, .legal-content li { color: #4a4a5a; line-height: 1.8; margin-bottom: 15px; }
+    .legal-content ul { padding-left: 20px; margin-bottom: 20px; }
+    .legal-content .highlight-box { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #c9a028; margin: 20px 0; }
+    .fecha-actualizacion { text-align: right; color: #9ca3af; font-size: 13px; margin-top: 30px; }
+    
+    footer { background: #060f2e; color: white; padding: 40px 0 20px; font-size: 14px; margin-top: 60px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; text-align: left; }
+    .footer-col h4 { color: #f0c040; margin-bottom: 12px; font-size: 16px; }
+    .footer-col p { opacity: 0.85; line-height: 1.6; }
+    .footer-col a { color: #f0c040; text-decoration: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; }
+    .disclaimer-text { opacity: 0.65; font-size: 12px; font-style: italic; }
+    .privacidad-text { opacity: 0.75; font-size: 13px; }
+    .copy { opacity: 0.6; font-size: 12px; margin-top: 10px; }
+    
+    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; text-decoration: none; box-shadow: 0 5px 25px rgba(37,211,102,0.5); z-index: 1000; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); gap: 12px; z-index: 999; }
+      .nav-links.open { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo"><img src="/images/logoH.png" alt="Laboral Click" style="height:45px;"><span>Asesoria Legal sin Enredos</span></a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li><li><a href="/nosotros">Nosotros</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/precios">Precios</a></li><li><a href="/promociones">Promociones</a></li><li><a href="/casos">Casos de Exito</a></li><li><a href="/blog">Blog</a></li><li><a href="/calculadoras">Calculadoras</a></li><li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Aviso de Privacidad</h1>
+      <p>Proteccion de Datos Personales</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="legal-content">
+
+      <h2>1. Identidad y Domicilio del Responsable</h2>
+      <p>En cumplimiento con la Ley Federal de Proteccion de Datos Personales en Posesion de los Particulares (LFPDPPP), <strong>Laboral Click</strong>, con domicilio en Col. Narvarte, Benito Juarez, Ciudad de Mexico, CDMX, es el responsable del tratamiento de sus datos personales.</p>
+      <p>Nuestro equipo esta conformado por:</p>
+      <ul>
+        <li>Lic. Jose Domiciano Segura Diaz (Fundador)</li>
+        <li>Lic. Josmir Jenedy Segura (Especialista en Derecho Laboral)</li>
+        <li>Lic. Josianel Danielis Segura de Carrillo (Especialista en Derecho Administrativo y Relaciones Binacionales)</li>
+      </ul>
+      <p>Para cualquier asunto relacionado con este Aviso de Privacidad, puede contactarnos a traves de:</p>
+      <ul>
+        <li>📱 WhatsApp: <strong>311-186-6901</strong></li>
+        <li>📧 Correo: contacto@laboralclick.com.mx</li>
+      </ul>
+
+      <h2>2. Datos Personales que Recabamos</h2>
+      <p>Para proporcionar nuestros servicios de asesoria laboral, podemos recabar los siguientes datos:</p>
+      <ul>
+        <li>Nombre completo o razon social</li>
+        <li>Telefono de contacto (WhatsApp)</li>
+        <li>Correo electronico</li>
+        <li>Domicilio fiscal y/o comercial</li>
+        <li>Informacion laboral general de su empresa</li>
+        <li>Numero de empleados y datos generales del negocio</li>
+      </ul>
+
+      <h2>3. Finalidades del Tratamiento de Datos</h2>
+      <p>Sus datos personales seran utilizados para las siguientes finalidades:</p>
+      
+      <div class="highlight-box">
+        <strong>Finalidades Primarias (Necesarias para el servicio):</strong>
+        <ul>
+          <li>Proporcionar asesoria laboral personalizada</li>
+          <li>Elaborar diagnosticos laborales</li>
+          <li>Dar seguimiento a casos y consultas</li>
+          <li>Enviar informacion sobre servicios contratados</li>
+          <li>Facturacion y cumplimiento fiscal</li>
+        </ul>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Finalidades Secundarias (Opcionales):</strong>
+        <ul>
+          <li>Enviar articulos del blog y noticias laborales</li>
+          <li>Informar sobre promociones y nuevos servicios</li>
+          <li>Invitaciones a eventos o capacitaciones</li>
+        </ul>
+        <p style="margin-top:10px;">Usted puede manifestar su negativa para el tratamiento de las finalidades secundarias en cualquier momento.</p>
+      </div>
+
+      <h2>4. Transferencia de Datos</h2>
+      <p><strong>Laboral Click NO comparte, vende ni transfiere sus datos personales a terceros</strong>, salvo en los siguientes casos:</p>
+      <ul>
+        <li>Por obligacion legal o requerimiento de autoridad competente</li>
+        <li>Cuando sea necesario para la prestacion del servicio contratado (previo aviso)</li>
+        <li>Para la atencion de asuntos binacionales Mexico-Estados Unidos, los datos podran ser tratados por la Lic. Josianel Danielis Segura de Carrillo desde Wisconsin, USA, cumpliendo con las leyes de proteccion de datos aplicables en ambas jurisdicciones.</li>
+      </ul>
+
+      <h2>5. Derechos ARCO</h2>
+      <p>Usted tiene derecho a ejercer sus derechos de <strong>Acceso, Rectificacion, Cancelacion y Oposicion (ARCO)</strong> al tratamiento de sus datos personales. Para ejercerlos, envie una solicitud por WhatsApp o correo electronico con la siguiente informacion:</p>
+      <ul>
+        <li>Nombre completo del titular</li>
+        <li>Documento que acredite su identidad</li>
+        <li>Descripcion clara de lo que solicita</li>
+      </ul>
+      <p>Responderemos su solicitud en un plazo maximo de 20 dias habiles.</p>
+
+      <h2>6. Medidas de Seguridad</h2>
+      <p>Implementamos medidas de seguridad administrativas, tecnicas y fisicas para proteger sus datos personales contra perdida, robo, acceso no autorizado, alteracion o destruccion, incluyendo:</p>
+      <ul>
+        <li>Acceso restringido a datos personales</li>
+        <li>Comunicaciones cifradas</li>
+        <li>Capacitacion al personal en proteccion de datos</li>
+      </ul>
+
+      <h2>7. Cambios al Aviso de Privacidad</h2>
+      <p>Este Aviso de Privacidad puede ser modificado en cualquier momento. Cualquier cambio se publicara en esta pagina. Le recomendamos revisar periodicamente este aviso.</p>
+
+      <h2>8. Consentimiento</h2>
+      <p>Al proporcionar sus datos personales a traves de nuestros formularios, WhatsApp o cualquier medio, usted consiente el tratamiento de sus datos conforme a lo establecido en este Aviso de Privacidad.</p>
+
+      <p class="fecha-actualizacion">Ultima actualizacion: 11 de julio de 2026</p>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoria Legal sin Enredos para PyMEs. Equipo familiar con cobertura binacional.</p></div>
+        <div class="footer-col"><h4>📍 Ubicacion</h4><p>Col. Narvarte, Benito Juarez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Informacion Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Terminos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La informacion en este sitio es de caracter orientativo. Para asesoria legal personalizada, contactanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos estan protegidos conforme a la LFPDPPP.</p>
+        <p class="copy">&copy; 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+</body>
+</html>

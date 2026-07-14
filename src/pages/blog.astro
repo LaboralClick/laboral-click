@@ -1,0 +1,106 @@
+---
+const titulo = "Blog";
+---
+
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Laboral - Laboral Click</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #1a1a2e; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+    header { background-color: white; box-shadow: 0 2px 25px rgba(0,0,0,0.08); padding: 12px 0; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 28px; font-weight: 700; color: #0a2463; text-decoration: none; }
+    .logo span { color: #c9a028; display: block; font-size: 13px; font-weight: 500; }
+    .nav-links { display: flex; list-style: none; gap: 28px; }
+    .nav-links a { text-decoration: none; color: #1a1a2e; font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: #c9a028; }
+    .btn-whatsapp { background-color: #25D366; color: white; padding: 11px 22px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 7px; }
+    .menu-toggle { display: none; font-size: 30px; background: none; border: none; color: #0a2463; cursor: pointer; }
+    .page-hero { background: linear-gradient(150deg, #0a2463, #1a3a7a); color: white; padding: 70px 0; text-align: center; }
+    .page-hero h1 { font-size: 38px; margin-bottom: 10px; }
+    .page-hero p { font-size: 18px; color: #f0c040; }
+    .blog-grid { padding: 60px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+    .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.05); }
+    .blog-card-image { background: linear-gradient(135deg, #0a2463, #1a3a7a); height: 180px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .blog-card-content { padding: 25px; }
+    .blog-category { background: #c9a028; color: #0a2463; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 12px; }
+    .blog-card h2 { font-size: 20px; margin-bottom: 10px; color: #0a2463; }
+    .blog-card p { color: #6B7280; line-height: 1.6; margin-bottom: 15px; font-size: 14px; }
+    .blog-card .leer-mas { color: #c9a028; text-decoration: none; font-weight: 600; }
+    footer { background: #060f2e; color: white; padding: 40px 0 20px; font-size: 14px; margin-top: 60px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; }
+    .footer-col h4 { color: #f0c040; margin-bottom: 12px; }
+    .footer-col p { opacity: 0.85; line-height: 1.6; }
+    .footer-col a { color: #f0c040; text-decoration: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; }
+    .disclaimer-text { opacity: 0.65; font-size: 12px; font-style: italic; }
+    .privacidad-text { opacity: 0.75; font-size: 13px; }
+    .copy { opacity: 0.6; font-size: 12px; margin-top: 10px; }
+    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; text-decoration: none; box-shadow: 0 5px 25px rgba(37,211,102,0.5); z-index: 1000; }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); gap: 12px; z-index: 999; }
+      .nav-links.open { display: flex; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo"><img src="/images/logoH.png" alt="Laboral Click" style="height:45px;"><span>Asesoria Legal sin Enredos</span></a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li><li><a href="/nosotros">Nosotros</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/precios">Precios</a></li>
+📝 Ejemplo de cómo debe quedar:
+html
+...<li><a href="/nosotros">Nosotros</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/precios">Precios</a></li><li><a href="/promociones">Promociones</a></li>...
+💾 Ctrl + S
+<li><a href="/promociones">Promociones</a></li><li><a href="/casos">Casos de Exito</a></li><li><a href="/testimonios">Testimonios</a></li><li><a href="/diagnostico">Diagnostico</a></li><li><a href="/blog">Blog</a></li><li><a href="/calculadoras">Calculadoras</a></li><li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+  <section class="page-hero"><div class="container"><h1>Blog Laboral</h1><p>Informacion clara y practica para tu empresa</p></div></section>
+  <section><section>
+    <div class="blog-grid">
+      
+      <article class="blog-card">
+        <div class="blog-card-image">📋</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Reformas Legales</span>
+          <h2>Reforma de Vacaciones Dignas: Lo que toda PyME debe saber</h2>
+          <p>Las vacaciones en Mexico cambiaron. Te explicamos en lenguaje claro que significa para tu empresa.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20art%C3%ADculo%20sobre%20la%20Reforma%20de%20Vacaciones%20Dignas" class="leer-mas" target="_blank">Leer articulo por WhatsApp →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-image">📝</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Contratacion</span>
+          <h2>5 claves para contratar personal sin riesgos legales</h2>
+          <p>Contratar correctamente es la mejor forma de evitar problemas futuros.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20art%C3%ADculo%20sobre%20las%205%20claves%20para%20contratar%20sin%20riesgos" class="leer-mas" target="_blank">Leer articulo por WhatsApp →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-image">💰</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Terminacion Laboral</span>
+          <h2>Finiquito vs. Liquidacion: Diferencias que debes conocer</h2>
+          <p>Sabes cuando pagar finiquito y cuando liquidacion? Te explicamos con ejemplos practicos.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20el%20art%C3%ADculo%20sobre%20Finiquito%20vs%20Liquidacion" class="leer-mas" target="_blank">Leer articulo por WhatsApp →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
