@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para la página de Contacto */
+    .contacto-content { padding: 60px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contacto-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.05); text-align: center; }
+    .contacto-card h2 { margin-bottom: 12px; color: #0a2463; }
+    .contacto-card p { color: #6B7280; margin-bottom: 20px; }
+    .contacto-card.whatsapp { border: 3px solid #25D366; }
+    
+    .btn-contacto { display: block; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 16px; margin: 8px 0; transition: all 0.3s; }
+    .btn-contacto:hover { transform: translateY(-2px); }
+    .btn-whatsapp-card { background-color: #25D366; color: white; }
+    .btn-whatsapp-card:hover { background-color: #1da851; }
+    .btn-telegram { background-color: #0088cc; color: white; }
+    .btn-telegram:hover { background-color: #0077b5; }
+    
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-group label { font-weight: 600; margin-bottom: 6px; display: block; color: #0a2463; }
+    .form-group input, .form-group select, .form-group textarea { 
+      width: 100%; padding: 11px 14px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; font-family: inherit; 
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    @media (max-width: 768px) {
+      .contacto-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoria Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contacto</h1>
+      <p>Estamos a un mensaje de distancia</p>
+    </div>
+  </section>
+
+  <section class="contacto-content">
+    <div class="container" style="padding: 0;">
+      <div class="contacto-card whatsapp">
+        <h2>💬 WhatsApp</h2>
+        <p>El canal más rápido y directo para resolver tus dudas.</p>
+        <a href="https://wa.me/5213111866901" class="btn-contacto btn-whatsapp-card" target="_blank">Enviar WhatsApp</a>
+      </div>
+      
+      <div class="contacto-card" style="margin-top:25px;">
+        <h2>📱 Telegram</h2>
+        <p>Comunicación segura y alternativa.</p>
+        <a href="https://t.me/LaboralClick" class="btn-contacto btn-telegram" target="_blank">Contactar por Telegram</a>
+      </div>
+    </div>
+
+    <div class="contacto-card" style="text-align: left;">
+      <h2 style="text-align: center;">📝 Formulario de Contacto</h2>
+      <p style="text-align: center;">Déjanos tus datos y te contactamos a la brevedad.</p>
+      
+      <form id="formContacto">
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input type="text" id="nombre" required placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Teléfono *</label>
+          <input type="tel" id="telefono" required placeholder="Tu número de WhatsApp">
+        </div>
+        <div class="form-group">
+          <label>Servicio de interés</label>
+          <select id="servicio">
+            <option value="">Seleccionar...</option>
+            <option>Asesoría Laboral Integral</option>
+            <option>Auditoría Laboral Preventiva</option>
+            <option>Cálculo de Finiquitos / Liquidaciones</option>
+            <option>Capacitación y NOM-035</option>
+            <option>Resolución de Conflictos</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea id="mensaje" rows="4" placeholder="Cuéntanos brevemente tu situación..."></textarea>
+        </div>
+        <div class="form-group" style="font-size: 14px; color: #4a4a5a;">
+          <label style="display: flex; align-items: flex-start; gap: 8px; font-weight: 400; cursor: pointer;">
+            <input type="checkbox" required style="width: auto; margin-top: 4px;">
+            He leído y acepto el <a href="/aviso" target="_blank" style="color: #c9a028; font-weight: 600;">Aviso de Privacidad</a>.
+          </label>
+        </div>
+        <p style="font-size:12px; color:#6B7280; margin-top: -10px; margin-bottom: 20px;">
+          Tus datos serán utilizados exclusivamente para contactarte respecto a los servicios solicitados.
+        </p>
+        <button type="submit" class="btn-contacto btn-whatsapp-card" style="border:none; cursor:pointer; width:100%;">
+          Enviar Mensaje por WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información es de carácter orientativo.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    document.getElementById('formContacto').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var n = document.getElementById('nombre').value;
+      var t = document.getElementById('telefono').value;
+      var s = document.getElementById('servicio').value || 'No especificado';
+      var m = document.getElementById('mensaje').value || 'Sin mensaje adicional';
+      
+      var texto = '📝 *NUEVO CONTACTO DESDE LA WEB*%0A%0A';
+      texto += '*Nombre:* ' + n + '%0A';
+      texto += '*Teléfono:* ' + t + '%0A';
+      texto += '*Servicio:* ' + s + '%0A';
+      texto += '*Mensaje:* ' + m + '%0A%0A';
+      texto += 'Solicito información sobre sus servicios.';
+      
+      window.open('https://wa.me/5213111866901?text=' + texto, '_blank');
+    });
+  </script>
+
+</body>
+</html>
