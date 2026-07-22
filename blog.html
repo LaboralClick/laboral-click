@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Laboral - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para el Blog */
+    .blog-grid { padding: 60px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+    .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+    .blog-card:hover { transform: translateY(-5px); }
+    .blog-card-image { background: linear-gradient(135deg, #0a2463, #1a3a7a); height: 180px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .blog-card-content { padding: 25px; }
+    .blog-category { background: #c9a028; color: #0a2463; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 12px; }
+    .blog-card h2 { font-size: 20px; margin-bottom: 10px; color: #0a2463; }
+    .blog-card p { color: #6B7280; line-height: 1.6; margin-bottom: 15px; font-size: 14px; }
+    .blog-card .leer-mas { color: #c9a028; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
+    .blog-card .leer-mas:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoria Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Blog Laboral</h1>
+      <p>Información clara y práctica para tu empresa</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="blog-grid">
+      
+      <article class="blog-card">
+        <div class="blog-card-image">📋</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Reformas Legales</span>
+          <h2>Reforma de Vacaciones Dignas: Lo que toda PyME debe saber</h2>
+          <p>Las vacaciones en México cambiaron. Te explicamos en lenguaje claro qué significa para tu empresa.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustaría%20recibir%20el%20artículo%20sobre%20la%20Reforma%20de%20Vacaciones%20Dignas" class="leer-mas" target="_blank">Leer artículo por WhatsApp →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-image">📝</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Contratación</span>
+          <h2>5 claves para contratar personal sin riesgos legales</h2>
+          <p>Contratar correctamente es la mejor forma de evitar problemas futuros con la autoridad.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustaría%20recibir%20el%20artículo%20sobre%20las%205%20claves%20para%20contratar%20sin%20riesgos" class="leer-mas" target="_blank">Leer artículo por WhatsApp →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-image">💰</div>
+        <div class="blog-card-content">
+          <span class="blog-category">Terminación Laboral</span>
+          <h2>Finiquito vs. Liquidación: Diferencias que debes conocer</h2>
+          <p>¿Sabes cuándo pagar finiquito y cuándo liquidación? Te explicamos con ejemplos prácticos.</p>
+          <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustaría%20recibir%20el%20artículo%20sobre%20Finiquito%20vs%20Liquidación" class="leer-mas" target="_blank">Leer artículo por WhatsApp →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información en este sitio es de carácter orientativo.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+</body>
+</html>
