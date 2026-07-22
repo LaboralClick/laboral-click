@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para la página Nosotros */
+    .lang-toggle { text-align: center; margin: 30px 0 10px; }
+    .lang-toggle button { padding: 8px 20px; margin: 0 5px; border: 2px solid #c9a028; background: white; color: #0a2463; font-weight: 600; border-radius: 25px; cursor: pointer; transition: all 0.3s; }
+    .lang-toggle button.active, .lang-toggle button:hover { background: #c9a028; color: white; }
+    
+    .equipo-section { padding: 40px 0 60px; }
+    .equipo-intro { text-align: center; max-width: 700px; margin: 0 auto 40px; }
+    .equipo-intro h2 { font-size: 30px; color: #0a2463; margin-bottom: 15px; }
+    .equipo-intro p { color: #6B7280; line-height: 1.7; font-size: 16px; }
+    
+    .miembro-card { display: grid; grid-template-columns: 220px 1fr; gap: 35px; background: white; border-radius: 15px; padding: 40px; margin-bottom: 30px; box-shadow: 0 3px 20px rgba(0,0,0,0.06); align-items: center; }
+    .miembro-card.destacado { border-left: 6px solid #c9a028; }
+    .miembro-foto { width: 200px; height: 200px; border-radius: 50%; background: #e5e7eb; object-fit: cover; margin: 0 auto; }
+    .miembro-info h2 { font-size: 24px; color: #0a2463; margin-bottom: 5px; }
+    .miembro-info .cargo { color: #c9a028; font-weight: 600; font-size: 16px; margin-bottom: 5px; }
+    .miembro-info .sede { color: #6B7280; font-size: 13px; margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+    .miembro-info .sede.usa { color: #0088cc; font-weight: 600; }
+    .miembro-info p { color: #6B7280; line-height: 1.7; }
+    
+    .diferenciador { background: #0a2463; color: white; padding: 40px; border-radius: 12px; text-align: center; margin: 40px 0; }
+    .diferenciador h2 { color: #f0c040; margin-bottom: 10px; }
+    .diferenciador p { opacity: 0.95; line-height: 1.7; max-width: 600px; margin: 0 auto; font-size: 16px; }
+
+    @media (max-width: 768px) {
+      .miembro-card { grid-template-columns: 1fr; text-align: center; }
+      .miembro-foto { margin-bottom: 20px; }
+      .miembro-info .sede { justify-content: center; }
+    }
+  </style>
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-es').forEach(el => el.style.display = lang === 'es' ? 'block' : 'none');
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+      document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+    }
+  </script>
+</head>
+<body onload="switchLang('es')">
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoria Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nuestro Equipo</h1>
+      <p>Expertos en derecho laboral a tu servicio</p>
+    </div>
+  </section>
+
+  <div class="lang-toggle">
+    <button id="btn-es" class="active" onclick="switchLang('es')">Español</button>
+    <button id="btn-en" onclick="switchLang('en')">English</button>
+  </div>
+
+  <section class="equipo-section">
+    <div class="container">
+      
+      <div class="equipo-intro">
+        <h2 class="lang-es">Una Familia de Abogados Comprometidos con tu PyME</h2>
+        <h2 class="lang-en" style="display:none;">A Family of Attorneys Committed to Your Business</h2>
+        <p class="lang-es">Somos un equipo familiar con presencia en México y Estados Unidos. Combinamos experiencia, juventud y visión binacional para proteger tu empresa dondequiera que opere.</p>
+        <p class="lang-en" style="display:none;">We are a family team with presence in Mexico and the United States. We combine experience, youth and a binational vision to protect your business wherever it operates.</p>
+      </div>
+
+      <!-- Jose -->
+      <div class="miembro-card destacado">
+        <img src="/images/lic-segura.webp" alt="Lic. Jose Domiciano Segura Diaz" class="miembro-foto">
+        <div class="miembro-info">
+          <h2>Lic. Jose Domiciano Segura Diaz</h2>
+          <p class="cargo lang-es">Fundador - Estrategia Laboral para PyMEs</p>
+          <p class="cargo lang-en" style="display:none;">Founder - Labor Strategy for SMEs</p>
+          <p class="sede">📍 Ciudad de México / Mexico City</p>
+          <p class="lang-es">Más de 25 años de trayectoria directiva en gestión integral de capital humano. Mi enfoque combina el rigor legal con la eficiencia operativa, eliminando tecnicismos innecesarios para que cada empresario comprenda y controle sus obligaciones legales con total claridad.</p>
+          <p class="lang-en" style="display:none;">With over 25 years of executive experience in human capital management, I blend legal rigor with operational efficiency. My approach eliminates complex legal jargon, ensuring business owners clearly understand and effectively manage their labor obligations.</p>
+        </div>
+      </div>
+
+      <!-- Josmir -->
+      <div class="miembro-card">
+        <img src="/images/josmir.webp" alt="Lic. Josmir Jenedy Segura" class="miembro-foto">
+        <div class="miembro-info">
+          <h2>Lic. Josmir Jenedy Segura</h2>
+          <p class="cargo lang-es">Abogada Especialista en Derecho Laboral</p>
+          <p class="cargo lang-en" style="display:none;">Labor & Employment Counsel</p>
+          <p class="sede">📍 Ciudad de México / Mexico City</p>
+          <p class="lang-es">Especialista en derecho laboral, contratación y seguridad social. Aporto una visión fresca y actualizada del marco normativo mexicano, ayudando a las empresas a fortalecer su estructura interna mediante el cumplimiento preventivo y la gestión eficiente del talento.</p>
+          <p class="lang-en" style="display:none;">Specializing in labor law, employment contracts, and social security. I provide a fresh and updated perspective on the Mexican regulatory framework, helping companies strengthen their internal structure through proactive compliance and efficient talent management.</p>
+        </div>
+      </div>
+
+      <!-- Josianel -->
+      <div class="miembro-card">
+        <img src="/images/josianel.webp" alt="Lic. Josianel Danielis Segura de Carrillo" class="miembro-foto">
+        <div class="miembro-info">
+          <h2>Lic. Josianel Danielis Segura de Carrillo</h2>
+          <p class="cargo lang-es">Abogada Especialista en Derecho Administrativo y Relaciones Binacionales</p>
+          <p class="cargo lang-en" style="display:none;">Administrative Law & Cross-Border Strategy Counsel</p>
+          <p class="sede usa">🇺🇸 Wisconsin, Estados Unidos / Wisconsin, USA</p>
+          <p class="lang-es">Especialista en derecho administrativo y relaciones binacionales. Actúo como el puente legal clave para empresas con operaciones en ambos lados de la frontera, asegurando la continuidad operativa y la mitigación de riesgos jurisdiccionales.</p>
+          <p class="lang-en" style="display:none;">Specializing in administrative law and cross-border relations, I serve as a primary legal bridge for businesses operating across the Mexico-U.S. border. I navigate complex regulatory frameworks to ensure seamless corporate compliance and mitigate jurisdictional risks for international operations.</p>
+        </div>
+      </div>
+
+      <div class="diferenciador">
+        <h2 class="lang-es">🇲🇽 + 🇺🇸 Cobertura Binacional</h2>
+        <h2 class="lang-en" style="display:none;">🇲🇽 + 🇺🇸 Cross-Border Coverage</h2>
+        <p class="lang-es">¿Tu empresa tiene trabajadores en México y Estados Unidos? Nuestro equipo te cubre en ambos lados de la frontera. Somos el único despacho familiar con presencia en CDMX y Wisconsin.</p>
+        <p class="lang-en" style="display:none;">Does your business have workers in Mexico and the United States? Our team covers you on both sides of the border. We are the only family firm with a presence in Mexico City and Wisconsin.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo familiar con cobertura binacional.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información en este sitio es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+  
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+</body>
+</html>
