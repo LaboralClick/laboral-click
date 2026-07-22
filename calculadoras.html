@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadoras Laborales - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para las Calculadoras */
+    .calculadora { background: white; border-radius: 12px; padding: 35px; margin: 35px 0; box-shadow: 0 3px 20px rgba(0,0,0,0.08); }
+    .calculadora h2 { font-size: 24px; color: #0a2463; }
+    .descripcion { color: #6B7280; margin-bottom: 22px; }
+    .tipo-calculo { display: flex; gap: 10px; margin-bottom: 22px; }
+    .tipo-btn { flex: 1; padding: 12px; border: 2px solid #e5e7eb; background: white; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .tipo-btn.activo { border-color: #c9a028; background: #fef9e7; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+    .form-group { display: flex; flex-direction: column; margin-bottom: 18px; }
+    .form-group label { font-weight: 600; color: #0a2463; }
+    .form-group input, .form-group select { padding: 11px 14px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; }
+    .btn-calcular { width: 100%; padding: 14px; background: #c9a028; color: #0a2463; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .resultado { margin-top: 25px; padding: 25px; background: #f0fdf4; border: 2px solid #25D366; border-radius: 10px; display: none; text-align: center; }
+    .resultado-total { font-size: 28px; font-weight: 700; padding: 18px; background: white; border-radius: 8px; }
+    .resultado-total span { color: #25D366; font-size: 34px; }
+    .disclaimer { background: #fff3cd; padding: 18px; border-radius: 8px; margin-top: 18px; font-size: 14px; color: #856404; }
+    .disclaimer a { background: #25D366; color: white; padding: 10px 18px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoría Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Calculadoras Laborales</h1>
+      <p>Herramientas prácticas para tus decisiones laborales</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="calculadora">
+      <h2>🧮 Calculadora de Finiquito y Liquidación</h2>
+      <p class="descripcion">Obtén el total estimado. El desglose te lo damos personalmente.</p>
+      <div class="tipo-calculo">
+        <button type="button" class="tipo-btn activo" id="btnFiniquito">🏷️ FINIQUITO<br><small>Renuncia voluntaria</small></button>
+        <button type="button" class="tipo-btn" id="btnLiquidacion">⚖️ LIQUIDACIÓN<br><small>Despido injustificado</small></button>
+      </div>
+      <form id="formFiniquito">
+        <div class="form-row">
+          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioDiario" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
+          <div class="form-group"><label>Días de Aguinaldo</label><input type="number" id="diasAguinaldo" value="15" min="15"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Fecha de Ingreso</label><input type="date" id="fechaIngreso" required></div>
+          <div class="form-group"><label>Fecha de Salida</label><input type="date" id="fechaSalida" required></div>
+        </div>
+        <button type="submit" class="btn-calcular">Calcular</button>
+        <p style="font-size:12px; color:#e74c3c; margin-top: 10px; text-align: center;">
+          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la normativa laboral vigente. No constituyen asesoría legal formal. Para cálculos exactos y asesoría personalizada, contacta a nuestros especialistas. Laboral Click no se responsabiliza por decisiones basadas únicamente en estos resultados.
+        </p>
+      </form>
+      <div id="resultadoFiniquito" class="resultado"></div>
+      <p id="sinResultadoFiniquito" style="text-align:center;margin-top:20px;color:#6B7280;">Completa los datos y haz clic en <strong>Calcular</strong></p>
+    </div>
+    
+    <div class="calculadora">
+      <h2>🏥 Calculadora de Cuotas IMSS</h2>
+      <p class="descripcion">Obtén el total estimado de cuotas patronales.</p>
+      <form id="formIMSS">
+        <div class="form-row">
+          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioIMSS" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
+          <div class="form-group"><label>Número de Trabajadores</label><input type="number" id="numTrabajadores" value="1" min="1"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Tipo de Prestación</label><select id="tipoPrestacion"><option value="completa">Prestaciones Completas</option><option value="basica">Solo Enfermedad y Maternidad</option></select></div>
+          <div class="form-group"><label>Clase de Riesgo</label><select id="riesgoTrabajo"><option value="I">Clase I (Oficinas)</option><option value="II">Clase II (Comercio)</option><option value="III">Clase III (Manufactura)</option></select></div>
+        </div>
+        <button type="submit" class="btn-calcular">Estimar Cuotas</button>
+        <p style="font-size:12px; color:#e74c3c; margin-top: 10px; text-align: center;">
+          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la normativa laboral vigente. No constituyen asesoría legal formal. Para cálculos exactos y asesoría personalizada, contacta a nuestros especialistas. Laboral Click no se responsabiliza por decisiones basadas únicamente en estos resultados.
+        </p>
+      </form>
+      <div id="resultadoIMSS" class="resultado"></div>
+      <p id="sinResultadoIMSS" style="text-align:center;margin-top:20px;color:#6B7280;">Ingresa los datos para ver el cálculo estimado</p>
+    </div>
+    
+    <div class="calculadora">
+      <h2>⏰ Calculadora de Horas Extra</h2>
+      <p class="descripcion">Obtén el total a pagar por horas extra.</p>
+      <form id="formHorasExtra">
+        <div class="form-row">
+          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioHE" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
+          <div class="form-group"><label>Jornada Laboral</label><select id="jornada"><option value="diurna">Diurna (8 hrs)</option><option value="nocturna">Nocturna (7 hrs)</option><option value="mixta">Mixta (7.5 hrs)</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Horas Extra (semana)</label><input type="number" id="horasExtra" required placeholder="Ej: 9" min="0" max="27"></div>
+          <div class="form-group"><label>¿Día de descanso?</label><select id="diaDescanso"><option value="no">No</option><option value="si">Sí (Prima 25%)</option></select></div>
+        </div>
+        <button type="submit" class="btn-calcular">Calcular Horas Extra</button>
+        <p style="font-size:12px; color:#e74c3c; margin-top: 10px; text-align: center;">
+          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la normativa laboral vigente. No constituyen asesoría legal formal. Para cálculos exactos y asesoría personalizada, contacta a nuestros especialistas. Laboral Click no se responsabiliza por decisiones basadas únicamente en estos resultados.
+        </p>
+      </form>
+      <div id="resultadoHE" class="resultado"></div>
+      <p id="sinResultadoHE" style="text-align:center;margin-top:20px;color:#6B7280;">Ingresa los datos de las horas extra</p>
+    </div>
+    
+    <div class="banner-calc">
+      <div class="banner-calc-content">
+        <div>
+          <h3>⚠️ ¿El resultado te pareció muy alto?</h3>
+          <p>Un error en esos números puede significar una demanda. Antes de pagar ese monto o tomar una decisión, <strong>valida tus cálculos con un experto.</strong></p>
+        </div>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20validar%20mis%20calculos%20sin%20costo" class="btn-urgente" target="_blank">⚡ Agendar validación gratuita</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información es de carácter orientativo.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos.</p>
+        <p class="copy">&copy; 2026 Laboral Click</p>
+      </div>
+    </div>
+  </footer>
+  
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    var tipoCalculo = 'finiquito';
+    document.getElementById('btnFiniquito').addEventListener('click', function(){tipoCalculo='finiquito';this.classList.add('activo');document.getElementById('btnLiquidacion').classList.remove('activo');});
+    document.getElementById('btnLiquidacion').addEventListener('click', function(){tipoCalculo='liquidacion';this.classList.add('activo');document.getElementById('btnFiniquito').classList.remove('activo');});
+    document.getElementById('formFiniquito').addEventListener('submit', function(e){
+      e.preventDefault();
+      var sd=parseFloat(document.getElementById('salarioDiario').value), da=parseInt(document.getElementById('diasAguinaldo').value);
+      var fi=new Date(document.getElementById('fechaIngreso').value+'T00:00:00'), fs=new Date(document.getElementById('fechaSalida').value+'T00:00:00');
+      var ad=Math.floor((fs-fi)/(1000*60*60*24)), aa=ad/365;
+      var aguinaldo=(sd*da*ad)/365, dv=12;
+      if(aa>=1)dv=14;if(aa>=2)dv=16;if(aa>=3)dv=18;if(aa>=4)dv=20;if(aa>=5)dv=22;
+      var vac=(sd*dv*ad)/365, pv=vac*0.25, total=aguinaldo+vac+pv, tit='FINIQUITO (Renuncia Voluntaria)';
+      if(tipoCalculo==='liquidacion'){tit='LIQUIDACION (Despido Injustificado)';var ind=sd*90, pa=Math.min(sd,278.80*2)*12*aa, vd=sd*20*aa;total+=ind+pa+vd;}
+      var res=document.getElementById('resultadoFiniquito');document.getElementById('sinResultadoFiniquito').style.display='none';res.style.display='block';
+      res.innerHTML='<h3>📋 '+tit+'</h3><p style="color:#6B7280;">Antigüedad: '+ad+' días</p><div class="resultado-total">💰 TOTAL: <span>$'+total.toFixed(2)+' MXN</span></div><div class="disclaimer"><strong>¿Necesitas el desglose?</strong><br><br><a href="https://wa.me/5213111866901" target="_blank">💬 Solicitar Desglose</a></div>';
+      res.scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('formIMSS').addEventListener('submit', function(e){
+      e.preventDefault();
+      var s=parseFloat(document.getElementById('salarioIMSS').value), t=parseInt(document.getElementById('numTrabajadores').value), r=document.getElementById('riesgoTrabajo').value;
+      var riesgos={I:0.0054355,II:0.0113065,III:0.0259840}, sbc=s*30.4;
+      var tp=sbc*0.20*0.70+sbc*0.20*0.25+sbc*riesgos[r]+sbc*0.20*1.75+sbc*0.20*0.625+sbc*0.20*1.0+sbc*0.20*3.15;
+      var res=document.getElementById('resultadoIMSS');document.getElementById('sinResultadoIMSS').style.display='none';res.style.display='block';
+      res.innerHTML='<h3>🏥 Cuotas IMSS Estimadas</h3><p style="color:#6B7280;">'+t+' trabajador(es)</p><div class="resultado-total">🏭 CUOTA MENSUAL:<br><span>$'+(tp*t).toFixed(2)+' MXN</span></div><div class="disclaimer"><a href="https://wa.me/5213111866901" target="_blank">💬 Solicitar Desglose</a></div>';
+      res.scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('formHorasExtra').addEventListener('submit', function(e){
+      e.preventDefault();
+      var s=parseFloat(document.getElementById('salarioHE').value), j=document.getElementById('jornada').value, he=parseInt(document.getElementById('horasExtra').value), dd=document.getElementById('diaDescanso').value;
+      var hj=j==='diurna'?8:j==='nocturna'?7:7.5, sh=s/hj, hd=Math.min(he,9), ht=Math.max(0,he-9), total=hd*sh*2+ht*sh*3;
+      if(dd==='si')total+=total*0.25;
+      var res=document.getElementById('resultadoHE');document.getElementById('sinResultadoHE').style.display='none';res.style.display='block';
+      res.innerHTML='<h3>⏰ Pago de Horas Extra</h3><p style="color:#6B7280;">'+he+' hrs | Jornada '+j+'</p><div class="resultado-total">💰 TOTAL:<br><span>$'+total.toFixed(2)+' MXN</span></div><div class="disclaimer"><a href="https://wa.me/5213111866901" target="_blank">💬 Solicitar Desglose</a></div>';
+      res.scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
