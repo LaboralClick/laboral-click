@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precios - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para la página de Precios */
+    .diferencial { text-align: center; padding: 30px; background: #fef9e7; border-radius: 12px; margin: 30px 0; border: 2px dashed #c9a028; }
+    .diferencial p { font-size: 18px; color: #0a2463; font-weight: 600; }
+    .diferencial span { color: #c9a028; }
+    
+    .precios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 25px; padding: 40px 0; }
+    .plan-card { background: white; border-radius: 15px; padding: 35px 25px; box-shadow: 0 5px 30px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; display: flex; flex-direction: column; }
+    .plan-card:hover { transform: translateY(-8px); }
+    .plan-card.popular { border: 3px solid #c9a028; transform: scale(1.03); }
+    .plan-card.popular:hover { transform: scale(1.03) translateY(-8px); }
+    .plan-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c9a028; color: #0a2463; padding: 6px 20px; border-radius: 25px; font-weight: 700; font-size: 13px; }
+    .plan-empresarial { border: 2px dashed #c9a028; background: #fef9e7; }
+    
+    .plan-nombre { font-size: 22px; font-weight: 700; color: #0a2463; margin-bottom: 5px; }
+    .plan-desc { color: #6B7280; font-size: 14px; margin-bottom: 20px; }
+    .plan-precio { font-size: 42px; font-weight: 700; color: #0a2463; margin-bottom: 5px; }
+    .plan-precio small { font-size: 16px; color: #6B7280; font-weight: 400; }
+    .plan-ahorro { color: #25D366; font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+    
+    .plan-features { list-style: none; padding: 0; text-align: left; flex-grow: 1; }
+    .plan-features li { padding: 10px 0; color: #4a4a5a; font-size: 14px; border-bottom: 1px solid #f0f0f0; line-height: 1.5; }
+    .plan-features li strong { color: #0a2463; }
+    
+    .plan-btn { display: block; margin-top: 20px; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; text-align: center; transition: all 0.3s; }
+    .btn-outline { border: 2px solid #c9a028; color: #c9a028; }
+    .btn-outline:hover { background: #c9a028; color: #0a2463; }
+    
+    .garantia { text-align: center; padding: 30px; background: #f0fdf4; border-radius: 12px; margin: 30px 0; border: 2px solid #25D366; }
+    .garantia h3 { color: #25D366; font-size: 22px; margin-bottom: 8px; }
+    .garantia p { color: #4a4a5a; }
+    
+    .faq-section { padding: 40px 0; }
+    .faq-section h2 { text-align: center; color: #0a2463; margin-bottom: 30px; }
+    .faq-item { background: white; border-radius: 10px; padding: 20px 25px; margin-bottom: 10px; cursor: pointer; transition: background 0.3s; }
+    .faq-item:hover { background: #f8f9fa; }
+    .faq-item h3 { font-size: 16px; color: #0a2463; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item p { color: #6B7280; margin-top: 12px; display: none; line-height: 1.6; }
+    .faq-item.open p { display: block; }
+
+    @media (max-width: 768px) {
+      .plan-card.popular { transform: none; }
+      .plan-card.popular:hover { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoria Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios" class="active">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Planes y Precios Transparentes</h1>
+      <p>Sin costos ocultos. Sin letra chiquita.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    
+    <div class="diferencial">
+      <p>🚗 <span>Nosotros vamos a tu empresa.</span> No cierres tu negocio para una asesoría. Llegamos a ti.</p>
+    </div>
+
+    <div class="precios-grid">
+      
+      <!-- BASICO -->
+      <div class="plan-card">
+        <div class="plan-nombre">🛡️ Básico</div>
+        <div class="plan-desc">"Tranquilidad Mínima"<br>Ideal para 1-5 empleados</div>
+        <div class="plan-precio">$4,500<small>/mes</small></div>
+        <div class="plan-ahorro">💡 $45,000/año (ahorras $9,000)</div>
+        <ul class="plan-features">
+          <li><strong>3 Contratos Laborales Personalizados:</strong> Individual, por temporada o el que necesites. Redactados a tu medida, sin formatos genéricos.</li>
+          <li><strong>Reglamento Interior de Trabajo:</strong> El documento oficial que exige la ley. Lo elaboramos completo y te lo entregamos listo para firmar.</li>
+          <li><strong>Registro ante la Autoridad Laboral:</strong> Nosotros hacemos el trámite. Tú recibes la constancia oficial sin mover un dedo.</li>
+          <li><strong>1 Hora de Asesoría Mensual:</strong> Por teléfono o WhatsApp. Para resolver dudas rápidas sin costo extra.</li>
+          <li><strong>Soporte WhatsApp (L-V, 9:00 - 18:00 hrs):</strong> ¿Te urge una pregunta? Te respondemos en el chat.</li>
+          <li><strong>🚗 Visita Inicial a tu Empresa:</strong> Vamos a tu negocio a levantar la información y entregarte los documentos en persona.</li>
+        </ul>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Basico" class="plan-btn btn-outline" target="_blank">Elegir Básico</a>
+      </div>
+
+      <!-- PROFESIONAL -->
+      <div class="plan-card popular">
+        <div class="plan-badge">⭐ MÁS POPULAR</div>
+        <div class="plan-nombre">🛡️ Profesional</div>
+        <div class="plan-desc">"Blindaje Estándar"<br>Ideal para 6-20 empleados</div>
+        <div class="plan-precio">$8,500<small>/mes</small></div>
+        <div class="plan-ahorro">💡 $85,000/año (ahorras $17,000)</div>
+        <ul class="plan-features">
+          <li><strong>Todo lo del Básico, MÁS:</strong></li>
+          <li><strong>5 Contratos + Formatos Adicionales:</strong> Cartas de renuncia, avisos de despido, contratos de confianza... lo que ocupes en el día a día.</li>
+          <li><strong>Expedientes Completos:</strong> Armamos la carpeta de cada trabajador exactamente como la pide el IMSS o la STPS.</li>
+          <li><strong>Protocolo de Inspecciones:</strong> ¿Llegó el inspector? Te damos la guía paso a paso y capacitamos a tu gente.</li>
+          <li><strong>Cumplimiento NOM-035:</strong> Evaluamos riesgos psicosociales y te damos recomendaciones prácticas, sin teorías inútiles.</li>
+          <li><strong>3 Horas de Asesoría Mensual:</strong> Más tiempo para resolver temas complejos o planificar estrategias.</li>
+          <li><strong>1 Visita Presencial Trimestral:</strong> Vamos cada 3 meses a revisar que todo siga en orden.</li>
+          <li><strong>Soporte Prioritario:</strong> Respuesta en menos de 2 horas en horario hábil.</li>
+        </ul>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Profesional" class="plan-btn btn-dorado" target="_blank">Elegir Profesional</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-card">
+        <div class="plan-nombre">🛡️ Premium</div>
+        <div class="plan-desc">"Blindaje Total"<br>Ideal para 21-50 empleados</div>
+        <div class="plan-precio">$12,500<small>/mes</small></div>
+        <div class="plan-ahorro">💡 $125,000/año (ahorras $25,000)</div>
+        <ul class="plan-features">
+          <li><strong>Todo lo del Profesional, MÁS:</strong></li>
+          <li><strong>Asesoría Laboral Ilimitada:</strong> Llama, escribe o videollamada cuantas veces necesites. Sin límites.</li>
+          <li><strong>Auditoría Laboral Trimestral:</strong> Revisamos a fondo contratos, expedientes y cumplimiento. Te entregamos un reporte ejecutivo con riesgos y soluciones.</li>
+          <li><strong>Representación en Conciliaciones (hasta 2 al año):</strong> Si un extrabajador te cita, nosotros te representamos.</li>
+          <li><strong>Actualizaciones Regulatorias Automáticas:</strong> Cada vez que cambie la ley, te avisamos y ajustamos tus documentos sin costo extra.</li>
+          <li><strong>Gerente de Cuenta Dedicado:</strong> Una persona fija asignada a tu empresa. Conoce tu caso de memoria.</li>
+          <li><strong>Visitas Presenciales Mensuales:</strong> Vamos a tu negocio cada mes.</li>
+          <li><strong>Soporte de Emergencias 24/7:</strong> ¿Problema urgente en fin de semana? Te respondemos.</li>
+        </ul>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Premium" class="plan-btn btn-outline" target="_blank">Elegir Premium</a>
+      </div>
+
+      <!-- EMPRESARIAL -->
+      <div class="plan-card plan-empresarial">
+        <div class="plan-nombre">🏢 Empresarial</div>
+        <div class="plan-desc">"Solución a Medida"<br>50+ empleados u operaciones binacionales</div>
+        <div class="plan-precio">Cotización</div>
+        <div class="plan-ahorro">Personalizada</div>
+        <ul class="plan-features">
+          <li><strong>Todo lo del Premium, MÁS:</strong></li>
+          <li><strong>Cobertura Binacional México-USA:</strong> Tu equipo recibe asesoría en ambas fronteras.</li>
+          <li><strong>Equipo Legal Dedicado:</strong> Dos o más especialistas asignados a tu cuenta.</li>
+          <li><strong>Reportes Ejecutivos Mensuales:</strong> Métricas claras, no legajos interminables.</li>
+          <li><strong>Capacitación para Todo tu Equipo:</strong> RH, gerentes y supervisores aprenden a prevenir riesgos.</li>
+          <li><strong>Visitas Ilimitadas:</strong> Vamos cuantas veces sea necesario.</li>
+          <li><strong>Precio a tu Medida:</strong> Cotización personalizada según el tamaño y necesidades de tu operación.</li>
+        </ul>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Empresarial" class="plan-btn btn-outline" target="_blank">Agendar Reunión Ejecutiva</a>
+      </div>
+
+    </div>
+
+    <div class="garantia">
+      <h3>🛡️ Garantía Laboral Click 30 Días</h3>
+      <p>Si en los primeros 30 días no estás 100% satisfecho con nuestro servicio, te devolvemos tu inversión completa. Sin preguntas. Sin enredos.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Preguntas Frecuentes sobre Precios</h2>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <h3>¿Tienen costos ocultos? <span>▾</span></h3>
+        <p>No. El precio que ves es el precio que pagas. Incluye todo lo descrito en el paquete. Si surge algo adicional, te lo informamos antes de hacerlo.</p>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <h3>¿Puedo cambiar de plan después? <span>▾</span></h3>
+        <p>Sí. Puedes hacer upgrade o downgrade en cualquier momento. Solo pagas la diferencia del mes en curso.</p>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <h3>¿Qué formas de pago aceptan? <span>▾</span></h3>
+        <p>Transferencia bancaria, depósito en cuenta, efectivo y PayPal. Facturamos a nombre de tu empresa.</p>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <h3>¿Puedo pagar mensualmente? <span>▾</span></h3>
+        <p>Sí. El pago es mensual. Si eliges el plan anual, obtienes descuento.</p>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <h3>¿Puedo cancelar cuando quiera? <span>▾</span></h3>
+        <p>Sí. No hay contratos forzosos. Puedes cancelar en cualquier momento. Solo cubres el mes en curso.</p>
+      </div>
+    </div>
+
+    <div class="cta-final">
+      <h2>¿No sabes cuál plan elegir?</h2>
+      <p>Agenda tu diagnóstico gratuito de 15 minutos. Analizamos tu caso y te recomendamos el mejor plan.</p>
+      <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20mi%20diagnostico%20gratuito%20para%20elegir%20un%20plan" class="btn-whatsapp" target="_blank" style="font-size:16px; padding:14px 28px;">💬 Agendar Diagnóstico Gratis</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo familiar con cobertura binacional.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+  
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+</body>
+</html>
