@@ -117,3 +117,18 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
   .hero-buttons { justify-content: center; flex-direction: column; }
   .page-hero h1 { font-size: 32px; }
 }
+/* Arreglo para que nada se salga de la pantalla en móvil */
+@media (max-width: 768px) {
+  .container {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .calc-card, .servicio-card {
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-text h1 {
+    font-size: 28px;
+    word-wrap: break-word;
+  }
+}
