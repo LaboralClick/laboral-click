@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonios - Laboral Click</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Estilos específicos solo para la página de Testimonios */
+    .testimonios-grid { padding: 60px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+    .testimonio-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 3px 20px rgba(0,0,0,0.06); position: relative; transition: transform 0.3s; }
+    .testimonio-card:hover { transform: translateY(-5px); }
+    .testimonio-card::before { content: '"'; font-size: 80px; color: #c9a028; position: absolute; top: 10px; left: 20px; font-family: Georgia, serif; opacity: 0.3; line-height: 1; }
+    .testimonio-stars { color: #f0c040; font-size: 20px; margin-bottom: 15px; }
+    .testimonio-texto { color: #4a4a5a; line-height: 1.7; font-size: 15px; margin-bottom: 20px; font-style: italic; position: relative; z-index: 1; }
+    .testimonio-autor { border-top: 1px solid #e5e7eb; padding-top: 15px; }
+    .testimonio-autor strong { color: #0a2463; display: block; font-size: 16px; }
+    .testimonio-autor span { color: #6B7280; font-size: 13px; }
+    .cta-testimonios { text-align: center; padding: 40px; background: #0a2463; color: white; border-radius: 12px; margin: 40px 0; }
+    .cta-testimonios h2 { color: #f0c040; margin-bottom: 12px; }
+    .cta-testimonios p { margin-bottom: 20px; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoria Legal sin Enredos</span>
+        </a>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <ul class="nav-links" id="navMenu">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/servicios">Servicios</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/promociones">Promociones</a></li>
+          <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios" class="active">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnostico</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/calculadoras">Calculadoras</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Lo Que Dicen Nuestros Clientes</h1>
+      <p>PyMEs que ya confían en nosotros</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="testimonios-grid">
+        
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"Laboral Click nos ayudó a blindar nuestros contratos y evitar riesgos con el IMSS. Su asesoría es clara, directa y sin tecnicismos."</p>
+          <div class="testimonio-autor">
+            <strong>Arq. Oscar Carrillo Ramos</strong>
+            <span>Gerente General - CARAM ARQUITECTOS, CDMX</span>
+          </div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"La asesoría en sitio marcó la diferencia. Entendieron perfectamente las necesidades de mi taller y todo quedó en orden."</p>
+          <div class="testimonio-autor">
+            <strong>Empresario PyME</strong>
+            <span>Taller Mecánico "Rápido y Seguro"</span>
+          </div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"Me ayudaron a estructurar los contratos de mis empleados. Todo clarísimo y sin letras chiquitas. Excelente servicio."</p>
+          <div class="testimonio-autor">
+            <strong>Comerciante PyME</strong>
+            <span>Boutique "Elegancia Total"</span>
+          </div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"Contraté la auditoría laboral y descubrieron riesgos que no sabía que tenía. Me ahorraron una multa segura."</p>
+          <div class="testimonio-autor">
+            <strong>Distribuidor PyME</strong>
+            <span>Distribuidora "El Águila" - Estado de México</span>
+          </div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"Lo que más valoro es que vienen a mi negocio. No tengo que cerrar para ir a un despacho. Hablan claro y resuelven rápido."</p>
+          <div class="testimonio-autor">
+            <strong>Emprendedora PyME</strong>
+            <span>Ferretería "La Solución" - CDMX</span>
+          </div>
+        </div>
+
+        <div class="testimonio-card">
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonio-texto">"El Paquete PyME fue justo lo que necesitaba. Contratos, reglamento y asesoría por meses. Todo sin enredos."</p>
+          <div class="testimonio-autor">
+            <strong>Empresario PyME</strong>
+            <span>Agencia de Marketing "Creativa"</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-testimonios">
+        <h2>¿Listo para ser nuestro próximo caso de éxito?</h2>
+        <p>Agenda tu primera consulta gratuita y descubre por qué las PyMEs confían en Laboral Click.</p>
+        <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20agendar%20mi%20consulta%20gratuita" class="btn-whatsapp" target="_blank" style="font-size:16px; padding:14px 28px;">💬 Agendar Consulta Gratis</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Laboral Click</h4>
+          <p>Asesoría Legal sin Enredos para PyMEs. Vamos a tu empresa, hablamos claro y resolvemos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>📍 Ubicación</h4>
+          <p>Col. Narvarte, Benito Juárez<br>Ciudad de México, CDMX</p>
+          <p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>⚖️ Información Legal</h4>
+          <p><a href="/aviso">Aviso de Privacidad</a></p>
+          <p><a href="/terminos">Términos y Condiciones</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer-text">La información en este sitio es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la Ley Federal de Protección de Datos Personales.</p>
+        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+
+</body>
+</html>
