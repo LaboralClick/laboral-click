@@ -77,21 +77,22 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
+    display: block !important;
     font-size: 30px;
     background: none;
     border: none;
     color: #0a2463;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 15px;
     right: 20px;
-    z-index: 100;
+    z-index: 1001;
   }
+  
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px;
     left: 0;
     right: 0;
     background: white;
@@ -99,10 +100,19 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     gap: 12px;
-    z-index: 99;
+    z-index: 1000;
   }
+  
   .nav-links.open { display: flex; }
+  
   .nav { position: relative; }
+  
+  .btn-whatsapp {
+    padding: 8px 15px;
+    font-size: 12px;
+    margin-right: 60px;
+  }
+  
   .hero-content { flex-direction: column; text-align: center; }
   .hero-buttons { justify-content: center; flex-direction: column; }
   .page-hero h1 { font-size: 32px; }
