@@ -135,3 +135,55 @@ footer{background:#060f2e;color:#fff;padding:40px 0 20px;font-size:14px;margin-t
   .form-row{grid-template-columns:1fr}
   .tipo-calculo{flex-direction:column}
 }
+/* ========================================
+   MENÚ MÓVIL (Hamburguesa)
+   ======================================== */
+
+/* Ocultar botón hamburguesa en desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* Estilos responsive para móvil */
+@media (max-width: 768px) {
+  /* Mostrar botón hamburguesa */
+  .menu-toggle {
+    display: block;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #0a2463;
+    cursor: pointer;
+  }
+  
+  /* Ocultar menú por defecto en móvil */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    gap: 12px;
+    z-index: 999;
+  }
+  
+  /* Mostrar menú cuando tiene clase 'open' */
+  .nav-links.open {
+    display: flex;
+  }
+  
+  /* Ajustar header para móvil */
+  .nav {
+    position: relative;
+  }
+  
+  /* Ajustar botones en móvil */
+  .btn-whatsapp {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+}
