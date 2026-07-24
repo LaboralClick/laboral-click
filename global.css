@@ -196,3 +196,22 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
        width: 80%;
      }
    }
+/* CANDADO PARA QUE NADA SE SALGA EN MÓVIL */
+.promo-grid {
+  display: flex;
+  justify-content: center;
+  padding: 20px 15px;
+}
+
+.promo-card {
+  width: 100%;
+  max-width: 500px; /* En PC no se ve gigante, en móvil ocupa el 100% */
+  box-sizing: border-box; /* Esto evita que el padding lo saque de la pantalla */
+  overflow: hidden; /* Corta cualquier cosa que intente salirse */
+  word-wrap: break-word; /* Forza a que el texto largo baje de línea */
+}
+
+.promo-card ul {
+  padding-left: 20px; /* Asegura que los bullets se vean bien */
+  text-align: left;
+}
