@@ -270,3 +270,26 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
     margin: 10px 5px;
   }
 }
+/* ========================================
+   ARREGLO DEFINITIVO: BOTÓN DE PROMOCIÓN EN MÓVIL
+   ======================================== */
+@media (max-width: 768px) {
+  .promo-cta {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .btn-promo {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 14px 10px !important;
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    border-radius: 30px;
+  }
+}
