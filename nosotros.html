@@ -7,31 +7,68 @@
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
-  .miembro-foto {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #c9a028;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-  }
-  .miembro-card {
-    background: white;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 3px 20px rgba(0,0,0,0.08);
-    margin-bottom: 30px;
-  }
-  .miembro-card.destacado {
-    border-left: 6px solid #c9a028;
-    background: linear-gradient(135deg, #fef9e7 0%, white 100%);
-  }
-</style>
+    .miembro-foto {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #c9a028;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+    .miembro-card {
+      background: white;
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 3px 20px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .miembro-card.destacado {
+      border: 3px solid #c9a028;
+      background: linear-gradient(135deg, #fef9e7 0%, white 100%);
+    }
+    .miembro-info {
+      margin-top: 20px;
+    }
+    .cargo {
+      color: #c9a028;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .sede {
+      font-size: 14px;
+      color: #6B7280;
+      margin-bottom: 15px;
+    }
+    .equipo-intro, .diferenciador {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .equipo-intro h2, .diferenciador h2 {
+      color: #0a2463;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      .miembro-foto {
+        width: 150px;
+        height: 150px;
+      }
+      .miembro-card {
+        padding: 25px 15px;
+      }
+    }
+  </style>
   <script>
     function switchLang(lang) {
+      // Mostrar/ocultar texto
       document.querySelectorAll('.lang-es').forEach(el => el.style.display = lang === 'es' ? 'block' : 'none');
       document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
-      document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
+      
+      // Actualizar estado de los botones
+      document.querySelectorAll('.language-box a').forEach(btn => btn.classList.remove('active'));
       document.getElementById('btn-' + lang).classList.add('active');
     }
   </script>
@@ -43,7 +80,7 @@
       <nav class="nav">
         <a href="/" class="logo">
           <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-          <span>Asesoria Legal sin Enredos</span>
+          <span>Asesoría Legal sin Enredos</span>
         </a>
         <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
         <ul class="nav-links" id="navMenu">
@@ -53,6 +90,8 @@
           <li><a href="/precios">Precios</a></li>
           <li><a href="/promociones">Promociones</a></li>
           <li><a href="/casos">Casos de Exito</a></li>
+          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/diagnostico">Diagnóstico</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/calculadoras">Calculadoras</a></li>
           <li><a href="/contacto">Contacto</a></li>
@@ -64,24 +103,29 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1>Nuestro Equipo</h1>
-      <p>Expertos en derecho laboral a tu servicio</p>
+      <h1 class="lang-es">Nuestro Equipo</h1>
+      <h1 class="lang-en" style="display:none;">Our Team</h1>
+      <p class="lang-es">Expertos en derecho laboral a tu servicio</p>
+      <p class="lang-en" style="display:none;">Labor law experts at your service</p>
     </div>
   </section>
 
-  <div class="lang-toggle">
-    <button id="btn-es" class="active" onclick="switchLang('es')"><button class="language-btn active">ESPAÑOL</button>
-    <button id="btn-en" onclick="switchLang('en')"><button class="language-btn">ENGLISH</button>
+  <!-- BOTONES DE IDIOMA FUNCIONALES Y VISIBLES -->
+  <div class="container">
+    <div class="language-box">
+      <a href="#" onclick="switchLang('es'); return false;" class="active" id="btn-es">ESPAÑOL</a>
+      <a href="#" onclick="switchLang('en'); return false;" id="btn-en">ENGLISH</a>
+    </div>
   </div>
 
   <section class="equipo-section">
     <div class="container">
       
       <div class="equipo-intro">
-        <h2 class="lang-es">   Tres abogados, dos generaciones. Más de 25 años protegiendo el patrimonio de las PyMEs en México, con capacidad de asesoría binacional (México - Estados Unidos)</h2>
-        <h2 class="lang-en" style="display:none;">A Family of Attorneys Committed to Your Business</h2>
-        <p class="lang-es">Somos un equipo familiar con presencia en México y Estados Unidos. Combinamos experiencia, juventud y visión binacional para proteger tu empresa dondequiera que opere.</p>
-        <p class="lang-en" style="display:none;">We are a family team with presence in Mexico and the United States. We combine experience, youth and a binational vision to protect your business wherever it operates.</p>
+        <h2 class="lang-es">Tres abogados, dos generaciones. Más de 25 años protegiendo el patrimonio de las PyMEs en México, con capacidad de asesoría binacional (México - Estados Unidos).</h2>
+        <h2 class="lang-en" style="display:none;">Three lawyers, two generations. Over 25 years protecting the assets of SMEs in Mexico, with binational advisory capacity (Mexico - United States).</h2>
+        <p class="lang-es">Combinamos experiencia, juventud y visión binacional para proteger tu empresa dondequiera que opere.</p>
+        <p class="lang-en" style="display:none;">We combine experience, youth and a binational vision to protect your business wherever it operates.</p>
       </div>
 
       <!-- Jose -->
@@ -117,17 +161,17 @@
           <h2>Lic. Josianel Danielis Segura de Carrillo</h2>
           <p class="cargo lang-es">Abogada Especialista en Derecho Administrativo y Relaciones Binacionales</p>
           <p class="cargo lang-en" style="display:none;">Administrative Law & Cross-Border Strategy Counsel</p>
-          <p class="sede usa">🇺🇸 Wisconsin, Estados Unidos / Wisconsin, USA</p>
+          <p class="sede">🇺🇸 Wisconsin, Estados Unidos / Wisconsin, USA</p>
           <p class="lang-es">Especialista en derecho administrativo y relaciones binacionales. Actúo como el puente legal clave para empresas con operaciones en ambos lados de la frontera, asegurando la continuidad operativa y la mitigación de riesgos jurisdiccionales.</p>
-          <p class="lang-en" style="display:none;">Specializing in administrative law and cross-border relations, I serve as a primary legal bridge for businesses operating across the Mexico-U.S. border. I navigate complex regulatory frameworks to ensure seamless corporate compliance and mitigate jurisdictional risks for international operations.</p>
+          <p class="lang-en" style="display:none;">Specializing in administrative law and cross-border relations, I serve as a primary legal bridge for businesses operating across the Mexico-U.S. border. I navigate complex regulatory frameworks to ensure seamless corporate compliance and mitigate jurisdictional risks.</p>
         </div>
       </div>
 
       <div class="diferenciador">
         <h2 class="lang-es">🇲🇽 + 🇺🇸 Cobertura Binacional</h2>
         <h2 class="lang-en" style="display:none;">🇲🇽 + 🇺🇸 Cross-Border Coverage</h2>
-        <p class="lang-es">¿Tu empresa tiene trabajadores en México y Estados Unidos? Nuestro equipo te cubre en ambos lados de la frontera. Somos el único despacho familiar con presencia en CDMX y Wisconsin.</p>
-        <p class="lang-en" style="display:none;">Does your business have workers in Mexico and the United States? Our team covers you on both sides of the border. We are the only family firm with a presence in Mexico City and Wisconsin.</p>
+        <p class="lang-es">¿Tu empresa tiene trabajadores en México y Estados Unidos? Nuestro equipo te cubre en ambos lados de la frontera. Somos el único despacho con presencia estratégica en CDMX y Wisconsin.</p>
+        <p class="lang-en" style="display:none;">Does your business have workers in Mexico and the United States? Our team covers you on both sides of the border. We are the only firm with a strategic presence in Mexico City and Wisconsin.</p>
       </div>
 
     </div>
@@ -136,7 +180,7 @@
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo familiar con cobertura binacional.</p></div>
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
         <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
         <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
       </div>
