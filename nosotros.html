@@ -15,21 +15,26 @@
       border: 4px solid #c9a028;
       box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     }
+    
+    /* AQUÍ ESTÁ EL CAMBIO: TODAS LAS TARJETAS AHORA TIENEN EL MARCO DORADO */
     .miembro-card {
       background: white;
       padding: 35px;
       border-radius: 12px;
-      box-shadow: 0 3px 20px rgba(0,0,0,0.08);
+      border: 3px solid #c9a028; /* Marco dorado de 4 lados para TODOS */
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
       margin-bottom: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
+    
+    /* El destacado solo añade un fondo sutil, pero el borde ya lo tiene por la clase de arriba */
     .miembro-card.destacado {
-      border: 3px solid #c9a028;
       background: linear-gradient(135deg, #fef9e7 0%, white 100%);
     }
+    
     .miembro-info {
       margin-top: 20px;
     }
@@ -51,6 +56,7 @@
       color: #0a2463;
       margin-bottom: 15px;
     }
+    
     @media (max-width: 768px) {
       .miembro-foto {
         width: 150px;
@@ -58,16 +64,18 @@
       }
       .miembro-card {
         padding: 25px 15px;
+        border-width: 2px; /* Un poco más delgado en móvil para elegancia */
+        margin: 15px auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
     }
   </style>
   <script>
     function switchLang(lang) {
-      // Mostrar/ocultar texto
       document.querySelectorAll('.lang-es').forEach(el => el.style.display = lang === 'es' ? 'block' : 'none');
       document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
-      
-      // Actualizar estado de los botones
       document.querySelectorAll('.language-box a').forEach(btn => btn.classList.remove('active'));
       document.getElementById('btn-' + lang).classList.add('active');
     }
@@ -110,7 +118,6 @@
     </div>
   </section>
 
-  <!-- BOTONES DE IDIOMA FUNCIONALES Y VISIBLES -->
   <div class="container">
     <div class="language-box">
       <a href="#" onclick="switchLang('es'); return false;" class="active" id="btn-es">ESPAÑOL</a>
