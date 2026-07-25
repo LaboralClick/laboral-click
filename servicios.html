@@ -303,6 +303,20 @@
   </footer>
 
   <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Busca TODOS los links que tengan tu número o wa.me
+  var links = document.querySelectorAll('a[href*="wa.me"], a[href*="3111866901"]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      gtag('event', 'click_whatsapp', {
+        'event_category': 'contacto',
+        'event_label': window.location.pathname
+      });
+    });
+  });
+});
+</script>
 
 </body>
 </html>
