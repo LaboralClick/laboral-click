@@ -293,3 +293,34 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
     border-radius: 30px;
   }
 }
+/* ========================================
+   UNIFICACIÓN DE MARCOS DORADOS (4 LADOS)
+   Aplica a: Servicios, Precios, Promociones, Diagnóstico, Calculadoras
+   ======================================== */
+.servicio-card, 
+.plan-card, 
+.promo-card, 
+.diagnostico-card, 
+.calc-card {
+  border: 3px solid #c9a028 !important; /* Marco dorado completo */
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra suave para destacar del blanco */
+  box-sizing: border-box; /* CLAVE: Evita que el borde rompa el ancho en móvil */
+  overflow: hidden;
+}
+
+/* Ajustes específicos para MÓVIL (Protección anti-desborde) */
+@media (max-width: 768px) {
+  .servicio-card, 
+  .plan-card, 
+  .promo-card, 
+  .diagnostico-card, 
+  .calc-card {
+    border-width: 2px !important; /* Un poco más delgado en móvil para que se vea elegante */
+    padding: 20px 15px;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 100%;
+  }
+}
