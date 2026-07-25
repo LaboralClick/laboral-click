@@ -307,7 +307,7 @@ footer { background: #060f2e; color: white; padding: 60px 0 20px; font-size: 14p
   background-color: #ffffff;
   box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra suave para destacar del blanco */
   box-sizing: border-box; /* CLAVE: Evita que el borde rompa el ancho en móvil */
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Ajustes específicos para MÓVIL (Protección anti-desborde) */
