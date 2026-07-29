@@ -449,5 +449,63 @@ Based on the tech stack, apply the matching guide above and suggest any needed c
       }
     });
   </script>
-</body>
-</html>
+<script>
+  var form = document.getElementById("diagnosticoForm");
+  
+  async function handleSubmit(event) {
+    event.preventDefault(); // Evita que la página se recargue
+    var status = document.getElementById("successMessage");
+    var data = new FormData(event.target);
+    
+    // Mostrar estado de "Enviando..." (opcional, buena práctica)
+    var btn = document.querySelector(".btn-submit");
+    var originalText = btn.innerHTML;
+    btn.innerHTML = "⏳ Enviando...";
+    btn.disabled = true;
+
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        // ÉXITO: Ocultar formulario y mostrar mensaje personalizado
+        form.style.display = 'none';
+        
+        // Insertar el giro dinámicamente en el mensaje
+        const giroSeleccionado = data.get('giro');
+        document.getElementById('giroDinamico').textContent = giroSeleccionado || "tu sector";
+        
+        status.style.display = 'block';
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Registrar en Google Analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generar_lead', {
+            'event_category': 'formulario',
+            'event_label': 'diagnostico_express',
+            'giro': giroSeleccionado
+          });
+        }
+      } else {
+        // ERROR: Mostrar mensaje de error
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "));
+          } else {
+            alert("Oops! Hubo un problema al enviar el formulario.");
+          }
+        })
+      }
+    }).catch(error => {
+      alert("Oops! Hubo un problema al enviar el formulario.");
+    }).finally(() => {
+      // Restaurar botón (aunque el formulario se oculta, es buena práctica)
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    });
+  }
+  form.addEventListener("submit", handleSubmit);
+</script>
