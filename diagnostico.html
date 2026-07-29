@@ -214,8 +214,8 @@
       <h1>Diagnóstico Express de Riesgo Laboral para PyMEs</h1>
       <h2>Descubre en 2 minutos si tu operación está protegida ante inspecciones de la STPS e IMSS. 100% en línea, confidencial y sin costo.</h2>
       <div class="hero-bullets">
-        <div class="hero-bullet">⏱️ Solo 2 minutos de tu tiempo</div>
-        <div class="hero-bullet">🔒 Confidencialidad absoluta</div>
+        <div class="hero-bullet">️ Solo 2 minutos de tu tiempo</div>
+        <div class="hero-bullet"> Confidencialidad absoluta</div>
         <div class="hero-bullet">📱 Resultado directo a tu WhatsApp</div>
         <div class="hero-bullet">🛡️ Sin visitas presenciales ni revisión de papeles</div>
       </div>
@@ -225,7 +225,6 @@
   <div class="container">
     <div class="form-container">
       
-      <!-- AQUÍ ESTÁ SU URL DE FORMSPREE INTEGRADA -->
       <form id="diagnosticoForm" action="https://formspree.io/f/xdaqjlzo" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre Completo *</label>
@@ -278,10 +277,10 @@
           <textarea id="incertidumbre" name="incertidumbre" rows="3" placeholder="Ej. Altas en el IMSS, horarios, despidos, etc."></textarea>
         </div>
 
-        <button type="submit" class="btn-submit">🚀 Solicitar mi Diagnóstico Express</button>
+        <button type="submit" class="btn-submit"> Solicitar mi Diagnóstico Express</button>
         
         <div class="trust-signal">
-          🔒 Tus datos están protegidos bajo estricto secreto profesional. <a href="/aviso">Política de Privacidad</a>.
+           Tus datos están protegidos bajo estricto secreto profesional. <a href="/aviso">Política de Privacidad</a>.
         </div>
       </form>
 
@@ -318,6 +317,7 @@
   <script>
     var form = document.getElementById("diagnosticoForm");
     var successMessage = document.getElementById("successMessage");
+    var makeWebhookURL = "https://hook.us2.make.com/f8onfm54836cjslbgz68bq9tsym5aeub";
     
     form.addEventListener("submit", function(e) {
       e.preventDefault();
@@ -326,97 +326,47 @@
       document.getElementById("giroDinamico").textContent = giroSeleccionado || "tu sector";
       
       var btn = document.querySelector(".btn-submit");
-      btn.innerHTML = "⏳ Enviando...";
+      btn.innerHTML = " Enviando...";
       btn.disabled = true;
       
       var data = new FormData(form);
       
+      // Enviar a Formspree
       fetch(form.action, {
         method: form.method,
         body: data,
-        headers: {
-          'Accept': 'application/json'
+        headers: { 'Accept': 'application/json' }
+      }).catch(function(error) {
+        console.log("Error Formspree:", error);
+      });
+      
+      // Enviar a Make.com
+      fetch(makeWebhookURL, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).catch(function(error) {
+        console.log("Error Make:", error);
+      });
+      
+      // Mostrar mensaje de éxito
+      setTimeout(function() {
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generar_lead', {
+            'event_category': 'formulario',
+            'event_label': 'diagnostico_express',
+            'giro': giroSeleccionado
+          });
         }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          successMessage.style.display = 'block';
-          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'generar_lead', {
-              'event_category': 'formulario',
-              'event_label': 'diagnostico_express',
-              'giro': giroSeleccionado
-            });
-          }
-        } else {
-          alert("Hubo un problema al enviar. Por favor intente nuevamente o escríbanos directamente por WhatsApp.");
-          btn.innerHTML = "🚀 Solicitar mi Diagnóstico Express";
-          btn.disabled = false;
-        }
-      }).catch(error => {
-        alert("Hubo un problema al enviar. Por favor intente nuevamente o escríbanos directamente por WhatsApp.");
+        
         btn.innerHTML = "🚀 Solicitar mi Diagnóstico Express";
         btn.disabled = false;
-      });
+      }, 1500);
     });
   </script>
-<script>
-  var form = document.getElementById("diagnosticoForm");
-  var successMessage = document.getElementById("successMessage");
-  
-  // URL de Make.com (su webhook)
-  var makeWebhookURL = "https://hook.us2.make.com/f8onfm54836cjslbgz68bq9tsym5aeub";
-  
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    
-    var giroSeleccionado = document.getElementById("giro").value;
-    document.getElementById("giroDinamico").textContent = giroSeleccionado || "tu sector";
-    
-    var btn = document.querySelector(".btn-submit");
-    btn.innerHTML = "⏳ Enviando...";
-    btn.disabled = true;
-    
-    var data = new FormData(form);
-    
-    // 1. Enviar a Formspree (para el correo)
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).catch(function(error) {
-      console.log("Error Formspree:", error);
-    });
-    
-    // 2. Enviar a Make.com (para Telegram) - AL MISMO TIEMPO
-    fetch(makeWebhookURL, {
-      method: "POST",
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(function(response) {
-      console.log("Make.com recibido:", response);
-    }).catch(function(error) {
-      console.log("Error Make:", error);
-    });
-    
-    // 3. Mostrar mensaje de éxito (después de 1 segundo)
-    setTimeout(function() {
-      form.style.display = 'none';
-      successMessage.style.display = 'block';
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'generar_lead', {
-          'event_category': 'formulario',
-          'event_label': 'diagnostico_express',
-          'giro': giroSeleccionado
-        });
-      }
-      
-      btn.innerHTML = "🚀 Solicitar mi Diagnóstico Express";
-      btn.disabled = false;
-    }, 1000);
-  });
-</script>
+</body>
+</html>
