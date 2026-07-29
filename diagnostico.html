@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -11,55 +10,175 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagnóstico Laboral Gratuito - Laboral Click</title>
+  <title>Diagnóstico Express - Laboral Click</title>
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
-    /* Estilos base de la página */
-    .diagnostico-content { padding: 50px 0; }
-    .beneficios { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 30px 0; }
-    .beneficio { text-align: center; padding: 20px 10px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
-    .beneficio-icon { font-size: 32px; margin-bottom: 8px; }
-    .beneficio h3 { font-size: 15px; color: #0a2463; line-height: 1.3; }
-    
-    .form-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); margin: 30px 0; border-top: 5px solid #25D366; }
-    .form-card h2 { color: #0a2463; text-align: center; margin-bottom: 10px; font-size: 26px; }
-    .form-card .subtitulo { text-align: center; color: #6B7280; margin-bottom: 30px; }
-    
-    /* Grid para los 9 campos del formulario (Responsive) */
-    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-    @media (min-width: 768px) {
-      .form-grid { grid-template-columns: 1fr 1fr; }
-      .full-width { grid-column: 1 / -1; }
+    .diagnostico-hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
+      color: white;
+      border-radius: 0 0 30px 30px;
+      margin-bottom: 40px;
     }
-
-    .form-group { margin-bottom: 0; }
-    .form-group label { font-weight: 600; margin-bottom: 6px; display: block; color: #0a2463; font-size: 14px; }
-    .form-group input, .form-group select, .form-group textarea { 
-      width: 100%; padding: 12px 15px; border: 2px solid #e5e7eb; border-radius: 8px; 
-      font-size: 15px; font-family: inherit; box-sizing: border-box; transition: border-color 0.2s;
+    .diagnostico-hero h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #f0c040;
+    }
+    .diagnostico-hero h2 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .hero-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-bullet {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(240, 192, 64, 0.3);
+    }
+    
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto 60px;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      border-top: 5px solid #c9a028;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      color: #0a2463;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .form-group label .optional {
+      font-weight: 400;
+      color: #6B7280;
+      font-size: 13px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: #25D366;
+      border-color: #c9a028;
+      outline: none;
     }
-    .form-group textarea { resize: vertical; min-height: 80px; }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      color: #4a4a5a;
+    }
+    .radio-option input {
+      width: auto;
+      accent-color: #c9a028;
+    }
     
-    /* Estilos para Radio Buttons */
-    .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 5px; }
-    .radio-label { display: flex; align-items: center; font-weight: 400; cursor: pointer; font-size: 15px; color: #333; }
-    .radio-label input { margin-right: 8px; accent-color: #25D366; width: 18px; height: 18px; }
-
-    .btn-enviar { 
-      width: 100%; padding: 16px; font-size: 18px; background: #25D366; color: white; 
-      border: none; border-radius: 30px; font-weight: 700; cursor: pointer; transition: background 0.3s; margin-top: 10px;
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: #c9a028;
+      color: #0a2463;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
     }
-    .btn-enviar:hover { background: #1da851; }
-    .garantia { text-align: center; margin-top: 15px; color: #6B7280; font-size: 13px; }
-    .required { color: #d32f2f; }
+    .btn-submit:hover {
+      background: #b89224;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(201, 160, 40, 0.3);
+    }
+    
+    .trust-signal {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #6B7280;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .trust-signal a {
+      color: #0a2463;
+      text-decoration: underline;
+    }
 
-    @media (max-width: 600px) {
-      .form-card { padding: 25px 15px; }
-      .beneficios { grid-template-columns: 1fr 1fr; }
+    /* Mensaje de Éxito (Oculto por defecto) */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-message h3 {
+      color: #25D366;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .success-message p {
+      color: #4a4a5a;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .success-message .highlight {
+      background: #fef9e7;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #c9a028;
+      margin: 20px 0;
+      font-weight: 600;
+      color: #0a2463;
+    }
+
+    @media (max-width: 768px) {
+      .diagnostico-hero h1 { font-size: 28px; }
+      .diagnostico-hero h2 { font-size: 17px; }
+      .hero-bullets { flex-direction: column; align-items: center; }
+      .form-container { padding: 25px 20px; margin: 0 15px 40px; }
+      .radio-group { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -81,7 +200,7 @@
           <li><a href="/promociones">Promociones</a></li>
           <li><a href="/casos">Casos de Exito</a></li>
           <li><a href="/testimonios">Testimonios</a></li>
-          <li><a href="/diagnostico">Diagnóstico</a></li>
+          <li><a href="/diagnostico" class="active">Diagnóstico</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/calculadoras">Calculadoras</a></li>
           <li><a href="/contacto">Contacto</a></li>
@@ -91,207 +210,143 @@
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- MÓDULO 1: Encabezado y Promesa de Valor -->
+  <section class="diagnostico-hero">
     <div class="container">
-      <h1>🎯 Diagnóstico Laboral <span class="highlight">Gratuito</span></h1>
-      <p>Descubre en 30 minutos qué tan protegida está tu empresa. Sin costo, sin compromiso.</p>
+      <h1>Diagnóstico Express de Riesgo Laboral para PyMEs</h1>
+      <h2>Descubre en 2 minutos si tu operación está protegida ante inspecciones de la STPS e IMSS. 100% en línea, confidencial y sin costo.</h2>
+      <div class="hero-bullets">
+        <div class="hero-bullet">⏱️ Solo 2 minutos de tu tiempo</div>
+        <div class="hero-bullet">🔒 Confidencialidad absoluta</div>
+        <div class="hero-bullet">📱 Resultado directo a tu WhatsApp</div>
+        <div class="hero-bullet">🛡️ Sin visitas presenciales ni revisión de papeles</div>
+      </div>
     </div>
   </section>
 
-  <section class="diagnostico-content">
-    <div class="container">
+  <div class="container">
+    <div class="form-container">
       
-      <div class="beneficios">
-        <div class="beneficio"><div class="beneficio-icon">🏢</div><h3>Vamos a tu empresa</h3></div>
-        <div class="beneficio"><div class="beneficio-icon">⏱️</div><h3>Solo 30 minutos</h3></div>
-        <div class="beneficio"><div class="beneficio-icon">🔍</div><h3>Sin revisar papeles</h3></div>
-        <div class="beneficio"><div class="beneficio-icon">💰</div><h3>Totalmente gratis</h3></div>
-      </div>
+      <!-- MÓDULO 2: Formulario Optimizado -->
+      <form id="diagnosticoForm">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo *</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
+        </div>
 
-      <div class="form-card">
-        <h2>¿Qué tan expuesta está tu empresa?</h2>
-        <p class="subtitulo">Responde estas 9 preguntas y te damos un diagnóstico personalizado</p>
+        <div class="form-group">
+          <label for="empresa">Nombre de la Empresa o Negocio *</label>
+          <input type="text" id="empresa" name="empresa" required placeholder="Ej. Restaurante El Buen Sabor">
+        </div>
+
+        <div class="form-group">
+          <label for="giro">Giro de la Empresa *</label>
+          <select id="giro" name="giro" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Restaurante / Alimentos / Bebidas">Restaurante / Alimentos / Bebidas</option>
+            <option value="Comercio Minorista">Comercio Minorista (Electrónica, Iluminación, Tlapalería, etc.)</option>
+            <option value="Servicios / Oficinas">Servicios / Oficinas</option>
+            <option value="Otro">Otro (especificar en el mensaje)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">Número de WhatsApp *</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ej. 55 1234 5678" pattern="[0-9\s\-\+\(\)]{10,15}" title="Ingresa un número de WhatsApp válido de 10 dígitos">
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+
+        <div class="form-group">
+          <label>1. ¿Tu personal operativo tiene contrato individual de trabajo firmado y registrado? *</label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="q1" value="Sí" required> Sí</label>
+            <label class="radio-option"><input type="radio" name="q1" value="No"> No</label>
+            <label class="radio-option"><input type="radio" name="q1" value="Parcialmente"> Parcialmente</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>2. ¿Cuentas con la documentación de la NOM-035 (Riesgos Psicosociales) implementada y difundida? *</label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="q2" value="Sí" required> Sí</label>
+            <label class="radio-option"><input type="radio" name="q2" value="No"> No</label>
+            <label class="radio-option"><input type="radio" name="q2" value="En proceso"> En proceso</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="incertidumbre">3. ¿Qué tema laboral te genera más incertidumbre hoy? <span class="optional">(Opcional)</span></label>
+          <textarea id="incertidumbre" name="incertidumbre" rows="3" placeholder="Ej. Altas en el IMSS, horarios, despidos, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">🚀 Solicitar mi Diagnóstico Express</button>
         
-        <!-- INICIO DEL FORMULARIO UNIFICADO (9 CAMPOS) -->
-        <form id="formDiagnostico" class="form-grid" novalidate>
-          
-          <div class="form-group">
-            <label for="nombre">Nombre Completo <span class="required">*</span></label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
-          </div>
+        <!-- MÓDULO 4: Elementos de Confianza -->
+        <div class="trust-signal">
+          🔒 Tus datos están protegidos bajo estricto secreto profesional. <a href="/aviso">Política de Privacidad</a>.
+        </div>
+      </form>
 
-          <div class="form-group">
-            <label for="empresa">Nombre de la Empresa <span class="required">*</span></label>
-            <input type="text" id="empresa" name="empresa" required placeholder="Ej. Soluciones SA de CV">
-          </div>
-
-          <div class="form-group">
-            <label for="giro">Giro de la Empresa <span class="required">*</span></label>
-            <select id="giro" name="giro" required>
-              <option value="" disabled selected>Seleccione una opción</option>
-              <option value="Comercio">Comercio</option>
-              <option value="Servicios">Servicios</option>
-              <option value="Manufactura">Manufactura</option>
-              <option value="Construcción">Construcción</option>
-              <option value="Restaurante-Hotel">Restaurante-Hotel</option>
-              <option value="Tecnología">Tecnología</option>
-              <option value="Otro">Otro</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="empleados">Número de Empleados <span class="required">*</span></label>
-            <select id="empleados" name="empleados" required>
-              <option value="" disabled selected>Seleccione una opción</option>
-              <option value="1-10">1-10</option>
-              <option value="11-30">11-30</option>
-              <option value="31-50">31-50</option>
-              <option value="51-100">51-100</option>
-              <option value="Más de 100">Más de 100</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="rol">Tu Rol en la Empresa <span class="required">*</span></label>
-            <select id="rol" name="rol" required>
-              <option value="" disabled selected>Seleccione una opción</option>
-              <option value="Socio/Dueño">Socio/Dueño</option>
-              <option value="Director">Director</option>
-              <option value="Gerente de RH">Gerente de RH</option>
-              <option value="Administrador">Administrador</option>
-              <option value="Contador">Contador</option>
-              <option value="Otro">Otro</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="whatsapp">WhatsApp <span class="required">*</span></label>
-            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="10 dígitos (Ej. 5512345678)" pattern="[0-9]{10}" title="Ingrese un número de 10 dígitos">
-          </div>
-
-          <div class="form-group full-width">
-            <label>¿Tus empleados tienen contrato por escrito? <span class="required">*</span></label>
-            <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="contrato" value="Sí" required> Sí</label>
-              <label class="radio-label"><input type="radio" name="contrato" value="No" required> No</label>
-              <label class="radio-label"><input type="radio" name="contrato" value="Parcialmente" required> Parcialmente</label>
-            </div>
-          </div>
-
-          <div class="form-group full-width">
-            <label for="legal">¿Han tenido demandas, multas o inspecciones laborales? <span class="required">*</span></label>
-            <select id="legal" name="legal" required>
-              <option value="" disabled selected>Seleccione una opción</option>
-              <option value="Sí, en los últimos 12 meses">Sí, en los últimos 12 meses</option>
-              <option value="Sí, hace más de un año">Sí, hace más de un año</option>
-              <option value="No, nunca">No, nunca</option>
-              <option value="No estoy seguro">No estoy seguro</option>
-            </select>
-          </div>
-
-          <div class="form-group full-width">
-            <label for="mensaje">¿Te preocupa algo en especial?</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describa brevemente su situación actual"></textarea>
-          </div>
-
-          <div class="form-group full-width">
-            <button type="submit" class="btn-enviar">Solicitar Diagnóstico Gratuito por WhatsApp</button>
-          </div>
-
-        </form>
-        <!-- FIN DEL FORMULARIO -->
-        
-        <p class="garantia">🔒 Tus datos están seguros. No los compartimos con nadie.</p>
+      <!-- MÓDULO 3: Mensaje de Confirmación (Post-Submit) -->
+      <div id="successMessage" class="success-message">
+        <h3>✅ ¡Datos recibidos exitosamente!</h3>
+        <p>Hemos analizado tu perfil preliminar.</p>
+        <div class="highlight">
+          El Lic. Domiciano Segura te enviará un mensaje de WhatsApp en los próximos <strong>15 minutos</strong> con tu Resultado Preliminar y una recomendación específica para el giro: <span id="giroDinamico" style="color: #c9a028;">tu sector</span>.
+        </div>
+        <p>📱 <strong>Mantén tu WhatsApp a la mano.</strong></p>
+        <a href="/" class="btn-submit" style="display: inline-block; width: auto; padding: 12px 30px; font-size: 16px; text-decoration: none; margin-top: 20px;">Volver al Inicio</a>
       </div>
 
     </div>
-  </section>
+  </div>
 
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Laboral Click</h4>
-          <p>Asesoría Legal sin Enredos para PyMEs. Vamos a tu empresa, hablamos claro y resolvemos.</p>
-        </div>
-        <div class="footer-col">
-          <h4>📍 Ubicación</h4>
-          <p>Col. Narvarte, Benito Juárez<br>Ciudad de México, CDMX</p>
-          <p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p>
-        </div>
-        <div class="footer-col">
-          <h4>⚖️ Información Legal</h4>
-          <p><a href="/aviso">Aviso de Privacidad</a></p>
-          <p><a href="/terminos">Términos y Condiciones</a></p>
-        </div>
+        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
+        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
+        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
       </div>
       <div class="footer-bottom">
-        <p class="disclaimer-text">La información en este sitio es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la Ley Federal de Protección de Datos Personales.</p>
+        <p class="disclaimer-text">La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
         <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
       </div>
     </div>
   </footer>
-
+  
   <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
 
-  <!-- SCRIPT UNIFICADO Y CORREGIDO PARA LOS 9 CAMPOS -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('formDiagnostico');
-      const whatsappInput = document.getElementById('whatsapp');
-
-      // 1. Formato automático: solo permite números y limita a 10 dígitos
-      whatsappInput.addEventListener('input', function(e) {
-        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
-      });
-
-      // 2. Manejo del envío a WhatsApp con los 9 campos
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Validación nativa del navegador
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        // Captura de los 9 campos
-        const nombre = document.getElementById('nombre').value;
-        const empresa = document.getElementById('empresa').value || 'No especificada';
-        const giro = document.getElementById('giro').value || 'No especificado';
-        const empleados = document.getElementById('empleados').value || 'No especificado';
-        const rol = document.getElementById('rol').value || 'No especificado';
-        
-        // Captura segura del radio button
-        const contratoEl = document.querySelector('input[name="contrato"]:checked');
-        const contrato = contratoEl ? contratoEl.value : 'No especificado';
-        
-        const legal = document.getElementById('legal').value || 'No especificado';
-        const mensaje = document.getElementById('mensaje').value || 'Ninguna';
-        const whats = document.getElementById('whatsapp').value;
-
-        // Construcción del mensaje profesional para WhatsApp
-        let texto = `📋 *DIAGNÓSTICO LABORAL GRATUITO*%0A%0A`;
-        texto += `*Nombre:* ${nombre}%0A`;
-        texto += `*Empresa:* ${empresa}%0A`;
-        texto += `*Giro:* ${giro}%0A`;
-        texto += `*Empleados:* ${empleados}%0A`;
-        texto += `*Rol:* ${rol}%0A`;
-        texto += `*Contratos por escrito:* ${contrato}%0A`;
-        texto += `*Antecedentes legales:* ${legal}%0A`;
-        texto += `*Preocupación:* ${mensaje}%0A`;
-        texto += `*WhatsApp de contacto:* ${whats}%0A%0A`;
-        texto += `Quedo a la espera de mi diagnóstico personalizado.`;
-
-        // Redirección a WhatsApp
-        window.open(`https://wa.me/5213111866901?text=${texto}`, '_blank');
-        
-        // Opcional: Limpiar formulario después de enviar
-        form.reset();
-      });
+    // Lógica del Formulario (Módulo 3: Post-Submit sin recarga)
+    document.getElementById('diagnosticoForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita que la página se recargue
+      
+      // 1. Obtener el giro seleccionado para el mensaje dinámico
+      const giroSeleccionado = document.getElementById('giro').value;
+      document.getElementById('giroDinamico').textContent = giroSeleccionado || "tu sector";
+      
+      // 2. Ocultar el formulario y mostrar el mensaje de éxito
+      this.style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      
+      // 3. (Simulación) Aquí iría el código para enviar los datos a su email/Webhook
+      // Ejemplo: fetch('SU_ENDPOINT_DE_WEBHOOK', { method: 'POST', body: new FormData(this) });
+      
+      // 4. Desplazarse suavemente hacia el mensaje de éxito
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // 5. Registrar evento en Google Analytics (opcional pero recomendado)
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generar_lead', {
+          'event_category': 'formulario',
+          'event_label': 'diagnostico_express',
+          'giro': giroSeleccionado
+        });
+      }
     });
   </script>
-
 </body>
 </html>
