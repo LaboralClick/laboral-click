@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Laboral Click - División Alimentos y Bebidas</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c2c2c;
+    line-height: 1.6;
+    background: #fff;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 25mm 20mm;
+    margin: 0 auto;
+    background: white;
+    page-break-after: always;
+  }
+  
+  /* PORTADA */
+  .cover {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+  }
+  .cover-image {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    background: linear-gradient(to bottom, rgba(10,36,99,0.85) 0%, rgba(10,36,99,0.4) 100%);
+  }
+  .cover-content {
+    position: absolute;
+    top: 8%;
+    left: 20mm;
+    right: 20mm;
+    color: white;
+    z-index: 2;
+  }
+  .cover-brand {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #f0c040;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cover-title {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: white;
+  }
+  .cover-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #f0c040;
+    max-width: 500px;
+  }
+  .cover-bottom {
+    position: absolute;
+    bottom: 8%;
+    left: 20mm;
+    right: 20mm;
+    border-top: 3px solid #c9a028;
+    padding-top: 15px;
+  }
+  .cover-bottom p {
+    font-size: 13px;
+    color: #0a2463;
+    font-weight: 600;
+  }
+  
+  /* SECCIONES */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  .section-icon {
+    width: 50px;
+    height: 50px;
+    background: #0a2463;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0a2463;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* RESUMEN */
+  .summary-box {
+    background: #f8f9fa;
+    border-left: 5px solid #c9a028;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .summary-box p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 12px;
+  }
+  .summary-box p:last-child { margin-bottom: 0; }
+  
+  /* RIESGOS */
+  .risks-container {
+    background: #fff8e7;
+    border: 2px solid #c9a028;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px 0;
+  }
+  .risk-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .risk-item:last-child { margin-bottom: 0; }
+  .risk-icon {
+    width: 35px;
+    height: 35px;
+    background: #c9a028;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .risk-content h4 {
+    color: #0a2463;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .risk-content p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  /* IMAGEN SECCIONAL */
+  .section-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  
+  /* PLANES */
+  .plans-intro {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+    font-style: italic;
+  }
+  .plan-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    background: white;
+    position: relative;
+  }
+  .plan-card.featured {
+    border: 3px solid #c9a028;
+    background: linear-gradient(135deg, #fffef5 0%, #ffffff 100%);
+  }
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background: #c9a028;
+    color: #0a2463;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .plan-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0a2463;
+    margin-bottom: 5px;
+  }
+  .plan-target {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  .plan-price {
+    font-size: 28px;
+    font-weight: 800;
+    color: #c9a028;
+    margin-bottom: 5px;
+  }
+  .plan-price-note {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  .plan-features {
+    list-style: none;
+  }
+  .plan-features li {
+    padding: 8px 0 8px 25px;
+    position: relative;
+    font-size: 13px;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #c9a028;
+    font-weight: 800;
+    font-size: 16px;
+  }
+  .plan-features strong {
+    color: #0a2463;
+  }
+  
+  /* PROMESA */
+  .promise-container {
+    background: #0a2463;
+    color: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 25px 0;
+  }
+  .promise-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .promise-item:last-child { margin-bottom: 0; }
+  .promise-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .promise-content h4 {
+    color: #f0c040;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .promise-content p {
+    font-size: 13px;
+    color: #e0e0e0;
+    line-height: 1.5;
+  }
+  
+  /* CTA FINAL */
+  .cta-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
+    border-radius: 12px;
+    color: white;
+    margin: 25px 0;
+  }
+  .cta-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #f0c040;
+  }
+  .cta-section p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .cta-button {
+    display: inline-block;
+    background: #c9a028;
+    color: #0a2463;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 10px 0;
+  }
+  .contact-info {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #e0e0e0;
+  }
+  .contact-info strong { color: #f0c040; }
+  
+  /* FOOTER */
+  .doc-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #c9a028;
+  }
+  .doc-footer .brand {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0a2463;
+  }
+  .doc-footer .tagline {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+  }
+  .doc-footer .lawyer {
+    font-size: 13px;
+    color: #0a2463;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1: PORTADA -->
+<div class="page cover">
+  <img src="https://laboralclick.com.mx/images/kitchen-banner.jpg" class="cover-image" alt="Cocina profesional">
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="cover-brand">Laboral Click · División Alimentos y Bebidas</div>
+    <h1 class="cover-title">El escudo legal que tu restaurante necesita para crecer con certeza</h1>
+    <p class="cover-subtitle">Protegemos su inversión en la CDMX para que usted se enfoque en la excelencia de su operación.</p>
+  </div>
+  <div class="cover-bottom">
+    <p>Propuesta Comercial Confidencial · 2026</p>
+  </div>
+</div>
+
+<!-- PÁGINA 2: RESUMEN Y RIESGOS -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-icon">📋</div>
+    <h2 class="section-title">Resumen Ejecutivo</h2>
+  </div>
+  
+  <div class="summary-box">
+    <p>En el sector gastronómico, la rotación de personal es una variable operativa esperada. El riesgo financiero y legal no reside en la salida del colaborador, sino en la falta de documentación y procesos que acrediten el cumplimiento de la <strong>Ley Federal del Trabajo (LFT)</strong>.</p>
+    <p>Nuestra firma le proporciona la <strong>infraestructura jurídica digitalizada</strong> para blindar su operación desde el primer día.</p>
+  </div>
+  
+  <img src="https://laboralclick.com.mx/images/legal-risk.jpg" class="section-image" alt="Análisis legal">
+  
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Riesgos Legales en los Primeros 90 Días</h2>
+  </div>
+  
+  <div class="risks-container">
+    <div class="risk-item">
+      <div class="risk-icon">1</div>
+      <div class="risk-content">
+        <h4>Conflictos por Propinas</h4>
+        <p>Un colaborador inconforme con la distribución puede interponer demandas por retención indebida, derivando en multas de la STPS y pagos retroactivos (Art. 100 LFT).</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon">2</div>
+      <div class="risk-content">
+        <h4>Abandono de Turno</h4>
+        <p>Si un cocinero o mesero se retira sin aviso, la falta de un procedimiento documentado puede llevar a que un tribunal lo califique como "despido injustificado", exigiendo el pago de indemnización constitucional.</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon">3</div>
+      <div class="risk-content">
+        <h4>Deficiencias Contractuales</h4>
+        <p>La ausencia de contratos de periodo de prueba o de capacitación inicial expone al negocio a multas administrativas y al pago de capitales constitutivos ante el IMSS.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PÁGINA 3: PLANES -->
+<div class="page">
+  <img src="https://laboralclick.com.mx/images/legal-shield.jpg" class="section-image" alt="Protección legal" style="height: 200px;">
+  
+  <div class="section-header">
+    <div class="section-icon">🛡️</div>
+    <h2 class="section-title">Planes de Blindaje Restaurantero</h2>
+  </div>
+  <p class="plans-intro">Honorarios fijos mensuales. Sin costos ocultos. Atención en sus instalaciones o mediante gestión digital integral.</p>
+  
+  <div class="plan-card">
+    <div class="plan-name">PLAN EMPRENDE</div>
+    <div class="plan-target">Recomendado para nuevos negocios</div>
+    <div class="plan-price">$4,500 MXN <span style="font-size: 14px; color: #666; font-weight: 400;">/ mes</span></div>
+    <div class="plan-price-note">Equivalente al costo de un solo insumo diario de alta rotación</div>
+    <ul class="plan-features">
+      <li><strong>Contratación Segura:</strong> Contratos por periodo de prueba (hasta 30 días) y de capacitación inicial, blindando puestos de piso y cocina.</li>
+      <li><strong>Reglamento Interno de Propinas:</strong> Diseño e implementación del sistema de reparto conforme a la LFT.</li>
+      <li><strong>Cálculo de Finiquitos Exprés:</strong> Documentos de renuncia voluntaria con validez legal en máximo 24 horas.</li>
+      <li><strong>Asesoría Prioritaria por WhatsApp:</strong> Respuesta inmediata ante incidencias operativas.</li>
+    </ul>
+  </div>
+  
+  <div class="plan-card featured">
+    <div class="plan-badge">Más Solicitado</div>
+    <div class="plan-name">PLAN PRO</div>
+    <div class="plan-target">Para restaurantes con alta rotación o múltiples turnos</div>
+    <div class="plan-price">$8,500 MXN <span style="font-size: 14px; color: #666; font-weight: 400;">/ mes</span></div>
+    <ul class="plan-features">
+      <li><strong>Incluye todos los beneficios del Plan Emprende.</strong></li>
+      <li><strong>Auditoría Laboral Preventiva en Sitio:</strong> Revisión exhaustiva de expedientes del personal actual para corregir pasivos ocultos.</li>
+      <li><strong>Control de Turnos y Horarios:</strong> Contratos especiales para personal eventual, extras y fines de semana.</li>
+      <li><strong>Capacitación a Gerentes:</strong> Taller práctico sobre cómo documentar y sancionar faltas administrativas sin generar contingencias legales.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PÁGINA 4: PLAN MASTER + CTA -->
+<div class="page">
+  <div class="plan-card">
+    <div class="plan-name">PLAN MASTER</div>
+    <div class="plan-target">Para operaciones consolidadas o cadenas</div>
+    <div class="plan-price">$12,500 MXN <span style="font-size: 14px; color: #666; font-weight: 400;">/ mes</span></div>
+    <div class="plan-price-note">Su departamento jurídico y de Recursos Humanos externo</div>
+    <ul class="plan-features">
+      <li><strong>Incluye todos los beneficios del Plan Pro.</strong></li>
+      <li><strong>Representación Legal Directa:</strong> Acompañamiento y defensa en audiencias ante el Centro de Conciliación Laboral.</li>
+      <li><strong>Gestión de Inspecciones:</strong> Estrategia preventiva y acompañamiento ante visitas de verificación de IMSS o STPS.</li>
+      <li><strong>Defensa Legal Incluida:</strong> Asignación de un abogado patronal titular para la representación de su empresa.</li>
+    </ul>
+  </div>
+  
+  <div class="promise-container">
+    <div class="promise-item">
+      <div class="promise-icon"></div>
+      <div class="promise-content">
+        <h4>Atención en su Terreno</h4>
+        <p>Olvide los traslados a despachos tradicionales. Gestionamos su cumplimiento normativo de manera digital o con visitas directas a su sucursal en la Alcaldía Benito Juárez y zonas aledañas.</p>
+      </div>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"></div>
+      <div class="promise-content">
+        <h4>Cero Sorpresas Operativas</h4>
+        <p>Si un colaborador presenta su renuncia un sábado por la noche, nuestro canal de atención prioritaria le brindará la solución jurídica antes de su apertura del domingo.</p>
+      </div>
+    </div>
+  </div>
+  
+  <img src="https://laboralclick.com.mx/images/lawyer-professional.jpg" class="section-image" alt="Asesoría profesional" style="height: 160px;">
+  
+  <div class="cta-section">
+    <h2>¿Su restaurante está debidamente protegido?</h2>
+    <p>Realice nuestro Diagnóstico Express de Cumplimiento Laboral<br>(2 minutos, sin costo) e identifique posibles vulnerabilidades.</p>
+    <a href="https://laboralclick.com.mx/diagnostico" class="cta-button">EVALUAR MI RESTAURANTE AHORA</a>
+    <div class="contact-info">
+      <p><strong>WhatsApp:</strong> 311 186 6901</p>
+      <p><strong>Web:</strong> laboralclick.com.mx</p>
+      <p><strong>Cobertura:</strong> CDMX y Área Metropolitana</p>
+    </div>
+  </div>
+  
+  <div class="doc-footer">
+    <div class="brand">Laboral Click</div>
+    <div class="tagline">Protegiendo el sabor, el esfuerzo y la legalidad de la gastronomía local.</div>
+    <div class="lawyer">Lic. Domiciano Segura · Asesoría Legal sin Enredos para PyMEs</div>
+  </div>
+</div>
+
+</body>
+</html>
