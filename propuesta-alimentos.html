@@ -11,26 +11,29 @@
     line-height: 1.6;
     background: #fff;
   }
+  
+  /* PÁGINAS - SIN ALTURA FIJA */
   .page {
     width: 210mm;
-    min-height: 297mm;
     padding: 15mm 20mm;
     margin: 0 auto;
     background: white;
+    page-break-after: always;
+  }
+  .page:last-child {
+    page-break-after: auto;
   }
   
-  /* PORTADA MEJORADA */
+  /* PORTADA */
   .cover {
     background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
     color: white;
-    padding: 30px 20mm;
+    padding: 40px 20mm;
     text-align: center;
+    min-height: 297mm;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  .cover-top {
-    margin-bottom: 20px;
   }
   .cover-brand {
     font-size: 13px;
@@ -73,6 +76,10 @@
   .cover-contact strong {
     color: #f0c040;
   }
+  .cover-contact a {
+    color: #f0c040;
+    text-decoration: none;
+  }
   .cover-seal {
     display: inline-block;
     background: rgba(240, 192, 64, 0.2);
@@ -90,7 +97,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 25px 0 15px 0;
+    margin: 20px 0 12px 0;
     padding-bottom: 8px;
     border-bottom: 3px solid #c9a028;
   }
@@ -116,24 +123,26 @@
   .summary-box {
     background: #f8f9fa;
     border-left: 4px solid #c9a028;
-    padding: 18px;
-    margin: 15px 0;
+    padding: 15px;
+    margin: 12px 0;
   }
   .summary-box p {
     font-size: 13px;
     color: #444;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+  .summary-box p:last-child {
+    margin-bottom: 0;
   }
   
   /* IMAGEN */
   .section-image {
     width: 100%;
-    max-height: 250px;
+    max-height: 220px;
     object-fit: contain;
     border-radius: 8px;
-    margin: 15px 0;
+    margin: 12px 0;
     page-break-inside: avoid;
-    break-inside: avoid;
   }
   
   /* RIESGOS */
@@ -141,17 +150,19 @@
     background: #fff8e7;
     border: 2px solid #c9a028;
     border-radius: 10px;
-    padding: 18px;
-    margin: 15px 0;
+    padding: 15px;
+    margin: 12px 0;
     page-break-inside: avoid;
   }
   .risk-item {
     display: flex;
     gap: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     align-items: flex-start;
   }
-  .risk-item:last-child { margin-bottom: 0; }
+  .risk-item:last-child {
+    margin-bottom: 0;
+  }
   .risk-icon {
     width: 32px;
     height: 32px;
@@ -181,8 +192,8 @@
   .plan-card {
     border: 2px solid #e5e7eb;
     border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 15px;
+    padding: 15px;
+    margin-bottom: 12px;
     page-break-inside: avoid;
   }
   .plan-card.featured {
@@ -209,25 +220,27 @@
     font-size: 11px;
     color: #888;
     font-style: italic;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   .plan-price {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
     color: #c9a028;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   .plan-features {
     list-style: none;
   }
   .plan-features li {
-    padding: 6px 0 6px 22px;
+    padding: 5px 0 5px 22px;
     position: relative;
     font-size: 12px;
     color: #444;
     border-bottom: 1px solid #f0f0f0;
   }
-  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li:last-child {
+    border-bottom: none;
+  }
   .plan-features li::before {
     content: "✓";
     position: absolute;
@@ -244,19 +257,21 @@
     background: #0a2463;
     color: white;
     border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
+    padding: 18px;
+    margin: 15px 0;
     page-break-inside: avoid;
   }
   .promise-item {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
-  .promise-item:last-child { margin-bottom: 0; }
+  .promise-item:last-child {
+    margin-bottom: 0;
+  }
   .promise-content h4 {
     color: #f0c040;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
   .promise-content p {
     font-size: 12px;
@@ -267,21 +282,21 @@
   /* CTA */
   .cta-section {
     text-align: center;
-    padding: 30px 20px;
+    padding: 25px 20px;
     background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
     border-radius: 10px;
     color: white;
-    margin: 20px 0;
+    margin: 15px 0;
     page-break-inside: avoid;
   }
   .cta-section h2 {
     font-size: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: #f0c040;
   }
   .cta-section p {
     font-size: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
   .cta-button {
     display: inline-block;
@@ -295,17 +310,19 @@
     margin: 10px 0;
   }
   .contact-info {
-    margin-top: 15px;
+    margin-top: 12px;
     font-size: 12px;
     color: #e0e0e0;
   }
-  .contact-info strong { color: #f0c040; }
+  .contact-info strong {
+    color: #f0c040;
+  }
   
   /* FOOTER */
   .doc-footer {
     text-align: center;
-    margin-top: 25px;
-    padding-top: 15px;
+    margin-top: 20px;
+    padding-top: 12px;
     border-top: 3px solid #c9a028;
   }
   .doc-footer .brand {
@@ -328,32 +345,29 @@
   
   /* IMPRESIÓN */
   @media print {
-    body { 
-      -webkit-print-color-adjust: exact; 
-      print-color-adjust: exact; 
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
-    .page { 
+    .page {
       page-break-after: always;
-      width: 210mm;
-      min-height: 297mm;
     }
-    img { 
+    .page:last-child {
+      page-break-after: auto;
+    }
+    img {
       max-width: 100% !important;
       height: auto !important;
       page-break-inside: avoid;
-      break-inside: avoid;
-    }
-    .section-image, .cover-image {
-      max-height: none !important;
     }
   }
 </style>
 </head>
 <body>
 
-<!-- PÁGINA 1: PORTADA MEJORADA -->
+<!-- PÁGINA 1: PORTADA -->
 <div class="page cover">
-  <div class="cover-top">
+  <div>
     <div class="cover-brand">Laboral Click · División Alimentos y Bebidas</div>
     <h1 class="cover-title">El escudo legal que tu restaurante necesita para crecer con certeza</h1>
     <p class="cover-subtitle">Protegemos su inversión en la CDMX para que usted se enfoque en la excelencia de su operación.</p>
@@ -363,7 +377,7 @@
   
   <div class="cover-bottom">
     <div class="cover-contact">
-      <strong>📱 WhatsApp:</strong> 311 186 6901 | <strong> Web:</strong> <a href="https://laboralclick.com.mx" style="color: #f0c040; text-decoration: none;">laboralclick.com.mx</a>
+      <strong>📱 WhatsApp:</strong> 311 186 6901 | <strong>🌐 Web:</strong> <a href="https://laboralclick.com.mx">laboralclick.com.mx</a>
     </div>
     <div class="cover-contact">
       <strong>📍 Cobertura:</strong> CDMX y Área Metropolitana
@@ -374,7 +388,7 @@
   </div>
 </div>
 
-<!-- PÁGINA 2 -->
+<!-- PÁGINA 2: RESUMEN Y RIESGOS -->
 <div class="page">
   <div class="section-header">
     <div class="section-icon">📋</div>
@@ -389,7 +403,7 @@
   <img src="https://laboralclick.com.mx/images/legal-risk.jpg" class="section-image" alt="Análisis legal">
   
   <div class="section-header">
-    <div class="section-icon">️</div>
+    <div class="section-icon">⚠️</div>
     <h2 class="section-title">Riesgos Legales en los Primeros 90 Días</h2>
   </div>
   
@@ -418,7 +432,7 @@
   </div>
 </div>
 
-<!-- PÁGINA 3 -->
+<!-- PÁGINA 3: PLANES EMPRENDE Y PRO -->
 <div class="page">
   <img src="https://laboralclick.com.mx/images/legal-shield.jpg" class="section-image" alt="Protección legal">
   
@@ -453,7 +467,7 @@
   </div>
 </div>
 
-<!-- PÁGINA 4 -->
+<!-- PÁGINA 4: PLAN MASTER + CTA -->
 <div class="page">
   <div class="plan-card">
     <div class="plan-name">PLAN MASTER</div>
