@@ -19,19 +19,25 @@
     background: white;
   }
   
-  /* PORTADA */
+  /* PORTADA MEJORADA */
   .cover {
     background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
     color: white;
-    padding: 35px 20mm;
+    padding: 30px 20mm;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-top {
+    margin-bottom: 20px;
   }
   .cover-brand {
     font-size: 13px;
     letter-spacing: 2px;
     color: #f0c040;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-transform: uppercase;
   }
   .cover-title {
@@ -45,14 +51,38 @@
     font-weight: 400;
     color: #f0c040;
     max-width: 500px;
-    margin: 0 auto 25px auto;
+    margin: 0 auto;
   }
   .cover-image {
     width: 100%;
     max-height: 280px;
     object-fit: contain;
-    margin-top: 20px;
+    margin: 20px 0;
     border-radius: 8px;
+  }
+  .cover-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(240, 192, 64, 0.3);
+  }
+  .cover-contact {
+    font-size: 12px;
+    color: #e0e0e0;
+    margin-bottom: 8px;
+  }
+  .cover-contact strong {
+    color: #f0c040;
+  }
+  .cover-seal {
+    display: inline-block;
+    background: rgba(240, 192, 64, 0.2);
+    border: 2px solid #f0c040;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 11px;
+    color: #f0c040;
+    font-weight: 700;
+    margin-top: 10px;
   }
   
   /* SECCIONES */
@@ -95,7 +125,7 @@
     margin-bottom: 10px;
   }
   
-  /* IMAGEN - SIN RECORTES */
+  /* IMAGEN */
   .section-image {
     width: 100%;
     max-height: 250px;
@@ -296,7 +326,7 @@
     margin-top: 8px;
   }
   
-  /* IMPRESIÓN - CRUCIAL */
+  /* IMPRESIÓN */
   @media print {
     body { 
       -webkit-print-color-adjust: exact; 
@@ -321,18 +351,33 @@
 </head>
 <body>
 
-<!-- PÁGINA 1: PORTADA -->
+<!-- PÁGINA 1: PORTADA MEJORADA -->
 <div class="page cover">
-  <div class="cover-brand">Laboral Click · División Alimentos y Bebidas</div>
-  <h1 class="cover-title">El escudo legal que tu restaurante necesita para crecer con certeza</h1>
-  <p class="cover-subtitle">Protegemos su inversión en la CDMX para que usted se enfoque en la excelencia de su operación.</p>
+  <div class="cover-top">
+    <div class="cover-brand">Laboral Click · División Alimentos y Bebidas</div>
+    <h1 class="cover-title">El escudo legal que tu restaurante necesita para crecer con certeza</h1>
+    <p class="cover-subtitle">Protegemos su inversión en la CDMX para que usted se enfoque en la excelencia de su operación.</p>
+  </div>
+  
   <img src="https://laboralclick.com.mx/images/kitchen-banner.jpg" class="cover-image" alt="Cocina profesional">
+  
+  <div class="cover-bottom">
+    <div class="cover-contact">
+      <strong>📱 WhatsApp:</strong> 311 186 6901 | <strong>🌐 Web:</strong> laboralclick.com.mx
+    </div>
+    <div class="cover-contact">
+      <strong>📍 Cobertura:</strong> CDMX y Área Metropolitana
+    </div>
+    <div class="cover-seal">
+      ✓ Asesoría Legal Especializada para PyMEs
+    </div>
+  </div>
 </div>
 
 <!-- PÁGINA 2 -->
 <div class="page">
   <div class="section-header">
-    <div class="section-icon"></div>
+    <div class="section-icon">📋</div>
     <h2 class="section-title">Resumen Ejecutivo</h2>
   </div>
   
@@ -344,7 +389,7 @@
   <img src="https://laboralclick.com.mx/images/legal-risk.jpg" class="section-image" alt="Análisis legal">
   
   <div class="section-header">
-    <div class="section-icon">⚠️</div>
+    <div class="section-icon">️</div>
     <h2 class="section-title">Riesgos Legales en los Primeros 90 Días</h2>
   </div>
   
