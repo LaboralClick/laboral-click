@@ -352,23 +352,14 @@
       const ingreso = new Date(fechaIngreso + 'T00:00:00');
       const salida = new Date(fechaSalida + 'T00:00:00');
       
-      let aniosCompletos = salida.getFullYear() - ingreso.getFullYear();
-      const ultimoAniversario = new Date(ingreso);
-      ultimoAniversario.setFullYear(ingreso.getFullYear() + aniosCompletos);
+      const diasTotales = calcularDiasEntre(fechaIngreso, fechaSalida);
+      const anosCompletos = Math.floor(diasTotales / 365);
       
-      if (ultimoAniversario > salida) {
-        aniosCompletos--;
-        ultimoAniversario.setFullYear(ultimoAniversario.getFullYear() - 1);
-      }
+      const ultimoAniversario = new Date(ingreso);
+      ultimoAniversario.setFullYear(ingreso.getFullYear() + anosCompletos);
       
       const diffMs = salida - ultimoAniversario;
       return Math.floor(diffMs / (24 * 60 * 60 * 1000)) + 1;
-    }
-
-    // Calcula años proporcionales de antigüedad
-    function calcularAntiguedadAnos(fechaIngreso, fechaSalida) {
-      const totalDias = calcularDiasEntre(fechaIngreso, fechaSalida);
-      return totalDias / 365.25;
     }
 
     // Calcula el Salario Diario Integrado (SDI)
@@ -408,14 +399,17 @@
       }
 
       // ============================================
-      // CÁLCULOS BASE
+      // CÁLCULOS BASE (VARIABLE ÚNICA DE TIEMPO)
       // ============================================
+      const diasTotales = calcularDiasEntre(fechaIngreso, fechaSalida);
+      
+      // >>> CORRECCIÓN CRÍTICA: Variable única y exacta solicitada <<<
+      const antiguedadAnosProporcionales = diasTotales / 365; 
+      
       const diasAguinaldoAnual = calcularDiasAguinaldoAnual(fechaSalida);
       const diasTranscurridosPeriodo = calcularDiasTranscurridosPeriodo(fechaIngreso, fechaSalida);
-      const antiguedadAnosProporcionales = calcularAntiguedadAnos(fechaIngreso, fechaSalida);
 
       // >>> BLOQUE EXACTO SOLICITADO PARA TABLA DE VACACIONES LFT <<<
-      // Determinar los años completos cumplidos (antigüedad)
       let anosCompletos = Math.floor(antiguedadAnosProporcionales);
       let diasVacacionesAnuales = 12; // Valor por defecto para el primer año
 
@@ -446,7 +440,7 @@
       });
       total += aguinaldoProporcional;
 
-      // 2. Vacaciones proporcionales (USANDO LA VARIABLE DEL BLOQUE EXACTO)
+      // 2. Vacaciones proporcionales
       const vacacionesProporcionales = diasTranscurridosPeriodo * (diasVacacionesAnuales / 365) * salarioDiario;
       desglose.push({ 
         concepto: `Vacaciones proporcionales (${diasTranscurridosPeriodo} días × ${diasVacacionesAnuales} días según tabla LFT)`, 
@@ -466,7 +460,6 @@
       // PARTE 2: LIQUIDACIÓN (Solo si es despido)
       // ============================================
       if (tipoCalculo === 'liquidacion') {
-        // Calcular Salario Diario Integrado (SDI) usando los días de la tabla
         const sdi = calcularSDI(salarioDiario, diasAguinaldo, diasVacacionesAnuales, primaVacacionalPorcentaje);
 
         // 4. Indemnización constitucional de 90 días
@@ -477,19 +470,19 @@
         });
         total += indemnizacion90Dias;
 
-        // 5. 20 días de salario por cada año trabajado
+        // 5. 20 días de salario por cada año trabajado (USANDO LA VARIABLE EXACTA)
         const veinteDiasPorAnio = 20 * sdi * antiguedadAnosProporcionales;
         desglose.push({ 
-          concepto: `20 días por año trabajado (20 × SDI × ${antiguedadAnosProporcionales.toFixed(2)} años)`, 
+          concepto: `20 días por año trabajado (20 × SDI × ${antiguedadAnosProporcionales.toFixed(4)} años)`, 
           monto: veinteDiasPorAnio 
         });
         total += veinteDiasPorAnio;
 
-        // 6. Prima de antigüedad
+        // 6. Prima de antigüedad (USANDO LA VARIABLE EXACTA)
         const salarioTopado = Math.min(salarioDiario, TOPE_PRIMA_ANTIGUEDAD);
         const primaAntiguedad = 12 * salarioTopado * antiguedadAnosProporcionales;
         desglose.push({ 
-          concepto: `Prima de antigüedad (12 días × ${formatearMoneda(salarioTopado)} tope × ${antiguedadAnosProporcionales.toFixed(2)} años)`, 
+          concepto: `Prima de antigüedad (12 días × ${formatearMoneda(salarioTopado)} tope × ${antiguedadAnosProporcionales.toFixed(4)} años)`, 
           monto: primaAntiguedad 
         });
         total += primaAntiguedad;
