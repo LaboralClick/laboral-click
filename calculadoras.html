@@ -282,7 +282,7 @@
       </form>
 
       <div id="resultado" class="resultado">
-        <h2> TOTAL ESTIMADO</h2>
+        <h2>💵 TOTAL ESTIMADO</h2>
         <div class="monto-total">
           <div class="label" id="tipoResultado">FINIQUITO</div>
           <div class="valor" id="montoTotal">$0.00 MXN</div>
@@ -294,11 +294,11 @@
         </div>
 
         <div class="aviso">
-          <p>️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la Ley Federal del Trabajo. No constituyen asesoría legal formal. Para cálculos exactos y revisión de tu caso particular, contacta a nuestros especialistas.</p>
+          <p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la Ley Federal del Trabajo. No constituyen asesoría legal formal. Para cálculos exactos y revisión de tu caso particular, contacta a nuestros especialistas.</p>
         </div>
 
         <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">
-          💬 Validar cálculo con un experto
+           Validar cálculo con un experto
         </a>
       </div>
 
@@ -362,11 +362,11 @@
       return Math.floor(diffMs / (24 * 60 * 60 * 1000)) + 1;
     }
 
-    // Calcula el Salario Diario Integrado (SDI)
+    // >>> CORRECCIÓN CRÍTICA: Factor de Integración exacto para SDI <<<
+    // FI = 1 + (días_aguinaldo/365) + (días_vacaciones × %prima_vacacional/365)
     function calcularSDI(salarioDiario, diasAguinaldo, diasVacacionesTabla, primaVacacionalPorcentaje) {
       const factorIntegracion = 1 + 
         (diasAguinaldo / 365) + 
-        (diasVacacionesTabla / 365) + 
         (diasVacacionesTabla * (primaVacacionalPorcentaje / 100) / 365);
       return salarioDiario * factorIntegracion;
     }
@@ -402,8 +402,6 @@
       // CÁLCULOS BASE (VARIABLE ÚNICA DE TIEMPO)
       // ============================================
       const diasTotales = calcularDiasEntre(fechaIngreso, fechaSalida);
-      
-      // >>> CORRECCIÓN CRÍTICA: Variable única y exacta solicitada <<<
       const antiguedadAnosProporcionales = diasTotales / 365; 
       
       const diasAguinaldoAnual = calcularDiasAguinaldoAnual(fechaSalida);
@@ -460,10 +458,10 @@
       // PARTE 2: LIQUIDACIÓN (Solo si es despido)
       // ============================================
       if (tipoCalculo === 'liquidacion') {
-        // Calcular Salario Diario Integrado (SDI) solo para los 90 días
+        // >>> CORRECCIÓN: SDI con Factor de Integración exacto (FI = 1.05205 para 15 días aguinaldo y 16 vacaciones) <<<
         const sdi = calcularSDI(salarioDiario, diasAguinaldo, diasVacacionesAnuales, primaVacacionalPorcentaje);
 
-        // 4. Indemnización constitucional de 90 días (Se usa SDI)
+        // 4. Indemnización constitucional de 90 días (USA SDI)
         const indemnizacion90Dias = 90 * sdi;
         desglose.push({ 
           concepto: `Indemnización constitucional (90 días × SDI ${formatearMoneda(sdi)})`, 
@@ -471,15 +469,15 @@
         });
         total += indemnizacion90Dias;
 
-        // 5. 20 días de salario por cada año trabajado (CORRECCIÓN: Se usa Salario Diario BASE, no SDI)
-        const veinteDiasPorAnio = 20 * salarioDiario * antiguedadAnosProporcionales;
+        // 5. 20 días de salario por cada año trabajado (USA SDI, no salario base)
+        const veinteDiasPorAnio = 20 * sdi * antiguedadAnosProporcionales;
         desglose.push({ 
-          concepto: `20 días por año trabajado (20 × Salario Base × ${antiguedadAnosProporcionales.toFixed(4)} años)`, 
+          concepto: `20 días por año trabajado (20 × SDI ${formatearMoneda(sdi)} × ${antiguedadAnosProporcionales.toFixed(4)} años)`, 
           monto: veinteDiasPorAnio 
         });
         total += veinteDiasPorAnio;
 
-        // 6. Prima de antigüedad (CORRECCIÓN: Se usa Salario Diario BASE topado, no SDI)
+        // 6. Prima de antigüedad (USA Salario Base topado, no SDI)
         const salarioTopado = Math.min(salarioDiario, TOPE_PRIMA_ANTIGUEDAD);
         const primaAntiguedad = 12 * salarioTopado * antiguedadAnosProporcionales;
         desglose.push({ 
