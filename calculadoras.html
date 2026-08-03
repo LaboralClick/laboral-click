@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadoras laborales gratuitas: Finiquito, Liquidación, Salario Neto 2026 y PTU. Basadas en la Ley Federal del Trabajo de México.">
+  <meta name="keywords" content="calculadora finiquito, calculadora liquidación, salario neto 2026, PTU México, LFT, prestaciones laborales">
   <title>Calculadoras Laborales - Laboral Click</title>
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
-    /* Estilos Base */
     .calculadora-container {
       max-width: 800px;
       margin: 40px auto;
@@ -20,7 +21,6 @@
     .calculadora-header h1 { color: #0a2463; font-size: 32px; margin-bottom: 10px; }
     .calculadora-header p { color: #666; font-size: 15px; }
 
-    /* Sistema de Pestañas (Tabs) */
     .tabs-container {
       display: flex;
       gap: 10px;
@@ -48,12 +48,10 @@
       box-shadow: 0 3px 10px rgba(10, 36, 99, 0.2);
     }
 
-    /* Contenedores de cada calculadora */
     .calc-section { display: none; animation: fadeIn 0.4s ease; }
     .calc-section.activo { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Formularios */
     .tipo-calculo { display: flex; gap: 15px; margin-bottom: 25px; }
     .tipo-btn {
       flex: 1; padding: 15px; border: 3px solid #e5e7eb; border-radius: 10px;
@@ -81,7 +79,6 @@
     }
     .btn-calcular:hover { background: #b89224; transform: translateY(-2px); }
 
-    /* Resultados */
     .resultado {
       display: none; margin-top: 30px; padding: 30px;
       background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
@@ -108,6 +105,43 @@
       margin-top: 20px; transition: all 0.3s; box-sizing: border-box;
     }
     .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+
+    /* ESTILOS SECCIÓN SEO */
+    .seo-info-laboral {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      font-family: sans-serif;
+      color: #333;
+    }
+    .seo-info-laboral h2 {
+      color: #0a2463;
+      font-size: 26px;
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 3px solid #c9a028;
+      padding-bottom: 15px;
+    }
+    .seo-info-laboral h3 {
+      color: #0a2463;
+      font-size: 18px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      border-left: 4px solid #c9a028;
+      padding-left: 12px;
+    }
+    .seo-info-laboral p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 15px;
+    }
+    .seo-info-laboral strong {
+      color: #0a2463;
+    }
 
     @media (max-width: 768px) {
       .form-row, .tipo-calculo, .tabs-container { flex-direction: column; gap: 10px; }
@@ -143,23 +177,20 @@
         <p>Herramientas gratuitas basadas en la Ley Federal del Trabajo y legislación fiscal 2026</p>
       </div>
 
-      <!-- PESTAÑAS DE NAVEGACIÓN -->
       <div class="tabs-container">
         <button class="tab-btn activo" onclick="cambiarPestana('finiquito', event)"> Finiquito y Liquidación</button>
         <button class="tab-btn" onclick="cambiarPestana('neto', event)">💰 Salario Neto 2026</button>
         <button class="tab-btn" onclick="cambiarPestana('ptu', event)"> PTU (Utilidades)</button>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CALCULADORA 1: FINIQUITO Y LIQUIDACIÓN     -->
-      <!-- ========================================== -->
+      <!-- CALCULADORA 1: FINIQUITO Y LIQUIDACIÓN -->
       <div id="sec-finiquito" class="calc-section activo">
         <div class="tipo-calculo">
           <div class="tipo-btn activo" onclick="seleccionarTipo('finiquito', event)">
             <h3>📋 FINIQUITO</h3><p>Renuncia voluntaria</p>
           </div>
           <div class="tipo-btn" onclick="seleccionarTipo('liquidacion', event)">
-            <h3> LIQUIDACIÓN</h3><p>Despido injustificado</p>
+            <h3>💰 LIQUIDACIÓN</h3><p>Despido injustificado</p>
           </div>
         </div>
 
@@ -210,9 +241,7 @@
         </div>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CALCULADORA 2: SALARIO NETO 2026           -->
-      <!-- ========================================== -->
+      <!-- CALCULADORA 2: SALARIO NETO 2026 -->
       <div id="sec-neto" class="calc-section">
         <form id="calculadoraSalarioForm">
           <div class="form-group">
@@ -239,9 +268,7 @@
         </div>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CALCULADORA 3: PTU (UTILIDADES)            -->
-      <!-- ========================================== -->
+      <!-- CALCULADORA 3: PTU -->
       <div id="sec-ptu" class="calc-section">
         <form id="calculadoraPTUForm">
           <div class="form-group">
@@ -282,13 +309,32 @@
             <div id="desgloseItemsPTU"></div>
           </div>
           <div class="aviso">
-            <p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en el Art. 123 de la LFT. No constituyen asesoría fiscal formal. El monto bruto puede estar sujeto a retención de ISR.</p>
+            <p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estimaciones basadas en el Art. 123 de la LFT. No constituyen asesoría fiscal formal.</p>
           </div>
           <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 Validar cálculo con un experto</a>
         </div>
       </div>
 
     </div>
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN DE TEXTO PARA SEO - LABORAL CLICK  -->
+    <!-- ========================================== -->
+    <section class="seo-info-laboral">
+      
+      <h2>Preguntas Frecuentes sobre el Cálculo de Prestaciones en México</h2>
+      
+      <h3>¿Cuál es la diferencia entre Finiquito y Liquidación?</h3>
+      <p>El <strong>finiquito por renuncia voluntaria</strong> incluye únicamente tus derechos irrenunciables: días trabajados, aguinaldo proporcional, vacaciones y prima vacacional. La <strong>liquidación por despido injustificado</strong> añade a lo anterior una indemnización constitucional de 3 meses de salario ordinario, prima de antigüedad y, en algunos casos, 20 días por año laborado según la Ley Federal del Trabajo.</p>
+
+      <h3>¿Cómo calcular el Salario Neto Mensual a partir del sueldo bruto?</h3>
+      <p>Para conocer tu sueldo neto real, nuestra <strong>calculadora de sueldo bruto a neto 2026</strong> aplica de forma exacta las tablas vigentes de retención del ISR del SAT y deduce las cuotas obreras destinadas al IMSS. Así sabrás con precisión cuánto dinero en efectivo recibirás en tu nómina quincenal o mensual.</p>
+
+      <h3>¿Cuándo se pagan las utilidades (PTU) y cómo se realiza el cálculo?</h3>
+      <p>El <strong>reparto de utilidades o PTU</strong> se paga entre el 1 de abril y el 30 de mayo para trabajadores de empresas (Personas Morales). De acuerdo con el Artículo 123 de la LFT, la bolsa acumulada se divide estrictamente en dos partes iguales: un 50% distribuido por los días totales trabajados en el año y el otro 50% según el salario anual percibido por cada empleado.</p>
+
+    </section>
+
   </div>
 
   <footer>
@@ -300,9 +346,7 @@
   </footer>
 
   <script>
-    // ============================================
-    // LÓGICA DE PESTAÑAS (TABS)
-    // ============================================
+    // LÓGICA DE PESTAÑAS
     function cambiarPestana(id, evt) {
       document.querySelectorAll('.calc-section').forEach(sec => sec.classList.remove('activo'));
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('activo'));
@@ -310,9 +354,7 @@
       evt.currentTarget.classList.add('activo');
     }
 
-    // ============================================
     // MOTOR 1: FINIQUITO Y LIQUIDACIÓN
-    // ============================================
     let tipoCalculo = 'finiquito';
     const SALARIO_MINIMO_DIARIO = 248.93;
     const TOPE_PRIMA_ANTIGUEDAD = SALARIO_MINIMO_DIARIO * 2;
@@ -408,9 +450,7 @@
       document.getElementById('resultadoFiniquito').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
-    // ============================================
     // MOTOR 2: SALARIO NETO 2026
-    // ============================================
     const TASA_IMSS = 0.02375;
     const TABLA_ISR = [
       { limite: 895.20, inferior: 0, cuotaFija: 0, porcentaje: 1.92 },
@@ -452,12 +492,9 @@
       document.getElementById('resultadoNeto').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
-    // ============================================
-    // MOTOR 3: PTU (UTILIDADES) - Art. 123 LFT
-    // ============================================
+    // MOTOR 3: PTU
     document.getElementById('calculadoraPTUForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Evita recarga/redirección de la página
-
+      e.preventDefault();
       const bolsaTotal = parseFloat(document.getElementById('bolsaTotal').value);
       const sumaDiasEmpresa = parseFloat(document.getElementById('sumaDiasEmpresa').value);
       const sumaSalariosEmpresa = parseFloat(document.getElementById('sumaSalariosEmpresa').value);
@@ -472,40 +509,26 @@
         return;
       }
 
-      // Algoritmo de cálculo PTU (Art. 123 LFT)
       const bolsaDias = bolsaTotal / 2;
       const bolsaSalarios = bolsaTotal / 2;
-      
       const factorDias = bolsaDias / sumaDiasEmpresa;
       const factorSalarios = bolsaSalarios / sumaSalariosEmpresa;
-      
       const ptuDiasUsuario = diasIndividuales * factorDias;
       const ptuSalariosUsuario = salarioIndividual * factorSalarios;
-      
       const granTotalPTU = ptuDiasUsuario + ptuSalariosUsuario;
 
-      // Mostrar resultados
       document.getElementById('totalPTU').textContent = formatearMoneda(granTotalPTU);
       
       document.getElementById('desgloseItemsPTU').innerHTML = `
-        <div class="desglose-item">
-          <span class="concepto">Bolsa Total de Utilidades</span>
-          <span class="monto">${formatearMoneda(bolsaTotal)}</span>
-        </div>
-        <div class="desglose-item">
-          <span class="concepto">Bolsa por Días Trabajados (50%)</span>
-          <span class="monto">${formatearMoneda(bolsaDias)}</span>
-        </div>
-        <div class="desglose-item">
-          <span class="concepto">Bolsa por Salarios Percibidos (50%)</span>
-          <span class="monto">${formatearMoneda(bolsaSalarios)}</span>
-        </div>
+        <div class="desglose-item"><span class="concepto">Bolsa Total de Utilidades</span><span class="monto">${formatearMoneda(bolsaTotal)}</span></div>
+        <div class="desglose-item"><span class="concepto">Bolsa por Días Trabajados (50%)</span><span class="monto">${formatearMoneda(bolsaDias)}</span></div>
+        <div class="desglose-item"><span class="concepto">Bolsa por Salarios Percibidos (50%)</span><span class="monto">${formatearMoneda(bolsaSalarios)}</span></div>
         <div class="desglose-item" style="border-top: 2px solid #e5e7eb; padding-top: 15px; margin-top: 10px;">
           <span class="concepto">Factor por Días (Bolsa Días ÷ Total Días Empresa)</span>
           <span class="monto">${formatearMoneda(factorDias)} por día</span>
         </div>
         <div class="desglose-item">
-          <span class="concepto">Factor por Salario (Bolsa Salarios ÷ Total Salarios Empresa)</span>
+          <span class="concepto">Factor por Salario (Bolsa Salarios  Total Salarios Empresa)</span>
           <span class="monto">${(factorSalarios * 100).toFixed(4)}% del salario</span>
         </div>
         <div class="desglose-item" style="background: #f0fdf4; padding: 15px; border-radius: 5px; margin-top: 15px;">
@@ -517,7 +540,7 @@
           <span class="monto" style="font-weight: 800; color: #22c55e;">${formatearMoneda(ptuSalariosUsuario)}</span>
         </div>
         <div class="desglose-item" style="background: #dcfce7; padding: 15px; border-radius: 5px; margin-top: 10px; border: 2px solid #22c55e;">
-          <span class="concepto" style="font-weight: 800; color: #166534; font-size: 16px;">🎯 TOTAL PTU BRUTO</span>
+          <span class="concepto" style="font-weight: 800; color: #166534; font-size: 16px;"> TOTAL PTU BRUTO</span>
           <span class="monto" style="font-weight: 800; color: #22c55e; font-size: 18px;">${formatearMoneda(granTotalPTU)}</span>
         </div>
       `;
