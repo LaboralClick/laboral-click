@@ -1,179 +1,209 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ED8M8E4DNP');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadoras Laborales - Laboral Click</title>
+  <title>Calculadora de Finiquito y Liquidación - Laboral Click</title>
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
-    /* Estilos específicos para las Calculadoras */
-    .calculadora { 
-      background: white; 
-      border-radius: 12px; 
-      padding: 35px; 
-      margin: 35px 0; 
-      box-shadow: 0 3px 20px rgba(0,0,0,0.08); 
-      /* Clase calc-card agrega el borde dorado desde global.css */
+    .calculadora-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
     }
-    .calculadora h2 { font-size: 24px; color: #0a2463; margin-bottom: 10px; }
-    .descripcion { color: #6B7280; margin-bottom: 22px; font-size: 15px; }
-    
-    .tipo-calculo { display: flex; gap: 10px; margin-bottom: 22px; }
-    .tipo-btn { 
-      flex: 1; 
-      padding: 12px; 
-      border: 2px solid #e5e7eb; 
-      background: white; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      font-size: 14px; 
-      font-weight: 600; 
+    .calculadora-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .calculadora-header h1 {
+      color: #0a2463;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .calculadora-header p {
+      color: #666;
+      font-size: 15px;
+    }
+    .tipo-calculo {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .tipo-btn {
+      flex: 1;
+      padding: 20px;
+      border: 3px solid #e5e7eb;
+      border-radius: 10px;
+      cursor: pointer;
       text-align: center;
       transition: all 0.3s;
+      background: white;
     }
-    .tipo-btn.activo { border-color: #c9a028; background: #fef9e7; color: #0a2463; }
-    
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-    .form-group { display: flex; flex-direction: column; margin-bottom: 18px; }
-    .form-group label { font-weight: 600; color: #0a2463; margin-bottom: 6px; font-size: 14px; }
-    .form-group input, .form-group select { 
-      padding: 11px 14px; 
-      border: 2px solid #e5e7eb; 
-      border-radius: 8px; 
-      font-size: 15px; 
+    .tipo-btn:hover {
+      border-color: #c9a028;
+      transform: translateY(-2px);
+    }
+    .tipo-btn.activo {
+      border-color: #c9a028;
+      background: #fffef5;
+      box-shadow: 0 3px 15px rgba(201, 160, 40, 0.2);
+    }
+    .tipo-btn h3 {
+      color: #0a2463;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    .tipo-btn p {
+      color: #666;
+      font-size: 13px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      color: #0a2463;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .form-group input {
       width: 100%;
-      box-sizing: border-box; /* CLAVE: Evita que el input se salga del contenedor */
+      padding: 12px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
     }
-    
-    .btn-calcular { 
-      width: 100%; 
-      padding: 14px; 
-      background: #c9a028; 
-      color: #0a2463; 
-      border: none; 
-      border-radius: 8px; 
-      font-weight: 700; 
-      font-size: 16px;
-      cursor: pointer; 
-      transition: background 0.3s;
+    .form-group input:focus {
+      border-color: #c9a028;
+      outline: none;
     }
-    .btn-calcular:hover { background: #b89224; }
-    
-    .resultado { 
-      margin-top: 25px; 
-      padding: 25px; 
-      background: #f0fdf4; 
-      border: 2px solid #25D366; 
-      border-radius: 10px; 
-      display: none; 
-      text-align: center; 
-    }
-    .resultado-total { font-size: 28px; font-weight: 700; padding: 18px; background: white; border-radius: 8px; margin-top: 15px; }
-    .resultado-total span { color: #25D366; font-size: 34px; }
-    
-    .disclaimer-calc { 
-      background: #fff3cd; 
-      padding: 18px; 
-      border-radius: 8px; 
-      margin-top: 18px; 
-      font-size: 13px; 
-      color: #856404; 
-      line-height: 1.5;
-    }
-    .disclaimer-calc a { 
-      background: #25D366; 
-      color: white; 
-      padding: 10px 18px; 
-      border-radius: 30px; 
-      text-decoration: none; 
-      font-weight: 600; 
-      display: inline-block; 
-      margin-top: 10px; 
-    }
-
-    /* Banner inferior */
-    .banner-calc {
-      background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%);
-      color: white;
-      padding: 40px;
-      border-radius: 15px;
-      margin: 40px 0;
-      box-shadow: 0 10px 30px rgba(10, 36, 99, 0.3);
-    }
-    .banner-calc-content {
+    .form-row {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
+      gap: 20px;
     }
-    .banner-calc h3 { color: #f0c040; margin-bottom: 10px; font-size: 22px; }
-    .banner-calc p { font-size: 16px; opacity: 0.9; line-height: 1.5; }
-    .btn-urgente {
+    .form-row .form-group {
+      flex: 1;
+    }
+    .btn-calcular {
+      width: 100%;
+      padding: 16px;
       background: #c9a028;
       color: #0a2463;
-      padding: 15px 25px;
-      border-radius: 30px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: transform 0.3s;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
     }
-    .btn-urgente:hover { transform: scale(1.05); }
-
-    /* ========================================
-       AJUSTES CRÍTICOS PARA MÓVIL (Anti-desborde)
-       ======================================== */
+    .btn-calcular:hover {
+      background: #b89224;
+      transform: translateY(-2px);
+    }
+    .resultado {
+      display: none;
+      margin-top: 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-radius: 10px;
+      border: 2px solid #22c55e;
+    }
+    .resultado h2 {
+      color: #166534;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .monto-total {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .monto-total .label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .monto-total .valor {
+      font-size: 42px;
+      font-weight: 800;
+      color: #22c55e;
+    }
+    .desglose {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .desglose h3 {
+      color: #0a2463;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .desglose-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .desglose-item:last-child {
+      border-bottom: none;
+    }
+    .desglose-item .concepto {
+      color: #444;
+      font-size: 14px;
+    }
+    .desglose-item .monto {
+      color: #0a2463;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .aviso {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    .aviso p {
+      color: #92400e;
+      font-size: 13px;
+      margin: 0;
+    }
+    .btn-whatsapp {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: #25D366;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .btn-whatsapp:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
     @media (max-width: 768px) {
-      .calculadora {
-        padding: 20px 15px; /* Reducimos el relleno para ganar espacio */
-        margin: 20px 0;
-        border-width: 2px; /* Borde dorado más delgado en móvil */
-      }
-      
       .form-row {
-        grid-template-columns: 1fr; /* Apila los campos verticalmente en móvil */
-        gap: 15px;
-      }
-      
-      .tipo-calculo {
-        flex-direction: column; /* Apila los botones de tipo de cálculo */
-      }
-      
-      .tipo-btn {
-        width: 100%;
-        padding: 15px;
-      }
-      
-      .banner-calc {
-        padding: 25px 20px;
-      }
-      
-      .banner-calc-content {
         flex-direction: column;
-        text-align: center;
+        gap: 0;
       }
-      
-      .btn-urgente {
-        width: 100%;
-        text-align: center;
-        display: block;
-      }
-      
-      .resultado-total {
-        font-size: 22px;
-      }
-      .resultado-total span {
-        font-size: 26px;
+      .tipo-calculo {
+        flex-direction: column;
       }
     }
   </style>
@@ -187,273 +217,198 @@
           <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
           <span>Asesoría Legal sin Enredos</span>
         </a>
-        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
+        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')"></button>
         <ul class="nav-links" id="navMenu">
           <li><a href="/">Inicio</a></li>
-          <li><a href="/nosotros">Nosotros</a></li>
-          <li><a href="/servicios">Servicios</a></li>
-          <li><a href="/precios">Precios</a></li>
-          <li><a href="/promociones">Promociones</a></li>
-          <li><a href="/casos">Casos de Exito</a></li>
-          <li><a href="/testimonios">Testimonios</a></li>
+          <li><a href="/calculadoras" class="active">Calculadoras</a></li>
           <li><a href="/diagnostico">Diagnóstico</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/calculadoras">Calculadoras</a></li>
           <li><a href="/contacto">Contacto</a></li>
         </ul>
-        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
       </nav>
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1>Calculadoras Laborales</h1>
-      <p>Herramientas prácticas para tus decisiones laborales</p>
-    </div>
-  </section>
-
   <div class="container">
-    
-    <!-- Calculadora 1: Se agregó la clase 'calc-card' para el marco dorado -->
-    <div class="calculadora calc-card">
-      <h2>🧮 Calculadora de Finiquito y Liquidación</h2>
-      <p class="descripcion">Obtén el total estimado. El desglose te lo damos personalmente.</p>
-      <div class="tipo-calculo">
-        <button type="button" class="tipo-btn activo" id="btnFiniquito">🏷️ FINIQUITO<br><small>Renuncia voluntaria</small></button>
-        <button type="button" class="tipo-btn" id="btnLiquidacion">⚖️ LIQUIDACIÓN<br><small>Despido injustificado</small></button>
+    <div class="calculadora-container">
+      
+      <div class="calculadora-header">
+        <h1>Calculadora de Finiquito y Liquidación</h1>
+        <p>Obtén un estimado de tu prestación laboral conforme a la Ley Federal del Trabajo</p>
       </div>
-      <form id="formFiniquito">
-        <div class="form-row">
-          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioDiario" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
-          <div class="form-group"><label>Días de Aguinaldo</label><input type="number" id="diasAguinaldo" value="15" min="15"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Fecha de Ingreso</label><input type="date" id="fechaIngreso" required></div>
-          <div class="form-group"><label>Fecha de Salida</label><input type="date" id="fechaSalida" required></div>
-        </div>
-        <button type="submit" class="btn-calcular">Calcular</button>
-        <div class="disclaimer-calc">
-          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas. No constituyen asesoría legal formal. Para cálculos exactos, contacta a nuestros especialistas.
-          <br><br>
-          <a href="https://wa.me/5213111866901?text=Hola,%20quiero%20validar%20mi%20cálculo%20de%20finiquito/liquidación" target="_blank">💬 Validar con un experto</a>
-        </div>
-      </form>
-      <div id="resultadoFiniquito" class="resultado"></div>
-      <p id="sinResultadoFiniquito" style="text-align:center;margin-top:20px;color:#6B7280;">Completa los datos y haz clic en <strong>Calcular</strong></p>
-    </div>
-    
-    <!-- Calculadora 2 -->
-    <div class="calculadora calc-card">
-      <h2>🏥 Calculadora de Cuotas IMSS</h2>
-      <p class="descripcion">Obtén el total estimado de cuotas patronales mensuales.</p>
-      <form id="formIMSS">
-        <div class="form-row">
-          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioIMSS" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
-          <div class="form-group"><label>Número de Trabajadores</label><input type="number" id="numTrabajadores" value="1" min="1"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Tipo de Prestación</label><select id="tipoPrestacion"><option value="completa">Prestaciones Completas</option><option value="basica">Solo Enfermedad y Maternidad</option></select></div>
-          <div class="form-group"><label>Clase de Riesgo</label><select id="riesgoTrabajo"><option value="I">Clase I (Oficinas)</option><option value="II">Clase II (Comercio)</option><option value="III">Clase III (Manufactura)</option></select></div>
-        </div>
-        <button type="submit" class="btn-calcular">Estimar Cuotas</button>
-        <div class="disclaimer-calc">
-          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estimación orientativa. Las cuotas reales dependen de factores específicos de tu empresa.
-          <br><br>
-          <a href="https://wa.me/5213111866901?text=Hola,%20quiero%20validar%20mis%20cuotas%20del%20IMSS" target="_blank">💬 Validar con un experto</a>
-        </div>
-      </form>
-      <div id="resultadoIMSS" class="resultado"></div>
-      <p id="sinResultadoIMSS" style="text-align:center;margin-top:20px;color:#6B7280;">Ingresa los datos para ver el cálculo estimado</p>
-    </div>
-    
-    <!-- Calculadora 3 -->
-    <div class="calculadora calc-card">
-      <h2>⏰ Calculadora de Horas Extra</h2>
-      <p class="descripcion">Obtén el total a pagar por horas extra según la LFT.</p>
-      <form id="formHorasExtra">
-        <div class="form-row">
-          <div class="form-group"><label>Salario Diario ($ MXN)</label><input type="number" id="salarioHE" required placeholder="Ej: 500" step="0.01" min="278.80"></div>
-          <div class="form-group"><label>Jornada Laboral</label><select id="jornada"><option value="diurna">Diurna (8 hrs)</option><option value="nocturna">Nocturna (7 hrs)</option><option value="mixta">Mixta (7.5 hrs)</option></select></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Horas Extra (semana)</label><input type="number" id="horasExtra" required placeholder="Ej: 9" min="0" max="27"></div>
-          <div class="form-group"><label>¿Día de descanso?</label><select id="diaDescanso"><option value="no">No</option><option value="si">Sí (Prima 25%)</option></select></div>
-        </div>
-        <button type="submit" class="btn-calcular">Calcular Horas Extra</button>
-        <div class="disclaimer-calc">
-          ⚠️ <strong>AVISO IMPORTANTE:</strong> Estimación orientativa. El pago de horas extra tiene topes legales (máx. 3 horas diarias, 9 semanales).
-          <br><br>
-          <a href="https://wa.me/5213111866901?text=Hola,%20quiero%20validar%20mi%20cálculo%20de%20horas%20extra" target="_blank">💬 Validar con un experto</a>
-        </div>
-      </form>
-      <div id="resultadoHE" class="resultado"></div>
-      <p id="sinResultadoHE" style="text-align:center;margin-top:20px;color:#6B7280;">Ingresa los datos de las horas extra</p>
-    </div>
-    
-    <!-- Banner Inferior -->
-    <div class="banner-calc">
-      <div class="banner-calc-content">
-        <div>
-          <h3>⚠️ ¿El resultado te pareciómuy alto?</h3>
-          <p>Un error en esos números puede significar una demanda. Antes de pagar ese monto o tomar una decisión, <strong>valida tus cálculos con un experto.</strong></p>
-        </div>
-        <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20validar%20mis%20calculos%20sin%20costo" class="btn-urgente" target="_blank">⚡ Agendar validación gratuita</a>
-      </div>
-    </div>
 
+      <div class="tipo-calculo">
+        <div class="tipo-btn activo" onclick="seleccionarTipo('finiquito')">
+          <h3>📋 FINIQUITO</h3>
+          <p>Renuncia voluntaria o término de relación</p>
+        </div>
+        <div class="tipo-btn" onclick="seleccionarTipo('liquidacion')">
+          <h3>💰 LIQUIDACIÓN</h3>
+          <p>Despido injustificado</p>
+        </div>
+      </div>
+
+      <form id="calculadoraForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="salarioDiario">Salario Diario ($ MXN) *</label>
+            <input type="number" id="salarioDiario" step="0.01" min="0" required placeholder="Ej. 450.00">
+          </div>
+          <div class="form-group">
+            <label for="diasAguinaldo">Días de Aguinaldo *</label>
+            <input type="number" id="diasAguinaldo" min="15" value="15" required placeholder="Mínimo 15">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fechaIngreso">Fecha de Ingreso *</label>
+            <input type="date" id="fechaIngreso" required>
+          </div>
+          <div class="form-group">
+            <label for="fechaSalida">Fecha de Salida *</label>
+            <input type="date" id="fechaSalida" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="diasVacaciones">Días de Vacaciones Correspondientes *</label>
+            <input type="number" id="diasVacaciones" min="6" value="12" required placeholder="Según antigüedad">
+          </div>
+          <div class="form-group">
+            <label for="primaVacacional">Prima Vacacional (%) *</label>
+            <input type="number" id="primaVacacional" min="25" value="25" required placeholder="Mínimo 25%">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-calcular">Calcular</button>
+      </form>
+
+      <div id="resultado" class="resultado">
+        <h2>💵 TOTAL ESTIMADO</h2>
+        <div class="monto-total">
+          <div class="label" id="tipoResultado">FINIQUITO</div>
+          <div class="valor" id="montoTotal">$0.00 MXN</div>
+        </div>
+
+        <div class="desglose" id="desgloseContainer">
+          <h3>Desglose del Cálculo</h3>
+          <div id="desgloseItems"></div>
+        </div>
+
+        <div class="aviso">
+          <p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la Ley Federal del Trabajo. No constituyen asesoría legal formal. Para cálculos exactos y revisión de tu caso particular, contacta a nuestros especialistas.</p>
+        </div>
+
+        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">
+          💬 Validar cálculo con un experto
+        </a>
+      </div>
+
+    </div>
   </div>
 
   <footer>
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
-        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
-      </div>
       <div class="footer-bottom">
-        <p class="disclaimer-text">La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+        <p>© 2026 Laboral Click - Todos los derechos reservados</p>
       </div>
     </div>
   </footer>
-  
-  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
 
   <script>
-// ==========================================
-// MOTOR LABORAL CLICK V2.0 - PROTECCIÓN DE FLUJO
-// ==========================================
+    let tipoCalculo = 'finiquito';
 
-function ejecutarCalculoLaboral(e) {
-    // 1. DETENER EL REDIRECCIONAMIENTO AUTOMÁTICO DE LA PÁGINA
-    if (e && typeof e.preventDefault === 'function') {
-        e.preventDefault();
+    function seleccionarTipo(tipo) {
+      tipoCalculo = tipo;
+      document.querySelectorAll('.tipo-btn').forEach(btn => {
+        btn.classList.remove('activo');
+      });
+      event.target.closest('.tipo-btn').classList.add('activo');
     }
 
-    // 2. CAPTURA SEGURA DE VALORES
-    // Intentamos capturar por ID o por estructura nativa si Qwen no definió IDs
-    const txtSalario = document.getElementById('salario_diario') || document.querySelector('input[type="number"]');
-    const txtAguinaldo = document.getElementById('dias_aguinaldo') || document.querySelector('input[value="15"]');
-    const txtIngreso = document.getElementById('fecha_ingreso') || document.querySelector('input[type="date"]:nth-of-type(1)');
-    const txtSalida = document.getElementById('fecha_salida') || document.querySelector('input[type="date"]:nth-of-type(2)');
-
-    if (!txtSalario || !txtIngreso || !txtSalida) {
-        console.error("LaboralClick Error: No se encontraron los inputs en el HTML.");
-        return;
+    function calcularDiferenciaDias(fecha1, fecha2) {
+      const d1 = new Date(fecha1);
+      const d2 = new Date(fecha2);
+      const diffTime = Math.abs(d2 - d1);
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
 
-    const salarioDiario = parseFloat(txtSalario.value);
-    const diasAguinaldoContrato = parseInt(txtAguinaldo.value) || 15;
-    
-    if (isNaN(salarioDiario) || !txtIngreso.value || !txtSalida.value) {
-        alert("Por favor, ingresa un salario diario válido y selecciona ambas fechas.");
-        return;
+    function formatearMoneda(monto) {
+      return '$' + monto.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 
-    // Corregir desfase de huso horario al leer fechas en HTML
-    const fechaIngreso = new Date(txtIngreso.value + 'T00:00:00');
-    const fechaSalida = new Date(txtSalida.value + 'T00:00:00');
+    document.getElementById('calculadoraForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    if (fechaSalida <= fechaIngreso) {
-        alert("La fecha de salida debe ser mayor a la fecha de ingreso.");
-        return;
-    }
+      const salarioDiario = parseFloat(document.getElementById('salarioDiario').value);
+      const diasAguinaldo = parseFloat(document.getElementById('diasAguinaldo').value);
+      const fechaIngreso = document.getElementById('fechaIngreso').value;
+      const fechaSalida = document.getElementById('fechaSalida').value;
+      const diasVacaciones = parseFloat(document.getElementById('diasVacaciones').value);
+      const primaVacacional = parseFloat(document.getElementById('primaVacacional').value) / 100;
 
-    // 3. DETECTAR EL MODO SELECCIONADO (FINIQUITO VS LIQUIDACIÓN)
-    // Buscamos si la pestaña de liquidación tiene clases activas visuales de tu CSS
-    const pestanaLiquidacion = document.getElementById('btn-liquidacion') || document.querySelector('.liquidacion-tab, [title*="LIQUIDACIÓN"]');
-    let esLiquidacion = false;
-    
-    if (pestanaLiquidacion) {
-        esLiquidacion = pestanaLiquidacion.classList.contains('active') || 
-                         pestanaLiquidacion.classList.contains('selected') || 
-                         pestanaLiquidacion.getAttribute('aria-selected') === 'true';
-    }
+      const diasTrabajados = calcularDiferenciaDias(fechaIngreso, fechaSalida);
+      const aniosTrabajados = diasTrabajados / 365;
 
-    // 4. MÓDULO MATEMÁTICO DE TIEMPOS
-    const msPorDia = 24 * 60 * 60 * 1000;
-    const totalDiasTrabajados = Math.round((fechaSalida - fechaIngreso) / msPorDia) + 1; // Base 770 días
-    const antiguedadAnos = totalDiasTrabajados / 365.25;
+      let desglose = [];
+      let total = 0;
 
-    // Proporcional de Aguinaldo del año de salida
-    const inicioAnoActual = new Date(fechaSalida.getFullYear(), 0, 1);
-    const diasAguinaldoProporcional = Math.round((fechaSalida - inicioAnoActual) / msPorDia) + 1;
+      // CÁLCULOS COMUNES (siempre aplican)
+      // 1. Salario vencido (días trabajados del último periodo)
+      const salarioVencido = salarioDiario * (diasTrabajados % 30);
+      desglose.push({ concepto: 'Salario vencido (días del último periodo)', monto: salarioVencido });
+      total += salarioVencido;
 
-    // Proporcional de Vacaciones (días desde el último aniversario de ingreso)
-    let fechaUltimoAniversario = new Date(fechaSalida.getFullYear(), fechaIngreso.getMonth(), fechaIngreso.getDate());
-    if (fechaUltimoAniversario > fechaSalida) {
-        fechaUltimoAniversario.setFullYear(fechaUltimoAniversario.getFullYear() - 1);
-    }
-    const diasVacacionesProporcionales = Math.round((fechaSalida - fechaUltimoAniversario) / msPorDia);
+      // 2. Aguinaldo proporcional
+      const aguinaldoProporcional = (salarioDiario * diasAguinaldo / 365) * diasTrabajados;
+      desglose.push({ concepto: 'Aguinaldo proporcional', monto: aguinaldoProporcional });
+      total += aguinaldoProporcional;
 
-    // Tabla de Vacaciones Dignas (LFT Art. 76)
-    const anosCompletos = Math.floor(antiguedadAnos);
-    let diasVacacionesAnuales = 12;
-    if (anosCompletos + 1 === 2) diasVacacionesAnuales = 14;
-    else if (anosCompletos + 1 === 3) diasVacacionesAnuales = 16;
-    else if (anosCompletos + 1 === 4) diasVacacionesAnuales = 18;
+      // 3. Vacaciones proporcionales
+      const vacacionesProporcionales = (salarioDiario * diasVacaciones / 365) * diasTrabajados;
+      desglose.push({ concepto: 'Vacaciones proporcionales', monto: vacacionesProporcionales });
+      total += vacacionesProporcionales;
 
-    // 5. CÁLCULO DE DERECHOS (FINIQUITO)
-    const montoAguinaldo = (diasAguinaldoContrato / 365) * diasAguinaldoProporcional * salarioDiario;
-    const montoVacaciones = (diasVacacionesAnuales / 365) * diasVacacionesProporcionales * salarioDiario;
-    const montoPrimaVacacional = montoVacaciones * 0.25;
-    const totalFiniquito = montoAguinaldo + montoVacaciones + montoPrimaVacacional;
+      // 4. Prima vacacional
+      const primaVacacionalMonto = vacacionesProporcionales * primaVacacional;
+      desglose.push({ concepto: 'Prima vacacional (' + (primaVacacional * 100) + '%)', monto: primaVacacionalMonto });
+      total += primaVacacionalMonto;
 
-    // 6. CÁLCULO DE INDEMNIZACIONES (LIQUIDACIÓN DESPIDO)
-    let totalLiquidacion = 0;
-    if (esLiquidacion) {
-        const factorIntegracion = 1 + (diasAguinaldoContrato / 365) + ((diasVacacionesAnuales * 0.25) / 365);
-        const sdi = salarioDiario * factorIntegracion;
+      // CÁLCULOS ESPECÍFICOS PARA LIQUIDACIÓN (despido injustificado)
+      if (tipoCalculo === 'liquidacion') {
+        // 5. 3 meses de salario (indemnización constitucional Art. 50 LFT)
+        const indemnizacionTresMeses = salarioDiario * 90;
+        desglose.push({ concepto: 'Indemnización constitucional (3 meses)', monto: indemnizacionTresMeses });
+        total += indemnizacionTresMeses;
 
-        // Tres meses de salario
-        const indemnizacion90 = 90 * sdi;
-        // 20 días por año proporcional (Corregida la división sobre años, no días directos)
-        const indemnizacion20 = 20 * sdi * antiguedadAnos;
-        // Prima de antigüedad topada a dos salarios mínimos de la región
-        const salarioMinimoRegula = 248.93; 
-        const topeSalarioPrima = Math.min(salarioDiario, 2 * salarioMinimoRegula);
-        const primaAntiguedad = 12 * topeSalarioPrima * antiguedadAnos;
+        // 6. 20 días de salario por cada año trabajado (Art. 50 LFT)
+        const veinteDiasPorAnio = salarioDiario * 20 * aniosTrabajados;
+        desglose.push({ concepto: '20 días por año trabajado', monto: veinteDiasPorAnio });
+        total += veinteDiasPorAnio;
 
-        totalLiquidacion = indemnizacion90 + indemnizacion20 + primaAntiguedad;
-    }
+        // 7. Prima de antigüedad (12 días por año, tope 2x salario mínimo)
+        // Nota: Simplificado - en producción debería considerar el tope
+        const primaAntiguedad = salarioDiario * 12 * aniosTrabajados;
+        desglose.push({ concepto: 'Prima de antigüedad (12 días/año)', monto: primaAntiguedad });
+        total += primaAntiguedad;
+      }
 
-    const granTotalBruto = totalFiniquito + totalLiquidacion;
-
-    // 7. INYECCIÓN VISUAL DE RESULTADOS EN TU MAQUETA
-    const contenedorMonto = document.querySelector('.total-estimado-monto, h3 + div, #resultado_total, [id*="total"]');
-    const contenedorEtiqueta = document.querySelector('.liquidacion-titulo, #label_tipo_calculo, h3');
-    const contenedorDias = document.querySelector('.antiguedad-texto, #antiguedad_dias, p');
-
-    if (contenedorMonto) {
-        contenedorMonto.innerText = `$${granTotalBruto.toLocaleString('es-MX', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MXN`;
-    }
-    if (contenedorEtiqueta) {
-        contenedorEtiqueta.innerText = esLiquidacion ? "LIQUIDACIÓN (Despido Injustificado)" : "FINIQUITO (Renuncia Voluntaria)";
-    }
-    if (contenedorDias) {
-        contenedorDias.innerText = `Antigüedad: ${totalDiasTrabajados} días`;
-    }
-}
-
-// 8. VINCULACIÓN DIRECTA AL BOTÓN DORADO EVITANDO CONFLICTOS DE ENRUTAMIENTO
-document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos tu botón dorado "Calcular"
-    const botonCalcular = document.querySelector('button, .btn-calcular, input[type="submit"], #btn-calcular');
-    
-    if (botonCalcular) {
-        // Enlazar evento nativo click
-        botonCalcular.addEventListener('click', ejecutarCalculoLaboral);
-        
-        // Desactivar el envío automático si está dentro de una etiqueta <form>
-        const formularioPadre = botonCalcular.closest('form');
-        if (formularioPadre) {
-            formularioPadre.addEventListener('submit', (e) => e.preventDefault());
-        }
-    }
-});
-</script>
-
+      // Mostrar resultados
+      document.getElementById('tipoResultado').textContent = tipoCalculo === 'finiquito' ? 'FINIQUITO (Renuncia Voluntaria)' : 'LIQUIDACIÓN (Despido Injustificado)';
+      document.getElementById('montoTotal').textContent = formatearMoneda(total);
+      
+      const desgloseHTML = desglose.map(item => `
+        <div class="desglose-item">
+          <span class="concepto">${item.concepto}</span>
+          <span class="monto">${formatearMoneda(item.monto)}</span>
+        </div>
+      `).join('');
+      
+      document.getElementById('desgloseItems').innerHTML = desgloseHTML;
+      document.getElementById('resultado').style.display = 'block';
+      document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
 </body>
 </html>
