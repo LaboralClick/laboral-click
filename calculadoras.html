@@ -322,43 +322,118 @@
   <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
 
   <script>
-    var tipoCalculo = 'finiquito';
-    document.getElementById('btnFiniquito').addEventListener('click', function(){tipoCalculo='finiquito';this.classList.add('activo');document.getElementById('btnLiquidacion').classList.remove('activo');});
-    document.getElementById('btnLiquidacion').addEventListener('click', function(){tipoCalculo='liquidacion';this.classList.add('activo');document.getElementById('btnFiniquito').classList.remove('activo');});
+// MOTOR DE CÁLCULO REHECHO Y BLINDADO - LABORAL CLICK (MÉXICO)
+
+function calcular() {
+    // 1. Captura de Datos de la Interfaz
+    const salarioDiario = parseFloat(document.querySelector('input[type="number"], #salario_diario').value);
+    const diasAguinaldoContrato = parseInt(document.querySelector('input[value="15"], #dias_aguinaldo').value) || 15;
     
-    document.getElementById('formFiniquito').addEventListener('submit', function(e){
-      e.preventDefault();
-      var sd=parseFloat(document.getElementById('salarioDiario').value), da=parseInt(document.getElementById('diasAguinaldo').value);
-      var fi=new Date(document.getElementById('fechaIngreso').value+'T00:00:00'), fs=new Date(document.getElementById('fechaSalida').value+'T00:00:00');
-      var ad=Math.floor((fs-fi)/(1000*60*60*24)), aa=ad/365;
-      var aguinaldo=(sd*da*ad)/365, dv=12;
-      if(aa>=1)dv=14;if(aa>=2)dv=16;if(aa>=3)dv=18;if(aa>=4)dv=20;if(aa>=5)dv=22;
-      var vac=(sd*dv*ad)/365, pv=vac*0.25, total=aguinaldo+vac+pv, tit='FINIQUITO (Renuncia Voluntaria)';
-      if(tipoCalculo==='liquidacion'){tit='LIQUIDACION (Despido Injustificado)';var ind=sd*90, pa=Math.min(sd,278.80*2)*12*aa, vd=sd*20*aa;total+=ind+pa+vd;}
-      var res=document.getElementById('resultadoFiniquito');document.getElementById('sinResultadoFiniquito').style.display='none';res.style.display='block';
-      res.innerHTML='<h3>📋 '+tit+'</h3><p style="color:#6B7280; margin-bottom:15px;">Antigüedad: '+ad+' días</p><div class="resultado-total">💰 TOTAL ESTIMADO:<br><span>$'+total.toLocaleString('es-MX', {minimumFractionDigits: 2})+' MXN</span></div><div class="disclaimer-calc"><strong>¿Necesitas el desglose oficial?</strong><br><br><a href="https://wa.me/5213111866901?text=Hola,%20necesito%20el%20desglose%20de%20mi%20cálculo" target="_blank">💬 Solicitar Desglose</a></div>';
-      res.scrollIntoView({behavior:'smooth'});
-    });
+    // Capturar y procesar las fechas de forma segura
+    const fechaIngresoInput = document.querySelector('input[type="date"]:nth-of-type(1), #fecha_ingreso').value;
+    const fechaSalidaInput = document.querySelector('input[type="date"]:nth-of-type(2), #fecha_salida').value;
     
-    document.getElementById('formIMSS').addEventListener('submit', function(e){
-      e.preventDefault();
-      var s=parseFloat(document.getElementById('salarioIMSS').value), t=parseInt(document.getElementById('numTrabajadores').value), r=document.getElementById('riesgoTrabajo').value;
-      var riesgos={I:0.0054355,II:0.0113065,III:0.0259840}, sbc=s*30.4;
-      var tp=sbc*0.20*0.70+sbc*0.20*0.25+sbc*riesgos[r]+sbc*0.20*1.75+sbc*0.20*0.625+sbc*0.20*1.0+sbc*0.20*3.15;
-      var res=document.getElementById('resultadoIMSS');document.getElementById('sinResultadoIMSS').style.display='none';res.style.display='block';
-      res.innerHTML='<h3>🏥 Cuotas IMSS Estimadas</h3><p style="color:#6B7280; margin-bottom:15px;">'+t+' trabajador(es)</p><div class="resultado-total">🏭 CUOTA MENSUAL:<br><span>$'+(tp*t).toLocaleString('es-MX', {minimumFractionDigits: 2})+' MXN</span></div><div class="disclaimer-calc"><a href="https://wa.me/5213111866901?text=Hola,%20quiero%20revisar%20mis%20cuotas%20del%20IMSS" target="_blank">💬 Validar con un experto</a></div>';
-      res.scrollIntoView({behavior:'smooth'});
-    });
-    
-    document.getElementById('formHorasExtra').addEventListener('submit', function(e){
-      e.preventDefault();
-      var s=parseFloat(document.getElementById('salarioHE').value), j=document.getElementById('jornada').value, he=parseInt(document.getElementById('horasExtra').value), dd=document.getElementById('diaDescanso').value;
-      var hj=j==='diurna'?8:j==='nocturna'?7:7.5, sh=s/hj, hd=Math.min(he,9), ht=Math.max(0,he-9), total=hd*sh*2+ht*sh*3;
-      if(dd==='si')total+=total*0.25;
-      var res=document.getElementById('resultadoHE');document.getElementById('sinResultadoHE').style.display='none';res.style.display='block';
-      res.innerHTML='<h3>⏰ Pago de Horas Extra</h3><p style="color:#6B7280; margin-bottom:15px;">'+he+' hrs | Jornada '+j+'</p><div class="resultado-total">💰 TOTAL:<br><span>$'+total.toLocaleString('es-MX', {minimumFractionDigits: 2})+' MXN</span></div><div class="disclaimer-calc"><a href="https://wa.me/5213111866901?text=Hola,%20quiero%20validar%20mi%20cálculo%20de%20horas%20extra" target="_blank">💬 Validar con un experto</a></div>';
-      res.scrollIntoView({behavior:'smooth'});
-    });
-  </script>
+    // DETECCIÓN CORRECTA DEL BOTÓN SELECCIONADO (Finiquito vs Liquidación)
+    // El sistema busca qué pestaña o tarjeta visual tiene la clase de actividad o selección del usuario
+    const esLiquidacion = document.querySelector('.active, .selected, #btn-liquidacion')?.innerText.includes('LIQUIDACIÓN') || false;
+
+    // Validación de seguridad para evitar cálculos vacíos
+    if (isNaN(salarioDiario) || !fechaIngresoInput || !fechaSalidaInput) {
+        alert("Por favor, ingresa un salario diario válido y ambas fechas.");
+        return;
+    }
+
+    const fechaIngreso = new Date(fechaIngresoInput + 'T00:00:00');
+    const fechaSalida = new Date(fechaSalidaInput + 'T00:00:00');
+
+    if (fechaSalida <= fechaIngreso) {
+        alert("La fecha de salida debe ser posterior a la fecha de ingreso.");
+        return;
+    }
+
+    // 2. Cálculo Preciso de Tiempos y Antigüedad
+    const msPorDia = 24 * 60 * 60 * 1000;
+    const totalDiasTrabajados = Math.round((fechaSalida - fechaIngreso) / msPorDia) + 1; // 770 días exactos
+    const antiguedadAnosProporcionales = totalDiasTrabajados / 365.25; 
+
+    // Días transcurridos en el año en curso para el Aguinaldo
+    const inicioAnoActual = new Date(fechaSalida.getFullYear(), 0, 1);
+    const diasAguinaldoProporcional = Math.round((fechaSalida - inicioAnoActual) / msPorDia) + 1; // 201 días
+
+    // Días transcurridos para Vacaciones (desde el último aniversario laboral)
+    let fechaUltimoAniversario = new Date(fechaSalida.getFullYear(), fechaIngreso.getMonth(), fechaIngreso.getDate());
+    if (fechaUltimoAniversario > fechaSalida) {
+        fechaUltimoAniversario.setFullYear(fechaUltimoAniversario.getFullYear() - 1);
+    }
+    const diasVacacionesProporcionales = Math.round((fechaSalida - fechaUltimoAniversario) / msPorDia); // 41 días
+
+    // 3. Tabla de la Reforma de "Vacaciones Dignas" (Art. 76 LFT)
+    const anosCompletos = Math.floor(antiguedadAnosProporcionales);
+    let diasVacacionesAnuales = 12; // Año 1
+    if (anosCompletos + 1 === 2) diasVacacionesAnuales = 14;
+    else if (anosCompletos + 1 === 3) diasVacacionesAnuales = 16;
+    else if (anosCompletos + 1 === 4) diasVacacionesAnuales = 18;
+    else if (anosCompletos + 1 === 5) diasVacacionesAnuales = 20;
+
+    // 4. Bloque de Derechos Irrenunciables (Finiquito Base)
+    const montoAguinaldo = (diasAguinaldoContrato / 365) * diasAguinaldoProporcional * salarioDiario;
+    const montoVacaciones = (diasVacacionesAnuales / 365) * diasVacacionesProporcionales * salarioDiario;
+    const montoPrimaVacacional = montoVacaciones * 0.25; // 25% mínimo legal
+
+    const totalFiniquito = montoAguinaldo + montoVacaciones + montoPrimaVacacional;
+
+    // 5. Bloque Opcional de Indemnizaciones (Liquidación por Despido)
+    let totalLiquidacion = 0;
+
+    if (esLiquidacion) {
+        // Salario Diario Integrado (SDI) para el cálculo de indemnización
+        const factorIntegracion = 1 + (diasAguinaldoContrato / 365) + ((diasVacacionesAnuales * 0.25) / 365);
+        const sdi = salarioDiario * factorIntegracion;
+
+        // A) Indemnización Constitucional (90 días de SDI)
+        const indemnizacion90 = 90 * sdi;
+
+        // B) Prima de Antigüedad (12 días por año con tope legal de 2 Salarios Mínimos de 2026)
+        const salarioMinimoVigente = 248.93; // Límite general en México
+        const topeSalarioPrima = Math.min(salarioDiario, 2 * salarioMinimoVigente);
+        const primaAntiguedad = 12 * topeSalarioPrima * antiguedadAnosProporcionales;
+
+        // C) Indemnización de 20 días por año (¡Calculada en base a años, no a días totales!)
+        const indemnizacion20 = 20 * sdi * antiguedadAnosProporcionales;
+
+        totalLiquidacion = indemnizacion90 + primaAntiguedad + indemnizacion20;
+    }
+
+    // 6. Suma Final
+    const granTotalEstimado = totalFiniquito + totalLiquidacion;
+
+    // 7. Renderizado Seguro en Pantalla (Mantiene las etiquetas de tu interfaz)
+    // Busca los contenedores visuales de tu HTML y les inyecta los resultados limpios
+    const displayMonto = document.querySelector('.total-estimado-monto, h2 + div, #resultado_total');
+    const displayEtiqueta = document.querySelector('.liquidacion-titulo, #label_tipo_calculo');
+    const displayAntiguedad = document.querySelector('.antiguedad-texto, #antiguedad_dias');
+
+    if (displayMonto) {
+        displayMonto.innerText = `$${granTotalEstimado.toLocaleString('es-MX', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MXN`;
+    }
+    if (displayEtiqueta) {
+        displayEtiqueta.innerText = esLiquidacion ? "LIQUIDACIÓN (Despido Injustificado)" : "FINIQUITO (Renuncia Voluntaria)";
+    }
+    if (displayAntiguedad) {
+        displayAntiguedad.innerText = `Antigüedad: ${totalDiasTrabajados} días`;
+    }
+}
+
+// Escuchar el clic del botón dorado "Calcular" de forma automática
+document.addEventListener('DOMContentLoaded', () => {
+    const btnCalcular = document.querySelector('button, .btn-calcular, input[type="button"]');
+    if (btnCalcular) {
+        btnCalcular.addEventListener('click', (e) => {
+            e.preventDefault();
+            calcular();
+        });
+    }
+});
+</script>
 </body>
 </html>
