@@ -322,118 +322,138 @@
   <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
 
   <script>
-// MOTOR DE CÁLCULO REHECHO Y BLINDADO - LABORAL CLICK (MÉXICO)
+// ==========================================
+// MOTOR LABORAL CLICK V2.0 - PROTECCIÓN DE FLUJO
+// ==========================================
 
-function calcular() {
-    // 1. Captura de Datos de la Interfaz
-    const salarioDiario = parseFloat(document.querySelector('input[type="number"], #salario_diario').value);
-    const diasAguinaldoContrato = parseInt(document.querySelector('input[value="15"], #dias_aguinaldo').value) || 15;
-    
-    // Capturar y procesar las fechas de forma segura
-    const fechaIngresoInput = document.querySelector('input[type="date"]:nth-of-type(1), #fecha_ingreso').value;
-    const fechaSalidaInput = document.querySelector('input[type="date"]:nth-of-type(2), #fecha_salida').value;
-    
-    // DETECCIÓN CORRECTA DEL BOTÓN SELECCIONADO (Finiquito vs Liquidación)
-    // El sistema busca qué pestaña o tarjeta visual tiene la clase de actividad o selección del usuario
-    const esLiquidacion = document.querySelector('.active, .selected, #btn-liquidacion')?.innerText.includes('LIQUIDACIÓN') || false;
+function ejecutarCalculoLaboral(e) {
+    // 1. DETENER EL REDIRECCIONAMIENTO AUTOMÁTICO DE LA PÁGINA
+    if (e && typeof e.preventDefault === 'function') {
+        e.preventDefault();
+    }
 
-    // Validación de seguridad para evitar cálculos vacíos
-    if (isNaN(salarioDiario) || !fechaIngresoInput || !fechaSalidaInput) {
-        alert("Por favor, ingresa un salario diario válido y ambas fechas.");
+    // 2. CAPTURA SEGURA DE VALORES
+    // Intentamos capturar por ID o por estructura nativa si Qwen no definió IDs
+    const txtSalario = document.getElementById('salario_diario') || document.querySelector('input[type="number"]');
+    const txtAguinaldo = document.getElementById('dias_aguinaldo') || document.querySelector('input[value="15"]');
+    const txtIngreso = document.getElementById('fecha_ingreso') || document.querySelector('input[type="date"]:nth-of-type(1)');
+    const txtSalida = document.getElementById('fecha_salida') || document.querySelector('input[type="date"]:nth-of-type(2)');
+
+    if (!txtSalario || !txtIngreso || !txtSalida) {
+        console.error("LaboralClick Error: No se encontraron los inputs en el HTML.");
         return;
     }
 
-    const fechaIngreso = new Date(fechaIngresoInput + 'T00:00:00');
-    const fechaSalida = new Date(fechaSalidaInput + 'T00:00:00');
+    const salarioDiario = parseFloat(txtSalario.value);
+    const diasAguinaldoContrato = parseInt(txtAguinaldo.value) || 15;
+    
+    if (isNaN(salarioDiario) || !txtIngreso.value || !txtSalida.value) {
+        alert("Por favor, ingresa un salario diario válido y selecciona ambas fechas.");
+        return;
+    }
+
+    // Corregir desfase de huso horario al leer fechas en HTML
+    const fechaIngreso = new Date(txtIngreso.value + 'T00:00:00');
+    const fechaSalida = new Date(txtSalida.value + 'T00:00:00');
 
     if (fechaSalida <= fechaIngreso) {
-        alert("La fecha de salida debe ser posterior a la fecha de ingreso.");
+        alert("La fecha de salida debe ser mayor a la fecha de ingreso.");
         return;
     }
 
-    // 2. Cálculo Preciso de Tiempos y Antigüedad
+    // 3. DETECTAR EL MODO SELECCIONADO (FINIQUITO VS LIQUIDACIÓN)
+    // Buscamos si la pestaña de liquidación tiene clases activas visuales de tu CSS
+    const pestanaLiquidacion = document.getElementById('btn-liquidacion') || document.querySelector('.liquidacion-tab, [title*="LIQUIDACIÓN"]');
+    let esLiquidacion = false;
+    
+    if (pestanaLiquidacion) {
+        esLiquidacion = pestanaLiquidacion.classList.contains('active') || 
+                         pestanaLiquidacion.classList.contains('selected') || 
+                         pestanaLiquidacion.getAttribute('aria-selected') === 'true';
+    }
+
+    // 4. MÓDULO MATEMÁTICO DE TIEMPOS
     const msPorDia = 24 * 60 * 60 * 1000;
-    const totalDiasTrabajados = Math.round((fechaSalida - fechaIngreso) / msPorDia) + 1; // 770 días exactos
-    const antiguedadAnosProporcionales = totalDiasTrabajados / 365.25; 
+    const totalDiasTrabajados = Math.round((fechaSalida - fechaIngreso) / msPorDia) + 1; // Base 770 días
+    const antiguedadAnos = totalDiasTrabajados / 365.25;
 
-    // Días transcurridos en el año en curso para el Aguinaldo
+    // Proporcional de Aguinaldo del año de salida
     const inicioAnoActual = new Date(fechaSalida.getFullYear(), 0, 1);
-    const diasAguinaldoProporcional = Math.round((fechaSalida - inicioAnoActual) / msPorDia) + 1; // 201 días
+    const diasAguinaldoProporcional = Math.round((fechaSalida - inicioAnoActual) / msPorDia) + 1;
 
-    // Días transcurridos para Vacaciones (desde el último aniversario laboral)
+    // Proporcional de Vacaciones (días desde el último aniversario de ingreso)
     let fechaUltimoAniversario = new Date(fechaSalida.getFullYear(), fechaIngreso.getMonth(), fechaIngreso.getDate());
     if (fechaUltimoAniversario > fechaSalida) {
         fechaUltimoAniversario.setFullYear(fechaUltimoAniversario.getFullYear() - 1);
     }
-    const diasVacacionesProporcionales = Math.round((fechaSalida - fechaUltimoAniversario) / msPorDia); // 41 días
+    const diasVacacionesProporcionales = Math.round((fechaSalida - fechaUltimoAniversario) / msPorDia);
 
-    // 3. Tabla de la Reforma de "Vacaciones Dignas" (Art. 76 LFT)
-    const anosCompletos = Math.floor(antiguedadAnosProporcionales);
-    let diasVacacionesAnuales = 12; // Año 1
+    // Tabla de Vacaciones Dignas (LFT Art. 76)
+    const anosCompletos = Math.floor(antiguedadAnos);
+    let diasVacacionesAnuales = 12;
     if (anosCompletos + 1 === 2) diasVacacionesAnuales = 14;
     else if (anosCompletos + 1 === 3) diasVacacionesAnuales = 16;
     else if (anosCompletos + 1 === 4) diasVacacionesAnuales = 18;
-    else if (anosCompletos + 1 === 5) diasVacacionesAnuales = 20;
 
-    // 4. Bloque de Derechos Irrenunciables (Finiquito Base)
+    // 5. CÁLCULO DE DERECHOS (FINIQUITO)
     const montoAguinaldo = (diasAguinaldoContrato / 365) * diasAguinaldoProporcional * salarioDiario;
     const montoVacaciones = (diasVacacionesAnuales / 365) * diasVacacionesProporcionales * salarioDiario;
-    const montoPrimaVacacional = montoVacaciones * 0.25; // 25% mínimo legal
-
+    const montoPrimaVacacional = montoVacaciones * 0.25;
     const totalFiniquito = montoAguinaldo + montoVacaciones + montoPrimaVacacional;
 
-    // 5. Bloque Opcional de Indemnizaciones (Liquidación por Despido)
+    // 6. CÁLCULO DE INDEMNIZACIONES (LIQUIDACIÓN DESPIDO)
     let totalLiquidacion = 0;
-
     if (esLiquidacion) {
-        // Salario Diario Integrado (SDI) para el cálculo de indemnización
         const factorIntegracion = 1 + (diasAguinaldoContrato / 365) + ((diasVacacionesAnuales * 0.25) / 365);
         const sdi = salarioDiario * factorIntegracion;
 
-        // A) Indemnización Constitucional (90 días de SDI)
+        // Tres meses de salario
         const indemnizacion90 = 90 * sdi;
+        // 20 días por año proporcional (Corregida la división sobre años, no días directos)
+        const indemnizacion20 = 20 * sdi * antiguedadAnos;
+        // Prima de antigüedad topada a dos salarios mínimos de la región
+        const salarioMinimoRegula = 248.93; 
+        const topeSalarioPrima = Math.min(salarioDiario, 2 * salarioMinimoRegula);
+        const primaAntiguedad = 12 * topeSalarioPrima * antiguedadAnos;
 
-        // B) Prima de Antigüedad (12 días por año con tope legal de 2 Salarios Mínimos de 2026)
-        const salarioMinimoVigente = 248.93; // Límite general en México
-        const topeSalarioPrima = Math.min(salarioDiario, 2 * salarioMinimoVigente);
-        const primaAntiguedad = 12 * topeSalarioPrima * antiguedadAnosProporcionales;
-
-        // C) Indemnización de 20 días por año (¡Calculada en base a años, no a días totales!)
-        const indemnizacion20 = 20 * sdi * antiguedadAnosProporcionales;
-
-        totalLiquidacion = indemnizacion90 + primaAntiguedad + indemnizacion20;
+        totalLiquidacion = indemnizacion90 + indemnizacion20 + primaAntiguedad;
     }
 
-    // 6. Suma Final
-    const granTotalEstimado = totalFiniquito + totalLiquidacion;
+    const granTotalBruto = totalFiniquito + totalLiquidacion;
 
-    // 7. Renderizado Seguro en Pantalla (Mantiene las etiquetas de tu interfaz)
-    // Busca los contenedores visuales de tu HTML y les inyecta los resultados limpios
-    const displayMonto = document.querySelector('.total-estimado-monto, h2 + div, #resultado_total');
-    const displayEtiqueta = document.querySelector('.liquidacion-titulo, #label_tipo_calculo');
-    const displayAntiguedad = document.querySelector('.antiguedad-texto, #antiguedad_dias');
+    // 7. INYECCIÓN VISUAL DE RESULTADOS EN TU MAQUETA
+    const contenedorMonto = document.querySelector('.total-estimado-monto, h3 + div, #resultado_total, [id*="total"]');
+    const contenedorEtiqueta = document.querySelector('.liquidacion-titulo, #label_tipo_calculo, h3');
+    const contenedorDias = document.querySelector('.antiguedad-texto, #antiguedad_dias, p');
 
-    if (displayMonto) {
-        displayMonto.innerText = `$${granTotalEstimado.toLocaleString('es-MX', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MXN`;
+    if (contenedorMonto) {
+        contenedorMonto.innerText = `$${granTotalBruto.toLocaleString('es-MX', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MXN`;
     }
-    if (displayEtiqueta) {
-        displayEtiqueta.innerText = esLiquidacion ? "LIQUIDACIÓN (Despido Injustificado)" : "FINIQUITO (Renuncia Voluntaria)";
+    if (contenedorEtiqueta) {
+        contenedorEtiqueta.innerText = esLiquidacion ? "LIQUIDACIÓN (Despido Injustificado)" : "FINIQUITO (Renuncia Voluntaria)";
     }
-    if (displayAntiguedad) {
-        displayAntiguedad.innerText = `Antigüedad: ${totalDiasTrabajados} días`;
+    if (contenedorDias) {
+        contenedorDias.innerText = `Antigüedad: ${totalDiasTrabajados} días`;
     }
 }
 
-// Escuchar el clic del botón dorado "Calcular" de forma automática
+// 8. VINCULACIÓN DIRECTA AL BOTÓN DORADO EVITANDO CONFLICTOS DE ENRUTAMIENTO
 document.addEventListener('DOMContentLoaded', () => {
-    const btnCalcular = document.querySelector('button, .btn-calcular, input[type="button"]');
-    if (btnCalcular) {
-        btnCalcular.addEventListener('click', (e) => {
-            e.preventDefault();
-            calcular();
-        });
+    // Buscamos tu botón dorado "Calcular"
+    const botonCalcular = document.querySelector('button, .btn-calcular, input[type="submit"], #btn-calcular');
+    
+    if (botonCalcular) {
+        // Enlazar evento nativo click
+        botonCalcular.addEventListener('click', ejecutarCalculoLaboral);
+        
+        // Desactivar el envío automático si está dentro de una etiqueta <form>
+        const formularioPadre = botonCalcular.closest('form');
+        if (formularioPadre) {
+            formularioPadre.addEventListener('submit', (e) => e.preventDefault());
+        }
     }
 });
 </script>
+
 </body>
 </html>
