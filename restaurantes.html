@@ -11,18 +11,19 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #1a202c;
             line-height: 1.6;
+            background: #ffffff;
         }
         
-        /* HERO */
+        /* HERO - Estilo igual a la página de Equipo */
         .hero-rest {
-            background-color: #1e3a5f;
+            background-color: #0f2a5e;
             color: white;
             padding: 80px 20px;
             text-align: center;
         }
         .hero-rest h1 {
             color: white;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
@@ -39,19 +40,19 @@
             margin: 0 auto;
             padding: 60px 20px;
         }
-        .section-alt { background-color: #f7fafc; }
-        .section-light { background-color: #ebf8ff; }
+        .section-alt { background-color: #f8f9fa; }
+        .section-light { background-color: #f0f4f8; }
         .text-center { text-align: center; }
         
         h2 {
-            color: #1e3a5f;
+            color: #0f2a5e;
             font-size: 2rem;
             margin-bottom: 1.5rem;
             text-align: center;
             font-weight: 700;
         }
         h3 {
-            color: #1e3a5f;
+            color: #0f2a5e;
             font-size: 1.4rem;
             margin-bottom: 1rem;
             font-weight: 700;
@@ -79,7 +80,7 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-top: 4px solid #1e3a5f;
+            border-top: 4px solid #c9a028;
             transition: transform 0.3s;
         }
         .card:hover { transform: translateY(-5px); }
@@ -88,7 +89,7 @@
         .pricing-card {
             background: white;
             border-radius: 12px;
-            padding: 35px 25px;
+            padding: 40px 25px 30px 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border: 2px solid #e2e8f0;
             display: flex;
@@ -101,23 +102,20 @@
             transform: scale(1.05);
         }
         .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
             background-color: #c9a028;
             color: white;
-            padding: 6px 20px;
+            padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(201, 160, 40, 0.4);
+            display: inline-block;
+            margin: 0 auto 15px auto;
+            text-align: center;
         }
         .price {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #1e3a5f;
+            color: #0f2a5e;
             margin: 1rem 0;
         }
         .price span {
@@ -138,7 +136,7 @@
         }
         .features-list li::before {
             content: '✓';
-            color: #1e3a5f;
+            color: #c9a028;
             font-weight: 900;
             margin-right: 10px;
         }
@@ -155,9 +153,18 @@
             border: none;
             text-align: center;
         }
+        .btn-gold {
+            background-color: #c9a028;
+            color: white;
+        }
+        .btn-gold:hover {
+            background-color: #b89224;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.4);
+        }
         .btn-white {
             background-color: white;
-            color: #1e3a5f;
+            color: #0f2a5e;
         }
         .btn-white:hover {
             background-color: #f7fafc;
@@ -165,19 +172,19 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .btn-blue {
-            background-color: #1e3a5f;
+            background-color: #0f2a5e;
             color: white;
             width: 100%;
             margin-top: auto;
         }
         .btn-blue:hover {
-            background-color: #2c5282;
+            background-color: #1a3a7a;
             transform: translateY(-2px);
         }
 
         /* CTA FINAL */
         .cta-final {
-            background-color: #1e3a5f;
+            background-color: #0f2a5e;
             color: white;
             text-align: center;
             padding: 60px 20px;
@@ -220,7 +227,7 @@
     <section class="hero-rest">
         <h1>Blindaje Laboral Especializado para Restaurantes y Gastronomía en la CDMX</h1>
         <p>Proteja su operación contra demandas, multas de la STPS y pasivos ocultos del IMSS, con protocolos diseñados para la realidad de su cocina y salón.</p>
-        <a href="diagnostico.html" class="btn btn-white">Solicitar Diagnóstico Express Gratuito</a>
+        <a href="diagnostico.html" class="btn btn-gold">Solicitar Diagnóstico Express Gratuito</a>
     </section>
 
     <!-- PROBLEMA -->
@@ -299,7 +306,7 @@
 
     <!-- AUTORIDAD -->
     <section class="section section-light text-center">
-        <h3 style="color: #1e3a5f; margin-bottom: 1rem; font-weight: 700;">Metodología forjada en la operación real</h3>
+        <h3 style="color: #0f2a5e; margin-bottom: 1rem; font-weight: 700;">Metodología forjada en la operación real</h3>
         <p style="max-width: 800px; margin: 0 auto;">Nuestros protocolos no nacen en un escritorio. Nacen de entender la presión de un servicio de viernes por la noche, la rotación de cocina y los riesgos reales de la gastronomía en la CDMX.</p>
     </section>
 
@@ -307,11 +314,11 @@
     <section class="cta-final">
         <h2>¿Su restaurante está protegido hoy?</h2>
         <p>Realice nuestro Diagnóstico Express de 1 Minuto (completamente gratis) y detecte si tiene una bomba de tiempo en su cocina.</p>
-        <a href="diagnostico.html" class="btn btn-white"> EVALUAR MI RESTAURANTE AQUÍ</a>
+        <a href="diagnostico.html" class="btn btn-gold">👉 EVALUAR MI RESTAURANTE AQUÍ</a>
         <p style="margin-top: 2rem; font-size: 0.9rem;">WhatsApp directo: 311 186 6901 | Web: laboralclick.com.mx</p>
     </section>
 
-    <footer style="text-align: center; padding: 40px; background: #1e3a5f; color: white;">
+    <footer style="text-align: center; padding: 40px; background: #0f2a5e; color: white;">
         <p>© 2026 Laboral Click - Todos los derechos reservados</p>
     </footer>
 </body>
