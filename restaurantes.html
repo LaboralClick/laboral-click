@@ -14,7 +14,7 @@
             background: #ffffff;
         }
         
-        /* HERO - Estilo igual a la página de Equipo */
+        /* HERO */
         .hero-rest {
             background-color: #0f2a5e;
             color: white;
@@ -54,7 +54,7 @@
         h3 {
             color: #0f2a5e;
             font-size: 1.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
         }
         p {
@@ -85,35 +85,48 @@
         }
         .card:hover { transform: translateY(-5px); }
 
-        /* TARJETAS DE PRECIOS */
+        /* TARJETAS DE PRECIOS - Estilo igual a página de precios */
+        .pricing-wrapper {
+            position: relative;
+        }
         .pricing-card {
             background: white;
             border-radius: 12px;
-            padding: 40px 25px 30px 25px;
+            padding: 30px 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 2px solid #e2e8f0;
+            border: 2px solid #c9a028;
             display: flex;
             flex-direction: column;
-            position: relative;
+            height: 100%;
         }
         .pricing-card.featured {
             border: 3px solid #c9a028;
             background-color: #fffef5;
-            transform: scale(1.05);
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(201, 160, 40, 0.2);
         }
-        .badge {
+        .badge-top {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: #c9a028;
             color: white;
-            padding: 8px 20px;
+            padding: 6px 24px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            display: inline-block;
-            margin: 0 auto 15px auto;
-            text-align: center;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .plan-subtitle {
+            font-size: 0.85rem;
+            color: #c9a028;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
         .price {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: #0f2a5e;
             margin: 1rem 0;
@@ -131,7 +144,7 @@
         .features-list li {
             padding: 10px 0;
             border-bottom: 1px solid #edf2f7;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #1a202c;
         }
         .features-list li::before {
@@ -152,6 +165,7 @@
             cursor: pointer;
             border: none;
             text-align: center;
+            font-size: 1rem;
         }
         .btn-gold {
             background-color: #c9a028;
@@ -171,15 +185,28 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .btn-blue {
-            background-color: #0f2a5e;
+        .btn-outline {
+            background-color: white;
+            color: #c9a028;
+            border: 2px solid #c9a028;
+            width: 100%;
+            margin-top: auto;
+        }
+        .btn-outline:hover {
+            background-color: #c9a028;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-filled {
+            background-color: #c9a028;
             color: white;
             width: 100%;
             margin-top: auto;
         }
-        .btn-blue:hover {
-            background-color: #1a3a7a;
+        .btn-filled:hover {
+            background-color: #b89224;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.4);
         }
 
         /* CTA FINAL */
@@ -260,46 +287,52 @@
         <h2>Planes de Blindaje Restaurantero</h2>
         <div class="grid-3">
             <!-- Plan Emprende -->
-            <div class="pricing-card">
-                <h3>Plan Emprende</h3>
-                <p style="font-size: 0.9rem; color: #4a5568;">Recomendado para nuevos negocios</p>
-                <div class="price">$4,500 <span>MXN/mes</span></div>
-                <ul class="features-list">
-                    <li>Contratos de prueba y capacitación</li>
-                    <li>Reglamento de propinas (Art. 100 LFT)</li>
-                    <li>Finiquitos exprés (24 hrs)</li>
-                    <li>Asesoría WhatsApp 24/7</li>
-                </ul>
-                <a href="diagnostico.html" class="btn btn-blue">Elegir Plan</a>
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <h3>🛡️ Plan Emprende</h3>
+                    <p class="plan-subtitle">Recomendado para nuevos negocios</p>
+                    <div class="price">$4,500 <span>MXN/mes</span></div>
+                    <ul class="features-list">
+                        <li>Contratos de prueba y capacitación</li>
+                        <li>Reglamento de propinas (Art. 100 LFT)</li>
+                        <li>Finiquitos exprés (24 hrs)</li>
+                        <li>Asesoría WhatsApp 24/7</li>
+                    </ul>
+                    <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
+                </div>
             </div>
 
-            <!-- Plan Pro -->
-            <div class="pricing-card featured">
-                <div class="badge">Más Solicitado</div>
-                <h3>Plan Pro</h3>
-                <p style="font-size: 0.9rem; color: #4a5568;">Para restaurantes con alta rotación</p>
-                <div class="price">$8,500 <span>MXN/mes</span></div>
-                <ul class="features-list">
-                    <li><strong>Todo lo del Plan Emprende</strong></li>
-                    <li>Auditoría en sitio de expedientes</li>
-                    <li>Control de turnos y personal eventual</li>
-                    <li>Capacitación a gerentes en faltas</li>
-                </ul>
-                <a href="diagnostico.html" class="btn btn-blue">Elegir Plan</a>
+            <!-- Plan Pro (Destacado) -->
+            <div class="pricing-wrapper">
+                <div class="badge-top">⭐ MÁS POPULAR</div>
+                <div class="pricing-card featured">
+                    <h3>🛡️ Plan Pro</h3>
+                    <p class="plan-subtitle">Para restaurantes con alta rotación</p>
+                    <div class="price">$8,500 <span>MXN/mes</span></div>
+                    <ul class="features-list">
+                        <li><strong>Todo lo del Plan Emprende</strong></li>
+                        <li>Auditoría en sitio de expedientes</li>
+                        <li>Control de turnos y personal eventual</li>
+                        <li>Capacitación a gerentes en faltas</li>
+                    </ul>
+                    <a href="diagnostico.html" class="btn btn-filled">Elegir Plan</a>
+                </div>
             </div>
 
             <!-- Plan Master -->
-            <div class="pricing-card">
-                <h3>Plan Master</h3>
-                <p style="font-size: 0.9rem; color: #4a5568;">Para operaciones consolidadas o cadenas</p>
-                <div class="price">$12,500 <span>MXN/mes</span></div>
-                <ul class="features-list">
-                    <li><strong>Todo lo del Plan Pro</strong></li>
-                    <li>Representación legal en audiencias</li>
-                    <li>Atención a inspecciones STPS/IMSS</li>
-                    <li>Abogado patronal de cabecera</li>
-                </ul>
-                <a href="diagnostico.html" class="btn btn-blue">Elegir Plan</a>
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <h3>🛡️ Plan Master</h3>
+                    <p class="plan-subtitle">Para operaciones consolidadas o cadenas</p>
+                    <div class="price">$12,500 <span>MXN/mes</span></div>
+                    <ul class="features-list">
+                        <li><strong>Todo lo del Plan Pro</strong></li>
+                        <li>Representación legal en audiencias</li>
+                        <li>Atención a inspecciones STPS/IMSS</li>
+                        <li>Abogado patronal de cabecera</li>
+                    </ul>
+                    <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
+                </div>
             </div>
         </div>
     </section>
