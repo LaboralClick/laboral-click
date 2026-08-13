@@ -263,3 +263,21 @@ footer {
     margin-top: 40px;
 }
 footer p { font-size: 0.9rem; opacity: 0.9; }
+/* =========================================
+   CORRECCIÓN DE CAPAS PARA MENÚ MÓVIL
+   ========================================= */
+.overlay {
+    z-index: 998 !important; /* La capa oscura queda debajo del menú */
+    pointer-events: auto; /* Permite cerrar el menú al tocar fuera */
+}
+
+.nav-links, .mobile-menu, #navMenu {
+    z-index: 999 !important; /* El menú SIEMPRE queda por encima de la capa oscura */
+    position: fixed !important;
+}
+
+/* Asegurar que cuando el menú está abierto, sea totalmente interactivo */
+.nav-links.open, #navMenu.open {
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+}
