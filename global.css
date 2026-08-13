@@ -1,344 +1,4 @@
-/* ============================================ */
-/* LABORAL CLICK - HOJA DE ESTILOS GLOBAL       */
-/* Versión: 2026.1 - Definitiva                 */
-/* ============================================ */
-
-/* --- RESET BÁSICO --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #1a202c;
-    line-height: 1.6;
-    background: #ffffff;
-}
-
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-img { max-width: 100%; display: block; }
-
-/* --- CONTENEDOR --- */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ============================================ */
-/* HEADER Y NAVEGACIÓN                          */
-/* ============================================ */
-header {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 700;
-    color: #0f2a5e;
-    font-size: 1rem;
-}
-
-.logo img { height: 45px; }
-
-/* --- MENÚ DESKTOP --- */
-.nav-links {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-
-.nav-links > li {
-    position: relative;
-}
-
-.nav-links > li > a {
-    display: block;
-    padding: 12px 16px;
-    color: #0f2a5e;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    transition: all 0.3s;
-}
-
-.nav-links > li > a:hover {
-    background: #f0f4f8;
-    color: #c9a028;
-}
-
-/* Flechita para items con dropdown */
-.nav-links > li.has-dropdown > a::after {
-    content: ' ▾';
-    font-size: 0.8rem;
-    color: #c9a028;
-}
-
-/* --- DROPDOWN (submenú) --- */
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    min-width: 200px;
-    box-shadow: 0 8px 24px rgba(15, 42, 94, 0.15);
-    border-radius: 8px;
-    border-top: 3px solid #c9a028;
-    padding: 8px 0;
-    z-index: 1001;
-    margin-top: 5px;
-}
-
-.dropdown li a {
-    display: block;
-    padding: 10px 20px;
-    color: #1a202c;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
-
-.dropdown li a:hover {
-    background: #fffef5;
-    color: #c9a028;
-    padding-left: 25px;
-}
-
-@media (min-width: 769px) {
-    .nav-links > li.has-dropdown:hover .dropdown {
-        display: block;
-    }
-}
-
-/* --- BOTÓN WHATSAPP --- */
-.btn-whatsapp {
-    background: #25D366;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 25px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 0.3s;
-    white-space: nowrap;
-}
-.btn-whatsapp:hover {
-    background: #128C7E;
-    transform: translateY(-2px);
-}
-
-/* --- BOTÓN HAMBURGUESA (móvil) --- */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: #0f2a5e;
-    cursor: pointer;
-    padding: 5px 10px;
-}
-
-/* --- BOTÓN CERRAR (X) --- */
-.menu-close-btn {
-    display: none;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #0f2a5e;
-    cursor: pointer;
-    z-index: 10002;
-    padding: 10px;
-    line-height: 1;
-}
-.menu-close-btn:hover { color: #c9a028; }
-
-/* ============================================ */
-/* MENÚ MÓVIL (menos de 768px)                  */
-/* ============================================ */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
-    .btn-whatsapp {
-        display: none; /* Ocultamos el botón de WhatsApp en el header móvil para espacio */
-    }
-    
-    .nav-links {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: white;
-        z-index: 10001;
-        overflow-y: auto;
-        padding: 80px 20px 30px;
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-    }
-    
-    .nav-links.open {
-        display: flex;
-    }
-    
-    .nav-links > li > a {
-        display: block;
-        padding: 16px 20px;
-        border-bottom: 1px solid #f0f4f8;
-        font-size: 1.05rem;
-    }
-    
-    /* Dropdown en móvil: siempre visible, indentado */
-    .dropdown {
-        display: block;
-        position: static;
-        box-shadow: none;
-        border: none;
-        border-left: 3px solid #c9a028;
-        margin: 0;
-        background: #f8f9fa;
-        padding: 5px 0;
-    }
-    
-    .dropdown li a {
-        padding-left: 35px;
-        font-size: 0.95rem;
-    }
-    
-    .menu-close-btn {
-        display: block;
-    }
-}
-
-/* ============================================ */
-/* OVERLAY OSCURO (fondo cuando menú abierto)   */
-/* ============================================ */
-.menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 42, 94, 0.6);
-    z-index: 10000;
-    backdrop-filter: blur(2px);
-}
-.menu-overlay.activo {
-    display: block;
-}
-
-/* ============================================ */
-/* FOOTER BÁSICO                                */
-/* ============================================ */
-footer {
-    background: #0f2a5e;
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px;
-}
-footer p { font-size: 0.9rem; opacity: 0.9; }
-/* =========================================
-   CORRECCIÓN DE CAPAS PARA MENÚ MÓVIL
-   ========================================= */
-.overlay {
-    z-index: 998 !important; /* La capa oscura queda debajo del menú */
-    pointer-events: auto; /* Permite cerrar el menú al tocar fuera */
-}
-
-.nav-links, .mobile-menu, #navMenu {
-    z-index: 999 !important; /* El menú SIEMPRE queda por encima de la capa oscura */
-    position: fixed !important;
-}
-
-/* Asegurar que cuando el menú está abierto, sea totalmente interactivo */
-.nav-links.open, #navMenu.open {
-    z-index: 1000 !important;
-    pointer-events: auto !important;
-}
-/* =========================================
-   MENÚ LATERAL TIPO DRAWER (Laboral Click)
-   Pegar al FINAL de global.css
-   ========================================= */
-.lc-header {
-    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-    background: #fff; display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;
-}
-.lc-logo-link { text-decoration: none; display: flex; align-items: center; }
-.lc-menu-toggle {
-    background: none; border: none; cursor: pointer; width: 30px; height: 24px; 
-    position: relative; z-index: 1002; display: flex; flex-direction: column; justify-content: space-between;
-}
-.lc-menu-toggle span {
-    display: block; width: 100%; height: 3px; background: #1e3a5f; border-radius: 2px; transition: 0.3s;
-}
-
-/* Capa oscura de fondo */
-.lc-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(10, 36, 99, 0.6); z-index: 1000; 
-    opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
-}
-.lc-overlay.active { opacity: 1; visibility: visible; }
-
-/* Panel lateral deslizante */
-.lc-side-drawer {
-    position: fixed; top: 0; left: 0; width: 280px; height: 100%;
-    background: #fff; z-index: 1001; 
-    transform: translateX(-100%); transition: transform 0.3s ease-in-out;
-    display: flex; flex-direction: column; box-shadow: 2px 0 15px rgba(0,0,0,0.1);
-}
-.lc-side-drawer.active { transform: translateX(0); }
-
-.lc-drawer-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px; background: #1e3a5f; color: #fff;
-}
-.lc-drawer-title { font-weight: 700; font-size: 18px; }
-.lc-menu-close {
-    background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; line-height: 1;
-}
-
-.lc-drawer-links { list-style: none; padding: 20px 0; margin: 0; overflow-y: auto; flex: 1; }
-.lc-drawer-links li a {
-    display: block; padding: 15px 25px; color: #333; text-decoration: none; 
-    font-size: 16px; font-weight: 500; transition: 0.2s; border-left: 4px solid transparent;
-}
-.lc-drawer-links li a:hover { 
-    background: #f0f4f8; color: #1e3a5f; border-left: 4px solid #d4af37; 
-}
-
-.lc-drawer-cta {
-    display: block; margin: 20px; padding: 12px; background: #25D366; color: #fff; 
-    text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold;
-}
-/* --- FIX MENÚ LABORAL CLICK - ESTILO TWITTER/X --- */
+/* --- MENU VERTICAL TWITTER/X ELEGANTE --- */
 .lc-header {
     position: sticky;
     top: 0;
@@ -346,30 +6,32 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
-    background: #ffffff;
-    border-bottom: 1px solid #eee;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e5e7eb;
 }
 .lc-menu-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding: 8px;
+    background: #1e3a5f;
+    border: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    border-radius: 8px;
 }
 .lc-menu-toggle span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
-    background: #1e3a5f;
+    background: #fff;
     border-radius: 2px;
 }
 .lc-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.45);
     z-index: 1001;
     opacity: 0;
     pointer-events: none;
@@ -383,47 +45,50 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
     position: fixed;
     top: 0;
     right: -100%;
-    width: 300px;
+    width: 320px;
     max-width: 85%;
     height: 100%;
     background: #fff;
     z-index: 1002;
-    transition: right 0.3s ease;
+    transition: right 0.32s cubic-bezier(.4,0,.2,1);
     display: flex;
     flex-direction: column;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.12);
 }
-.lc-side-drawer.open {
-    right: 0;
-}
+.lc-side-drawer.open { right: 0; }
 .lc-drawer-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #eee;
+    padding: 22px 20px;
+    border-bottom: 1px solid #f1f1f1;
 }
 .lc-menu-close {
-    background: none;
+    background: #f3f4f6;
     border: none;
-    font-size: 28px;
+    font-size: 22px;
     cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
 }
 .lc-drawer-links {
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
     margin: 0;
 }
 .lc-drawer-links a {
     display: block;
-    padding: 16px 20px;
+    padding: 16px 24px;
     text-decoration: none;
     color: #1e3a5f;
     font-weight: 500;
-    border-bottom: 1px solid #f5f5f5;
+    font-size: 16px;
+    transition: background 0.2s;
 }
 .lc-drawer-links a:hover {
-    background: #f8f9fa;
+    background: #f8fafc;
+    color: #b8964a;
 }
 .lc-drawer-cta {
     margin: 20px;
@@ -431,7 +96,7 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
     background: #25D366;
     color: white;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
     margin-top: auto;
