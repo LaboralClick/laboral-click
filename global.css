@@ -281,3 +281,60 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
     z-index: 1000 !important;
     pointer-events: auto !important;
 }
+/* =========================================
+   MENÚ LATERAL TIPO DRAWER (Laboral Click)
+   Pegar al FINAL de global.css
+   ========================================= */
+.lc-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+    background: #fff; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;
+}
+.lc-logo-link { text-decoration: none; display: flex; align-items: center; }
+.lc-menu-toggle {
+    background: none; border: none; cursor: pointer; width: 30px; height: 24px; 
+    position: relative; z-index: 1002; display: flex; flex-direction: column; justify-content: space-between;
+}
+.lc-menu-toggle span {
+    display: block; width: 100%; height: 3px; background: #1e3a5f; border-radius: 2px; transition: 0.3s;
+}
+
+/* Capa oscura de fondo */
+.lc-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 36, 99, 0.6); z-index: 1000; 
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
+}
+.lc-overlay.active { opacity: 1; visibility: visible; }
+
+/* Panel lateral deslizante */
+.lc-side-drawer {
+    position: fixed; top: 0; left: 0; width: 280px; height: 100%;
+    background: #fff; z-index: 1001; 
+    transform: translateX(-100%); transition: transform 0.3s ease-in-out;
+    display: flex; flex-direction: column; box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+}
+.lc-side-drawer.active { transform: translateX(0); }
+
+.lc-drawer-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px; background: #1e3a5f; color: #fff;
+}
+.lc-drawer-title { font-weight: 700; font-size: 18px; }
+.lc-menu-close {
+    background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; line-height: 1;
+}
+
+.lc-drawer-links { list-style: none; padding: 20px 0; margin: 0; overflow-y: auto; flex: 1; }
+.lc-drawer-links li a {
+    display: block; padding: 15px 25px; color: #333; text-decoration: none; 
+    font-size: 16px; font-weight: 500; transition: 0.2s; border-left: 4px solid transparent;
+}
+.lc-drawer-links li a:hover { 
+    background: #f0f4f8; color: #1e3a5f; border-left: 4px solid #d4af37; 
+}
+
+.lc-drawer-cta {
+    display: block; margin: 20px; padding: 12px; background: #25D366; color: #fff; 
+    text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold;
+}
