@@ -373,5 +373,19 @@
     <footer style="text-align: center; padding: 40px; background: #0f2a5e; color: white;">
         <p>© 2026 Laboral Click - Todos los derechos reservados</p>
     </footer>
+    <script>
+// Cerrar menú al hacer clic en enlaces
+document.addEventListener('DOMContentLoaded', function() {
+    const menuLinks = document.querySelectorAll('.nav-links a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const menu = document.getElementById('navMenu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>
