@@ -1,10 +1,9 @@
 // ============================================
 // MENÚ AUTOMÁTICO - LABORAL CLICK
-// Este archivo genera el menú en todas las páginas
 // ============================================
 
 const menuHTML = `
-<button class="menu-toggle" onclick="toggleMenu()"></button>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 <ul class="nav-links" id="navMenu">
     <button class="menu-close-btn" onclick="toggleMenu()">✕</button>
     <li><a href="index.html">Inicio</a></li>
@@ -29,7 +28,6 @@ const menuHTML = `
 <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
 `;
 
-// Función para abrir/cerrar menú
 function toggleMenu() {
     const menu = document.getElementById('navMenu');
     const overlay = document.getElementById('menuOverlay');
@@ -45,23 +43,11 @@ function toggleMenu() {
     }
 }
 
-// Inyectar menú cuando la página cargue
 document.addEventListener('DOMContentLoaded', function() {
-    const navElement = document.querySelector('.nav');
-    if (navElement) {
-        // Buscar y eliminar el menú existente
-        const existingMenu = navElement.querySelector('.nav-links, .menu-toggle, .btn-whatsapp');
-        if (existingMenu) {
-            // Eliminar todos los elementos del menú viejo
-            const elementsToRemove = navElement.querySelectorAll('.menu-toggle, .nav-links, .btn-whatsapp');
-            elementsToRemove.forEach(el => el.remove());
-        }
-        
-        // Insertar el nuevo menú después del logo
-        const logo = navElement.querySelector('.logo');
-        if (logo) {
-            logo.insertAdjacentHTML('afterend', menuHTML);
-        }
+    // Inyectar menú en el contenedor
+    const container = document.getElementById('menu-container');
+    if (container) {
+        container.innerHTML = menuHTML;
     }
     
     // Crear overlay
@@ -70,4 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
+    
+    // Cerrar al hacer clic en enlaces
+    document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
 });
