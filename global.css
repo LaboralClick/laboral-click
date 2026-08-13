@@ -338,3 +338,101 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
     display: block; margin: 20px; padding: 12px; background: #25D366; color: #fff; 
     text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold;
 }
+/* --- FIX MENÚ LABORAL CLICK - ESTILO TWITTER/X --- */
+.lc-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+.lc-menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+}
+.lc-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #1e3a5f;
+    border-radius: 2px;
+}
+.lc-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.lc-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.lc-side-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    max-width: 85%;
+    height: 100%;
+    background: #fff;
+    z-index: 1002;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+}
+.lc-side-drawer.open {
+    right: 0;
+}
+.lc-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+.lc-menu-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+.lc-drawer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.lc-drawer-links a {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: #1e3a5f;
+    font-weight: 500;
+    border-bottom: 1px solid #f5f5f5;
+}
+.lc-drawer-links a:hover {
+    background: #f8f9fa;
+}
+.lc-drawer-cta {
+    margin: 20px;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+}
