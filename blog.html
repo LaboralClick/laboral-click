@@ -143,15 +143,32 @@
   
   <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
 <script>
-// Cerrar menú al hacer clic en enlaces
 document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger, .menu-toggle, #menuBtn');
+    const navMenu = document.getElementById('navMenu');
+    const overlay = document.querySelector('.overlay');
     const menuLinks = document.querySelectorAll('.nav-links a');
+
+    function toggleMenu(e) {
+        if (e) e.preventDefault(); // ESTO EVITA QUE LA PÁGINA SALTE AL INICIO
+        if (navMenu) navMenu.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('active');
+    }
+
+    if (hamburger) hamburger.addEventListener('click', toggleMenu);
+
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (navMenu) navMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+    }
+
     menuLinks.forEach(link => {
         link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
+            if (navMenu) navMenu.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
         });
     });
 });
