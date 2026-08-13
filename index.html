@@ -17,18 +17,38 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 <body>
-    <header>
-        <div class="container">
-          <nav class="nav">
-    <a href="index.html" class="logo">
-        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-        <span>Asesoría Legal sin Enredos</span>
+    <!-- NUEVO MENÚ TIPO DRAWER (Estilo Twitter/X) -->
+<header class="lc-header">
+    <a href="/" class="lc-logo-link" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="/images/logoH.png" alt="Laboral Click" style="height: 45px;">
+        <span style="font-size: 14px; color: #1e3a5f; font-weight: 600; margin-left: 10px;">Asesoría Legal sin Enredos</span>
     </a>
-    <div id="menu-container"></div>
-</nav>
-        </div>
-    </header>
+    <button class="lc-menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+    </button>
+</header>
 
+<!-- Capa oscura de fondo -->
+<div class="lc-overlay"></div>
+
+<!-- Panel lateral deslizante -->
+<nav class="lc-side-drawer">
+    <div class="lc-drawer-header">
+        <span class="lc-drawer-title">Navegación</span>
+        <button class="lc-menu-close" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <ul class="lc-drawer-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/calculadoras">Calculadoras</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/diagnostico">Diagnóstico Express</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/5213111866901" class="lc-drawer-cta" target="_blank">💬 WhatsApp Directo</a>
+</nav>
+<!-- FIN NUEVO MENÚ -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
