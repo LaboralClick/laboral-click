@@ -41,3 +41,5 @@ footer{background:#0f2440;color:#cbd5e1;padding:50px 0 20px}
 .lc-drawer-links a:hover{background:#f8fafc;color:#b8964a}
 .lc-drawer-cta{margin:20px;padding:14px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800;margin-top:auto}
 @media(max-width:768px){.hero-text h1{font-size:1.9rem}.hero-content{flex-direction:column;text-align:center}}
+#overlay.show{pointer-events:auto !important}
+body{overflow-x:hidden}
