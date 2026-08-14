@@ -263,3 +263,12 @@ footer {
     margin-top: 40px;
 }
 footer p { font-size: 0.9rem; opacity: 0.9; }
+/* ============================================ */
+/* AJUSTE ENCABEZADO: todo en un renglón        */
+/* ============================================ */
+@media (min-width: 769px) {
+    .nav { gap: 10px; }
+    .logo span { font-size: 0.85rem; }
+    .nav-links > li > a { padding: 10px 10px; font-size: 0.88rem; }
+    .btn-whatsapp { padding: 8px 14px; font-size: 0.8rem; white-space: nowrap; }
+}
