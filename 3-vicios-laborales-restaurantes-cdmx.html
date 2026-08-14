@@ -2,40 +2,98 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>3 vicios laborales en restaurantes CDMX | Laboral Click</title>
-<link rel="stylesheet" href="/global.css?v=7">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Descubra los 3 vicios laborales informales más comunes en restaurantes de la CDMX y cómo blindarse legalmente contra demandas y multas de la STPS.">
+<title>⚠ Alerta: 3 prácticas 'normales' en su cocina que son una bomba de tiempo legal | Blog Laboral Click</title>
+<link rel="stylesheet" href="/global.css?v=8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;background:#f7fafc}
+.lc-header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb}
+.lc-menu-toggle{display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:11px;border-radius:8px;cursor:pointer}
+.lc-menu-toggle span{width:22px;height:2px;background:#fff;display:block;border-radius:2px}
+#drawer{position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .33s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow-y:auto}
+#drawer.open{right:0 !important}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;opacity:0;pointer-events:none;transition:opacity .3s}
+#overlay.show{opacity:1;pointer-events:auto}
+.article-container{max-width:800px;margin:40px auto;background:white;padding:60px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.category-tag{display:inline-block;background:#fef3c7;color:#92400e;padding:6px 20px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px;text-transform:uppercase}
+h1{color:#1e3a5f;font-size:36px;line-height:1.2;margin-bottom:20px}
+.meta-info{color:#718096;font-size:14px;margin-bottom:30px;padding-bottom:30px;border-bottom:2px solid #e2e8f0}
+.featured-image{width:100%;height:400px;object-fit:cover;border-radius:8px;margin:30px 0}
+.executive-summary{background:#ebf8ff;border-left:4px solid #2c5282;padding:25px 30px;margin:30px 0;border-radius:5px}
+h2{color:#1e3a5f;font-size:28px;margin:40px 0 20px 0;padding-bottom:10px;border-bottom:2px solid #d4af37}
+.vice-section{margin:40px 0;padding:30px;border:2px solid #e2e8f0;border-radius:8px}
+.vice-section h3{color:#c53030;font-size:24px;margin-bottom:20px}
+.reality-box{background:#fff5f5;border:1px solid #fed7d7;padding:20px;border-radius:5px;margin-bottom:20px}
+.reality-box strong{color:#c53030;display:block;margin-bottom:10px}
+.risk-box{background:#fffaf0;border-left:4px solid #dd6b20;padding:20px;margin:20px 0;border-radius:5px}
+.advantage-box{background:#f0fff4;border-left:4px solid #38a169;padding:20px;margin:20px 0;border-radius:5px}
+.cta-final{background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:white;padding:40px;border-radius:8px;text-align:center;margin:50px 0}
+.cta-button{display:inline-block;background:white;color:#1e3a5f;padding:15px 35px;text-decoration:none;border-radius:5px;font-weight:700;margin:10px}
+.back-link{display:inline-block;margin-top:30px;color:#2c5282;text-decoration:none;font-weight:600}
+</style>
 </head>
-<body style="margin:0;font-family:Arial,sans-serif">
+<body>
 
-<header style="position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #eee">
+<header class="lc-header">
   <a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:42px"></a>
-  <button id="btnOpen" style="display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:11px;border-radius:8px"><span style="width:22px;height:2px;background:#fff;display:block"></span><span style="width:22px;height:2px;background:#fff;display:block"></span><span style="width:22px;height:2px;background:#fff;display:block"></span></button>
+  <button class="lc-menu-toggle" id="btnOpen"><span></span><span></span><span></span></button>
 </header>
-
-<div id="overlay" style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none" onclick="this.style.display='none';document.getElementById('drawer').style.right='-110%'"></div>
-<nav id="drawer" style="position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .33s;box-shadow:-12px 0 30px rgba(0,0,0,.2);display:flex;flex-direction:column">
-  <div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #eee"><b>Menú</b><button onclick="document.getElementById('drawer').style.right='-110%';document.getElementById('overlay').style.display='none'" style="border:none;background:#eee;width:32px;height:32px;border-radius:50%">×</button></div>
+<div id="overlay"></div>
+<nav id="drawer">
+  <div style="padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f1f5f9"><b>Menú</b><button id="btnClose" style="border:none;background:#f1f5f9;width:36px;height:36px;border-radius:50%;font-size:22px">×</button></div>
   <a href="/index.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">🏠 Inicio</a>
+  <a href="/nosotros.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">👥 Nosotros</a>
+  <a href="/servicios.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">⚖️ Servicios</a>
+  <a href="/calculadoras.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">🧮 Calculadoras</a>
   <a href="/blog.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">📝 Blog</a>
+  <a href="/diagnostico.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">⚡ Diagnóstico Express</a>
   <a href="/contacto.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📩 Contacto</a>
-  <a href="https://wa.me/5213111866901" style="margin:20px;padding:14px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800">💬 WhatsApp</a>
+  <a href="https://wa.me/5213111866901" style="margin:20px;padding:14px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800">💬 WhatsApp Directo</a>
 </nav>
 
-<div style="max-width:800px;margin:0 auto;padding:20px">
-    <h1>3 vicios laborales en restaurantes de CDMX</h1>
-    <p>Contenido de tu artículo aquí... (pega después el resto que ya tenías del artículo)</p>
-    <div style="background:#f1f5f9;padding:20px;border-radius:10px;margin:20px 0;text-align:center">
-        <h3>Conclusión</h3>
-        <p>Normalizar estos vicios no es ahorro, es un pasivo diferido.</p>
-        <a href="https://wa.me/5213111866901" style="background:#1e3a5f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">WhatsApp</a>
-        <a href="/diagnostico.html" style="background:#1e3a5f;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Diagnóstico</a>
-    </div>
-    <a href="/blog.html">← Volver al Blog</a>
+<div class="article-container">
+<span style="display:inline-block;background:#fef3c7;color:#92400e;padding:6px 20px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px">Restaurantes</span>
+<h1>⚠ Alerta para dueños de restaurantes: 3 prácticas 'normales' en su cocina que son una bomba de tiempo legal</h1>
+<div style="color:#718096;font-size:14px;margin-bottom:30px;padding-bottom:30px;border-bottom:2px solid #e2e8f0"><strong>Publicado:</strong> 13 de agosto, 2026 | <strong>Tiempo de lectura:</strong> 8 minutos</div>
+<img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&h=400&fit=crop" alt="Cocina de restaurante" style="width:100%;height:400px;object-fit:cover;border-radius:8px;margin:30px 0">
+<div style="background:#ebf8ff;border-left:4px solid #2c5282;padding:25px 30px;margin:30px 0;border-radius:5px"><h3>📋 Resumen Ejecutivo</h3><p>En el sector gastronómico de la CDMX, la presión operativa diaria suele normalizar prácticas que, ante los ojos de la ley, representan "bombas de tiempo" financieras. Muchos propietarios creen que están ahorrando costos al operar con informalidad, cuando en realidad están acumulando pasivos laborales que pueden quebrar el negocio ante una sola inspección de la STPS o una demanda.</p></div>
+
+<h2>Vicio 1: La "Informalidad Operativa" y la Confusión de Roles</h2>
+<div style="margin:40px 0;padding:30px;border:2px solid #e2e8f0;border-radius:8px">
+<div style="background:#fff5f5;border:1px solid #fed7d7;padding:20px;border-radius:5px;margin-bottom:20px"><strong style="color:#c53030;display:block;margin-bottom:10px">La realidad en campo:</strong>Se contrata al personal bajo el puesto de "Ayudante General" con $1,700 MXN semanales, pero realiza funciones de lavaloza, mandados, entregas y mesero. Sin IMSS, sin prima dominical, sin horas extra y con menos de 20 minutos para comer.</div>
+<div style="background:#fffaf0;border-left:4px solid #dd6b20;padding:20px;margin:20px 0;border-radius:5px"><h4 style="color:#c05621">Riesgos Legales:</h4><ul style="margin-left:20px"><li>Demanda por despido con todas las prestaciones omitidas</li><li>Multas del IMSS por capitales constitutivos</li><li>Violación al Art. 63 LFT de descanso de 30 min</li></ul></div>
+<div style="background:#f0fff4;border-left:4px solid #38a169;padding:20px;margin:20px 0;border-radius:5px"><h4>✅ Ventaja Laboral Click:</h4><p>Implementamos Contratos Específicos por Puesto y descripción clara de funciones, blindando la relación desde el día 1.</p></div>
+</div>
+
+<h2>⚠ Vicio 2: Violaciones a las NOMs de la STPS</h2>
+<div style="margin:40px 0;padding:30px;border:2px solid #e2e8f0;border-radius:8px">
+<div style="background:#fff5f5;border:1px solid #fed7d7;padding:20px;border-radius:5px;margin-bottom:20px"><strong style="color:#c53030">La realidad en campo:</strong>Pisos húmedos sin drenaje, conexiones eléctricas con manos mojadas, sin botas antiderrapantes ni guantes para cloro, basura improvisada y clima laboral tóxico.</div>
+<div style="background:#fffaf0;border-left:4px solid #dd6b20;padding:20px;margin:20px 0"><h4>🔴 Riesgos:</h4><ul><li>Multas STPS por NOM-030, NOM-004, NOM-035: hasta $300,000 MXN</li><li>Riesgo de trabajo no cubierto: el patrón paga 100% con su patrimonio</li></ul></div>
+<div style="background:#f0fff4;border-left:4px solid #38a169;padding:20px"><h4>✅ Ventaja:</h4><p>Diagnóstico Preventivo de Seguridad y formatos DC-3 que demuestran diligencia ante inspectores.</p></div>
+</div>
+
+<h2>⚠ Vicio 3: Gestión Caótica de Propinas</h2>
+<div style="margin:40px 0;padding:30px;border:2px solid #e2e8f0;border-radius:8px">
+<div style="background:#fff5f5;border:1px solid #fed7d7;padding:20px;margin-bottom:20px"><strong>La realidad:</strong>Propinas repartidas verbalmente "por igual" sin reglamento. Dueños hacen de meseros y regañan frente a clientes.</div>
+<div style="background:#fffaf0;border-left:4px solid #dd6b20;padding:20px;margin:20px 0"><h4>🔴 Riesgos:</h4><ul><li>Art. 100 LFT exige reparto escrito de propinas</li><li>Regaños despectivos = despido injustificado Art. 48</li></ul></div>
+<div style="background:#f0fff4;border-left:4px solid #38a169;padding:20px"><h4>✅ Ventaja:</h4><p>Reglamento Interno de Trabajo y Política de Propinas con reglas claras y procedimiento disciplinario legal.</p></div>
+</div>
+
+<div style="background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:white;padding:40px;border-radius:8px;text-align:center;margin:50px 0">
+<h3>Conclusión</h3><p>Normalizar estos vicios no es "ahorro", es un pasivo diferido.</p>
+<a href="https://wa.me/5213111866901" style="display:inline-block;background:white;color:#1e3a5f;padding:15px 35px;text-decoration:none;border-radius:5px;font-weight:700;margin:10px">💬 WhatsApp</a>
+<a href="/diagnostico.html" style="display:inline-block;background:white;color:#1e3a5f;padding:15px 35px;text-decoration:none;border-radius:5px;font-weight:700;margin:10px">📋 Diagnóstico</a>
+</div>
+<a href="/blog.html" style="display:inline-block;margin-top:30px;color:#2c5282;text-decoration:none;font-weight:600">← Volver al Blog</a>
 </div>
 
 <script>
-document.getElementById('btnOpen').onclick=function(){document.getElementById('drawer').style.right='0';document.getElementById('overlay').style.display='block';}
+const drawer=document.getElementById('drawer');const overlay=document.getElementById('overlay');
+document.getElementById('btnOpen').onclick=()=>{drawer.classList.add('open');overlay.classList.add('show');overlay.style.display='block';document.body.style.overflow='hidden';}
+document.getElementById('btnClose').onclick=()=>{drawer.classList.remove('open');overlay.classList.remove('show');overlay.style.display='none';document.body.style.overflow='';}
+overlay.onclick=()=>{drawer.classList.remove('open');overlay.classList.remove('show');overlay.style.display='none';document.body.style.overflow='';}
 </script>
 </body>
 </html>
