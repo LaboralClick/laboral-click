@@ -1,43 +1,68 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nuestro Equipo Binacional - Laboral Click</title>
-<link rel="stylesheet" href="/global.css?v=9">
+<title>Nuestro Equipo Binacional - Laboral Click México EEUU</title>
+<meta name="description" content="Tres abogados, dos generaciones. Más de 25 años protegiendo PyMEs con cobertura binacional CDMX y Wisconsin USA.">
 <style>
-body{margin:0;font-family:Segoe UI,sans-serif;background:#f7fafc}
+body{margin:0;font-family:system-ui,sans-serif;background:#f7fafc;color:#333}
 .lc-header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb}
 .lc-menu-toggle{display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:11px;border-radius:8px;cursor:pointer}
 .lc-menu-toggle span{width:22px;height:2px;background:#fff;display:block}
-#drawer{position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .33s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column}
+#drawer{position:fixed;top:0;right:-100%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .3s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:auto}
 #drawer.open{right:0 !important}
 #overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none}
 #overlay.show{display:block}
-.miembro-foto{width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid #c9a028}
-.miembro-card{background:#fff;padding:35px;border-radius:12px;border:3px solid #c9a028;margin-bottom:30px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero{background:#1e3a5f;color:#fff;padding:50px 20px;text-align:center}
+.card{background:#fff;border:2px solid #c9a028;border-radius:12px;padding:25px;margin-bottom:20px;text-align:center}
+.foto{width:160px;height:160px;border-radius:50%;object-fit:cover;border:3px solid #c9a028}
 </style>
 </head>
 <body>
-<header class="lc-header"><a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:42px"></a><button class="lc-menu-toggle" id="btnOpen"><span></span><span></span><span></span></button></header>
+<header class="lc-header"><a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" width="140" height="42" style="height:42px;width:auto" loading="eager"></a><button class="lc-menu-toggle" id="btnOpen"><span></span><span></span><span></span></button></header>
 <div id="overlay"></div>
 <nav id="drawer">
-<div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #f1f5f9"><b>Menú</b><button id="btnClose" style="border:none;background:#eee;width:32px;height:32px;border-radius:50%">×</button></div>
-<a href="/nosotros.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">👥 Nosotros</a>
-<a href="/filosofia.html" style="padding:12px 24px 12px 40px;text-decoration:none;color:#6B7280">└ Filosofía</a>
-<a href="/nuestro-equipo.html" style="padding:12px 24px 12px 40px;text-decoration:none;color:#1e3a5f;background:#f8fafc;font-weight:700">└ Nuestro Equipo</a>
-<a href="/servicios.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">⚖ Servicios</a>
-<a href="/contacto.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📩 Contacto</a>
-<a href="https://wa.me/5213111866901" style="margin:20px;padding:14px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800">💬 WhatsApp</a>
+<div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #eee"><b>Menú</b><button id="btnClose" style="border:none;background:#eee;width:32px;height:32px;border-radius:50%">×</button></div>
+<a href="/nosotros.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">👥 Nosotros</a>
+<a href="/filosofia.html" style="padding:10px 24px 10px 40px;text-decoration:none;color:#6B7280;font-size:14px">└ Filosofía</a>
+<a href="/nuestro-equipo.html" style="padding:10px 24px 10px 40px;text-decoration:none;color:#1e3a5f;background:#f8fafc;font-weight:700;font-size:14px">└ Nuestro Equipo</a>
+<a href="/servicios.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">⚖ Servicios</a>
+<a href="https://wa.me/5213111866901" style="margin:20px;padding:12px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800">💬 WhatsApp</a>
 </nav>
 
-<div style="background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:#fff;padding:50px 20px;text-align:center"><h1>Nuestro Equipo Binacional</h1><p>🇲🇽 CDMX + 🇺🇸 Wisconsin | Más de 25 años protegiendo PyMEs</p><div style="margin-top:15px"><a href="/nosotros.html" style="color:#c9a028;text-decoration:none">← Volver a Nosotros</a></div></div>
+<div class="hero"><h1 style="margin:0">Nuestro Equipo Binacional</h1><p>🇲🇽 CDMX + 🇺🇸 Wisconsin | 25+ años protegiendo PyMEs</p><a href="/nosotros.html" style="color:#c9a028;text-decoration:none;font-size:14px">← Volver a Nosotros</a></div>
 
-<div style="max-width:900px;margin:40px auto;padding:0 20px">
-<div class="miembro-card" style="background:linear-gradient(135deg,#fef9e7 0%,white 100%)"><img src="/images/lic-segura.webp" class="miembro-foto"><h2 style="margin-top:20px">Lic. Jose Domiciano Segura Diaz</h2><p style="color:#c9a028;font-weight:700">Fundador - Estrategia Laboral para PyMEs</p><p>📍 Ciudad de México</p><p>Más de 25 años de trayectoria directiva en gestión integral de capital humano. Rigor legal con eficiencia operativa, sin tecnicismos.</p></div>
-<div class="miembro-card"><img src="/images/josmir.webp" class="miembro-foto"><h2 style="margin-top:20px">Lic. Josmir Jenedy Segura</h2><p style="color:#c9a028;font-weight:700">Abogada Especialista en Derecho Laboral</p><p>📍 Ciudad de México</p><p>Especialista en contratación y seguridad social. Visión fresca y actualizada del marco normativo.</p></div>
-<div class="miembro-card"><img src="/images/josianel.webp" class="miembro-foto"><h2 style="margin-top:20px">Lic. Josianel Danielis Segura de Carrillo</h2><p style="color:#c9a028;font-weight:700">Abogada Especialista en Derecho Administrativo y Relaciones Binacionales</p><p>🇺🇸 Wisconsin, USA</p><p>Puente legal clave para empresas con operaciones en ambos lados de la frontera México-EEUU.</p></div>
-<div style="background:#fef9e7;border:2px solid #c9a028;padding:30px;border-radius:12px;text-align:center"><h2>🇲🇽 + 🇺🇸 Cobertura Binacional Única</h2><p>¿Trabajadores en México y EEUU? Te cubrimos en ambos lados. Presencia estratégica CDMX + Wisconsin.</p></div>
+<div style="max-width:800px;margin:30px auto;padding:0 20px">
+<div class="card" style="background:linear-gradient(135deg,#fef9e7 0%,#fff 100%)">
+<img src="/images/lic-segura.webp" alt="Lic Jose Segura" class="foto" width="160" height="160" loading="lazy" decoding="async">
+<h2 style="margin:15px 0 5px">Lic. Jose Domiciano Segura Diaz</h2>
+<p style="color:#c9a028;font-weight:700;margin:0">Fundador - Estrategia Laboral PyMEs</p>
+<p style="font-size:13px;color:#6B7280">📍 CDMX</p>
+<p style="font-size:14px">Más de 25 años en gestión de capital humano. Rigor legal sin tecnicismos.</p>
 </div>
+
+<div class="card">
+<img src="/images/josmir.webp" alt="Josmir Segura" class="foto" width="160" height="160" loading="lazy" decoding="async">
+<h2 style="margin:15px 0 5px">Lic. Josmir Jenedy Segura</h2>
+<p style="color:#c9a028;font-weight:700;margin:0">Especialista Derecho Laboral</p>
+<p style="font-size:13px;color:#6B7280">📍 CDMX</p>
+<p style="font-size:14px">Contratación y seguridad social. Visión actualizada del marco normativo.</p>
+</div>
+
+<div class="card">
+<img src="/images/josianel.webp" alt="Josianel Segura" class="foto" width="160" height="160" loading="lazy" decoding="async">
+<h2 style="margin:15px 0 5px">Lic. Josianel Danielis Segura de Carrillo</h2>
+<p style="color:#c9a028;font-weight:700;margin:0">Derecho Administrativo y Binacional</p>
+<p style="font-size:13px;color:#6B7280">🇺🇸 Wisconsin, USA</p>
+<p style="font-size:14px">Puente legal clave para empresas México-EEUU. Mitigación de riesgos jurisdiccionales.</p>
+</div>
+
+<div style="background:#fef9e7;border:2px solid #c9a028;padding:20px;border-radius:12px;text-align:center">
+<h3 style="margin:0 0 8px">🇲🇽 + 🇺🇸 Cobertura Binacional Única</h3>
+<p style="margin:0;font-size:14px">¿Trabajadores en México y EEUU? Somos el único despacho con presencia estratégica CDMX + Wisconsin.</p>
+</div>
+</div>
+
 <script>const d=document.getElementById('drawer'),o=document.getElementById('overlay');document.getElementById('btnOpen').onclick=()=>{d.classList.add('open');o.classList.add('show');o.style.display='block'};document.getElementById('btnClose').onclick=()=>{d.classList.remove('open');o.classList.remove('show')};o.onclick=()=>{d.classList.remove('open');o.classList.remove('show')};</script>
 </body>
 </html>
