@@ -1,229 +1,42 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros | Laboral Click - Derecho Laboral con Visión Operativa</title>
-    <link rel="stylesheet" href="global.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #1a202c;
-            line-height: 1.6;
-            background: #ffffff;
-        }
-        
-        /* HERO - Mismo estilo que restaurantes */
-        .hero-nosotros {
-            background-color: #0f2a5e;
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .hero-nosotros h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        .hero-nosotros h2 {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-        .hero-nosotros em {
-            display: block;
-            font-size: 1.2rem;
-            font-style: italic;
-            max-width: 800px;
-            margin: 0 auto;
-            border-left: 4px solid #c9a028;
-            padding-left: 20px;
-            text-align: left;
-            color: rgba(255,255,255,0.95);
-        }
-        
-        /* SECCIONES */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        .section-alt { background-color: #f8f9fa; }
-        .text-center { text-align: center; }
-        
-        h2 {
-            color: #0f2a5e;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-        h3 {
-            color: #0f2a5e;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        p {
-            color: #1a202c;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        /* CAJA DE PROMESA */
-        .promise-box {
-            background-color: #fffef5;
-            border: 3px solid #c9a028;
-            border-radius: 12px;
-            padding: 40px;
-            margin-top: 2rem;
-            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.15);
-        }
-        
-        /* LISTA PERSONALIZADA */
-        .custom-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-        .custom-list li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: #1a202c;
-        }
-        .custom-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #c9a028;
-            font-weight: 900;
-            font-size: 1.3rem;
-        }
-        .custom-list strong {
-            color: #0f2a5e;
-        }
-
-        /* BOTONES */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-        }
-        .btn-gold {
-            background-color: #c9a028;
-            color: white;
-        }
-        .btn-gold:hover {
-            background-color: #b89224;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.4);
-        }
-
-        /* CTA FINAL */
-        .cta-final {
-            background-color: #0f2a5e;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .cta-final h2 { color: white; }
-        .cta-final p { color: rgba(255,255,255,0.9); }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-nosotros h1 { font-size: 2rem; }
-            .hero-nosotros h2 { font-size: 1.3rem; }
-            .section { padding: 40px 20px; }
-            h2 { font-size: 1.6rem; }
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nosotros - Laboral Click</title>
+<link rel="stylesheet" href="/global.css?v=9">
+<style>
+body{margin:0;font-family:Segoe UI,sans-serif;background:#f7fafc}
+.lc-header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb}
+.lc-menu-toggle{display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:11px;border-radius:8px;cursor:pointer}
+.lc-menu-toggle span{width:22px;height:2px;background:#fff;display:block}
+#drawer{position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .33s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow-y:auto}
+#drawer.open{right:0 !important}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none}
+#overlay.show{display:block}
+.hero{background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:#fff;padding:70px 20px;text-align:center}
+.grid{max-width:1000px;margin:40px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:20px}
+.card{background:#fff;border:3px solid #c9a028;border-radius:12px;padding:30px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.card h3{color:#0a2463;margin:15px 0}
+.btn{display:inline-block;margin-top:15px;background:#1e3a5f;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-           <nav class="nav">
-    <a href="index.html" class="logo">
-        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-        <span>Asesoría Legal sin Enredos</span>
-    </a>
-    <div id="menu-container"></div>
+<header class="lc-header"><a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:42px"></a><button class="lc-menu-toggle" id="btnOpen"><span></span><span></span><span></span></button></header>
+<div id="overlay"></div>
+<nav id="drawer">
+<div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #f1f5f9"><b>Menú</b><button id="btnClose" style="border:none;background:#f1f5f9;width:36px;height:36px;border-radius:50%">×</button></div>
+<a href="/index.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">🏠 Inicio</a>
+<a href="/nosotros.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;background:#f8fafc;font-weight:700">👥 Nosotros</a>
+<a href="/servicios.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">⚖ Servicios</a>
+<a href="/blog.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📝 Blog</a>
+<a href="/contacto.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📩 Contacto</a>
 </nav>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero-nosotros">
-        <h1>Nuestra Filosofía</h1>
-        <h2>Derecho Laboral con Visión Operativa Real</h2>
-        <em>"Protegemos el patrimonio de las PyMEs mexicanas desde la trinchera operativa, no solo desde el escritorio."</em>
-    </section>
-
-    <!-- INTRODUCCIÓN -->
-    <section class="section text-center">
-        <h2>Más que un despacho, un aliado estratégico</h2>
-        <p style="max-width: 800px; margin: 0 auto 1rem auto;">En Laboral Click, entendemos que el cumplimiento normativo no debe ser un obstáculo burocrático, sino el mayor activo de protección para su negocio.</p>
-        <p style="max-width: 800px; margin: 0 auto;">A diferencia de los despachos tradicionales que diseñan estrategias únicamente desde la teoría jurídica, nuestra metodología se forjó en la intersección entre la Ley Federal del Trabajo (LFT) y la realidad operativa de los negocios en la CDMX.</p>
-    </section>
-
-    <!-- METODOLOGÍA -->
-    <section class="section section-alt">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2>Una metodología nacida en el campo operativo</h2>
-            <p>Nuestro director, el Lic. Jose Domiciano Segura Díaz, complementó su sólida trayectoria en derecho laboral corporativo y gerencia con una inmersión operativa directa en el sector gastronómico. Esta experiencia de campo nos permitió identificar con precisión los puntos de fricción reales que generan el 90% de las demandas laborales en PyMEs:</p>
-            
-            <ul class="custom-list">
-                <li><strong>Confusión de roles operativos:</strong> Contrataciones genéricas que encubren funciones múltiples y generan pasivos ocultos.</li>
-                <li><strong>Informalidad en la gestión de propinas:</strong> Repartos verbales sin reglamento escrito, violando el Art. 100 de la LFT.</li>
-                <li><strong>Vulneraciones a las NOMs de la STPS:</strong> Ausencia de equipo de protección personal y condiciones inseguras.</li>
-                <li><strong>Clima laboral tóxico no documentado:</strong> Prácticas que derivan en rescisiones injustificadas y demandas costosas.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- PROMESA -->
-    <section class="section">
-        <div class="promise-box text-center">
-            <h2>Nuestra Promesa</h2>
-            <p>No le entregamos solo documentos legales. Le entregamos protocolos blindados, diseñados para aplicarse en el día a día de su operación.</p>
-            <br>
-            <strong style="color: #0f2a5e; font-size: 1.15rem;">Transformamos su operación informal en un negocio blindado, sin frenar su dinámica diaria.</strong>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="cta-final">
-        <h2>¿Listo para blindar su operación?</h2>
-        <p>Conozca la metodología que está protegiendo a las PyMEs más visionarias de la CDMX.</p>
-        <a href="diagnostico.html" class="btn btn-gold">Solicitar Diagnóstico Express Gratuito</a>
-    </section>
-
-    <footer style="text-align: center; padding: 40px; background: #0f2a5e; color: white;">
-        <p>© 2026 Laboral Click - Todos los derechos reservados</p>
-    </footer>
-    <script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
-       <script src="/menu.js"></script>
+<div class="hero"><h1>Nosotros</h1><p>Tres abogados, dos generaciones, cobertura binacional México-EEUU</p></div>
+<div class="grid">
+<div class="card"><div style="font-size:50px">🧭</div><h3>Nuestra Filosofía</h3><p>Asesoría Legal sin Enredos. Valores, misión y cómo protegemos el patrimonio de las PyMEs.</p><a href="/filosofia.html" class="btn">Ver Filosofía</a></div>
+<div class="card"><div style="font-size:50px">👨‍⚖️👩‍⚖️</div><h3>Nuestro Equipo</h3><p>Conoce a los 3 abogados, reseñas, y nuestra presencia estratégica CDMX + Wisconsin para servicio binacional.</p><a href="/nuestro-equipo.html" class="btn">Ver Equipo</a></div>
+</div>
+<script>const d=document.getElementById('drawer'),o=document.getElementById('overlay');document.getElementById('btnOpen').onclick=()=>{d.classList.add('open');o.classList.add('show');o.style.display='block'};document.getElementById('btnClose').onclick=()=>{d.classList.remove('open');o.classList.remove('show')};o.onclick=()=>{d.classList.remove('open');o.classList.remove('show')};</script>
 </body>
 </html>
