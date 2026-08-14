@@ -3,40 +3,38 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nosotros - Laboral Click</title>
-<link rel="stylesheet" href="/global.css?v=9">
 <style>
-body{margin:0;font-family:Segoe UI,sans-serif;background:#f7fafc}
+body{margin:0;font-family:system-ui,Segoe UI,sans-serif;background:#f7fafc}
 .lc-header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb}
 .lc-menu-toggle{display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:11px;border-radius:8px;cursor:pointer}
 .lc-menu-toggle span{width:22px;height:2px;background:#fff;display:block}
-#drawer{position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .33s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow-y:auto}
+#drawer{position:fixed;top:0;right:-100%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .3s;box-shadow:-12px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column}
 #drawer.open{right:0 !important}
 #overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none}
 #overlay.show{display:block}
-.hero{background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 100%);color:#fff;padding:70px 20px;text-align:center}
-.grid{max-width:1000px;margin:40px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:20px}
-.card{background:#fff;border:3px solid #c9a028;border-radius:12px;padding:30px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.08)}
-.card h3{color:#0a2463;margin:15px 0}
-.btn{display:inline-block;margin-top:15px;background:#1e3a5f;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700}
+.hero{background:#1e3a5f;color:#fff;padding:60px 20px;text-align:center}
+.grid{max-width:1000px;margin:30px auto;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 20px}
+.card{background:#fff;border:2px solid #c9a028;border-radius:12px;padding:25px;text-align:center}
+.btn{display:inline-block;margin-top:12px;background:#1e3a5f;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:700}
 @media(max-width:768px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header class="lc-header"><a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:42px"></a><button class="lc-menu-toggle" id="btnOpen"><span></span><span></span><span></span></button></header>
+<header class="lc-header"><a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" width="140" height="42" style="height:42px;width:auto"></a><button class="lc-menu-toggle" id="btnOpen" aria-label="Menu"><span></span><span></span><span></span></button></header>
 <div id="overlay"></div>
 <nav id="drawer">
-<div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #f1f5f9"><b>Menú</b><button id="btnClose" style="border:none;background:#f1f5f9;width:36px;height:36px;border-radius:50%">×</button></div>
-<a href="/index.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;border-bottom:1px solid #f8fafc">🏠 Inicio</a>
-<a href="/nosotros.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;background:#f8fafc;font-weight:700">👥 Nosotros</a>
-<a href="/servicios.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">⚖ Servicios</a>
-<a href="/blog.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📝 Blog</a>
-<a href="/contacto.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f">📩 Contacto</a>
+<div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #eee"><b>Menú</b><button id="btnClose" style="border:none;background:#f1f5f9;width:32px;height:32px;border-radius:50%">×</button></div>
+<a href="/index.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">🏠 Inicio</a>
+<a href="/nosotros.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f;background:#f8fafc;font-weight:700">👥 Nosotros</a>
+<a href="/servicios.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">⚖ Servicios</a>
+<a href="/blog.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">📝 Blog</a>
+<a href="/contacto.html" style="padding:14px 24px;text-decoration:none;color:#1e3a5f">📩 Contacto</a>
 </nav>
-<div class="hero"><h1>Nosotros</h1><p>Tres abogados, dos generaciones, cobertura binacional México-EEUU</p></div>
+<div class="hero"><h1 style="margin:0">Nosotros</h1><p style="opacity:.9">Tres abogados, dos generaciones, cobertura binacional México-EEUU</p></div>
 <div class="grid">
-<div class="card"><div style="font-size:50px">🧭</div><h3>Nuestra Filosofía</h3><p>Asesoría Legal sin Enredos. Valores, misión y cómo protegemos el patrimonio de las PyMEs.</p><a href="/filosofia.html" class="btn">Ver Filosofía</a></div>
-<div class="card"><div style="font-size:50px">👨‍⚖️👩‍⚖️</div><h3>Nuestro Equipo</h3><p>Conoce a los 3 abogados, reseñas, y nuestra presencia estratégica CDMX + Wisconsin para servicio binacional.</p><a href="/nuestro-equipo.html" class="btn">Ver Equipo</a></div>
+<div class="card"><div style="font-size:40px">🧭</div><h3>Nuestra Filosofía</h3><p style="font-size:14px;color:#555">Valores, misión y cómo protegemos el patrimonio PyME sin enredos.</p><a href="/filosofia.html" class="btn">Ver Filosofía</a></div>
+<div class="card"><div style="font-size:40px">👨‍⚖️</div><h3>Nuestro Equipo</h3><p style="font-size:14px;color:#555">3 abogados, reseñas y presencia CDMX + Wisconsin.</p><a href="/nuestro-equipo.html" class="btn">Ver Equipo</a></div>
 </div>
-<script>const d=document.getElementById('drawer'),o=document.getElementById('overlay');document.getElementById('btnOpen').onclick=()=>{d.classList.add('open');o.classList.add('show');o.style.display='block'};document.getElementById('btnClose').onclick=()=>{d.classList.remove('open');o.classList.remove('show')};o.onclick=()=>{d.classList.remove('open');o.classList.remove('show')};</script>
+<script>const d=document.getElementById('drawer'),o=document.getElementById('overlay');document.getElementById('btnOpen').onclick=()=>{d.classList.add('open');o.classList.add('show');o.style.display='block';document.body.style.overflow='hidden'};document.getElementById('btnClose').onclick=()=>{d.classList.remove('open');o.classList.remove('show');document.body.style.overflow=''};o.onclick=()=>{d.classList.remove('open');o.classList.remove('show');document.body.style.overflow=''};</script>
 </body>
 </html>
