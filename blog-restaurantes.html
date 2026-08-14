@@ -8,168 +8,33 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a202c; line-height: 1.6; background: #fff; }
-        
-        .blog-header {
-            background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .blog-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .blog-meta {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.95rem;
-            margin-top: 1rem;
-        }
-        .blog-subtitle {
-            max-width: 750px;
-            margin: 1.5rem auto 0 auto;
-            color: rgba(255,255,255,0.92);
-            font-size: 1.15rem;
-            line-height: 1.6;
-        }
-        .blog-hero-image {
-            max-width: 900px;
-            margin: 0 auto 3rem auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        }
-        .blog-hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .blog-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        .blog-content h2 {
-            color: #0f2a5e;
-            margin: 2.5rem 0 1rem 0;
-            font-size: 1.8rem;
-            border-left: 4px solid #c9a028;
-            padding-left: 15px;
-        }
-        .blog-content h3 {
-            color: #0f2a5e;
-            margin: 2rem 0 0.8rem 0;
-            font-size: 1.4rem;
-        }
-        .blog-content p {
-            margin-bottom: 1.5rem;
-            color: #1a202c;
-        }
-        .blog-content ul {
-            margin: 1rem 0 1.5rem 2rem;
-        }
-        .blog-content li {
-            margin-bottom: 0.8rem;
-            color: #4a5568;
-            line-height: 1.6;
-        }
-        .blog-content strong {
-            color: #0f2a5e;
-        }
-        
-        .blog-image {
-            margin: 2rem 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .blog-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .blog-image figcaption {
-            background: #f8f9fa;
-            padding: 12px;
-            font-size: 0.9rem;
-            color: #4a5568;
-            text-align: center;
-            font-style: italic;
-        }
-        
-        .highlight-box {
-            background: #fffef5;
-            border-left: 4px solid #c9a028;
-            padding: 25px 30px;
-            margin: 2rem 0;
-            border-radius: 8px;
-        }
-        .highlight-box h3 {
-            color: #c9a028;
-            margin-bottom: 0.8rem;
-            margin-top: 0;
-        }
-        
-        .cta-box {
-            background: #0f2a5e;
-            color: white;
-            padding: 40px;
-            margin: 3rem 0;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .cta-box h3 {
-            color: #c9a028;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        .cta-box p {
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 1.5rem;
-        }
-        
-        .btn-gold {
-            display: inline-block;
-            background: #c9a028;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-        .btn-gold:hover {
-            background: #b89224;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201,160,40,0.4);
-        }
-        
-        .back-to-blog {
-            max-width: 800px;
-            margin: 2rem auto 3rem auto;
-            padding: 0 20px;
-        }
-        .back-to-blog a {
-            color: #0f2a5e;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .back-to-blog a:hover {
-            color: #c9a028;
-        }
-        
-        @media (max-width: 768px) {
-            .blog-header h1 { font-size: 1.8rem; }
-            .blog-subtitle { font-size: 1rem; }
-            .blog-content h2 { font-size: 1.5rem; }
-            .blog-content { font-size: 1rem; }
-            .cta-box { padding: 30px 20px; }
-        }
+        .blog-header { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 80px 20px; text-align: center; }
+        .blog-header h1 { font-size: 2.5rem; margin-bottom: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .blog-meta { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-top: 1rem; }
+        .blog-subtitle { max-width: 750px; margin: 1.5rem auto 0 auto; color: rgba(255,255,255,0.92); font-size: 1.15rem; line-height: 1.6; }
+        .blog-hero-image { max-width: 900px; margin: 0 auto 3rem auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .blog-hero-image img { width: 100%; height: auto; display: block; }
+        .blog-content { max-width: 800px; margin: 0 auto; padding: 0 20px 60px 20px; font-size: 1.1rem; line-height: 1.8; }
+        .blog-content h2 { color: #0f2a5e; margin: 2.5rem 0 1rem 0; font-size: 1.8rem; border-left: 4px solid #c9a028; padding-left: 15px; }
+        .blog-content h3 { color: #0f2a5e; margin: 2rem 0 0.8rem 0; font-size: 1.4rem; }
+        .blog-content p { margin-bottom: 1.5rem; color: #1a202c; }
+        .blog-content ul { margin: 1rem 0 1.5rem 2rem; }
+        .blog-content li { margin-bottom: 0.8rem; color: #4a5568; line-height: 1.6; }
+        .blog-content strong { color: #0f2a5e; }
+        .blog-image { margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .blog-image img { width: 100%; height: auto; display: block; }
+        .blog-image figcaption { background: #f8f9fa; padding: 12px; font-size: 0.9rem; color: #4a5568; text-align: center; font-style: italic; }
+        .highlight-box { background: #fffef5; border-left: 4px solid #c9a028; padding: 25px 30px; margin: 2rem 0; border-radius: 8px; }
+        .highlight-box h3 { color: #c9a028; margin-bottom: 0.8rem; margin-top: 0; }
+        .cta-box { background: #0f2a5e; color: white; padding: 40px; margin: 3rem 0; border-radius: 12px; text-align: center; }
+        .cta-box h3 { color: #c9a028; margin-bottom: 1rem; font-size: 1.5rem; }
+        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; }
+        .btn-gold { display: inline-block; background: #c9a028; color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.3s; }
+        .btn-gold:hover { background: #b89224; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(201,160,40,0.4); }
+        .back-to-blog { max-width: 800px; margin: 2rem auto 3rem auto; padding: 0 20px; }
+        .back-to-blog a { color: #0f2a5e; text-decoration: none; font-weight: 600; }
+        .back-to-blog a:hover { color: #c9a028; }
+        @media (max-width: 768px) { .blog-header h1 { font-size: 1.8rem; } .blog-subtitle { font-size: 1rem; } .blog-content h2 { font-size: 1.5rem; } .blog-content { font-size: 1rem; } .cta-box { padding: 30px 20px; } }
     </style>
 </head>
 <body>
@@ -220,7 +85,7 @@
         </figure>
 
         <h3>2. Propinas sin control: reparto verbal sin reglamento</h3>
-        <p>El Artículo 100 de la Ley Federal del Trabajo es claro: <strong>las propinas deben repartirse conforme a un reglamento escrito</strong>. Si usted reparte propinas de forma verbal, "según el criterio del gerente", está violando la ley.</p>
+        <p>Los artículos <strong>346 y 347 de la Ley Federal del Trabajo</strong> son claros: <strong>las propinas son parte del salario del trabajador y los patrones no pueden retenerlas ni reservárselas</strong>. Si usted reparte propinas de forma verbal, "según el criterio del gerente", está violando la ley.</p>
         
         <p>Además, un reparto injusto de propinas genera resentimiento entre el personal de piso y cocina, lo que deriva en conflictos internos y renuncias masivas.</p>
 
@@ -242,7 +107,7 @@
         <p>La Ley Federal del Trabajo y la STPS establecen obligaciones específicas para el sector gastronómico que muchos dueños desconocen:</p>
         
         <ul>
-            <li><strong>Propinas:</strong> Deben repartirse conforme a un reglamento escrito (Art. 100 LFT)</li>
+            <li><strong>Propinas:</strong> Son parte del salario del trabajador y su reparto debe sujetarse a reglas claras (Arts. 346 y 347 LFT)</li>
             <li><strong>Contratos:</strong> El personal de cocina, piso y limpieza debe tener contratos específicos por puesto</li>
             <li><strong>Jornadas:</strong> No pueden exceder los límites legales sin pago de horas extras</li>
             <li><strong>Seguridad:</strong> Cumplimiento de NOM-035 (factores de riesgo psicosocial) y NOM-030 (servicios preventivos de seguridad)</li>
@@ -254,7 +119,7 @@
         
         <ul>
             <li><strong>Contratos específicos:</strong> Para meseros, cocineros, ayudantes de cocina, personal de limpieza y personal eventual</li>
-            <li><strong>Reglamento de propinas:</strong> Cumpliendo el Art. 100 LFT, con criterios claros y transparentes</li>
+            <li><strong>Reglamento de propinas:</strong> Cumpliendo los arts. 346 y 347 LFT, con criterios claros y transparentes</li>
             <li><strong>Control de turnos:</strong> Formato de asistencia que protege tanto al empleado como al patrón</li>
             <li><strong>Protocolos de incidencias:</strong> Qué hacer cuando alguien abandona el turno, renuncia o falta</li>
             <li><strong>Asesoría 24/7:</strong> Porque en restaurantes los problemas no esperan a horario de oficina</li>
