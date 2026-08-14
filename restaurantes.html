@@ -7,297 +7,82 @@
     <link rel="stylesheet" href="global.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #1a202c;
-            line-height: 1.6;
-            background: #ffffff;
-        }
-        
-        /* HERO */
-        .hero-rest {
-            background-color: #0f2a5e;
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .hero-rest h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        .hero-rest p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-        }
-        
-        /* SECCIONES */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a202c; line-height: 1.6; background: #fff; }
+        .hero-rest { background-color: #0f2a5e; color: white; padding: 80px 20px; text-align: center; }
+        .hero-rest h1 { color: white; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero-rest p { color: rgba(255,255,255,0.9); font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem auto; }
+        .section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
         .section-alt { background-color: #f8f9fa; }
         .section-light { background-color: #f0f4f8; }
         .text-center { text-align: center; }
-        
-        h2 {
-            color: #0f2a5e;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-        h3 {
-            color: #0f2a5e;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        p {
-            color: #1a202c;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        /* GRID */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-top: 2rem;
-        }
-        @media (min-width: 768px) {
-            .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* TARJETAS PILARES */
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-top: 4px solid #c9a028;
-            transition: transform 0.3s;
-        }
+        h2 { color: #0f2a5e; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; font-weight: 700; }
+        h3 { color: #0f2a5e; font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 700; }
+        p { color: #1a202c; font-size: 1.05rem; line-height: 1.7; }
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 2rem; }
+        @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3,1fr); } }
+        .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #c9a028; transition: transform 0.3s; }
         .card:hover { transform: translateY(-5px); }
-
-        /* TARJETAS DE PRECIOS - Estilo igual a página de precios */
-        .pricing-wrapper {
-            position: relative;
-        }
-        .pricing-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 2px solid #c9a028;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .pricing-card.featured {
-            border: 3px solid #c9a028;
-            background-color: #fffef5;
-            transform: scale(1.03);
-            box-shadow: 0 8px 24px rgba(201, 160, 40, 0.2);
-        }
-        .badge-top {
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #c9a028;
-            color: white;
-            padding: 6px 24px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            white-space: nowrap;
-            z-index: 10;
-        }
-        .plan-subtitle {
-            font-size: 0.85rem;
-            color: #c9a028;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #0f2a5e;
-            margin: 1rem 0;
-        }
-        .price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #4a5568;
-        }
-        .features-list {
-            list-style: none;
-            margin: 1.5rem 0;
-            flex-grow: 1;
-        }
-        .features-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #edf2f7;
-            font-size: 0.9rem;
-            color: #1a202c;
-        }
-        .features-list li::before {
-            content: '✓';
-            color: #c9a028;
-            font-weight: 900;
-            margin-right: 10px;
-        }
-
-        /* BOTONES */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-            font-size: 1rem;
-        }
-        .btn-gold {
-            background-color: #c9a028;
-            color: white;
-        }
-        .btn-gold:hover {
-            background-color: #b89224;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.4);
-        }
-        .btn-white {
-            background-color: white;
-            color: #0f2a5e;
-        }
-        .btn-white:hover {
-            background-color: #f7fafc;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .btn-outline {
-            background-color: white;
-            color: #c9a028;
-            border: 2px solid #c9a028;
-            width: 100%;
-            margin-top: auto;
-        }
-        .btn-outline:hover {
-            background-color: #c9a028;
-            color: white;
-            transform: translateY(-2px);
-        }
-        .btn-filled {
-            background-color: #c9a028;
-            color: white;
-            width: 100%;
-            margin-top: auto;
-        }
-        .btn-filled:hover {
-            background-color: #b89224;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 160, 40, 0.4);
-        }
-
-        /* CTA FINAL */
-        .cta-final {
-            background-color: #0f2a5e;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
+        .pricing-wrapper { position: relative; }
+        .pricing-card { background: white; border-radius: 12px; padding: 30px 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #c9a028; display: flex; flex-direction: column; height: 100%; }
+        .pricing-card.featured { border: 3px solid #c9a028; background-color: #fffef5; transform: scale(1.03); box-shadow: 0 8px 24px rgba(201,160,40,0.2); }
+        .badge-top { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); background-color: #c9a028; color: white; padding: 6px 24px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; z-index: 10; }
+        .plan-subtitle { font-size: 0.85rem; color: #c9a028; font-weight: 600; margin-bottom: 1rem; }
+        .price { font-size: 2.5rem; font-weight: 800; color: #0f2a5e; margin: 1rem 0; }
+        .price span { font-size: 1rem; font-weight: 400; color: #4a5568; }
+        .features-list { list-style: none; margin: 1.5rem 0; flex-grow: 1; }
+        .features-list li { padding: 10px 0; border-bottom: 1px solid #edf2f7; font-size: 0.9rem; color: #1a202c; }
+        .features-list li::before { content: '✓'; color: #c9a028; font-weight: 900; margin-right: 10px; }
+        .btn { display: inline-block; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.3s; cursor: pointer; border: none; text-align: center; font-size: 1rem; }
+        .btn-gold { background-color: #c9a028; color: white; }
+        .btn-gold:hover { background-color: #b89224; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(201,160,40,0.4); }
+        .btn-outline { background-color: white; color: #c9a028; border: 2px solid #c9a028; width: 100%; margin-top: auto; }
+        .btn-outline:hover { background-color: #c9a028; color: white; transform: translateY(-2px); }
+        .btn-filled { background-color: #c9a028; color: white; width: 100%; margin-top: auto; }
+        .btn-filled:hover { background-color: #b89224; transform: translateY(-2px); }
+        .cta-final { background-color: #0f2a5e; color: white; text-align: center; padding: 60px 20px; }
         .cta-final h2 { color: white; }
         .cta-final p { color: rgba(255,255,255,0.9); }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-rest h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.6rem; }
-            .pricing-card.featured { transform: scale(1); }
-        }
+        footer { background: #0f2a5e; color: white; text-align: center; padding: 30px 20px; }
+        footer p { font-size: 0.9rem; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-rest h1 { font-size: 1.8rem; } h2 { font-size: 1.6rem; } .pricing-card.featured { transform: scale(1); } }
     </style>
 </head>
 <body>
-   <header>
-    <div class="container">
-        <nav class="nav">
-            <a href="index.html" class="logo">
-                <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-                <span>Asesoría Legal sin Enredos</span>
-            </a>
-            <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-            <ul class="nav-links" id="navMenu">
-                <button class="menu-close-btn" onclick="document.getElementById('navMenu').classList.remove('open')">✕</button>
-                <li><a href="index.html">Inicio</a></li>
-                <li class="has-dropdown">
-                    <a href="nosotros.html">Nosotros</a>
-                    <ul class="dropdown">
-                        <li><a href="nosotros.html">Filosofía</a></li>
-                        <li><a href="equipo.html">Equipo</a></li>
-                    </ul>
-                </li>
-                <li class="has-dropdown">
-                    <a href="restaurantes.html">Servicios</a>
-                    <ul class="dropdown">
-                        <li><a href="restaurantes.html">Restaurantes</a></li>
-                    </ul>
-                </li>
-                <li><a href="calculadoras.html">Calculadoras</a></li>
-                <li><a href="diagnostico.html">Diagnóstico</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-            <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+                    <span>Asesoría Legal sin Enredos</span>
+                </a>
+                <div id="menu-container"></div>
+            </nav>
+        </div>
+    </header>
 
-    <!-- HERO -->
     <section class="hero-rest">
         <h1>Blindaje Laboral Especializado para Restaurantes y Gastronomía en la CDMX</h1>
         <p>Proteja su operación contra demandas, multas de la STPS y pasivos ocultos del IMSS, con protocolos diseñados para la realidad de su cocina y salón.</p>
         <a href="diagnostico.html" class="btn btn-gold">Solicitar Diagnóstico Express Gratuito</a>
     </section>
 
-    <!-- PROBLEMA -->
     <section class="section text-center">
         <h2>El problema real de los restaurantes en México</h2>
         <p style="max-width: 800px; margin: 0 auto;">En el giro restaurantero, la rotación de personal es inevitable. El peligro no es que su personal se vaya, sino cómo se va si no hay reglas claras desde el día 1. Un mesero inconforme, un cocinero que abandona el turno o una inspección sorpresa de la STPS pueden costarle más de lo que ha ganado en meses.</p>
     </section>
 
-    <!-- PILARES -->
     <section class="section section-alt">
         <h2>Nuestros Pilares de Protección</h2>
         <div class="grid-3">
-            <div class="card">
-                <h3>Contratación Blindada</h3>
-                <p>Periodos de prueba, contratos específicos y altas correctas ante el IMSS desde el día 1.</p>
-            </div>
-            <div class="card">
-                <h3>Gestión de Nómina y Propinas</h3>
-                <p>Cumplimiento estricto del Art. 100 LFT. Reglamentos internos que evitan conflictos entre piso y cocina.</p>
-            </div>
-            <div class="card">
-                <h3>Respuesta a Incidencias 24/7</h3>
-                <p>Protocolos inmediatos de abandono de turno, renuncias voluntarias y atención de finiquitos.</p>
-            </div>
+            <div class="card"><h3>Contratación Blindada</h3><p>Periodos de prueba, contratos específicos y altas correctas ante el IMSS desde el día 1.</p></div>
+            <div class="card"><h3>Gestión de Nómina y Propinas</h3><p>Cumplimiento estricto del Art. 100 LFT. Reglamentos internos que evitan conflictos entre piso y cocina.</p></div>
+            <div class="card"><h3>Respuesta a Incidencias 24/7</h3><p>Protocolos inmediatos de abandono de turno, renuncias voluntarias y atención de finiquitos.</p></div>
         </div>
     </section>
 
-    <!-- PLANES -->
     <section class="section">
         <h2>Planes de Blindaje Restaurantero</h2>
         <div class="grid-3">
-            <!-- Plan Emprende -->
             <div class="pricing-wrapper">
                 <div class="pricing-card">
                     <h3>🛡️ Plan Emprende</h3>
@@ -309,11 +94,9 @@
                         <li>Finiquitos exprés (24 hrs)</li>
                         <li>Asesoría WhatsApp 24/7</li>
                     </ul>
-                    <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
+                    <a href="https://wa.me/5213111866901?text=Hola,%20me%20interesa%20el%20Plan%20Emprende%20para%20mi%20restaurante" class="btn btn-outline" target="_blank">Elegir Plan Emprende</a>
                 </div>
             </div>
-
-            <!-- Plan Pro (Destacado) -->
             <div class="pricing-wrapper">
                 <div class="badge-top">⭐ MÁS POPULAR</div>
                 <div class="pricing-card featured">
@@ -326,11 +109,9 @@
                         <li>Control de turnos y personal eventual</li>
                         <li>Capacitación a gerentes en faltas</li>
                     </ul>
-                    <a href="diagnostico.html" class="btn btn-filled">Elegir Plan</a>
+                    <a href="https://wa.me/5213111866901?text=Hola,%20me%20interesa%20el%20Plan%20Pro%20para%20mi%20restaurante" class="btn btn-filled" target="_blank">Elegir Plan Pro</a>
                 </div>
             </div>
-
-            <!-- Plan Master -->
             <div class="pricing-wrapper">
                 <div class="pricing-card">
                     <h3>🛡️ Plan Master</h3>
@@ -342,42 +123,30 @@
                         <li>Atención a inspecciones STPS/IMSS</li>
                         <li>Abogado patronal de cabecera</li>
                     </ul>
-                    <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
+                    <a href="https://wa.me/5213111866901?text=Hola,%20me%20interesa%20el%20Plan%20Master%20para%20mi%20restaurante" class="btn btn-outline" target="_blank">Elegir Plan Master</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AUTORIDAD -->
     <section class="section section-light text-center">
         <h3 style="color: #0f2a5e; margin-bottom: 1rem; font-weight: 700;">Metodología forjada en la operación real</h3>
         <p style="max-width: 800px; margin: 0 auto;">Nuestros protocolos no nacen en un escritorio. Nacen de entender la presión de un servicio de viernes por la noche, la rotación de cocina y los riesgos reales de la gastronomía en la CDMX.</p>
     </section>
 
-    <!-- CTA FINAL -->
     <section class="cta-final">
         <h2>¿Su restaurante está protegido hoy?</h2>
-        <p>Realice nuestro Diagnóstico Express de 1 Minuto (completamente gratis) y detecte si tiene una bomba de tiempo en su cocina.</p>
+        <p>Realice nuestro Diagnóstico Express de 2 Minutos (completamente gratis) y detecte si tiene una bomba de tiempo en su cocina.</p>
         <a href="diagnostico.html" class="btn btn-gold">👉 EVALUAR MI RESTAURANTE AQUÍ</a>
         <p style="margin-top: 2rem; font-size: 0.9rem;">WhatsApp directo: 311 186 6901 | Web: laboralclick.com.mx</p>
     </section>
 
-    <footer style="text-align: center; padding: 40px; background: #0f2a5e; color: white;">
-        <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    <footer>
+        <div class="container">
+            <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+        </div>
     </footer>
-    <script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
+
+    <script src="menu.js"></script>
 </body>
 </html>
