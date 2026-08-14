@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <style>
+.lc-header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb}
+.lc-menu-toggle{display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:10px;border-radius:8px;cursor:pointer}
+.lc-menu-toggle span{width:22px;height:2px;background:#fff;display:block}
+.lc-side-drawer{position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;box-shadow:-10px 0 20px rgba(0,0,0,.2);transition:right .3s;display:flex;flex-direction:column}
+.lc-side-drawer.open{right:0 !important}
+.lc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none}
+.lc-overlay.show{display:block}
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Descubra los 3 vicios laborales informales más comunes en restaurantes de la CDMX y cómo blindarse legalmente contra demandas y multas de la STPS.">
@@ -327,6 +336,16 @@
 <a href="/blog.html" class="back-link">← Volver al Blog</a>
     </div>
 
-    <script src="/menu.js"></script>
+    <header class="lc-header">
+  <a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:40px"></a>
+  <button class="lc-menu-toggle" onclick="document.querySelector('.lc-side-drawer').classList.add('open');document.querySelector('.lc-overlay').classList.add('show')"><span></span><span></span><span></span></button>
+</header>
+<div class="lc-overlay" onclick="this.classList.remove('show');document.querySelector('.lc-side-drawer').classList.remove('open')"></div>
+<nav class="lc-side-drawer">
+  <div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #eee"><b>Menú</b><button onclick="document.querySelector('.lc-side-drawer').classList.remove('open');document.querySelector('.lc-overlay').classList.remove('show')" style="border:none;background:#eee;width:30px;height:30px;border-radius:50%">×</button></div>
+  <a href="/index.html" style="padding:15px 20px;text-decoration:none;color:#1e3a5f;display:block">🏠 Inicio</a>
+  <a href="/blog.html" style="padding:15px 20px;text-decoration:none;color:#1e3a5f;display:block">📝 Blog</a>
+  <a href="/contacto.html" style="padding:15px 20px;text-decoration:none;color:#1e3a5f;display:block">📩 Contacto</a>
+</nav>
 </body>
 </html>
