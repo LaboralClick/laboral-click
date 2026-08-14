@@ -125,5 +125,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
  
        <script src="/menu.js"></script>
-</body>
+<body>
+<header class="lc-header" style="position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #e5e7eb">
+  <a href="/index.html"><img src="/images/logoH.png" alt="Laboral Click" style="height:40px"></a>
+  <button class="lc-menu-toggle" style="display:flex;flex-direction:column;gap:5px;background:#1e3a5f;border:none;padding:10px;border-radius:8px" onclick="document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show')"><span style="width:22px;height:2px;background:#fff;display:block"></span><span style="width:22px;height:2px;background:#fff;display:block"></span><span style="width:22px;height:2px;background:#fff;display:block"></span></button>
+</header>
+<div id="overlay" class="lc-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none" onclick="this.classList.remove('show');this.style.display='none';document.getElementById('drawer').classList.remove('open')"></div>
+<nav id="drawer" class="lc-side-drawer" style="position:fixed;top:0;right:-110%;width:340px;max-width:85%;height:100vh;background:#fff;z-index:9999;transition:right .3s;box-shadow:-10px 0 20px rgba(0,0,0,.2)">
+  <div style="padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #eee"><b>Menú</b><button onclick="document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')" style="border:none;background:#eee;width:32px;height:32px;border-radius:50%">×</button></div>
+  <a href="/index.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">🏠 Inicio</a>
+  <a href="/nosotros.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">👥 Nosotros</a>
+  <a href="/servicios.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">⚖️ Servicios</a>
+  <a href="/calculadoras.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">🧮 Calculadoras</a>
+  <a href="/blog.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">📝 Blog</a>
+  <a href="/diagnostico.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block;border-bottom:1px solid #f8fafc">⚡ Diagnóstico Express</a>
+  <a href="/contacto.html" style="padding:16px 24px;text-decoration:none;color:#1e3a5f;display:block">📩 Contacto</a>
+  <a href="https://wa.me/5213111866901" style="margin:20px;padding:14px;background:#25D366;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:800;margin-top:auto;display:block">💬 WhatsApp Directo</a>
+</nav>
+<script>document.querySelector('.lc-menu-toggle').addEventListener('click',function(){document.getElementById('overlay').style.display='block';setTimeout(()=>document.getElementById('overlay').classList.add('show'),10)})</script>
 </html>
