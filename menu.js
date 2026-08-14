@@ -15,8 +15,9 @@ const menuHTML = `
         </ul>
     </li>
     <li class="has-dropdown">
-        <a href="restaurantes.html">Servicios</a>
+        <a href="pymes.html">Servicios</a>
         <ul class="dropdown">
+            <li><a href="pymes.html">PyMEs en General</a></li>
             <li><a href="restaurantes.html">Restaurantes</a></li>
         </ul>
     </li>
@@ -31,7 +32,6 @@ const menuHTML = `
 function toggleMenu() {
     const menu = document.getElementById('navMenu');
     const overlay = document.getElementById('menuOverlay');
-    
     if (menu.classList.contains('open')) {
         menu.classList.remove('open');
         overlay.classList.remove('activo');
@@ -44,21 +44,23 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Inyectar menú en el contenedor
     const container = document.getElementById('menu-container');
     if (container) {
         container.innerHTML = menuHTML;
     }
-    
-    // Crear overlay
+
     const overlay = document.createElement('div');
     overlay.className = 'menu-overlay';
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
-    
-    // Cerrar al hacer clic en enlaces
-    document.querySelectorAll('#navMenu a').forEach(link => {
-        link.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('#navMenu a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            const menu = document.getElementById('navMenu');
+            if (menu.classList.contains('open')) {
+                toggleMenu();
+            }
+        });
     });
 });
