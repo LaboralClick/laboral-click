@@ -147,86 +147,8 @@
         <p class="copy">&copy; 2026 Laboral Click - Todos los derechos reservados</p>
       </div>
     </div>
-  </footer>
-  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
-<script>
-// ============================================
-// MENÚ MÓVIL - CIERRE AUTOMÁTICO
-// ============================================
+    </footer>
 
-// Función para abrir/cerrar menú
-function toggleMenu() {
-    const menu = document.getElementById('navMenu');
-    const overlay = document.getElementById('menuOverlay');
-    
-    if (menu.classList.contains('open')) {
-        menu.classList.remove('open');
-        overlay.classList.remove('activo');
-        document.body.style.overflow = 'auto'; // Permitir scroll
-    } else {
-        menu.classList.add('open');
-        overlay.classList.add('activo');
-        document.body.style.overflow = 'hidden'; // Bloquear scroll
-    }
-}
-
-// Cerrar menú al hacer clic en el overlay
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.createElement('div');
-    overlay.id = 'menuOverlay';
-    overlay.className = 'menu-overlay';
-    overlay.onclick = toggleMenu;
-    document.body.appendChild(overlay);
-    
-    // Cambiar el botón hamburguesa para usar la nueva función
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (menuToggle) {
-        menuToggle.onclick = function(e) {
-            e.preventDefault();
-            toggleMenu();
-        };
-    }
-    
-    // Cerrar menú al hacer clic en cualquier enlace
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                toggleMenu();
-            }
-        });
-    });
-});
-</script>
-  <script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
   <script src="menu.js"></script>
 </body>
 </html>
-<script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
