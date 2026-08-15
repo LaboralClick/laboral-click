@@ -1,6 +1,7 @@
+
 // ============================================
 // MENÚ AUTOMÁTICO INTELIGENTE - LABORAL CLICK
-// Estructura profesional completa
+// Versión final estable
 // ============================================
 
 const menuHTML = `
@@ -55,15 +56,16 @@ function toggleMenu() {
 document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('menu-container');
 
+    // Si la página no tiene contenedor, retira el menú viejo y lo crea
     if (!container) {
         var nav = document.querySelector('nav.nav');
         if (nav) {
             var viejoToggle = nav.querySelector('.menu-toggle');
             var viejosLinks = nav.querySelector('.nav-links');
             var viejoWa = nav.querySelector('.btn-whatsapp');
-            if (viejoToggle) viejoToggle.remove();
-            if (viejosLinks) viejosLinks.remove();
-            if (viejoWa) viejoWa.remove();
+            if (viejoToggle) { viejoToggle.remove(); }
+            if (viejosLinks) { viejosLinks.remove(); }
+            if (viejoWa) { viejoWa.remove(); }
             container = document.createElement('div');
             container.id = 'menu-container';
             nav.appendChild(container);
@@ -74,19 +76,32 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = menuHTML;
     }
 
+    // Capa oscura del menú móvil
     var overlay = document.createElement('div');
     overlay.className = 'menu-overlay';
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
 
-        // BURBUJA FLOTANTE ESTÁNDAR: retira flotantes viejos y coloca el oficial
-    document.querySelectorAll('.whatsapp-float').forEach(function(el) { el.remove(); });
+    // Burbuja flotante estándar: retira flotantes viejos y coloca el oficial
+    var flotantesViejos = document.querySelectorAll('.whatsapp-float');
+    flotantesViejos.forEach(function(el) { el.remove(); });
     if (!document.getElementById('lcWhatsappFloat')) {
-        
-    document.querySelectorAll('#navMenu a').forEach(function(link) {
+        var wa = document.createElement('a');
+        wa.href = 'https://wa.me/5213111866901';
+        wa.target = '_blank';
+        wa.id = 'lcWhatsappFloat';
+        wa.textContent = '💬';
+        wa.setAttribute('aria-label', 'Contactar por WhatsApp');
+        wa.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:9999;text-decoration:none;';
+        document.body.appendChild(wa);
+    }
+
+    // Cerrar menú al hacer clic en un enlace (móvil)
+    var enlaces = document.querySelectorAll('#navMenu a');
+    enlaces.forEach(function(link) {
         link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
+            var menu = document.getElementById('navMenu');
             if (menu.classList.contains('open')) {
                 toggleMenu();
             }
