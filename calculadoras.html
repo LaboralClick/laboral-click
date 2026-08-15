@@ -57,4 +57,496 @@
     .form-row .form-group { flex: 1; }
 
     .btn-calcular {
-      width: 100%; padding: 16px; background: #c9a
+      width: 100%; padding: 16px; background: #c9a028; color: #0f2a5e; border: none;
+      border-radius: 8px; font-size: 18px; font-weight: 800; cursor: pointer;
+      transition: all 0.3s; margin-top: 10px;
+    }
+    .btn-calcular:hover { background: #b89224; transform: translateY(-2px); }
+
+    .resultado {
+      display: none; margin-top: 30px; padding: 30px;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-radius: 10px; border: 2px solid #22c55e;
+    }
+    .resultado h2 { color: #166534; font-size: 22px; margin-bottom: 20px; text-align: center; }
+    .monto-total { text-align: center; padding: 20px; background: white; border-radius: 8px; margin-bottom: 20px; }
+    .monto-total .label { font-size: 14px; color: #666; margin-bottom: 5px; }
+    .monto-total .valor { font-size: 38px; font-weight: 800; color: #22c55e; }
+
+    .desglose { background: white; border-radius: 8px; padding: 20px; margin-top: 20px; }
+    .desglose h3 { color: #0f2a5e; margin-bottom: 15px; font-size: 18px; }
+    .desglose-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e5e7eb; }
+    .desglose-item:last-child { border-bottom: none; }
+    .desglose-item .concepto { color: #444; font-size: 14px; }
+    .desglose-item .monto { color: #0f2a5e; font-weight: 700; font-size: 14px; }
+    .desglose-item.negativo .monto { color: #dc2626; }
+
+    .aviso { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin-top: 20px; border-radius: 5px; }
+    .aviso p { color: #92400e; font-size: 13px; margin: 0; }
+
+    .btn-whatsapp {
+      display: block; width: 100%; padding: 15px; background: #25D366; color: white;
+      text-align: center; text-decoration: none; border-radius: 8px; font-weight: 700;
+      margin-top: 20px; transition: all 0.3s; box-sizing: border-box; border: none; font-size: 16px; cursor: pointer;
+    }
+    .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 42, 94, 0.7); z-index: 1000;
+      justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;
+    }
+    .modal-overlay.activo { display: flex; animation: fadeIn 0.3s ease; }
+    .modal-content {
+      background: white; border-radius: 15px; padding: 30px; max-width: 500px; width: 100%;
+      position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border-top: 5px solid #c9a028;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer;
+      color: #666; background: none; border: none; font-weight: 300; line-height: 1;
+    }
+    .modal-close:hover { color: #0f2a5e; }
+    .modal-title { color: #0f2a5e; font-size: 22px; margin-bottom: 5px; text-align: center; }
+    .modal-subtitle { color: #666; font-size: 14px; text-align: center; margin-bottom: 25px; }
+
+    .radio-group { margin-bottom: 20px; }
+    .radio-group > label { display: block; font-weight: 700; color: #0f2a5e; margin-bottom: 10px; font-size: 14px; }
+    .radio-option { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; padding: 8px; border-radius: 6px; transition: background 0.2s; }
+    .radio-option:hover { background: #f9fafb; }
+    .radio-option input { margin-right: 12px; accent-color: #c9a028; transform: scale(1.2); cursor: pointer; }
+    .radio-option span { font-size: 14px; color: #444; }
+
+    .btn-enviar {
+      background: #25D366; color: white; width: 100%; padding: 16px; border: none;
+      border-radius: 8px; font-size: 16px; font-weight: 800; cursor: pointer;
+      transition: all 0.3s; margin-top: 10px;
+    }
+    .btn-enviar:hover { background: #128C7E; transform: translateY(-2px); }
+
+    .success-message { display: none; text-align: center; padding: 30px 20px; }
+    .success-message h3 { color: #166534; font-size: 22px; margin-bottom: 10px; }
+    .success-message p { color: #444; font-size: 15px; line-height: 1.5; }
+
+    /* SEO Section */
+    .seo-info-laboral {
+      max-width: 800px; margin: 40px auto; padding: 30px; background: white;
+      border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); font-family: sans-serif; color: #333;
+    }
+    .seo-info-laboral h2 { color: #0f2a5e; font-size: 26px; margin-bottom: 25px; text-align: center; border-bottom: 3px solid #c9a028; padding-bottom: 15px; }
+    .seo-info-laboral h3 { color: #0f2a5e; font-size: 18px; margin-top: 25px; margin-bottom: 10px; border-left: 4px solid #c9a028; padding-left: 12px; }
+    .seo-info-laboral p { font-size: 15px; line-height: 1.7; color: #444; margin-bottom: 15px; }
+    .seo-info-laboral strong { color: #0f2a5e; }
+
+    @media (max-width: 768px) {
+      .hero-calc h1 { font-size: 1.7rem; }
+      .form-row, .tipo-calculo, .tabs-container { flex-direction: column; gap: 10px; }
+      .monto-total .valor { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoría Legal sin Enredos</span>
+        </a>
+        <div id="menu-container"></div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BANNER AZUL DE MARCA -->
+  <section class="hero-calc">
+    <h1>Centro de Calculadoras Laborales 2026</h1>
+    <p>Herramientas gratuitas basadas en la Ley Federal del Trabajo y la legislación fiscal vigente. Calcule con precisión antes de tomar decisiones.</p>
+  </section>
+
+  <div class="container">
+    <div class="calculadora-container">
+      <div class="calculadora-header">
+        <h1>Calculadoras Laborales</h1>
+        <p>Seleccione la herramienta que necesita</p>
+      </div>
+
+      <div class="tabs-container">
+        <button class="tab-btn activo" onclick="cambiarPestana('finiquito', event)">📋 Finiquito y Liquidación</button>
+        <button class="tab-btn" onclick="cambiarPestana('neto', event)">💰 Salario Neto 2026</button>
+        <button class="tab-btn" onclick="cambiarPestana('ptu', event)">📊 PTU (Utilidades)</button>
+      </div>
+
+      <!-- CALCULADORA 1 -->
+      <div id="sec-finiquito" class="calc-section activo">
+        <div class="tipo-calculo">
+          <div class="tipo-btn activo" onclick="seleccionarTipo('finiquito', event)"><h3>📋 FINIQUITO</h3><p>Renuncia voluntaria</p></div>
+          <div class="tipo-btn" onclick="seleccionarTipo('liquidacion', event)"><h3>💰 LIQUIDACIÓN</h3><p>Despido injustificado</p></div>
+        </div>
+        <form id="calculadoraForm">
+          <div class="form-row">
+            <div class="form-group"><label for="salarioDiario">Salario Diario ($ MXN) *</label><input type="number" id="salarioDiario" step="0.01" min="0" required placeholder="Ej. 450.00"></div>
+            <div class="form-group"><label for="diasAguinaldo">Días de Aguinaldo *</label><input type="number" id="diasAguinaldo" min="15" value="15" required placeholder="Mínimo 15"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="fechaIngreso">Fecha de Ingreso *</label><input type="date" id="fechaIngreso" required></div>
+            <div class="form-group"><label for="fechaSalida">Fecha de Salida *</label><input type="date" id="fechaSalida" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="primaVacacional">Prima Vacacional (%) *</label><input type="number" id="primaVacacional" min="25" value="25" required placeholder="Mínimo 25%"></div>
+          </div>
+          <button type="submit" class="btn-calcular">Calcular Finiquito/Liquidación</button>
+        </form>
+        <div id="resultadoFiniquito" class="resultado">
+          <h2>💵 TOTAL ESTIMADO</h2>
+          <div class="monto-total"><div class="label" id="tipoResultado">FINIQUITO</div><div class="valor" id="montoTotal">$0.00 MXN</div></div>
+          <div class="desglose"><h3>Desglose del Cálculo</h3><div id="desgloseItems"></div></div>
+          <div class="aviso"><p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estos cálculos son estimaciones orientativas basadas en la LFT. No constituyen asesoría legal formal.</p></div>
+          <button type="button" class="btn-whatsapp open-modal-btn">Validar cálculo con un experto</button>
+        </div>
+      </div>
+
+      <!-- CALCULADORA 2 -->
+      <div id="sec-neto" class="calc-section">
+        <form id="calculadoraSalarioForm">
+          <div class="form-group"><label for="salarioBruto">Salario Mensual Bruto ($ MXN) *</label><input type="number" id="salarioBruto" step="0.01" min="0" required placeholder="Ej. 15000.00"></div>
+          <button type="submit" class="btn-calcular">Calcular Salario Neto</button>
+        </form>
+        <div id="resultadoNeto" class="resultado">
+          <h2>💰 SALARIO NETO MENSUAL</h2>
+          <div class="monto-total"><div class="label">Tu salario neto después de impuestos</div><div class="valor" id="salarioNeto">$0.00 MXN</div></div>
+          <div class="desglose"><h3>Desglose del Cálculo</h3><div id="desgloseItemsNeto"></div></div>
+          <div class="aviso"><p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estimaciones basadas en tablas ISR 2026 y cuotas IMSS. No constituyen asesoría fiscal formal.</p></div>
+          <button type="button" class="btn-whatsapp open-modal-btn">💬 Validar cálculo con un experto</button>
+        </div>
+      </div>
+
+      <!-- CALCULADORA 3 -->
+      <div id="sec-ptu" class="calc-section">
+        <form id="calculadoraPTUForm">
+          <div class="form-group"><label for="bolsaTotal">Monto Total de la Bolsa de Utilidades ($ MXN) *</label><input type="number" id="bolsaTotal" step="0.01" min="0" required placeholder="Ej. 500000.00"></div>
+          <div class="form-row">
+            <div class="form-group"><label for="sumaDiasEmpresa">Suma Total de Días Trabajados (empresa) *</label><input type="number" id="sumaDiasEmpresa" min="0" required placeholder="Ej. 50000"></div>
+            <div class="form-group"><label for="sumaSalariosEmpresa">Suma Total de Salarios Anuales (empresa) *</label><input type="number" id="sumaSalariosEmpresa" step="0.01" min="0" required placeholder="Ej. 12000000.00"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="diasIndividuales">Días que Trabajó el Usuario en el Año *</label><input type="number" id="diasIndividuales" min="0" required placeholder="Ej. 365"></div>
+            <div class="form-group"><label for="salarioIndividual">Salario Anual del Usuario ($ MXN) *</label><input type="number" id="salarioIndividual" step="0.01" min="0" required placeholder="Ej. 180000.00"></div>
+          </div>
+          <button type="submit" class="btn-calcular">Calcular PTU</button>
+        </form>
+        <div id="resultadoPTU" class="resultado">
+          <h2>📊 TU REPARTO DE UTILIDADES (PTU)</h2>
+          <div class="monto-total"><div class="label">Total PTU Bruto a Recibir</div><div class="valor" id="totalPTU">$0.00 MXN</div></div>
+          <div class="desglose"><h3>Desglose del Cálculo (Art. 123 LFT)</h3><div id="desgloseItemsPTU"></div></div>
+          <div class="aviso"><p>⚠️ <strong>AVISO IMPORTANTE:</strong> Estimaciones basadas en el Art. 123 de la LFT. No constituyen asesoría fiscal formal.</p></div>
+          <button type="button" class="btn-whatsapp open-modal-btn">💬 Validar cálculo con un experto</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Section -->
+    <section class="seo-info-laboral">
+      <h2>Preguntas Frecuentes sobre el Cálculo de Prestaciones en México</h2>
+      <h3>¿Cuál es la diferencia entre Finiquito y Liquidación?</h3>
+      <p>El <strong>finiquito por renuncia voluntaria</strong> incluye únicamente tus derechos irrenunciables: días trabajados, aguinaldo proporcional, vacaciones y prima vacacional. La <strong>liquidación por despido injustificado</strong> añade a lo anterior una indemnización constitucional de 3 meses de salario ordinario, prima de antigüedad y, en algunos casos, 20 días por año laborado según la Ley Federal del Trabajo.</p>
+      <h3>¿Cómo calcular el Salario Neto Mensual a partir del sueldo bruto?</h3>
+      <p>Para conocer tu sueldo neto real, nuestra <strong>calculadora de sueldo bruto a neto 2026</strong> aplica de forma exacta las tablas vigentes de retención del ISR del SAT y deduce las cuotas obreras destinadas al IMSS. Así sabrás con precisión cuánto dinero en efectivo recibirás en tu nómina quincenal o mensual.</p>
+      <h3>¿Cuándo se pagan las utilidades (PTU) y cómo se realiza el cálculo?</h3>
+      <p>El <strong>reparto de utilidades o PTU</strong> se paga entre el 1 de abril y el 30 de mayo para trabajadores de empresas (Personas Morales). De acuerdo con el Artículo 123 de la LFT, la bolsa acumulada se divide estrictamente en dos partes iguales: un 50% distribuido por los días totales trabajados en el año y el otro 50% según el salario anual percibido por cada empleado.</p>
+    </section>
+  </div>
+
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+      </div>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso-privacidad.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- MODAL DE VALIDACIÓN JURÍDICA -->
+  <div id="modalValidacion" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="cerrarModal()">&times;</button>
+      <div id="formContent">
+        <h2 class="modal-title">Validación Jurídica Express</h2>
+        <p class="modal-subtitle">Completa estos datos para que un especialista revise tu caso.</p>
+        <form id="formValidacion">
+          <div class="radio-group">
+            <label>¿Cómo te identificas?</label>
+            <label class="radio-option"><input type="radio" name="identidad" value="Dueño/Administrador" required><span>Soy dueño / administrador de negocio</span></label>
+            <label class="radio-option"><input type="radio" name="identidad" value="Trabajador"><span>Soy trabajador</span></label>
+          </div>
+          <div class="radio-group">
+            <label>¿Cuál es tu situación?</label>
+            <label class="radio-option"><input type="radio" name="situacion" value="Baja/Despido" required><span>Voy a aplicar una baja / despido</span></label>
+            <label class="radio-option"><input type="radio" name="situacion" value="Conflicto/Demanda"><span>Tengo un conflicto / demanda</span></label>
+            <label class="radio-option"><input type="radio" name="situacion" value="Consulta Rutina"><span>Solo es una consulta de rutina</span></label>
+          </div>
+          <div class="form-group"><label for="nombre">Primer Nombre</label><input type="text" id="nombre" placeholder="Ej. Juan" required></div>
+          <div class="form-group"><label for="email">Correo Electrónico *</label><input type="email" id="email" placeholder="tucorreo@ejemplo.com" required></div>
+          <div class="form-group"><label for="whatsapp">WhatsApp (Opcional)</label><input type="tel" id="whatsapp" placeholder="Ej. 55 1234 5678"></div>
+          <button type="submit" class="btn-enviar">Enviar a validación jurídica</button>
+        </form>
+      </div>
+      <div id="successMessage" class="success-message">
+        <h3>✅ ¡Datos Recibidos!</h3>
+        <p>Hemos recibido tu información. Un especialista de Laboral Click revisará tu caso y se pondrá en contacto contigo a la brevedad.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function cambiarPestana(id, evt) {
+      document.querySelectorAll('.calc-section').forEach(sec => sec.classList.remove('activo'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('activo'));
+      document.getElementById('sec-' + id).classList.add('activo');
+      evt.currentTarget.classList.add('activo');
+    }
+
+    function abrirModal() { document.getElementById('modalValidacion').classList.add('activo'); }
+    function cerrarModal() { document.getElementById('modalValidacion').classList.remove('activo'); }
+
+    document.getElementById('modalValidacion').addEventListener('click', function(e) {
+      if (e.target === this) cerrarModal();
+    });
+
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', abrirModal);
+    });
+
+    document.getElementById('formValidacion').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const datos = {
+        identidad: document.querySelector('input[name="identidad"]:checked').value,
+        situacion: document.querySelector('input[name="situacion"]:checked').value,
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        whatsapp: document.getElementById('whatsapp').value
+      };
+      console.log("Datos de validación enviados:", datos);
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      setTimeout(() => {
+        cerrarModal();
+        document.getElementById('formContent').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('formValidacion').reset();
+      }, 3000);
+    });
+
+    let tipoCalculo = 'finiquito';
+    const SALARIO_MINIMO_DIARIO = 248.93;
+    const TOPE_PRIMA_ANTIGUEDAD = SALARIO_MINIMO_DIARIO * 2;
+
+    function seleccionarTipo(tipo, evt) {
+      tipoCalculo = tipo;
+      document.querySelectorAll('.tipo-btn').forEach(btn => btn.classList.remove('activo'));
+      evt.currentTarget.classList.add('activo');
+    }
+
+    function calcularDiasEntre(f1, f2) {
+      const d1 = new Date(f1 + 'T00:00:00'); const d2 = new Date(f2 + 'T00:00:00');
+      return Math.floor((d2 - d1) / (24 * 60 * 60 * 1000)) + 1;
+    }
+
+    function calcularDiasAguinaldoAnual(fSalida) {
+      const salida = new Date(fSalida + 'T00:00:00'); const inicioAnio = new Date(salida.getFullYear(), 0, 1);
+      return Math.floor((salida - inicioAnio) / (24 * 60 * 60 * 1000)) + 1;
+    }
+
+    function calcularDiasTranscurridosPeriodo(fIngreso, fSalida) {
+      const ingreso = new Date(fIngreso + 'T00:00:00'); const salida = new Date(fSalida + 'T00:00:00');
+      const diasTotales = calcularDiasEntre(fIngreso, fSalida); const anosCompletos = Math.floor(diasTotales / 365);
+      const ultimoAniversario = new Date(ingreso); ultimoAniversario.setFullYear(ingreso.getFullYear() + anosCompletos);
+      return Math.floor((salida - ultimoAniversario) / (24 * 60 * 60 * 1000)) + 1;
+    }
+
+    function calcularSDI(salarioDiario, diasAguinaldo, diasVacacionesTabla, primaVacacionalPorcentaje) {
+      const factorIntegracion = 1 + (diasAguinaldo / 365) + (diasVacacionesTabla * (primaVacacionalPorcentaje / 100) / 365);
+      return salarioDiario * factorIntegracion;
+    }
+
+    function formatearMoneda(monto) { return '$' + monto.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); }
+
+    document.getElementById('calculadoraForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const salarioDiario = parseFloat(document.getElementById('salarioDiario').value);
+      const diasAguinaldo = parseFloat(document.getElementById('diasAguinaldo').value);
+      const fechaIngreso = document.getElementById('fechaIngreso').value;
+      const fechaSalida = document.getElementById('fechaSalida').value;
+      const primaVacacionalPorcentaje = parseFloat(document.getElementById('primaVacacional').value);
+
+      if (isNaN(salarioDiario) || isNaN(diasAguinaldo) || isNaN(primaVacacionalPorcentaje) || fechaIngreso >= fechaSalida) {
+        alert('Por favor complete todos los campos correctamente. La fecha de ingreso debe ser anterior a la de salida.'); return;
+      }
+
+      const diasTotales = calcularDiasEntre(fechaIngreso, fechaSalida);
+      const antiguedadAnosProporcionales = diasTotales / 365;
+      const diasAguinaldoAnual = calcularDiasAguinaldoAnual(fechaSalida);
+      const diasTranscurridosPeriodo = calcularDiasTranscurridosPeriodo(fechaIngreso, fechaSalida);
+
+      let anosCompletos = Math.floor(antiguedadAnosProporcionales);
+      let diasVacacionesAnuales = 12;
+      if (anosCompletos === 1) diasVacacionesAnuales = 14;
+      else if (anosCompletos === 2) diasVacacionesAnuales = 16;
+      else if (anosCompletos === 3) diasVacacionesAnuales = 18;
+      else if (anosCompletos === 4) diasVacacionesAnuales = 20;
+      else if (anosCompletos >= 5 && anosCompletos <= 9) diasVacacionesAnuales = 22;
+      else if (anosCompletos >= 10 && anosCompletos <= 14) diasVacacionesAnuales = 24;
+      else if (anosCompletos >= 15 && anosCompletos <= 19) diasVacacionesAnuales = 26;
+      else if (anosCompletos >= 20 && anosCompletos <= 24) diasVacacionesAnuales = 28;
+      else if (anosCompletos >= 25 && anosCompletos <= 29) diasVacacionesAnuales = 30;
+      else if (anosCompletos >= 30) diasVacacionesAnuales = 32;
+
+      let desglose = []; let total = 0;
+
+      const aguinaldoProporcional = diasAguinaldoAnual * (diasAguinaldo / 365) * salarioDiario;
+      desglose.push({ concepto: `Aguinaldo proporcional (${diasAguinaldoAnual} días)`, monto: aguinaldoProporcional }); total += aguinaldoProporcional;
+
+      const vacacionesProporcionales = diasTranscurridosPeriodo * (diasVacacionesAnuales / 365) * salarioDiario;
+      desglose.push({ concepto: `Vacaciones proporcionales (${diasTranscurridosPeriodo} días × ${diasVacacionesAnuales} días LFT)`, monto: vacacionesProporcionales }); total += vacacionesProporcionales;
+
+      const primaVacacionalMonto = vacacionesProporcionales * (primaVacacionalPorcentaje / 100);
+      desglose.push({ concepto: `Prima vacacional (${primaVacacionalPorcentaje}%)`, monto: primaVacacionalMonto }); total += primaVacacionalMonto;
+
+      if (tipoCalculo === 'liquidacion') {
+        const sdi = calcularSDI(salarioDiario, diasAguinaldo, diasVacacionesAnuales, primaVacacionalPorcentaje);
+        const indemnizacion90Dias = 90 * sdi;
+        desglose.push({ concepto: `Indemnización 90 días (90 × SDI ${formatearMoneda(sdi)})`, monto: indemnizacion90Dias }); total += indemnizacion90Dias;
+
+        const veinteDiasPorAnio = 20 * sdi * antiguedadAnosProporcionales;
+        desglose.push({ concepto: `20 días por año (20 × SDI × ${antiguedadAnosProporcionales.toFixed(4)} años)`, monto: veinteDiasPorAnio }); total += veinteDiasPorAnio;
+
+        const salarioTopado = Math.min(salarioDiario, TOPE_PRIMA_ANTIGUEDAD);
+        const primaAntiguedad = 12 * salarioTopado * antiguedadAnosProporcionales;
+        desglose.push({ concepto: `Prima antigüedad (12 días × ${formatearMoneda(salarioTopado)} × ${antiguedadAnosProporcionales.toFixed(4)} años)`, monto: primaAntiguedad }); total += primaAntiguedad;
+      }
+
+      document.getElementById('tipoResultado').textContent = tipoCalculo === 'finiquito' ? 'FINIQUITO (Renuncia Voluntaria)' : 'LIQUIDACIÓN (Despido Injustificado)';
+      document.getElementById('montoTotal').textContent = formatearMoneda(total);
+      document.getElementById('desgloseItems').innerHTML = desglose.map(item => `<div class="desglose-item"><span class="concepto">${item.concepto}</span><span class="monto">${formatearMoneda(item.monto)}</span></div>`).join('');
+      document.getElementById('resultadoFiniquito').style.display = 'block';
+      document.getElementById('resultadoFiniquito').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    const TASA_IMSS = 0.02375;
+    const TABLA_ISR = [
+      { limite: 895.20, inferior: 0, cuotaFija: 0, porcentaje: 1.92 },
+      { limite: 7599.90, inferior: 895.21, cuotaFija: 17.16, porcentaje: 6.40 },
+      { limite: 13357.20, inferior: 7599.91, cuotaFija: 446.25, porcentaje: 10.88 },
+      { limite: 15531.00, inferior: 13357.21, cuotaFija: 1072.50, porcentaje: 16.00 },
+      { limite: 18594.30, inferior: 15531.01, cuotaFija: 1420.35, porcentaje: 17.92 },
+      { limite: 37510.20, inferior: 18594.31, cuotaFija: 1968.30, porcentaje: 21.36 },
+      { limite: 59122.20, inferior: 37510.21, cuotaFija: 6008.10, porcentaje: 23.52 },
+      { limite: Infinity, inferior: 59122.21, cuotaFija: 11091.00, porcentaje: 30.00 }
+    ];
+
+    function calcularISR(salarioBruto) {
+      let rango = TABLA_ISR.find(r => salarioBruto <= r.limite);
+      const excedente = salarioBruto - rango.inferior;
+      return { isr: (excedente * (rango.porcentaje / 100)) + rango.cuotaFija, rango: rango.porcentaje, cuotaFija: rango.cuotaFija };
+    }
+
+    document.getElementById('calculadoraSalarioForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const salarioBruto = parseFloat(document.getElementById('salarioBruto').value);
+      if (isNaN(salarioBruto) || salarioBruto <= 0) { alert('Por favor ingrese un salario bruto válido.'); return; }
+
+      const descuentoIMSS = salarioBruto * TASA_IMSS;
+      const { isr, rango, cuotaFija } = calcularISR(salarioBruto);
+      const salarioNeto = salarioBruto - descuentoIMSS - isr;
+
+      document.getElementById('salarioNeto').textContent = formatearMoneda(salarioNeto);
+      document.getElementById('desgloseItemsNeto').innerHTML = `
+        <div class="desglose-item"><span class="concepto">Salario Bruto Mensual</span><span class="monto">${formatearMoneda(salarioBruto)}</span></div>
+        <div class="desglose-item negativo"><span class="concepto">Descuento IMSS (2.375%)</span><span class="monto">-${formatearMoneda(descuentoIMSS)}</span></div>
+        <div class="desglose-item negativo"><span class="concepto">ISR Mensual (Rango ${rango}%)</span><span class="monto">-${formatearMoneda(isr)}</span></div>
+        <div class="desglose-item" style="background: #f0fdf4; padding: 15px; border-radius: 5px; margin-top: 10px;">
+          <span class="concepto" style="font-weight: 800; color: #166534;">SALARIO NETO</span>
+          <span class="monto" style="font-weight: 800; color: #22c55e; font-size: 18px;">${formatearMoneda(salarioNeto)}</span>
+        </div>
+      `;
+      document.getElementById('resultadoNeto').style.display = 'block';
+      document.getElementById('resultadoNeto').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('calculadoraPTUForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const bolsaTotal = parseFloat(document.getElementById('bolsaTotal').value);
+      const sumaDiasEmpresa = parseFloat(document.getElementById('sumaDiasEmpresa').value);
+      const sumaSalariosEmpresa = parseFloat(document.getElementById('sumaSalariosEmpresa').value);
+      const diasIndividuales = parseFloat(document.getElementById('diasIndividuales').value);
+      const salarioIndividual = parseFloat(document.getElementById('salarioIndividual').value);
+
+      if (isNaN(bolsaTotal) || isNaN(sumaDiasEmpresa) || isNaN(sumaSalariosEmpresa) ||
+          isNaN(diasIndividuales) || isNaN(salarioIndividual) ||
+          bolsaTotal <= 0 || sumaDiasEmpresa <= 0 || sumaSalariosEmpresa <= 0 ||
+          diasIndividuales <= 0 || salarioIndividual <= 0) {
+        alert('Por favor complete todos los campos con valores válidos mayores a cero.');
+        return;
+      }
+
+      const bolsaDias = bolsaTotal / 2;
+      const bolsaSalarios = bolsaTotal / 2;
+      const factorDias = bolsaDias / sumaDiasEmpresa;
+      const factorSalarios = bolsaSalarios / sumaSalariosEmpresa;
+      const ptuDiasUsuario = diasIndividuales * factorDias;
+      const ptuSalariosUsuario = salarioIndividual * factorSalarios;
+      const granTotalPTU = ptuDiasUsuario + ptuSalariosUsuario;
+
+      document.getElementById('totalPTU').textContent = formatearMoneda(granTotalPTU);
+
+      document.getElementById('desgloseItemsPTU').innerHTML = `
+        <div class="desglose-item"><span class="concepto">Bolsa Total de Utilidades</span><span class="monto">${formatearMoneda(bolsaTotal)}</span></div>
+        <div class="desglose-item"><span class="concepto">Bolsa por Días Trabajados (50%)</span><span class="monto">${formatearMoneda(bolsaDias)}</span></div>
+        <div class="desglose-item"><span class="concepto">Bolsa por Salarios Percibidos (50%)</span><span class="monto">${formatearMoneda(bolsaSalarios)}</span></div>
+        <div class="desglose-item" style="border-top: 2px solid #e5e7eb; padding-top: 15px; margin-top: 10px;">
+          <span class="concepto">Factor por Días (Bolsa Días ÷ Total Días Empresa)</span>
+          <span class="monto">${formatearMoneda(factorDias)} por día</span>
+        </div>
+        <div class="desglose-item">
+          <span class="concepto">Factor por Salario (Bolsa Salarios ÷ Total Salarios Empresa)</span>
+          <span class="monto">${(factorSalarios * 100).toFixed(4)}% del salario</span>
+        </div>
+        <div class="desglose-item" style="background: #f0fdf4; padding: 15px; border-radius: 5px; margin-top: 15px;">
+          <span class="concepto" style="font-weight: 700; color: #166534;">💰 PTU por Días Trabajados (${diasIndividuales} días)</span>
+          <span class="monto" style="font-weight: 800; color: #22c55e;">${formatearMoneda(ptuDiasUsuario)}</span>
+        </div>
+        <div class="desglose-item" style="background: #f0fdf4; padding: 15px; border-radius: 5px;">
+          <span class="concepto" style="font-weight: 700; color: #166534;">💼 PTU por Salario Anual (${formatearMoneda(salarioIndividual)})</span>
+          <span class="monto" style="font-weight: 800; color: #22c55e;">${formatearMoneda(ptuSalariosUsuario)}</span>
+        </div>
+        <div class="desglose-item" style="background: #dcfce7; padding: 15px; border-radius: 5px; margin-top: 10px; border: 2px solid #22c55e;">
+          <span class="concepto" style="font-weight: 800; color: #166534; font-size: 16px;">🎯 TOTAL PTU BRUTO</span>
+          <span class="monto" style="font-weight: 800; color: #22c55e; font-size: 18px;">${formatearMoneda(granTotalPTU)}</span>
+        </div>
+      `;
+
+      document.getElementById('resultadoPTU').style.display = 'block';
+      document.getElementById('resultadoPTU').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+  <script src="menu.js"></script>
+</body>
+</html>
