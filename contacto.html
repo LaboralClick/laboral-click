@@ -161,55 +161,8 @@
         <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
       </div>
     </div>
-  </footer>
+   </footer>
 
-  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
-
-  <script>
-    document.getElementById('formContacto').addEventListener('submit', function(event) {
-      event.preventDefault();
-      var n = document.getElementById('nombre').value;
-      var t = document.getElementById('telefono').value;
-      var s = document.getElementById('servicio').value || 'No especificado';
-      var m = document.getElementById('mensaje').value || 'Sin mensaje adicional';
-      
-      var texto = '📝 *NUEVO CONTACTO DESDE LA WEB*%0A%0A';
-      texto += '*Nombre:* ' + n + '%0A';
-      texto += '*Teléfono:* ' + t + '%0A';
-      texto += '*Servicio:* ' + s + '%0A';
-      texto += '*Mensaje:* ' + m + '%0A%0A';
-      texto += 'Solicito información sobre sus servicios.';
-      
-      window.open('https://wa.me/5213111866901?text=' + texto, '_blank');
-    });
-  </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Busca TODOS los links que tengan tu número o wa.me
-  var links = document.querySelectorAll('a[href*="wa.me"], a[href*="3111866901"]');
-  links.forEach(function(link) {
-    link.addEventListener('click', function() {
-      gtag('event', 'click_whatsapp', {
-        'event_category': 'contacto',
-        'event_label': window.location.pathname
-      });
-    });
-  });
-});
-</script>
-<script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>  
+  <script src="menu.js"></script>
 </body>
 </html>
