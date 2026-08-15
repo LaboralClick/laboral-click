@@ -1,7 +1,6 @@
-
 // ============================================
 // MENÚ AUTOMÁTICO INTELIGENTE - LABORAL CLICK
-// Versión final estable
+// Versión final v2 (limpieza siempre activa)
 // ============================================
 
 const menuHTML = `
@@ -54,36 +53,39 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    var nav = document.querySelector('nav.nav');
     var container = document.getElementById('menu-container');
 
-    // Si la página no tiene contenedor, retira el menú viejo y lo crea
-    if (!container) {
-        var nav = document.querySelector('nav.nav');
-        if (nav) {
-            var viejoToggle = nav.querySelector('.menu-toggle');
-            var viejosLinks = nav.querySelector('.nav-links');
-            var viejoWa = nav.querySelector('.btn-whatsapp');
-            if (viejoToggle) { viejoToggle.remove(); }
-            if (viejosLinks) { viejosLinks.remove(); }
-            if (viejoWa) { viejoWa.remove(); }
-            container = document.createElement('div');
-            container.id = 'menu-container';
-            nav.appendChild(container);
-        }
+    // 1) Limpia SIEMPRE restos de menús viejos (botón verde, listas rotas)
+    if (nav) {
+        var viejoToggle = nav.querySelector('.menu-toggle');
+        var viejosLinks = nav.querySelector('.nav-links');
+        var viejoWa = nav.querySelector('.btn-whatsapp');
+        if (viejoToggle) { viejoToggle.remove(); }
+        if (viejosLinks) { viejosLinks.remove(); }
+        if (viejoWa) { viejoWa.remove(); }
     }
 
+    // 2) Si no hay contenedor, lo crea
+    if (!container && nav) {
+        container = document.createElement('div');
+        container.id = 'menu-container';
+        nav.appendChild(container);
+    }
+
+    // 3) Instala el menú listo
     if (container) {
         container.innerHTML = menuHTML;
     }
 
-    // Capa oscura del menú móvil
+    // 4) Capa oscura del menú móvil
     var overlay = document.createElement('div');
     overlay.className = 'menu-overlay';
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
 
-    // Burbuja flotante estándar: retira flotantes viejos y coloca el oficial
+    // 5) Burbuja flotante estándar (retira flotantes viejos)
     var flotantesViejos = document.querySelectorAll('.whatsapp-float');
     flotantesViejos.forEach(function(el) { el.remove(); });
     if (!document.getElementById('lcWhatsappFloat')) {
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(wa);
     }
 
-    // Cerrar menú al hacer clic en un enlace (móvil)
+    // 6) Cerrar menú al hacer clic en un enlace (móvil)
     var enlaces = document.querySelectorAll('#navMenu a');
     enlaces.forEach(function(link) {
         link.addEventListener('click', function() {
