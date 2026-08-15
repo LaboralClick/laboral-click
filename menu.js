@@ -80,18 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
 
-    // BURBUJA FLOTANTE DE WHATSAPP (solo si la página no tiene una)
-    if (!document.querySelector('.whatsapp-float') && !document.getElementById('lcWhatsappFloat')) {
-        var wa = document.createElement('a');
-        wa.href = 'https://wa.me/5213111866901';
-        wa.target = '_blank';
-        wa.id = 'lcWhatsappFloat';
-        wa.textContent = '💬';
-        wa.setAttribute('aria-label', 'Contactar por WhatsApp');
-        wa.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:9999;text-decoration:none;';
-        document.body.appendChild(wa);
-    }
-
+        // BURBUJA FLOTANTE ESTÁNDAR: retira flotantes viejos y coloca el oficial
+    document.querySelectorAll('.whatsapp-float').forEach(function(el) { el.remove(); });
+    if (!document.getElementById('lcWhatsappFloat')) {
+        
     document.querySelectorAll('#navMenu a').forEach(function(link) {
         link.addEventListener('click', function() {
             const menu = document.getElementById('navMenu');
