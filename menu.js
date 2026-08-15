@@ -1,5 +1,5 @@
 // ============================================
-// MENÚ AUTOMÁTICO - LABORAL CLICK
+// MENÚ AUTOMÁTICO INTELIGENTE - LABORAL CLICK
 // ============================================
 
 const menuHTML = `
@@ -14,7 +14,7 @@ const menuHTML = `
             <li><a href="equipo.html">Equipo</a></li>
         </ul>
     </li>
-      <li class="has-dropdown">
+    <li class="has-dropdown">
         <a href="pymes.html">Servicios</a>
         <ul class="dropdown">
             <li><a href="pymes.html">PyMEs en General</a></li>
@@ -44,12 +44,29 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('menu-container');
+    var container = document.getElementById('menu-container');
+
+    // SI LA PÁGINA NO TIENE CONTENEDOR, LIMPIA EL MENÚ VIEJO Y LO CREA
+    if (!container) {
+        var nav = document.querySelector('nav.nav');
+        if (nav) {
+            var viejoToggle = nav.querySelector('.menu-toggle');
+            var viejosLinks = nav.querySelector('.nav-links');
+            var viejoWa = nav.querySelector('.btn-whatsapp');
+            if (viejoToggle) viejoToggle.remove();
+            if (viejosLinks) viejosLinks.remove();
+            if (viejoWa) viejoWa.remove();
+            container = document.createElement('div');
+            container.id = 'menu-container';
+            nav.appendChild(container);
+        }
+    }
+
     if (container) {
         container.innerHTML = menuHTML;
     }
 
-    const overlay = document.createElement('div');
+    var overlay = document.createElement('div');
     overlay.className = 'menu-overlay';
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
