@@ -13,7 +13,7 @@ const menuHTML = `
         <ul class="dropdown">
             <li><a href="nosotros.html">Filosofía</a></li>
             <li><a href="equipo.html">Equipo</a></li>
-            <li><a href="casos-exito.html">Casos de Éxito</a></li>
+            <li><a href="casos.html">Casos de Éxito</a></li>
             <li><a href="testimonios.html">Testimonios</a></li>
         </ul>
     </li>
