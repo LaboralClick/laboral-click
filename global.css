@@ -284,3 +284,15 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
 .footer-col a:hover { color: #c9a028; }
 .footer-legal { max-width: 1200px; margin: 35px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center; }
 .footer-legal p { color: rgba(255,255,255,0.7); font-size: 0.82rem; margin-bottom: 0.4rem; }
+/* ============================================ */
+/* ARMONIZACIÓN DE MARCA - AZUL LABORAL CLICK   */
+/* ============================================ */
+.page-hero {
+    background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+    color: white;
+    padding: 70px 20px;
+    text-align: center;
+}
+.page-hero h1 { color: white; font-size: 2.2rem; margin-bottom: 0.8rem; }
+.page-hero p { color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+h1, h2 { color: #0f2a5e; }
