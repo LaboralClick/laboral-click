@@ -2,101 +2,216 @@
 <html lang="es-MX">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ED8M8E4DNP');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ED8M8E4DNP');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promociones - Laboral Click</title>
+  <title>Primeras Consultas y Diagnósticos - Laboral Click</title>
+  <meta name="description" content="Pruebe a Laboral Click antes de comprometerse. Diagnóstico Express gratuito, revisión inicial de expediente y consulta de orientación para empresarios de PyMEs.">
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* BANNER AZUL DE MARCA */
+    .hero-promos { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 70px 20px; text-align: center; }
+    .hero-promos h1 { color: white; font-size: 2.4rem; margin-bottom: 0.8rem; }
+    .hero-promos p { color: rgba(255,255,255,0.92); font-size: 1.15rem; max-width: 750px; margin: 0 auto; line-height: 1.6; }
+
+    /* INTRODUCCIÓN */
+    .intro-puertas { max-width: 800px; margin: 50px auto 30px auto; padding: 0 20px; text-align: center; }
+    .intro-puertas h2 { color: #0f2a5e; font-size: 1.8rem; margin-bottom: 15px; }
+    .intro-puertas p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; }
+
+    /* GRID DE PUERTAS DE ENTRADA */
+    .grid-puertas { max-width: 1100px; margin: 30px auto 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr; gap: 30px; }
+    @media (min-width: 900px) { .grid-puertas { grid-template-columns: repeat(3, 1fr); } }
+
+    .puerta-card {
+      background: white;
+      border-radius: 12px;
+      border: 2px solid #c9a028;
+      padding: 35px 25px 30px 25px;
+      box-shadow: 0 4px 16px rgba(15, 42, 94, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .puerta-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(201, 160, 40, 0.2);
+    }
+    .puerta-icono {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    .puerta-card h3 {
+      color: #0f2a5e;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .puerta-etiqueta {
+      background: #fef9e7;
+      color: #c9a028;
+      border: 1px solid #c9a028;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .puerta-card p {
+      color: #4a5568;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .puerta-detalle {
+      background: #f8f9fa;
+      border-left: 3px solid #c9a028;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #1a202c;
+      border-radius: 4px;
+    }
+    .puerta-detalle strong { color: #0f2a5e; }
+    .btn-puerta {
+      display: block;
+      background: #25D366;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .btn-puerta:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    /* CIERRE */
+    .cierre { max-width: 800px; margin: 40px auto 60px auto; padding: 0 20px; text-align: center; }
+    .cierre p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; font-style: italic; }
+    .cierre strong { color: #0f2a5e; font-style: normal; }
+
+    @media (max-width: 768px) {
+      .hero-promos h1 { font-size: 1.7rem; }
+      .intro-puertas h2 { font-size: 1.4rem; }
+    }
+  </style>
 </head>
 <body>
-  
+
   <header>
     <div class="container">
       <nav class="nav">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
           <span>Asesoría Legal sin Enredos</span>
         </a>
-        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-        <ul class="nav-links" id="navMenu">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/nosotros">Nosotros</a></li>
-          <li><a href="/servicios">Servicios</a></li>
-          <li><a href="/precios">Precios</a></li>
-          <li><a href="/promociones" class="active">Promociones</a></li>
-          <li><a href="/casos">Casos de Exito</a></li>
-          <li><a href="/testimonios">Testimonios</a></li>
-          <li><a href="/diagnostico">Diagnóstico</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/calculadoras">Calculadoras</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-        </ul>
-        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+        <div id="menu-container"></div>
       </nav>
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1>Promociones Especiales</h1>
-      <p>Blindaje legal para tu PyME a precios excepcionales</p>
-    </div>
+  <!-- BANNER AZUL DE MARCA -->
+  <section class="hero-promos">
+    <h1>Primeras Consultas y Diagnósticos</h1>
+    <p>Pruebe a Laboral Click antes de comprometerse. Tres formas de conocernos sin costos ocultos y sin letras chiquitas.</p>
   </section>
 
-  <section class="servicios-section">
-    <div class="container">
-      
-      <!-- Envoltorio para centrar y proteger en móvil -->
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 20px 0;">
-        
-        <!-- Promocion 1 - Paquete Profesional (Marco dorado unificado por CSS) -->
-        <div class="promo-card" style="max-width: 600px; width: 100%;">
-          <div style="background: #c9a028; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 15px;">-60% POR HOY</div>
-          <div class="promo-info">
-            <h2 style="color: #0a2463; margin-bottom: 15px;">Oferta en Paquete Profesional</h2>
-            <p style="margin-bottom: 20px;"><strong>El mismo Paquete Profesional que ves en nuestra página de Precios, hoy con un descuento excepcional.</strong></p>
-            <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
-              <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">✓ Contratos laborales personalizados</li>
-              <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">✓ Reglamento Interior de Trabajo</li>
-              <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">✓ Asesoría laboral incluida</li>
-              <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">✓ Visitas a tu empresa sin costo extra</li>
-              <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">✓ Resguardo seguro de tu documentación</li>
-            </ul>
-            <p class="precio" style="font-size: 18px; margin-bottom: 10px;"><span style="text-decoration: line-through; color: #999;">$8,500 MXN/mes</span> <strong style="color: #c9a028; font-size: 22px;">$3,400 MXN primer mes</strong></p>
-            <p class="vigencia" style="color: #e74c3c; font-weight: 600; font-size: 14px;">⏰ Precio especial POR HOY. Luego $8,500 MXN/mes.</p>
-          </div>
-          <div class="promo-cta" style="margin-top: 25px;">
-            <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Paquete%20Profesional%20con%2060%25%20de%20descuento%20POR%20HOY" class="btn-dorado" style="display: block; text-align: center; text-decoration: none;" target="_blank">💬 Aprovechar Primer Mes con 60% Off</a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
+  <!-- INTRODUCCIÓN -->
+  <section class="intro-puertas">
+    <h2>No necesita contratar al despacho completo para dar el primer paso</h2>
+    <p>Entendemos que la primera conversación con un abogado laboral es un momento de cautela, no de impulso. Por eso ofrecemos tres puertas de entrada sin compromiso: usted evalúa al despacho, nosotros escuchamos su situación. Si hay algo que podamos hacerle bien, se lo decimos. Si no, también se lo decimos.</p>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
-        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+  <!-- GRID DE PUERTAS -->
+  <section class="grid-puertas">
+
+    <!-- PUERTA 1: Diagnóstico Express -->
+    <div class="puerta-card">
+      <div class="puerta-icono">🩺</div>
+      <span class="puerta-etiqueta">Sin costo</span>
+      <h3>Diagnóstico Express</h3>
+      <p>En 10 minutos sabrá qué tan expuesta está su empresa. Un cuestionario guiado que le entrega un semáforo de riesgo al final.</p>
+      <div class="puerta-detalle">
+        <strong>Ideal si:</strong> tiene trabajadores pero no sabe si está haciendo las cosas bien.<br>
+        <strong>Recibe:</strong> semáforo de riesgo + recomendaciones generales.
       </div>
-      <div class="footer-bottom">
-        <p class="disclaimer-text">La información en este sitio es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      <a href="diagnostico.html" class="btn-puerta">🎯 Iniciar diagnóstico ahora</a>
+    </div>
+
+    <!-- PUERTA 2: Revisión Inicial de Expediente -->
+    <div class="puerta-card">
+      <div class="puerta-icono">📋</div>
+      <span class="puerta-etiqueta">Sin costo</span>
+      <h3>Revisión Inicial de Expediente</h3>
+      <p>Envíenos el contrato de UN trabajador. Un abogado le dice qué está bien, qué está mal y qué arreglar primero, por escrito.</p>
+      <div class="puerta-detalle">
+        <strong>Ideal si:</strong> heredó contratos de otra administración o no está seguro de que sus plantillas sean vigentes.<br>
+        <strong>Recibe:</strong> reporte escrito con hallazgos puntuales.
+      </div>
+      <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20enviar%20el%20expediente%20de%20un%20trabajador%20para%20la%20revisi%C3%B3n%20inicial%20gratuita." class="btn-puerta" target="_blank">📎 Enviar mi expediente</a>
+    </div>
+
+    <!-- PUERTA 3: Consulta de Orientación -->
+    <div class="puerta-card">
+      <div class="puerta-icono">💬</div>
+      <span class="puerta-etiqueta">15 minutos</span>
+      <h3>Consulta de Orientación</h3>
+      <p>Una llamada breve con un abogado para escuchar su situación concreta y decirle si hay riesgo real, qué hacer y en cuánto tiempo.</p>
+      <div class="puerta-detalle">
+        <strong>Ideal si:</strong> tiene una situación puntual (un trabajador conflictivo, una notificación, una duda legal) y quiere una primera opinión clara.<br>
+        <strong>Recibe:</strong> hoja de ruta por escrito al terminar la llamada.
+      </div>
+      <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20de%20orientaci%C3%B3n%20de%2015%20minutos." class="btn-puerta" target="_blank">📞 Agendar llamada breve</a>
+    </div>
+
+  </section>
+
+  <!-- CIERRE -->
+  <section class="cierre">
+    <p><strong>"Detecta el riesgo, entiende el problema y actúa a tiempo."</strong><br>
+    Esa es la forma en que Laboral Click acompaña a PyMEs en México y Estados Unidos. Si estas puertas le hicieron sentido, es porque el despacho probablemente también le hará sentido.</p>
+  </section>
+
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+      </div>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
       </div>
     </div>
-   </footer>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
 
   <script src="menu.js"></script>
 </body>
