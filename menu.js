@@ -1,6 +1,6 @@
 // ============================================
 // MENÚ AUTOMÁTICO INTELIGENTE - LABORAL CLICK
-// Versión final v2 (limpieza siempre activa)
+// Versión final v3 (menú + burbuja + footer estándar)
 // ============================================
 
 const menuHTML = `
@@ -38,6 +38,31 @@ const menuHTML = `
 </ul>
 `;
 
+const footerHTML = `
+<div class="footer-content">
+    <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+    </div>
+    <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+    </div>
+    <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
+    </div>
+</div>
+<div class="footer-legal">
+    <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+    <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+</div>
+`;
+
 function toggleMenu() {
     const menu = document.getElementById('navMenu');
     const overlay = document.getElementById('menuOverlay');
@@ -56,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var nav = document.querySelector('nav.nav');
     var container = document.getElementById('menu-container');
 
-    // 1) Limpia SIEMPRE restos de menús viejos (botón verde, listas rotas)
+    // 1) Limpia SIEMPRE restos de menús viejos
     if (nav) {
         var viejoToggle = nav.querySelector('.menu-toggle');
         var viejosLinks = nav.querySelector('.nav-links');
@@ -78,14 +103,26 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = menuHTML;
     }
 
-    // 4) Capa oscura del menú móvil
+    // 4) Estandariza el footer: retira el viejo e instala el oficial
+    var footerViejo = document.querySelector('footer');
+    if (footerViejo && !footerViejo.classList.contains('footer-lc')) {
+        footerViejo.remove();
+    }
+    if (!document.querySelector('footer.footer-lc')) {
+        var footerNuevo = document.createElement('footer');
+        footerNuevo.className = 'footer-lc';
+        footerNuevo.innerHTML = footerHTML;
+        document.body.appendChild(footerNuevo);
+    }
+
+    // 5) Capa oscura del menú móvil
     var overlay = document.createElement('div');
     overlay.className = 'menu-overlay';
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
 
-    // 5) Burbuja flotante estándar (retira flotantes viejos)
+    // 6) Burbuja flotante estándar
     var flotantesViejos = document.querySelectorAll('.whatsapp-float');
     flotantesViejos.forEach(function(el) { el.remove(); });
     if (!document.getElementById('lcWhatsappFloat')) {
@@ -99,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(wa);
     }
 
-    // 6) Cerrar menú al hacer clic en un enlace (móvil)
+    // 7) Cerrar menú al hacer clic en un enlace (móvil)
     var enlaces = document.querySelectorAll('#navMenu a');
     enlaces.forEach(function(link) {
         link.addEventListener('click', function() {
