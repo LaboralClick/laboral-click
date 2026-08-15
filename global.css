@@ -94,6 +94,7 @@ header {
 }
 
 /* --- DROPDOWN (submenú) --- */
+/* --- DROPDOWN (submenú) --- */
 .dropdown {
     display: none;
     position: absolute;
@@ -106,7 +107,20 @@ header {
     border-top: 3px solid #c9a028;
     padding: 8px 0;
     z-index: 1001;
-    margin-top: 5px;
+    padding-top: 13px; /* Antes era margin-top: 5px. El padding mantiene el hover activo */
+}
+
+/* Puente invisible más robusto para garantizar continuidad */
+.has-dropdown { position: relative; }
+.has-dropdown:hover .dropdown { display: block; }
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
 }
 
 .dropdown li a {
