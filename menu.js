@@ -1,5 +1,6 @@
 // ============================================
 // MENÚ AUTOMÁTICO INTELIGENTE - LABORAL CLICK
+// Estructura profesional completa
 // ============================================
 
 const menuHTML = `
@@ -12,6 +13,8 @@ const menuHTML = `
         <ul class="dropdown">
             <li><a href="nosotros.html">Filosofía</a></li>
             <li><a href="equipo.html">Equipo</a></li>
+            <li><a href="casos-exito.html">Casos de Éxito</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
         </ul>
     </li>
     <li class="has-dropdown">
@@ -21,12 +24,18 @@ const menuHTML = `
             <li><a href="restaurantes.html">Restaurantes</a></li>
         </ul>
     </li>
+    <li class="has-dropdown">
+        <a href="precios.html">Planes y Precios</a>
+        <ul class="dropdown">
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="promociones.html">Promociones</a></li>
+        </ul>
+    </li>
     <li><a href="calculadoras.html">Calculadoras</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="diagnostico.html">Diagnóstico</a></li>
     <li><a href="contacto.html">Contacto</a></li>
 </ul>
-<a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
 `;
 
 function toggleMenu() {
@@ -46,7 +55,6 @@ function toggleMenu() {
 document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('menu-container');
 
-    // SI LA PÁGINA NO TIENE CONTENEDOR, LIMPIA EL MENÚ VIEJO Y LO CREA
     if (!container) {
         var nav = document.querySelector('nav.nav');
         if (nav) {
@@ -71,6 +79,18 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.id = 'menuOverlay';
     overlay.onclick = toggleMenu;
     document.body.appendChild(overlay);
+
+    // BURBUJA FLOTANTE DE WHATSAPP (solo si la página no tiene una)
+    if (!document.querySelector('.whatsapp-float') && !document.getElementById('lcWhatsappFloat')) {
+        var wa = document.createElement('a');
+        wa.href = 'https://wa.me/5213111866901';
+        wa.target = '_blank';
+        wa.id = 'lcWhatsappFloat';
+        wa.textContent = '💬';
+        wa.setAttribute('aria-label', 'Contactar por WhatsApp');
+        wa.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:9999;text-decoration:none;';
+        document.body.appendChild(wa);
+    }
 
     document.querySelectorAll('#navMenu a').forEach(function(link) {
         link.addEventListener('click', function() {
