@@ -1,150 +1,686 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ED8M8E4DNP');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboral Click - Asesoría Legal sin Enredos para PyMEs</title>
+  <meta name="description" content="Detecta el riesgo, entiende el problema y actúa a tiempo. Asesoría laboral especializada para PyMEs mexicanas con cobertura binacional México - Estados Unidos.">
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* ========================================== */
+    /* HERO PRINCIPAL                             */
+    /* ========================================== */
+    .hero-home {
+      background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+      color: white;
+      padding: 80px 20px 90px 20px;
+    }
+    .hero-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1.3fr 1fr; gap: 60px; }
+    }
+    .hero-text h1 {
+      color: white;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    .hero-text h1 .lema {
+      display: block;
+      color: #c9a028;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+    .hero-text p {
+      color: rgba(255,255,255,0.92);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    @media (min-width: 600px) {
+      .hero-buttons { flex-direction: row; flex-wrap: wrap; }
+    }
+    .btn-dorado {
+      display: inline-block;
+      background: #c9a028;
+      color: white;
+      padding: 15px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .btn-dorado:hover {
+      background: #b89224;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(201,160,40,0.4);
+    }
+    .btn-secundario {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      padding: 14px 28px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .btn-secundario:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
 
-  gtag('config', 'G-ED8M8E4DNP');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboral Click - Asesoría Legal sin Enredos</title>
-    <link rel="stylesheet" href="global.css">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    .hero-image {
+      position: relative;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      border: 4px solid #c9a028;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #c9a028;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(201,160,40,0.4);
+      white-space: nowrap;
+    }
+
+    /* ========================================== */
+    /* LOS 3 CAMINOS                              */
+    /* ========================================== */
+    .caminos {
+      padding: 70px 20px;
+      background: #f8f9fa;
+    }
+    .caminos-header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .caminos-header h2 {
+      color: #0f2a5e;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .caminos-header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .caminos-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    @media (min-width: 900px) {
+      .caminos-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .camino-card {
+      background: white;
+      border-radius: 12px;
+      padding: 35px 25px 30px 25px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border-top: 5px solid;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .camino-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .camino-card.urgente { border-top-color: #dc2626; }
+    .camino-card.prevenir { border-top-color: #c9a028; }
+    .camino-card.calcular { border-top-color: #0f2a5e; }
+    .camino-icono { font-size: 3rem; margin-bottom: 15px; }
+    .camino-card h3 {
+      color: #0f2a5e;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+    .camino-card p {
+      color: #4a5568;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .camino-link {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      margin-top: auto;
+    }
+    .camino-card.urgente .camino-link { background: #dc2626; color: white; }
+    .camino-card.urgente .camino-link:hover { background: #b91c1c; }
+    .camino-card.prevenir .camino-link { background: #c9a028; color: white; }
+    .camino-card.prevenir .camino-link:hover { background: #b89224; }
+    .camino-card.calcular .camino-link { background: #0f2a5e; color: white; }
+    .camino-card.calcular .camino-link:hover { background: #1e3a5f; }
+
+    /* ========================================== */
+    /* NUESTRAS DIVISIONES                        */
+    /* ========================================== */
+    .divisiones {
+      padding: 70px 20px;
+      background: white;
+    }
+    .divisiones-header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .divisiones-header h2 {
+      color: #0f2a5e;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .divisiones-header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .divisiones-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    @media (min-width: 800px) {
+      .divisiones-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .division-card {
+      background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+      color: white;
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 6px 20px rgba(15, 42, 94, 0.2);
+      transition: transform 0.3s;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .division-card:hover { transform: translateY(-5px); }
+    .division-icono { font-size: 3.5rem; margin-bottom: 15px; }
+    .division-card h3 {
+      color: #c9a028;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .division-card p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .division-link {
+      display: inline-block;
+      background: #c9a028;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .division-link:hover {
+      background: #b89224;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================== */
+    /* HERRAMIENTAS (CALCULADORAS)                */
+    /* ========================================== */
+    .herramientas {
+      padding: 70px 20px;
+      background: #f8f9fa;
+    }
+    .herramientas-header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .herramientas-header h2 {
+      color: #0f2a5e;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .herramientas-header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .herramientas-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 800px) {
+      .herramientas-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .herramienta-card {
+      background: white;
+      border: 2px solid #c9a028;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .herramienta-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(201,160,40,0.15);
+    }
+    .herramienta-icono { font-size: 2.5rem; margin-bottom: 12px; }
+    .herramienta-card h3 {
+      color: #0f2a5e;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .herramienta-card p {
+      color: #4a5568;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .herramienta-link {
+      color: #c9a028;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .herramienta-link:hover { text-decoration: underline; }
+
+    /* ========================================== */
+    /* FRANJA DE CONFIANZA                        */
+    /* ========================================== */
+    .confianza {
+      padding: 70px 20px;
+      background: white;
+    }
+    .confianza-header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+    }
+    .confianza-header h2 {
+      color: #0f2a5e;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .confianza-header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .confianza-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    @media (min-width: 800px) {
+      .confianza-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .confianza-card {
+      background: #fffef5;
+      border: 2px solid #c9a028;
+      border-radius: 12px;
+      padding: 35px 30px;
+    }
+    .confianza-card h3 {
+      color: #0f2a5e;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .confianza-item {
+      border-left: 3px solid #c9a028;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      background: white;
+      border-radius: 4px;
+    }
+    .confianza-item .titulo {
+      color: #0f2a5e;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .confianza-item .resumen {
+      color: #4a5568;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .confianza-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #c9a028;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .confianza-link:hover { text-decoration: underline; }
+
+    /* ========================================== */
+    /* CTA FINAL                                  */
+    /* ========================================== */
+    .cta-final-home {
+      background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+      color: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
+    .cta-final-home h2 {
+      color: white;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    .cta-final-home p {
+      color: rgba(255,255,255,0.92);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+    }
+    .cta-final-home .btn-dorado {
+      font-size: 1.1rem;
+      padding: 16px 36px;
+    }
+
+    /* ========================================== */
+    /* RESPONSIVE GENERAL                         */
+    /* ========================================== */
+    @media (max-width: 768px) {
+      .hero-home { padding: 60px 20px 70px 20px; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .hero-text h1 .lema { font-size: 1.1rem; }
+      .hero-text p { font-size: 1.05rem; }
+      .caminos-header h2, .divisiones-header h2,
+      .herramientas-header h2, .confianza-header h2 { font-size: 1.6rem; }
+      .cta-final-home h2 { font-size: 1.6rem; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="nav">
-    <a href="/" class="logo">
-        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-        <span>Asesoría Legal sin Enredos</span>
-    </a>
-   <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-    <ul class="nav-links" id="navMenu">
-    <button class="menu-close-btn" onclick="document.getElementById('navMenu').classList.remove('open')">✕</button>
-    <li><a href="index.html">Inicio</a></li>
-    <li class="has-dropdown">
-        <a href="nosotros.html">Nosotros</a>
-        ...
-            <ul class="dropdown">
-                <li><a href="nosotros.html">Filosofía</a></li>
-                <li><a href="equipo.html">Equipo</a></li>
-            </ul>
-        </li>
-        <li class="has-dropdown">
-       <a href="restaurantes.html">Servicios</a>
-        <ul class="dropdown">
-            <li><a href="pymes.html">PyMEs en General</a></li>
-            <li><a href="
-        </ul>
-                    <li><a href="pymes.html">PyMEs en General</a></li>
-                <li><a href="restaurantes.html">Restaurantes</a></li>
-            </ul>
-        </li>
-        <li><a href="calculadoras.html">Calculadoras</a></li>
-        <li><a href="diagnostico.html">Diagnóstico</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-    <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
-</nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Blindaje Laboral Integral para PyMEs Mexicanas <span class="highlight">📢 Atención a PyMEs en todo México</span></h1>
-                    <p>Protegemos tu empresa de sanciones que pueden llegar hasta <strong>$586,550 MXN</strong> por cada infracción laboral. Sin tecnicismos. Sin sorpresas. Sin letra chiquita.</p>
-                    <div class="hero-buttons">
-                        <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20mi%20Diagnostico%20Express%20de%2015%20minutos" class="btn-dorado" target="_blank">⚡ Quiero mi Diagnóstico Express (15 min)</a>
-                        <a href="/servicios" class="btn-secundario">Conocer el Sistema →</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="/images/lic-segura.webp" alt="Lic. José Domiciano Segura Díaz">
-                    <div class="badge">⭐ Asesoría para PyMEs</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoría Legal sin Enredos</span>
+        </a>
+        <div id="menu-container"></div>
+      </nav>
+    </div>
+  </header>
 
-    <section class="servicios">
-        <div class="container">
-            <h2 class="section-title">El Sistema Laboral Click</h2>
-            <p class="section-subtitle">Blindaje Integral para tu PyME</p>
-            <div class="servicios-grid">
-                <div class="servicio-card"><div class="servicio-icon">📋</div><h3>Contratos Blindados</h3><p>Individual, temporal, por obra. Con todas las prestaciones.</p></div>
-                <div class="servicio-card"><div class="servicio-icon">📁</div><h3>Expedientes Completos</h3><p>Listos para una inspección.</p></div>
-                <div class="servicio-card"><div class="servicio-icon">🛡️</div><h3>Terminación Segura</h3><p>Despidos sin sorpresas. Cálculos precisos.</p></div>
-                <div class="servicio-card"><div class="servicio-icon">📖</div><h3>Reglamento Interior</h3><p>Actualizado y válido conforme a la LFT.</p></div>
-            </div>
+  <!-- HERO PRINCIPAL -->
+  <section class="hero-home">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>
+          Asesoría laboral para PyMEs que no tienen tiempo para enredos
+          <span class="lema">Detecta el riesgo · Entiende el problema · Actúa a tiempo</span>
+        </h1>
+        <p>Protegemos su empresa de sanciones que pueden llegar hasta <strong style="color: #c9a028;">$586,550 MXN</strong> por cada infracción laboral. Sin tecnicismos. Sin sorpresas. Con cobertura binacional México - Estados Unidos.</p>
+        <div class="hero-buttons">
+          <a href="diagnostico.html" class="btn-dorado">🎯 Evaluar mi empresa (2 min)</a>
+          <a href="#caminos" class="btn-secundario">Ver cómo empezar →</a>
         </div>
-    </section>
+      </div>
+      <div class="hero-image">
+        <img src="/images/lic-segura.webp" alt="Lic. José Domiciano Segura Díaz - Fundador">
+        <div class="hero-badge">⭐ 25+ años protegiendo PyMEs</div>
+      </div>
+    </div>
+  </section>
 
-    <section class="calculadoras">
-        <div class="container">
-            <h2>🧮 Calculadoras Laborales Gratuitas</h2>
-            <div class="calc-grid">
-                <div class="calc-card"><div class="calc-icon">💰</div><h3>Finiquito</h3><p>Calcula tu finiquito o liquidación</p><a href="/calculadoras" class="btn-dorado">Calcular →</a></div>
-                <div class="calc-card"><div class="calc-icon">🏥</div><h3>Cuotas IMSS</h3><p>Estima tus cuotas patronales</p><a href="/calculadoras" class="btn-dorado">Calcular →</a></div>
-                <div class="calc-card"><div class="calc-icon">⏰</div><h3>Horas Extra</h3><p>Calcula el pago conforme a ley</p><a href="/calculadoras" class="btn-dorado">Calcular →</a></div>
-            </div>
-        </div>
-    </section>
+  <!-- LOS 3 CAMINOS -->
+  <section class="caminos" id="caminos">
+    <div class="caminos-header">
+      <h2>¿Por dónde quiere empezar?</h2>
+      <p>No todos los empresarios llegan con la misma necesidad. Elija el camino que mejor describa su situación actual.</p>
+    </div>
+    <div class="caminos-grid">
 
-    <section class="cta">
-        <div class="container">
-            <h2>¿Listo para una Asesoría Sin Enredos?</h2>
-            <p>Contáctanos hoy. La primera consulta es gratuita.</p>
-            <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 Consulta Gratis por WhatsApp</a>
-        </div>
-    </section>
+      <!-- CAMINO 1: URGENTE -->
+      <div class="camino-card urgente">
+        <div class="camino-icono">🚨</div>
+        <h3>Tengo un problema urgente</h3>
+        <p>Me llegó una demanda, una inspección del IMSS o STPS, un trabajador amenaza con demandar, o necesito despedir a alguien sin riesgos.</p>
+        <a href="contacto.html" class="camino-link">Hablar con un abogado →</a>
+      </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs.</p></div>
-                <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p> <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-                <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
-            </div>
-            <div class="footer-bottom"><p class="copy">© 2026 Laboral Click</p></div>
+      <!-- CAMINO 2: PREVENIR -->
+      <div class="camino-card prevenir">
+        <div class="camino-icono">🛡️</div>
+        <h3>Quiero prevenir riesgos</h3>
+        <p>Tengo trabajadores pero no sé si estoy haciendo las cosas bien. Quiero saber qué tan expuesta está mi empresa y qué arreglar primero.</p>
+        <a href="diagnostico.html" class="camino-link">Hacer diagnóstico gratuito →</a>
+      </div>
+
+      <!-- CAMINO 3: CALCULAR -->
+      <div class="camino-card calcular">
+        <div class="camino-icono">🧮</div>
+        <h3>Quiero saber cuánto cuesta</h3>
+        <p>Necesito calcular un finiquito, una liquidación, el salario neto o la PTU. Herramientas gratuitas basadas en la LFT vigente.</p>
+        <a href="calculadoras.html" class="camino-link">Usar calculadoras →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NUESTRAS DIVISIONES -->
+  <section class="divisiones">
+    <div class="divisiones-header">
+      <h2>Dos divisiones, un mismo estándar</h2>
+      <p>Atendemos PyMEs en general y tenemos una división especializada para el giro gastronómico.</p>
+    </div>
+    <div class="divisiones-grid">
+
+      <!-- DIVISIÓN PyMEs -->
+      <div class="division-card">
+        <div class="division-icono">🏢</div>
+        <h3>PyMEs en General</h3>
+        <p>Comercio, servicios, industria, profesionistas independientes. Blindaje laboral integral para cualquier empresa con trabajadores subordinados.</p>
+        <a href="pymes.html" class="division-link">Ver división PyMEs →</a>
+      </div>
+
+      <!-- DIVISIÓN RESTAURANTES -->
+      <div class="division-card">
+        <div class="division-icono">🍽️</div>
+        <h3>Restaurantes y Gastronomía</h3>
+        <p>Propinas, alta rotación, personal eventual, jornadas de servicio. Protocolos diseñados para la realidad de su cocina y salón.</p>
+        <a href="restaurantes.html" class="division-link">Ver división Restaurantes →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HERRAMIENTAS (CALCULADORAS) -->
+  <section class="herramientas">
+    <div class="herramientas-header">
+      <h2>Herramientas gratuitas a su disposición</h2>
+      <p>Calcule con precisión antes de tomar decisiones laborales. Basadas en la Ley Federal del Trabajo vigente.</p>
+    </div>
+    <div class="herramientas-grid">
+
+      <div class="herramienta-card">
+        <div class="herramienta-icono">📋</div>
+        <h3>Finiquito y Liquidación</h3>
+        <p>Calcule cuánto cuesta una renuncia voluntaria o un despido injustificado.</p>
+        <a href="calculadoras.html" class="herramienta-link">Calcular ahora →</a>
+      </div>
+
+      <div class="herramienta-card">
+        <div class="herramienta-icono">💰</div>
+        <h3>Salario Neto 2026</h3>
+        <p>Convierta el sueldo bruto en lo que realmente recibirá en nómina.</p>
+        <a href="calculadoras.html" class="herramienta-link">Calcular ahora →</a>
+      </div>
+
+      <div class="herramienta-card">
+        <div class="herramienta-icono">📊</div>
+        <h3>PTU (Utilidades)</h3>
+        <p>Estime cuánto le corresponde por reparto de utilidades según la LFT.</p>
+        <a href="calculadoras.html" class="herramienta-link">Calcular ahora →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FRANJA DE CONFIANZA -->
+  <section class="confianza">
+    <div class="confianza-header">
+      <h2>Resultados que hablan por sí mismos</h2>
+      <p>Historias confidenciales de empresarios que ya protegimos.</p>
+    </div>
+    <div class="confianza-grid">
+
+      <!-- CASOS DE ÉXITO -->
+      <div class="confianza-card">
+        <h3>🏆 Casos de Éxito</h3>
+
+        <div class="confianza-item">
+          <div class="titulo">Demanda por despido injustificado</div>
+          <div class="resumen">Restaurante con 12 empleados. Reclamo: $85,000. Resultado: se pagó solo finiquito por $12,000.</div>
         </div>
-    </footer>
-    <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Busca TODOS los links que tengan tu número o wa.me
-  var links = document.querySelectorAll('a[href*="wa.me"], a[href*="3111866901"]');
-  links.forEach(function(link) {
-    link.addEventListener('click', function() {
-      gtag('event', 'click_whatsapp', {
-        'event_category': 'contacto',
-        'event_label': window.location.pathname
+
+        <div class="confianza-item">
+          <div class="titulo">Multa del IMSS</div>
+          <div class="resumen">Taller mecánico con 5 trabajadores sin registro. Multa reducida de $65,000 a $8,000.</div>
+        </div>
+
+        <div class="confianza-item">
+          <div class="titulo">Alta rotación en tienda de ropa</div>
+          <div class="resumen">Rotación del 60% anual. Tras blindaje: cero demandas en 2 años y rotación al 20%.</div>
+        </div>
+
+        <a href="casos.html" class="confianza-link">Ver todos los casos →</a>
+      </div>
+
+      <!-- TESTIMONIOS -->
+      <div class="confianza-card">
+        <h3>💬 Lo que dicen nuestros clientes</h3>
+
+        <div class="confianza-item">
+          <div class="titulo">"Me explicó qué hacer y qué no hacer"</div>
+          <div class="resumen">Dueño de restaurante en la CDMX. Después de 3 años sin contratos, blindamos toda la operación en 2 semanas.</div>
+        </div>
+
+        <div class="confianza-item">
+          <div class="titulo">"Hablan claro, sin enredos legales"</div>
+          <div class="resumen">Administradora de taller mecánico. Resolvimos una inspección del IMSS sin multas ni clausuras.</div>
+        </div>
+
+        <div class="confianza-item">
+          <div class="titulo">"Responden en minutos por WhatsApp"</div>
+          <div class="resumen">Propietaria de boutique. Acompañamiento 24/7 durante una renuncia conflictiva.</div>
+        </div>
+
+        <a href="testimonios.html" class="confianza-link">Ver todos los testimonios →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final-home">
+    <h2>¿Listo para una asesoría sin enredos?</h2>
+    <p>La primera conversación no cuesta nada y puede ahorrarle decenas de miles de pesos. Escríbanos por WhatsApp y platiquemos.</p>
+    <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20una%20primera%20conversaci%C3%B3n%20sobre%20mi%20empresa." class="btn-dorado" target="_blank">💬 Escribir por WhatsApp</a>
+  </section>
+
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+      </div>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var links = document.querySelectorAll('a[href*="wa.me"], a[href*="3111866901"]');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'click_whatsapp', {
+            'event_category': 'contacto',
+            'event_label': window.location.pathname
+          });
+        });
       });
     });
-  });
-});
-</script>
-    <script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
-    <script src="menu.js"></script>
+  </script>
+  <script src="menu.js"></script>
 </body>
 </html>
