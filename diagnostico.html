@@ -72,18 +72,66 @@ function preguntaAnterior(){if(estado.preguntaActual>0){estado.preguntaActual--;
 function preguntaSiguiente(){if(estado.preguntaActual<estado.preguntasActivas.length-1){estado.preguntaActual++;mostrarPregunta();}else{calcularResultado();}}
 function generarFolio(){return`LC-${new Date().getFullYear()}-${Math.random().toString(36).substring(2,7).toUpperCase()}`;}
 function formatearFecha(f){return new Intl.DateTimeFormat('es-MX',{dateStyle:'long',timeStyle:'short'}).format(f);}
-function calcularResultado(){let obt=0,max=0,area={};estado.preguntasActivas.forEach(p=>{const ri=estado.respuestas[p.id];if(ri===undefined)return;const op=p.opciones[ri];if(op.puntos==='NO_APLICA')return;obt+=op.puntos;const mx=Math.max(...p.opciones.filter(o=>o.puntos!=='NO_APLICA').map(o=>o.puntos));max+=mx;if(!area[p.area])area[p.area]={puntos:0,maximo:0};area[p.area].puntos+=op.puntos;area[p.area].maximo+=mx;});const perc=max>0?(obt/max)*100:0;let nivel=perc<=25?'BAJO':perc<=50?'MEDIO':'ALTO';let prio=false,areaP=null;if(estado.respuestas.R01!==undefined){const o=moduloRestaurantes[0].opciones[estado.respuestas.R01];if(o&&o.critico){prio=true;areaP='Propinas';}}if(!areaP&&estado.respuestas.R02!==undefined){const o=moduloRestaurantes[1].opciones[estado.respuestas.R02];if(o&&o.critico){prio=true;areaP='Propinas / salario';}}if(prio)nivel='ALTO';let areaPrin='';if(prio&&areaP)areaPrin=areaP;else{let me=-1,mp=-1;Object.keys(area).forEach(a=>{const d=area[a];d.porcentaje=d.maximo>0?(d.puntos/d.maximo)*100:0;if(d.porcentaje>me||(d.porcentaje===me&&d.puntos>mp)){me=d.porcentaje;mp=d.puntos;areaPrin=a;}});}
-const res={nivelGeneral:nivel,areaPrincipal:areaPrin,porcentajeGeneral:perc};const txt=nivel==='BAJO'?{e:'No aparecen señales importantes de exposición.',r:'Mantener orden requiere prevención periódica.'}:nivel==='MEDIO'?{e:'Algunos aspectos que conviene revisar.',r:'Atienda el área prioritaria.'}:{e:prio?'Aspecto que requiere atención prioritaria.':'Varias señales que conviene atender.',r:'Revisión detallada del área identificada.'};
-res.explicacion=`${txt.e} Área: ${areaPrin}.`;res.recomendacion=txt.r;estado.folio=generarFolio();estado.fechaDiagnostico=new Date();estado.resultadoFinal=res;
-try{const ev={folio:estado.folio,fecha:estado.fechaDiagnostico.toISOString(),nivel:res.nivelGeneral,area:res.areaPrincipal,porcentaje:Math.round(perc),respuestasRaw:estado.respuestas,preguntasActivas:estado.preguntasActivas,resultadoCompleto:res,hash:btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16)};localStorage.setItem('lc_ultimo_semaforo',JSON.stringify(ev));enviarAGoogleSheet({folio:ev.folio,fecha:ev.fecha,nivel:ev.nivel,area:ev.area,tipo:estado.respuestas.C01,trabajadores:estado.respuestas.C02,porcentaje:ev.porcentaje,hash:ev.hash,email:''});}catch(e){}
-mostrarResultado();}
-function mostrarResultado(){const res=estado.resultadoFinal,badge=document.getElementById('nivel-badge');badge.style.background=res.nivelGeneral==='BAJO'?'#dcfce7':res.nivelGeneral==='MEDIO'?'#ffedd5':'#fee2e2';badge.style.color=res.nivelGeneral==='BAJO'?'#166534':res.nivelGeneral==='MEDIO'?'#9a3412':'#991b1b';badge.textContent=res.nivelGeneral==='BAJO'?'🟢 RIESGO BAJO':res.nivelGeneral==='MEDIO'?'🟠 RIESGO MEDIO':'🔴 RIESGO ALTO';document.getElementById('resultado-folio').textContent=estado.folio;document.getElementById('resultado-fecha').textContent=formatearFecha(estado.fechaDiagnostico);document.getElementById('resultado-explicacion').textContent=res.explicacion;document.getElementById('resultado-area').textContent=res.areaPrincipal;document.getElementById('resultado-recomendacion').textContent=res.recomendacion;generarResumen();configurarWA();prepararConst();document.getElementById('seccion-cuestionario').classList.remove('activa');document.getElementById('seccion-resultado').classList.add('activa');}
-function generarResumen(){const c=document.getElementById('lista-respuestas');c.innerHTML='';estado.preguntasActivas.forEach(p=>{const i=estado.respuestas[p.id];if(i===undefined)return;const op=p.opciones[i];if(!op||op.puntos==='NO_APLICA')return;const f=document.createElement('div');f.style.cssText='display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee;font-size:0.9rem';f.innerHTML=`<div style="color:#c9a028;font-weight:800;flex:0 0 40px">${p.id}</div><div><strong>${p.area}</strong> ${op.texto}</div>`;c.appendChild(f);});}
-function configurarWA(){const r=estado.resultadoFinal;const m=`Hola, hice el Semáforo. Folio: ${estado.folio} Resultado: ${r.nivelGeneral} Área: ${r.areaPrincipal}`;document.getElementById('btn-whatsapp').href='https://wa.me/5213111866901?text='+encodeURIComponent(m);}
-function prepararConst(){const r=estado.resultadoFinal;document.getElementById('constancia-folio-numero').textContent=estado.folio;document.getElementById('constancia-fecha').textContent=formatearFecha(estado.fechaDiagnostico);const n=document.getElementById('constancia-nivel');n.textContent=r.nivelGeneral==='BAJO'?'🟢 RESULTADO: RIESGO BAJO':r.nivelGeneral==='MEDIO'?'🟠 RESULTADO: RIESGO MEDIO':'🔴 RESULTADO: RIESGO ALTO';n.style.color=r.nivelGeneral==='BAJO'?'#166534':r.nivelGeneral==='MEDIO'?'#9a3412':'#991b1b';document.getElementById('constancia-area').textContent=r.areaPrincipal;document.getElementById('constancia-explicacion').textContent=r.explicacion;document.getElementById('constancia-recomendacion').textContent=r.recomendacion;let txt='';estado.preguntasActivas.forEach(p=>{const idx=estado.respuestas[p.id];if(idx===undefined)return;const op=p.opciones[idx];if(!op||op.puntos==='NO_APLICA')return;txt+=`${p.id} [${p.area}]: ${op.texto}\n`;});document.getElementById('constancia-respuestas').textContent=txt;document.getElementById('constancia-hash').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16)+'-'+estado.folio;const url=`https://laboralclick.mx/verificar?folio=${estado.folio}`;document.getElementById('constancia-url').textContent=url;document.getElementById('qr-code').innerHTML='';new QRCode(document.getElementById('qr-code'),{text:url,width:100,height:100});}
-function guardarEmailYNotificar(){const email=document.getElementById('input-email-resultado').value.trim();if(!email||!email.includes('@')){alert('Correo inválido');return;}try{const p=JSON.parse(localStorage.getItem('lc_ultimo_semaforo')||'{}');p.email_capturado=email;localStorage.setItem('lc_ultimo_semaforo',JSON.stringify(p));enviarAGoogleSheet({folio:estado.folio,fecha:new Date().toISOString(),nivel:estado.resultadoFinal.nivelGeneral,area:estado.resultadoFinal.areaPrincipal,tipo:estado.respuestas.C01,trabajadores:estado.respuestas.C02,porcentaje:Math.round(estado.resultadoFinal.porcentajeGeneral),hash:p.hash,email:email});}catch(e){}document.getElementById('msg-email').style.display='block';document.getElementById('msg-email').textContent='✅ Guardado.';}
-function imprimirConstancia(){const c=document.getElementById('constancia-print');c.style.display='block';setTimeout(()=>{window.print();},150);setTimeout(()=>{c.style.display='none';},1000);}
-function nuevoDiagnostico(){estado.respuestas={};estado.preguntaActual=0;estado.preguntasActivas=[];estado.folio=null;estado.fechaDiagnostico=null;estado.resultadoFinal=null;document.querySelectorAll('#seccion-contexto select').forEach(s=>s.value='');document.getElementById('c03-propinas-container').style.display='none';document.getElementById('c04-maquinas-container').style.display='none';document.getElementById('c05-quimicos-container').style.display='none';document.getElementById('btn-contexto-siguiente').disabled=true;document.getElementById('seccion-resultado').classList.remove('activa');document.getElementById('seccion-contexto').classList.add('activa');}
+<script>
+function calcularResultado(){
+ try{
+  let obt=0,max=0,area={};
+  estado.preguntasActivas.forEach(p=>{
+    const ri=estado.respuestas[p.id];
+    if(ri===undefined) return;
+    const op=p.opciones[ri];
+    if(!op || op.puntos==='NO_APLICA') return;
+    obt+=op.puntos;
+    const opcionesValidas = p.opciones.filter(o=>o.puntos!=='NO_APLICA');
+    if(opcionesValidas.length===0) return;
+    const mx=Math.max(...opcionesValidas.map(o=>o.puntos));
+    max+=mx;
+    if(!area[p.area]) area[p.area]={puntos:0,maximo:0};
+    area[p.area].puntos+=op.puntos;
+    area[p.area].maximo+=mx;
+  });
+  const perc=max>0?(obt/max)*100:0;
+  let nivel=perc<=25?'BAJO':perc<=50?'MEDIO':'ALTO';
+  let prio=false,areaP=null;
+  // Fix propinas solo si existe
+  try{
+    if(estado.respuestas.R01!==undefined){
+      const mod = (typeof moduloRestaurantes!=='undefined'?moduloRestaurantes:[])[0];
+      if(mod && mod.opciones[estado.respuestas.R01] && mod.opciones[estado.respuestas.R01].critico){prio=true;areaP='Propinas';}
+    }
+    if(!areaP && estado.respuestas.R02!==undefined){
+      const mod = (typeof moduloRestaurantes!=='undefined'?moduloRestaurantes:[])[1];
+      if(mod && mod.opciones[estado.respuestas.R02] && mod.opciones[estado.respuestas.R02].critico){prio=true;areaP='Propinas / salario';}
+    }
+  }catch(e){}
+  if(prio) nivel='ALTO';
+  let areaPrin='';
+  if(prio&&areaP) areaPrin=areaP;
+  else{
+    let me=-1,mp=-1;
+    Object.keys(area).forEach(a=>{
+      const d=area[a];
+      d.porcentaje=d.maximo>0?(d.puntos/d.maximo)*100:0;
+      if(d.porcentaje>me || (d.porcentaje===me && d.puntos>mp)){me=d.porcentaje;mp=d.puntos;areaPrin=a;}
+    });
+    if(!areaPrin) areaPrin = Object.keys(area)[0] || 'General';
+  }
+  const res={nivelGeneral:nivel,areaPrincipal:areaPrin,porcentajeGeneral:perc,tieneSituacionPrioritaria:prio};
+  const txt=nivel==='BAJO'?{e:'No aparecen señales importantes de exposición.',r:'Mantener orden requiere prevención periódica. Repite en 6 meses.'}:nivel==='MEDIO'?{e:'Algunos aspectos que conviene revisar.',r:'Atiende el área prioritaria.'}:{e:prio?'Aspecto que requiere atención prioritaria.':'Varias señales que conviene atender.',r:'Revisión detallada del área identificada.'};
+  res.explicacion=`${txt.e} Área: ${areaPrin}.`;
+  res.recomendacion=txt.r;
+  estado.folio=`LC-${new Date().getFullYear()}-${Math.random().toString(36).substring(2,7).toUpperCase()}`;
+  estado.fechaDiagnostico=new Date();
+  estado.resultadoFinal=res;
+  const ev={folio:estado.folio,fecha:estado.fechaDiagnostico.toISOString(),nivel:res.nivelGeneral,area:res.areaPrincipal,porcentaje:Math.round(perc),respuestasRaw:estado.respuestas,preguntasActivas:estado.preguntasActivas,resultadoCompleto:res,hash:btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16)};
+  try{localStorage.setItem('lc_ultimo_semaforo',JSON.stringify(ev));}catch(e){}
+  enviarAGoogleSheet({folio:ev.folio,fecha:ev.fecha,nivel:ev.nivel,area:ev.area,tipo:estado.respuestas.C01,trabajadores:estado.respuestas.C02,porcentaje:ev.porcentaje,hash:ev.hash,email:''});
+  mostrarResultado();
+ }catch(err){
+  console.error('Error en calculo:',err);
+  alert('Error al calcular: '+err.message);
+ }
+}
 </script>
 </body>
 </html>
