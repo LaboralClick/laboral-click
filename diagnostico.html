@@ -396,3 +396,285 @@ const titulo = "Diagnostico Laboral";
         b.className = 'opcion';
         b.type = 'button';
         b.textContent = op.texto;
+        b.onclick = () => seleccionarOpcion(i);
+        if (estado.respuestas[pr.id] === i) b.classList.add('sel');
+        cont.appendChild(b);
+      });
+
+      document.getElementById('btn-anterior').disabled = estado.preguntaActual === 0;
+      document.getElementById('btn-siguiente').disabled = estado.respuestas[pr.id] === undefined;
+      document.getElementById('btn-siguiente').textContent = estado.preguntaActual === tot - 1 ? 'VER MI RESULTADO' : 'SIGUIENTE →';
+    }
+
+    function seleccionarOpcion(i) {
+      const pr = estado.preguntasActivas[estado.preguntaActual];
+      estado.respuestas[pr.id] = i;
+      document.querySelectorAll('.opcion').forEach((b, idx) => b.classList.toggle('sel', idx === i));
+      document.getElementById('btn-siguiente').disabled = false;
+    }
+
+    function preguntaAnterior() {
+      if (estado.preguntaActual > 0) {
+        estado.preguntaActual--;
+        mostrarPregunta();
+      }
+    }
+
+    function preguntaSiguiente() {
+      const total = estado.preguntasActivas.length;
+      if (estado.preguntaActual < total - 1) {
+        estado.preguntaActual++;
+        mostrarPregunta();
+      } else {
+        calcularResultado();
+      }
+    }
+
+    function generarFolio() {
+      return `LC-${new Date().getFullYear()}-${Math.random().toString(36).substring(2,7).toUpperCase()}`;
+    }
+
+    function formatearFecha(f) {
+      return new Intl.DateTimeFormat('es-MX', { dateStyle:'long', timeStyle:'short' }).format(f);
+    }
+
+    function calcularResultado() {
+      let obt = 0, max = 0;
+      const area = {};
+
+      estado.preguntasActivas.forEach(p => {
+        const ri = estado.respuestas[p.id];
+        if (ri === undefined) return;
+        const op = p.opciones[ri];
+        if (!op || op.puntos === 'NO_APLICA') return;
+
+        obt += op.puntos;
+        const validas = p.opciones.filter(o => o.puntos !== 'NO_APLICA');
+        if (validas.length === 0) return;
+        const mx = Math.max(...validas.map(o => o.puntos));
+        max += mx;
+
+        if (!area[p.area]) area[p.area] = { puntos:0, maximo:0 };
+        area[p.area].puntos += op.puntos;
+        area[p.area].maximo += mx;
+      });
+
+      const perc = max > 0 ? (obt / max) * 100 : 0;
+      let nivel = perc <= 25 ? 'BAJO' : perc <= 50 ? 'MEDIO' : 'ALTO';
+      let prio = false, areaP = null;
+
+      if (estado.respuestas.R01 !== undefined) {
+        const op = moduloRestaurantes[0].opciones[estado.respuestas.R01];
+        if (op && op.critico) { prio = true; areaP = 'Propinas'; }
+      }
+      if (!areaP && estado.respuestas.R02 !== undefined) {
+        const op = moduloRestaurantes[1].opciones[estado.respuestas.R02];
+        if (op && op.critico) { prio = true; areaP = 'Propinas / salario'; }
+      }
+      if (prio) nivel = 'ALTO';
+
+      let areaPrin = '';
+      if (prio && areaP) {
+        areaPrin = areaP;
+      } else {
+        let me = -1, mp = -1;
+        Object.keys(area).forEach(a => {
+          const d = area[a];
+          d.porcentaje = d.maximo > 0 ? (d.puntos / d.maximo) * 100 : 0;
+          if (d.porcentaje > me || (d.porcentaje === me && d.puntos > mp)) {
+            me = d.porcentaje; mp = d.puntos; areaPrin = a;
+          }
+        });
+        if (!areaPrin) areaPrin = Object.keys(area)[0] || 'General';
+      }
+
+      const res = {
+        nivelGeneral: nivel,
+        areaPrincipal: areaPrin,
+        porcentajeGeneral: perc,
+        tieneSituacionPrioritaria: prio
+      };
+
+      const txt = nivel === 'BAJO'
+        ? { e:'No aparecen señales importantes de exposición.', r:'Mantener el orden requiere prevención periódica.' }
+        : nivel === 'MEDIO'
+          ? { e:'Se identifican algunos aspectos que conviene revisar.', r:'Conviene atender el área prioritaria antes de que se convierta en una contingencia.' }
+          : { e: prio ? 'Se identificó una situación que requiere atención prioritaria.' : 'Se identifican varias señales que conviene atender.', r:'Se recomienda una revisión detallada del área identificada y de la documentación relacionada.' };
+
+      res.explicacion = `${txt.e} Área: ${areaPrin}.`;
+      res.recomendacion = txt.r;
+
+      estado.folio = generarFolio();
+      estado.fechaDiagnostico = new Date();
+      estado.resultadoFinal = res;
+
+      const hashBase = btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);
+
+      const ev = {
+        folio: estado.folio,
+        fecha: estado.fechaDiagnostico.toISOString(),
+        nivel: res.nivelGeneral,
+        area: res.areaPrincipal,
+        porcentaje: Math.round(perc),
+        respuestasRaw: estado.respuestas,
+        preguntasActivas: estado.preguntasActivas,
+        resultadoCompleto: res,
+        hash: hashBase
+      };
+
+      try {
+        localStorage.setItem('lc_ultimo_semaforo', JSON.stringify(ev));
+      } catch(e) {
+        console.warn('No fue posible guardar localmente.', e);
+      }
+
+      enviarAGoogleSheet({
+        folio: ev.folio,
+        fecha: ev.fecha,
+        nivel: ev.nivel,
+        area: ev.area,
+        tipo: estado.respuestas.C01,
+        trabajadores: estado.respuestas.C02,
+        porcentaje: ev.porcentaje,
+        hash: ev.hash,
+        email: '',
+        respuestas: JSON.stringify(estado.respuestas)
+      });
+
+      mostrarResultado();
+    }
+
+    function mostrarResultado() {
+      const res = estado.resultadoFinal;
+      if (!res) return;
+
+      document.getElementById('seccion-cuestionario').classList.remove('activa');
+      document.getElementById('seccion-resultado').classList.add('activa');
+
+      const badge = document.getElementById('nivel-badge');
+      badge.textContent = res.nivelGeneral === 'ALTO' ? '🔴 RIESGO ALTO' : res.nivelGeneral === 'MEDIO' ? '🟡 RIESGO MEDIO' : '🟢 RIESGO BAJO';
+      if (res.nivelGeneral === 'ALTO') { badge.style.background = '#fee2e2'; badge.style.color = '#991b1b'; }
+      else if (res.nivelGeneral === 'MEDIO') { badge.style.background = '#fef3c7'; badge.style.color = '#92400e'; }
+      else { badge.style.background = '#dcfce7'; badge.style.color = '#166534'; }
+
+      document.getElementById('resultado-folio').textContent = `FOLIO DEL DIAGNÓSTICO · ${estado.folio}`;
+      document.getElementById('resultado-fecha').textContent = formatearFecha(estado.fechaDiagnostico);
+      document.getElementById('resultado-explicacion').textContent = res.explicacion;
+      document.getElementById('resultado-area').textContent = res.areaPrincipal;
+
+      const alerta = document.getElementById('resultado-alerta');
+      if (res.tieneSituacionPrioritaria) {
+        alerta.style.display = 'block';
+        alerta.style.background = '#fff1f2';
+        alerta.style.borderLeft = '5px solid #dc2626';
+        alerta.innerHTML = '<strong>⚠ Situación prioritaria detectada</strong><br><span style="font-size:.85rem">El diagnóstico identifica una situación que merece atención prioritaria.</span>';
+      } else {
+        alerta.style.display = 'none';
+      }
+
+      const lista = document.getElementById('lista-respuestas');
+      lista.innerHTML = '';
+      estado.preguntasActivas.forEach(p => {
+        const ri = estado.respuestas[p.id];
+        if (ri === undefined) return;
+        const op = p.opciones[ri];
+        if (!op) return;
+        const item = document.createElement('div');
+        item.className = 'respuesta-item';
+        item.innerHTML = `<div class="respuesta-id">${p.id}</div><div class="respuesta-area">${escapeHtml(p.area)}</div><div class="respuesta-texto">${escapeHtml(op.texto)}</div>`;
+        lista.appendChild(item);
+      });
+
+      prepararWhatsApp();
+      prepararConstancia();
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text == null ? '' : String(text);
+      return div.innerHTML;
+    }
+
+    function prepararWhatsApp() {
+      const mensaje = `Hola, soy de Laboral Click.%0A%0ARealicé el Semáforo Laboral.%0AFolio: ${estado.folio}%0AResultado: ${estado.resultadoFinal.nivelGeneral}%0AÁrea principal: ${estado.resultadoFinal.areaPrincipal}%0A%0AMe gustaría revisar mi resultado.`;
+      const telefono = '523111869901';
+      document.getElementById('btn-whatsapp').href = `https://wa.me/${telefono}?text=${mensaje}`;
+    }
+
+    function prepararConstancia() {
+      const res = estado.resultadoFinal;
+      document.getElementById('constancia-nivel').textContent = `RESULTADO: ${res.nivelGeneral}`;
+      document.getElementById('constancia-folio-numero').textContent = `Folio: ${estado.folio}`;
+      document.getElementById('constancia-fecha').textContent = formatearFecha(estado.fechaDiagnostico);
+      document.getElementById('constancia-area').textContent = res.areaPrincipal;
+      document.getElementById('constancia-explicacion').textContent = res.explicacion;
+      document.getElementById('constancia-recomendacion').textContent = res.recomendacion;
+
+      const respuestasTexto = estado.preguntasActivas.map(p => {
+        const ri = estado.respuestas[p.id];
+        if (ri === undefined) return null;
+        const op = p.opciones[ri];
+        if (!op) return null;
+        return `${p.id} · ${p.area}: ${op.texto}`;
+      }).filter(Boolean).join('\n');
+
+      document.getElementById('constancia-respuestas').textContent = respuestasTexto;
+
+      const hash = btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);
+      document.getElementById('constancia-hash').textContent = hash;
+
+      const url = window.location.href;
+      document.getElementById('constancia-url').textContent = url;
+
+      const qr = document.getElementById('qr-code');
+      qr.innerHTML = '';
+      if (typeof QRCode !== 'undefined') {
+        new QRCode(qr, { text:url, width:100, height:100 });
+      }
+    }
+
+    function imprimirConstancia() {
+      prepararConstancia();
+      window.print();
+    }
+
+    function guardarEmailYNotificar() {
+      const input = document.getElementById('input-email-resultado');
+      const email = input.value.trim();
+      const msg = document.getElementById('msg-email');
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.style.display = 'block';
+        msg.style.color = '#991b1b';
+        msg.textContent = 'Por favor, introduce un correo válido.';
+        return;
+      }
+
+      enviarAGoogleSheet({
+        accion:'captura_email',
+        folio: estado.folio,
+        fecha: estado.fechaDiagnostico ? estado.fechaDiagnostico.toISOString() : new Date().toISOString(),
+        nivel: estado.resultadoFinal ? estado.resultadoFinal.nivelGeneral : '',
+        area: estado.resultadoFinal ? estado.resultadoFinal.areaPrincipal : '',
+        tipo: estado.respuestas.C01 || '',
+        trabajadores: estado.respuestas.C02 || '',
+        porcentaje: estado.resultadoFinal ? Math.round(estado.resultadoFinal.porcentajeGeneral) : '',
+        email: email
+      });
+
+      const asunto = `Mi resultado del Semáforo Laboral - ${estado.folio}`;
+      const cuerpo = `Resultado de mi Semáforo Laboral%0D%0A%0D%0AFolio: ${estado.folio}%0D%0ANivel: ${estado.resultadoFinal.nivelGeneral}%0D%0AÁrea principal: ${estado.resultadoFinal.areaPrincipal}%0D%0A%0D%0A${estado.resultadoFinal.explicacion}%0D%0A%0D%0ARecomendación: ${estado.resultadoFinal.recomendacion}%0D%0A%0D%0ALaboral Click%0Ahttps://laboralclick.com.mx`;
+
+      msg.style.display = 'block';
+      msg.style.color = '#166534';
+      msg.textContent = 'Resultado registrado. Abriendo tu correo...';
+
+      setTimeout(() => {
+        window.location.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(asunto)}&body=${cuerpo}`;
+      }, 400);
+    }
+  </script>
+
+</body>
+</html>
