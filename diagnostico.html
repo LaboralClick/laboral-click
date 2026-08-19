@@ -1,692 +1,159 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semáforo Laboral | Laboral Click</title>
- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-  <style>
-    .seccion { display: none; }
-    .seccion.activa { display: block; }
-    .semaforo-hero { background: linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%); color: white; padding: 80px 20px; text-align: center; }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px; }
-    .card { background: white; padding: 38px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,.08); border-top: 5px solid #c9a028; }
-    .opcion { width: 100%; background: #f8f9fa; border: 2px solid #d8dde6; border-radius: 10px; padding: 16px 18px; text-align: left; cursor: pointer; font-weight: 600; margin-bottom: 10px; transition: .2s ease; }
-    .opcion:hover { border-color: #c9a028; background: #fffdf4; }
-    .opcion.sel { border-color: #c9a028; background: #fff9df; }
-    .boton-principal { width: 100%; background: #c9a028; color: #10254d; padding: 14px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
-    .boton-principal:disabled { opacity: .45; cursor: not-allowed; }
-    .resultado-bloque { margin: 20px 0; padding: 15px; border-radius: 10px; }
-    .resultado-area { background: #fff9df; border-left: 5px solid #c9a028; padding: 12px; }
-    .respuesta-item { padding: 12px 0; border-bottom: 1px solid #e5e7eb; }
-    .respuesta-item:last-child { border-bottom: none; }
-    .respuesta-id { color: #c9a028; font-weight: 800; font-size: .78rem; }
-    .respuesta-area { color: #0f2a5e; font-weight: 800; font-size: .9rem; }
-    .respuesta-texto { font-size: .85rem; color: #374151; margin-top: 3px; }
-    .captura-email { border: 1px dashed #d1d5db; border-radius: 10px; padding: 15px; margin-top: 20px; background: #fafafa; }
-    .captura-email input { width: 68%; padding: 11px; border-radius: 6px; border: 1px solid #d1d5db; box-sizing: border-box; }
-    .captura-email button { width: 30%; padding: 11px; background: white; border: 2px solid #0f2a5e; border-radius: 6px; font-weight: 800; cursor: pointer; }
-    .mensaje-exito { display: none; color: #166534; font-weight: 700; margin-top: 8px; }
-    #constancia-print { display: none; }
-
-    @media print {
-      @page { margin: 10mm; }
-      header, footer, .semaforo-hero, #seccion-contexto, #seccion-cuestionario, #seccion-resultado, #seccion-inicio { display: none !important; }
-      #constancia-print { display: block !important; }
-    }
-    @media (max-width: 600px) {
-      .card { padding: 22px; }
-      .captura-email input, .captura-email button { width: 100%; margin-top: 8px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semaforo Laboral | Laboral Click</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>LC</text></svg>">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f3f4f6;color:#1f2937;line-height:1.6}
+.seccion{display:none}
+.seccion.activa{display:block}
+.semaforo-hero{background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);color:white;padding:80px 20px;text-align:center}
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px}
+.card{background:white;padding:38px;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,.08);border-top:5px solid #c9a028}
+.opcion{width:100%;background:#f8f9fa;border:2px solid #d8dde6;border-radius:10px;padding:16px 18px;text-align:left;cursor:pointer;font-weight:600;margin-bottom:10px;transition:.2s ease;font-size:1rem}
+.opcion:hover{border-color:#c9a028;background:#fffdf4}
+.opcion.sel{border-color:#c9a028;background:#fff9df}
+.boton-principal{width:100%;background:#c9a028;color:#10254d;padding:14px;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:1rem}
+.boton-principal:disabled{opacity:.45;cursor:not-allowed}
+.resultado-bloque{margin:20px 0;padding:15px;border-radius:10px}
+.resultado-area{background:#fff9df;border-left:5px solid #c9a028;padding:12px}
+.respuesta-item{padding:12px 0;border-bottom:1px solid #e5e7eb}
+.respuesta-item:last-child{border-bottom:none}
+.respuesta-id{color:#c9a028;font-weight:800;font-size:.78rem}
+.respuesta-area{color:#0f2a5e;font-weight:800;font-size:.9rem}
+.respuesta-texto{font-size:.85rem;color:#374151;margin-top:3px}
+.captura-email{border:1px dashed #d1d5db;border-radius:10px;padding:15px;margin-top:20px;background:#fafafa}
+.captura-email input{width:68%;padding:11px;border-radius:6px;border:1px solid #d1d5db;box-sizing:border-box;font-size:1rem}
+.captura-email button{width:30%;padding:11px;background:white;border:2px solid #0f2a5e;border-radius:6px;font-weight:800;cursor:pointer;font-size:1rem}
+.mensaje-exito{display:none;color:#166534;font-weight:700;margin-top:8px}
+#constancia-print{display:none}
+label{display:block;font-weight:700;color:#0f2a5e;margin-bottom:6px;font-size:.9rem}
+select{font-size:1rem}
+@media print{@page{margin:10mm}header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-resultado,#seccion-inicio{display:none!important}#constancia-print{display:block!important}}
+@media(max-width:600px){.card{padding:22px}.captura-email input,.captura-email button{width:100%;margin-top:8px}}
+</style>
 </head>
 <body>
 
-<!-- ❌ HEADER ACTUAL (ROTO) -->
-<header>
-  <div class="container">
-    <nav class="nav">
-      <a href="index.html" class="logo">
-        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-        <span>Asesoría Legal sin Enredos</span>
-      </a>
-    </nav>
-  </div>
+<header style="background:#10254d;padding:15px 20px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.15);">
+<div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+<a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+<img src="/images/logoH.png" alt="Laboral Click" style="height:45px;" onerror="this.style.display='none'">
+<span style="color:white;font-weight:700;font-size:1rem;">Asesoria Legal sin Enredos</span>
+</a>
+<a href="index.html" style="color:#d6b347;font-weight:700;text-decoration:none;font-size:.9rem;border:2px solid #d6b347;padding:8px 20px;border-radius:6px;">Volver al inicio</a>
+</div>
 </header>
 
-  <div id="seccion-inicio" class="seccion activa">
-    <div class="semaforo-hero">
-      <div style="color:#d6b347;font-weight:800;letter-spacing:3px">LABORAL CLICK</div>
-      <h1 style="color:white">SEMÁFORO LABORAL PARA PyMEs</h1>
-      <p style="color:#d6b347;font-size:1.3rem;font-weight:700">¿Qué tan tranquilo está tu negocio en materia laboral?</p>
-      <div id="banner-previo-container"></div>
-      <div style="display:inline-block;background:#d6b347;color:#10254d;padding:10px 24px;border-radius:30px;font-weight:800;margin:20px 0;">GRATIS · RESULTADO INMEDIATO</div>
-      <br>
-      <button onclick="iniciarCuestionario()" style="background:#d6b347;color:#10254d;padding:16px 48px;border-radius:8px;font-weight:800;border:none;cursor:pointer;">COMENZAR</button>
-    </div>
-  </div>
-
-  <div id="seccion-contexto" class="seccion">
-    <div class="wrap">
-      <div class="card">
-        <h2 style="text-align:center;color:#0f2a5e">Cuéntanos sobre tu negocio</h2>
-        <div style="margin:15px 0">
-          <label>Tipo de negocio</label>
-          <select id="c01-tipo" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="restaurante">Restaurante</option>
-            <option value="bar">Bar</option>
-            <option value="hotel">Hotel</option>
-            <option value="comercio">Comercio</option>
-            <option value="oficina">Oficina</option>
-            <option value="taller">Taller</option>
-            <option value="construccion">Construcción</option>
-            <option value="otro">Otro</option>
-          </select>
-        </div>
-        <div style="margin:15px 0">
-          <label>Trabajadores</label>
-          <select id="c02-trabajadores" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="1-5">1–5</option>
-            <option value="6-10">6–10</option>
-            <option value="11-20">11–20</option>
-            <option value="21-50">21–50</option>
-            <option value="mas-50">Más de 50</option>
-          </select>
-        </div>
-        <div id="c03-propinas-container" style="display:none;margin:15px 0">
-          <label>¿Propinas?</label>
-          <select id="c03-propinas" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="no-seguro">No estoy seguro</option>
-          </select>
-        </div>
-        <div id="c04-maquinas-container" style="display:none;margin:15px 0">
-          <label>¿Máquinas de riesgo?</label>
-          <select id="c04-maquinas" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="no-seguro">No estoy seguro</option>
-          </select>
-        </div>
-        <div id="c05-quimicos-container" style="display:none;margin:15px 0">
-          <label>¿Químicos peligrosos?</label>
-          <select id="c05-quimicos" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="no-seguro">No estoy seguro</option>
-          </select>
-        </div>
-        <div style="margin:15px 0">
-          <label>¿Jornada de pie?</label>
-          <select id="c06-bipedestacion" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;">
-            <option value="">Selecciona</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-            <option value="no-seguro">No estoy seguro</option>
-          </select>
-        </div>
-        <button onclick="irACuestionario()" id="btn-contexto-siguiente" class="boton-principal" disabled>SIGUIENTE →</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="seccion-cuestionario" class="seccion">
-    <div class="wrap">
-      <div class="card">
-        <div id="indicador-pregunta" style="text-align:center;color:#6b7280;margin-bottom:8px;"></div>
-        <div style="width:100%;height:8px;background:#e2e5ea;border-radius:10px;margin:12px 0;">
-          <div id="barra-progreso-fill" style="height:100%;background:#c9a028;width:0%;border-radius:10px;"></div>
-        </div>
-        <h3 id="texto-pregunta"></h3>
-        <div id="opciones-respuesta" style="margin:20px 0"></div>
-        <div style="display:flex;gap:10px">
-          <button id="btn-anterior" onclick="preguntaAnterior()" style="flex:0 0 120px;background:white;border:2px solid #0f2a5e;border-radius:8px;padding:12px;font-weight:800;">← ANTERIOR</button>
-          <button id="btn-siguiente" onclick="preguntaSiguiente()" class="boton-principal">SIGUIENTE →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="seccion-resultado" class="seccion">
-    <div class="wrap" style="max-width:820px">
-      <div class="card">
-        <div style="text-align:center">
-          <h2>Resultado de tu Semáforo Laboral</h2>
-          <div id="nivel-badge" style="display:inline-block;padding:12px 28px;border-radius:50px;font-weight:800;margin-top:10px;"></div>
-        </div>
-        <div style="background:#f3f4f6;border-radius:10px;padding:15px;margin:20px 0;text-align:center;">
-          <span id="resultado-folio" style="font-weight:800;color:#0f2a5e"></span>
-          <br>
-          <span id="resultado-fecha" style="font-size:.8rem;color:#6b7280"></span>
-        </div>
-        <div id="resultado-alerta" class="resultado-bloque" style="display:none"></div>
-        <p id="resultado-explicacion"></p>
-        <div class="resultado-area">
-          <strong>Área que requiere mayor atención:</strong>
-          <div id="resultado-area" style="margin-top:5px;font-weight:900;color:#0f2a5e;"></div>
-        </div>
-        <div style="margin-top:25px">
-          <h3 style="color:#0f2a5e">Resumen de las respuestas proporcionadas</h3>
-          <div id="lista-respuestas"></div>
-        </div>
-        <div style="background:#f8fafc;border:1px solid #d8dde6;border-radius:8px;padding:12px;margin-top:20px;font-size:.78rem;color:#4b5563;">
-          <strong>Importante:</strong> Este Semáforo Laboral es una herramienta de orientación preventiva. El resultado no sustituye una revisión profesional de la situación laboral de tu empresa.
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
-          <button onclick="imprimirConstancia()" style="padding:14px;background:#0f2a5e;color:white;border:none;border-radius:8px;font-weight:800;cursor:pointer;">🖨 DESCARGAR / IMPRIMIR MI CONSTANCIA</button>
-          <a id="btn-whatsapp" target="_blank" rel="noopener noreferrer" style="padding:14px;background:#c9a028;color:#10254d;border-radius:8px;font-weight:800;text-align:center;text-decoration:none;">💬 QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
-        </div>
-        <div class="captura-email">
-          <div style="font-weight:800;color:#0f2a5e;margin-bottom:5px;">¿Quieres conservar tu resultado?</div>
-          <p style="font-size:.85rem;color:#6b7280;margin-top:5px;">Déjanos tu correo únicamente si deseas recibir o compartir tu resultado por este medio.</p>
-          <input type="email" id="input-email-resultado" placeholder="Tu correo electrónico" autocomplete="email">
-          <button onclick="guardarEmailYNotificar()">ENVIAR</button>
-          <p id="msg-email" class="mensaje-exito"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="constancia-print">
-    <div style="max-width:800px;margin:0 auto;background:white;padding:40px;font-family:Arial,sans-serif;">
-      <div style="text-align:center;border-bottom:3px solid #c9a028;padding-bottom:15px;">
-        <div style="color:#0f2a5e;font-weight:900;">LABORAL CLICK</div>
-        <div style="font-size:.8rem;">Asesoría Legal sin Enredos</div>
-      </div>
-      <div style="text-align:center;font-weight:800;font-size:1.4rem;margin:20px 0;color:#0f2a5e;">CONSTANCIA DE SEMÁFORO LABORAL</div>
-      <div id="constancia-nivel" style="text-align:center;font-weight:900;font-size:1.2rem;"></div>
-      <div style="text-align:center;background:#f3f4f6;padding:12px;border-radius:8px;margin:15px 0;">
-        <span id="constancia-folio-numero" style="font-weight:800"></span>
-        <br>
-        <span id="constancia-fecha" style="font-size:.85rem;"></span>
-      </div>
-      <div style="display:flex;gap:15px;justify-content:center;align-items:center;">
-        <div id="qr-code"></div>
-        <span id="constancia-url" style="font-size:.7rem;color:#6b7280;max-width:200px;word-break:break-all;"></span>
-      </div>
-      <div style="margin:15px 0;">
-        <h3 style="font-size:.85rem;color:#0f2a5e;">ÁREA</h3>
-        <p id="constancia-area"></p>
-      </div>
-      <div style="margin:15px 0;">
-        <h3 style="font-size:.85rem;color:#0f2a5e;">RESULTADO</h3>
-        <p id="constancia-explicacion"></p>
-      </div>
-      <div style="margin:15px 0;">
-        <h3 style="font-size:.85rem;color:#0f2a5e;">RECOMENDACIÓN</h3>
-        <p id="constancia-recomendacion"></p>
-      </div>
-      <p id="constancia-respuestas" style="font-size:.75rem;white-space:pre-wrap;"></p>
-      <div style="font-size:.7rem;background:#f8fafc;border:1px solid #ddd;padding:8px;">
-        Hash: <span id="constancia-hash"></span>
-      </div>
-      <div style="margin-top:25px;border-top:1px solid #e5e7eb;padding-top:15px;text-align:center;">
-        <p style="font-size:.8rem;">Documento generado a partir del diagnóstico realizado en la plataforma de Laboral Click.</p>
-        <div style="display:flex;justify-content:space-around;">
-          <div>
-            <div style="border-top:1px solid #0f2a5e;width:150px;margin:30px auto 5px;"></div>
-            <strong style="font-size:.8rem;">Laboral Click</strong>
-          </div>
-          <div>
-            <div style="border-top:1px solid #0f2a5e;width:150px;margin:30px auto 5px;"></div>
-            <strong style="font-size:.8rem;">Validación Digital</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer style="background:#10254d;color:white;padding:30px 20px;text-align:center;margin-top:50px;">
-    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
-  </footer>
-
-  <!-- SCRIPT ÚNICO Y CORREGIDO -->
-  <script>
-    // ==========================================
-    // CONFIGURACIÓN DE CONEXIÓN
-    // ==========================================
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw78vqMfLjAd7JYxBwES4BSaRDi2ONqWGQSNWZY3fhBZ8bHHETFgNsFnj_IF5--/exec';
-    // ==========================================
-    // FUNCIÓN DE ENVÍO A GOOGLE SHEETS (CORREGIDA)
-    // ==========================================
-    function enviarAGoogleSheet(payload) {
-      if (!GOOGLE_SHEET_URL) {
-        console.error('❌ URL de Google Sheet no configurada.');
-        return;
-      }
-      
-      console.log('📤 Enviando datos:', payload.folio);
-
-      fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors', 
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(() => console.log('✅ Envío completado'))
-      .catch(err => console.error('❌ Error de envío:', err));
-    }
-
-    // ==========================================
-    // LÓGICA DEL DIAGNÓSTICO
-    // ==========================================
-    const estado = { respuestas: {}, preguntaActual: 0, preguntasActivas: [], folio: null, fechaDiagnostico: null, resultadoFinal: null };
-
-    const preguntasGenerales = [
-      { id:'G01', texto:'¿Tus trabajadores tienen un contrato de trabajo por escrito, actualizado y acorde con las condiciones reales en que trabajan?', area:'Contratación', opciones:[{texto:'Sí, todos',puntos:0},{texto:'La mayoría, pero hay algunos pendientes o desactualizados',puntos:2},{texto:'No todos tienen contrato escrito o existen diferencias importantes entre el contrato y la realidad',puntos:4}] },
-      { id:'G02', texto:'¿Tienes un expediente actualizado de cada trabajador con su documentación laboral básica?', area:'Documentación laboral', opciones:[{texto:'Sí, y los mantenemos actualizados',puntos:0},{texto:'Sí, pero algunos están incompletos',puntos:2},{texto:'No tenemos expedientes completos o la documentación está dispersa',puntos:4},{texto:'No estoy seguro',puntos:3}] },
-      { id:'G03', texto:'¿La empresa lleva un control de salarios, prestaciones, vacaciones, prima vacacional y aguinaldo de cada trabajador?', area:'Salarios y prestaciones', opciones:[{texto:'Sí, tenemos controles y comprobantes',puntos:0},{texto:'Los pagamos, pero el control documental es irregular',puntos:2},{texto:'Existen pagos pendientes, errores frecuentes o no tenemos un control confiable',puntos:4}] },
-      { id:'G04', texto:'¿Tienes control de las jornadas, horas de entrada y salida, descansos y horas extra de tus trabajadores?', area:'Jornada', opciones:[{texto:'Sí, existe un control confiable',puntos:0},{texto:'Tenemos algún control, pero es informal o incompleto',puntos:2},{texto:'No llevamos un control o frecuentemente se exceden las jornadas',puntos:4}] },
-      { id:'G05', texto:'¿Los trabajadores que realizan actividades de pie cuentan con sillas con respaldo y pueden utilizarlas durante los descansos o cuando la naturaleza de su trabajo lo permite?', area:'Condiciones de trabajo', opciones:[{texto:'Sí',puntos:0},{texto:'Tenemos algunas, pero no existe una política o procedimiento claro',puntos:2},{texto:'No contamos con ellas o se exige permanecer de pie durante toda la jornada',puntos:4},{texto:'No tenemos puestos que impliquen trabajo prolongado de pie',puntos:'NO_APLICA'}] },
-      { id:'G06', texto:'¿La empresa identifica los riesgos de trabajo y cuenta con medidas para prevenir accidentes?', area:'Seguridad y prevención', opciones:[{texto:'Sí, tenemos medidas y controles',puntos:0},{texto:'Tenemos algunas medidas, pero no están formalizadas o documentadas',puntos:2},{texto:'No tenemos una evaluación o control claro de los riesgos',puntos:4}] },
-      { id:'G07', texto:'¿La empresa tiene procedimientos para actuar ante accidentes, emergencias y primeros auxilios, y conserva evidencia de las acciones realizadas?', area:'Emergencias', opciones:[{texto:'Sí',puntos:0},{texto:'Tenemos algunas medidas, pero falta formalizarlas o documentarlas',puntos:2},{texto:'No tenemos procedimientos definidos',puntos:4}] },
-      { id:'G08', texto:'¿Los trabajadores reciben capacitación sobre las actividades y riesgos de su puesto, y la empresa conserva evidencia de esa capacitación?', area:'Capacitación', opciones:[{texto:'Sí, tenemos programa y evidencias',puntos:0},{texto:'Capacitamos, pero no siempre conservamos evidencia',puntos:2},{texto:'No existe un programa o la capacitación es únicamente informal',puntos:4}] },
-      { id:'G09', texto:'', area:'Ambiente laboral', opciones:[] },
-      { id:'G10', texto:'¿Tu empresa tiene mecanismos claros para prevenir y atender casos de acoso, violencia laboral o discriminación?', area:'Ambiente laboral', opciones:[{texto:'Sí, están establecidos y comunicados al personal',puntos:0},{texto:'Existen algunas reglas, pero no están formalizadas',puntos:2},{texto:'No tenemos mecanismos establecidos',puntos:3}] },
-      { id:'G11', texto:'Cuando termina una relación laboral, ¿la empresa cuenta con un procedimiento para documentar correctamente la salida y calcular lo que corresponde al trabajador?', area:'Terminación laboral', opciones:[{texto:'Sí, contamos con un procedimiento',puntos:0},{texto:'Lo hacemos, pero cada caso se maneja de manera diferente',puntos:2},{texto:'No tenemos procedimiento y normalmente resolvemos cada salida sobre la marcha',puntos:4}] },
-      { id:'G12', texto:'Si mañana recibieras una inspección laboral, ¿podrías localizar rápidamente la documentación que acredita el cumplimiento de tus principales obligaciones laborales?', area:'Documentación y prevención', opciones:[{texto:'Sí',puntos:0},{texto:'Tenemos la documentación, pero está dispersa o incompleta',puntos:2},{texto:'No estamos seguros de qué documentos tenemos o dónde están',puntos:4}] }
-    ];
-
-    const moduloRestaurantes = [
-      { id:'R01', texto:'¿Las propinas son recibidas y distribuidas conforme a un sistema conocido por los trabajadores?', area:'Propinas', opciones:[{texto:'Sí',puntos:0},{texto:'Existe un sistema, pero no está claramente documentado',puntos:2},{texto:'El patrón retiene, dispone o participa en las propinas',puntos:5,critico:true}] },
-      { id:'R02', texto:'En tu negocio, ¿las propinas se mantienen diferenciadas del salario base?', area:'Propinas / salario', opciones:[{texto:'Sí',puntos:0},{texto:'No estamos seguros de que el esquema esté correctamente estructurado',puntos:3},{texto:'Las propinas se utilizan como sustituto del salario base',puntos:5,critico:true}] },
-      { id:'R04', texto:'¿El personal permanece de pie durante largos periodos sin disponer de descansos?', area:'Condiciones de trabajo', opciones:[{texto:'No',puntos:0},{texto:'En algunos puestos puede ocurrir',puntos:2},{texto:'Es una práctica habitual',puntos:4}] }
-    ];
-
-    const moduloMaquinaria = [
-      { id:'M01', texto:'¿La maquinaria y herramientas cuentan con medidas de seguridad y mantenimiento?', area:'Seguridad', opciones:[{texto:'Sí',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:4}] },
-      { id:'M02', texto:'¿Se proporciona EPP gratuito y capacitación?', area:'Seguridad / EPP', opciones:[{texto:'Sí, y tenemos evidencia',puntos:0},{texto:'Lo proporcionamos, pero incompleto',puntos:2},{texto:'No siempre se proporciona',puntos:4},{texto:'No aplica',puntos:'NO_APLICA'}] },
-      { id:'M03', texto:'¿Conocen procedimientos ante emergencias?', area:'Emergencias', opciones:[{texto:'Sí',puntos:0},{texto:'Parcialmente',puntos:1},{texto:'No',puntos:2}] }
-    ];
-
-    const moduloQuimicos = [
-      { id:'Q01', texto:'¿Las sustancias peligrosas están identificadas?', area:'Sustancias químicas', opciones:[{texto:'Sí',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:4}] },
-      { id:'Q02', texto:'¿Conocen los riesgos y medidas preventivas?', area:'Capacitación', opciones:[{texto:'Sí',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:3}] }
-    ];
-
-    function iniciarCuestionario() {
-      document.getElementById('seccion-inicio').classList.remove('activa');
-      document.getElementById('seccion-contexto').classList.add('activa');
-    }
-
-    function actualizarContexto() {
-      const c01 = document.getElementById('c01-tipo').value;
-      const c02 = document.getElementById('c02-trabajadores').value;
-      const c03 = document.getElementById('c03-propinas').value;
-      const c04 = document.getElementById('c04-maquinas').value;
-      const c05 = document.getElementById('c05-quimicos').value;
-      const c06 = document.getElementById('c06-bipedestacion').value;
-
-      estado.respuestas.C01 = c01;
-      estado.respuestas.C02 = c02;
-      estado.respuestas.C03 = c03;
-      estado.respuestas.C04 = c04;
-      estado.respuestas.C05 = c05;
-      estado.respuestas.C06 = c06;
-
-      const esR = ['restaurante','bar','hotel'].includes(c01);
-      const esT = ['taller','construccion'].includes(c01);
-      const esTa = c01 === 'taller';
-
-      document.getElementById('c03-propinas-container').style.display = esR ? 'block' : 'none';
-      document.getElementById('c04-maquinas-container').style.display = esT ? 'block' : 'none';
-      document.getElementById('c05-quimicos-container').style.display = esTa ? 'block' : 'none';
-
-      let valido = c01 && c02 && c06;
-      if (esR && !c03) valido = false;
-      if (esT && !c04) valido = false;
-      if (esTa && !c05) valido = false;
-
-      document.getElementById('btn-contexto-siguiente').disabled = !valido;
-    }
-
-    function irACuestionario() {
-      estado.preguntasActivas = preguntasGenerales.map(p => ({...p, opciones:[...p.opciones]}));
-      const c02 = estado.respuestas.C02;
-      const g09 = estado.preguntasActivas.find(p => p.id === 'G09');
-
-      if (['1-5','6-10'].includes(c02)) {
-        g09.texto = '¿En tu negocio existen reglas para prevenir situaciones que puedan afectar el ambiente laboral?';
-        g09.opciones = [{texto:'Sí',puntos:0},{texto:'Algunas, pero no formalizadas',puntos:2},{texto:'No',puntos:3}];
-      } else if (c02 === '11-20') {
-        g09.texto = '¿Has realizado acciones para identificar y prevenir factores de riesgo psicosocial?';
-        g09.opciones = [{texto:'Sí, y hemos tomado medidas',puntos:0},{texto:'Sí, pero sin seguimiento',puntos:2},{texto:'No',puntos:3},{texto:'No sé',puntos:3}];
-      } else {
-        g09.texto = '¿Tu empresa realiza evaluaciones de riesgo psicosocial?';
-        g09.opciones = [{texto:'Sí, y hemos tomado medidas',puntos:0},{texto:'Sí, pero sin seguimiento',puntos:2},{texto:'No',puntos:3},{texto:'No sé',puntos:3}];
-      }
-
-      const c01 = estado.respuestas.C01;
-      const c03 = estado.respuestas.C03;
-      const c04 = estado.respuestas.C04;
-      const c05 = estado.respuestas.C05;
-      const c06 = estado.respuestas.C06;
-
-      const esR = ['restaurante','bar','hotel'].includes(c01);
-      const actR = esR && (c03 === 'si' || c03 === 'no-seguro');
-      const esT = ['taller','construccion'].includes(c01);
-      const actM = esT && (c04 === 'si' || c04 === 'no-seguro');
-      const esTa = c01 === 'taller';
-      const actQ = esTa && (c05 === 'si' || c05 === 'no-seguro');
-
-      if (actR) estado.preguntasActivas.push(...moduloRestaurantes.map(p => ({...p, opciones:[...p.opciones]})));
-      if (actM) estado.preguntasActivas.push(...moduloMaquinaria.map(p => ({...p, opciones:[...p.opciones]})));
-      if (actQ) estado.preguntasActivas.push(...moduloQuimicos.map(p => ({...p, opciones:[...p.opciones]})));
-      if (c06 === 'no') estado.preguntasActivas = estado.preguntasActivas.filter(p => p.id !== 'G05');
-
-      estado.preguntaActual = 0;
-      document.getElementById('seccion-contexto').classList.remove('activa');
-      document.getElementById('seccion-cuestionario').classList.add('activa');
-      mostrarPregunta();
-    }
-
-    function mostrarPregunta() {
-      const pr = estado.preguntasActivas[estado.preguntaActual];
-      const tot = estado.preguntasActivas.length;
-      const act = estado.preguntaActual + 1;
-
-      if (!pr) return;
-
-      document.getElementById('indicador-pregunta').textContent = `Pregunta ${act} de ${tot}`;
-      document.getElementById('barra-progreso-fill').style.width = `${(act / tot) * 100}%`;
-      document.getElementById('texto-pregunta').textContent = pr.texto;
-
-      const cont = document.getElementById('opciones-respuesta');
-      cont.innerHTML = '';
-
-      pr.opciones.forEach((op, i) => {
-        const b = document.createElement('button');
-        b.className = 'opcion';
-        b.type = 'button';
-        b.textContent = op.texto;
-        b.onclick = () => seleccionarOpcion(i);
-        if (estado.respuestas[pr.id] === i) b.classList.add('sel');
-        cont.appendChild(b);
-      });
-
-      document.getElementById('btn-anterior').disabled = estado.preguntaActual === 0;
-      document.getElementById('btn-siguiente').disabled = estado.respuestas[pr.id] === undefined;
-      document.getElementById('btn-siguiente').textContent = estado.preguntaActual === tot - 1 ? 'VER MI RESULTADO' : 'SIGUIENTE →';
-    }
-
-    function seleccionarOpcion(i) {
-      const pr = estado.preguntasActivas[estado.preguntaActual];
-      estado.respuestas[pr.id] = i;
-      document.querySelectorAll('.opcion').forEach((b, idx) => b.classList.toggle('sel', idx === i));
-      document.getElementById('btn-siguiente').disabled = false;
-    }
-
-    function preguntaAnterior() {
-      if (estado.preguntaActual > 0) {
-        estado.preguntaActual--;
-        mostrarPregunta();
-      }
-    }
-
-    function preguntaSiguiente() {
-      const total = estado.preguntasActivas.length;
-      if (estado.preguntaActual < total - 1) {
-        estado.preguntaActual++;
-        mostrarPregunta();
-      } else {
-        calcularResultado();
-      }
-    }
-
-    function generarFolio() {
-      return `LC-${new Date().getFullYear()}-${Math.random().toString(36).substring(2,7).toUpperCase()}`;
-    }
-
-    function formatearFecha(f) {
-      return new Intl.DateTimeFormat('es-MX', { dateStyle:'long', timeStyle:'short' }).format(f);
-    }
-
-    function         porcentaje: Math.round(perc),
-      let obt = 0, max = 0;
-      const area = {};
-
-      estado.preguntasActivas.forEach(p => {
-        const ri = estado.respuestas[p.id];
-        if (ri === undefined) return;
-        const op = p.opciones[ri];
-        if (!op || op.puntos === 'NO_APLICA') return;
-
-        obt += op.puntos;
-        const validas = p.opciones.filter(o => o.puntos !== 'NO_APLICA');
-        if (validas.length === 0) return;
-        const mx = Math.max(...validas.map(o => o.puntos));
-        max += mx;
-
-        if (!area[p.area]) area[p.area] = { puntos:0, maximo:0 };
-        area[p.area].puntos += op.puntos;
-        area[p.area].maximo += mx;
-      });
-
-      const perc = max > 0 ? (obt / max) * 100 : 0;
-      let nivel = perc <= 25 ? 'BAJO' : perc <= 50 ? 'MEDIO' : 'ALTO';
-      let prio = false, areaP = null;
-
-      if (estado.respuestas.R01 !== undefined) {
-        const op = moduloRestaurantes[0].opciones[estado.respuestas.R01];
-        if (op && op.critico) { prio = true; areaP = 'Propinas'; }
-      }
-      if (!areaP && estado.respuestas.R02 !== undefined) {
-        const op = moduloRestaurantes[1].opciones[estado.respuestas.R02];
-        if (op && op.critico) { prio = true; areaP = 'Propinas / salario'; }
-      }
-      if (prio) nivel = 'ALTO';
-
-      let areaPrin = '';
-      if (prio && areaP) {
-        areaPrin = areaP;
-      } else {
-        let me = -1, mp = -1;
-        Object.keys(area).forEach(a => {
-          const d = area[a];
-          d.porcentaje = d.maximo > 0 ? (d.puntos / d.maximo) * 100 : 0;
-          if (d.porcentaje > me || (d.porcentaje === me && d.puntos > mp)) {
-            me = d.porcentaje; mp = d.puntos; areaPrin = a;
-          }
-        });
-        if (!areaPrin) areaPrin = Object.keys(area)[0] || 'General';
-      }
-
-      const res = {
-        nivelGeneral: nivel,
-        areaPrincipal: areaPrin,
-        porcentajeGeneral: perc,
-        tieneSituacionPrioritaria: prio
-      };
-
-      const txt = nivel === 'BAJO'
-        ? { e:'No aparecen señales importantes de exposición.', r:'Mantener el orden requiere prevención periódica.' }
-        : nivel === 'MEDIO'
-          ? { e:'Se identifican algunos aspectos que conviene revisar.', r:'Conviene atender el área prioritaria antes de que se convierta en una contingencia.' }
-          : { e: prio ? 'Se identificó una situación que requiere atención prioritaria.' : 'Se identifican varias señales que conviene atender.', r:'Se recomienda una revisión detallada del área identificada y de la documentación relacionada.' };
-
-      res.explicacion = `${txt.e} Área: ${areaPrin}.`;
-      res.recomendacion = txt.r;
-
-      estado.folio = generarFolio();
-      estado.fechaDiagnostico = new Date();
-      estado.resultadoFinal = res;
-
-      const hashBase = btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);
-
-      const ev = {
-        folio: estado.folio,
-        fecha: estado.fechaDiagnostico.toISOString(),
-        nivel: res.nivelGeneral,
-        area: res.areaPrincipal,
-        porcentaje: Math.round(perc),
-        respuestasRaw: estado.respuestas,
-        preguntasActivas: estado.preguntasActivas,
-        resultadoCompleto: res,
-        hash: hashBase
-      };
-
-      try {
-        localStorage.setItem('lc_ultimo_semaforo', JSON.stringify(ev));
-      } catch(e) {
-        console.warn('No fue posible guardar localmente.', e);
-      }
-
-      // ENVÍO AL GOOGLE SHEET
-      enviarAGoogleSheet({
-        folio: ev.folio,
-        fecha: ev.fecha,
-        nivel: ev.nivel,
-        area: ev.area,
-        tipo: estado.respuestas.C01,
-        trabajadores: estado.respuestas.C02,
-        porcentaje: ev.porcentaje,
-        explicacion: res.explicacion,
-        email: '',
-        respuestas: JSON.stringify(estado.respuestas)
-      });
-
-      mostrarResultado();
-    }
-
-    function mostrarResultado() {
-      const res = estado.resultadoFinal;
-      if (!res) return;
-
-      document.getElementById('seccion-cuestionario').classList.remove('activa');
-      document.getElementById('seccion-resultado').classList.add('activa');
-
-      const badge = document.getElementById('nivel-badge');
-      badge.textContent = res.nivelGeneral === 'ALTO' ? '🔴 RIESGO ALTO' : res.nivelGeneral === 'MEDIO' ? '🟡 RIESGO MEDIO' : '🟢 RIESGO BAJO';
-      if (res.nivelGeneral === 'ALTO') { badge.style.background = '#fee2e2'; badge.style.color = '#991b1b'; }
-      else if (res.nivelGeneral === 'MEDIO') { badge.style.background = '#fef3c7'; badge.style.color = '#92400e'; }
-      else { badge.style.background = '#dcfce7'; badge.style.color = '#166534'; }
-
-      document.getElementById('resultado-folio').textContent = `FOLIO DEL DIAGNÓSTICO · ${estado.folio}`;
-      document.getElementById('resultado-fecha').textContent = formatearFecha(estado.fechaDiagnostico);
-      document.getElementById('resultado-explicacion').textContent = res.explicacion;
-      document.getElementById('resultado-area').textContent = res.areaPrincipal;
-
-      const alerta = document.getElementById('resultado-alerta');
-      if (res.tieneSituacionPrioritaria) {
-        alerta.style.display = 'block';
-        alerta.style.background = '#fff1f2';
-        alerta.style.borderLeft = '5px solid #dc2626';
-        alerta.innerHTML = '<strong>⚠ Situación prioritaria detectada</strong><br><span style="font-size:.85rem">El diagnóstico identifica una situación que merece atención prioritaria.</span>';
-      } else {
-        alerta.style.display = 'none';
-      }
-
-      const lista = document.getElementById('lista-respuestas');
-      lista.innerHTML = '';
-      estado.preguntasActivas.forEach(p => {
-        const ri = estado.respuestas[p.id];
-        if (ri === undefined) return;
-        const op = p.opciones[ri];
-        if (!op) return;
-        const item = document.createElement('div');
-        item.className = 'respuesta-item';
-        item.innerHTML = `<div class="respuesta-id">${p.id}</div><div class="respuesta-area">${escapeHtml(p.area)}</div><div class="respuesta-texto">${escapeHtml(op.texto)}</div>`;
-        lista.appendChild(item);
-      });
-
-      prepararWhatsApp();
-      prepararConstancia();
-      window.scrollTo({ top:0, behavior:'smooth' });
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text == null ? '' : String(text);
-      return div.innerHTML;
-    }
-
-    function prepararWhatsApp() {
-      const mensaje = `Hola, soy de Laboral Click.%0A%0ARealicé el Semáforo Laboral.%0AFolio: ${estado.folio}%0AResultado: ${estado.resultadoFinal.nivelGeneral}%0AÁrea principal: ${estado.resultadoFinal.areaPrincipal}%0A%0AMe gustaría revisar mi resultado.`;
-      const telefono = '523111869901';
-      document.getElementById('btn-whatsapp').href = `https://wa.me/${telefono}?text=${mensaje}`;
-    }
-
-    function prepararConstancia() {
-      const res = estado.resultadoFinal;
-      document.getElementById('constancia-nivel').textContent = `RESULTADO: ${res.nivelGeneral}`;
-      document.getElementById('constancia-folio-numero').textContent = `Folio: ${estado.folio}`;
-      document.getElementById('constancia-fecha').textContent = formatearFecha(estado.fechaDiagnostico);
-      document.getElementById('constancia-area').textContent = res.areaPrincipal;
-      document.getElementById('constancia-explicacion').textContent = res.explicacion;
-      document.getElementById('constancia-recomendacion').textContent = res.recomendacion;
-
-      const respuestasTexto = estado.preguntasActivas.map(p => {
-        const ri = estado.respuestas[p.id];
-        if (ri === undefined) return null;
-        const op = p.opciones[ri];
-        if (!op) return null;
-        return `${p.id} · ${p.area}: ${op.texto}`;
-      }).filter(Boolean).join('\n');
-
-      document.getElementById('constancia-respuestas').textContent = respuestasTexto;
-
-      const hash = btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);
-      document.getElementById('constancia-hash').textContent = hash;
-
-      const url = window.location.href;
-      document.getElementById('constancia-url').textContent = url;
-
-      const qr = document.getElementById('qr-code');
-      qr.innerHTML = '';
-      if (typeof QRCode !== 'undefined') {
-        new QRCode(qr, { text:url, width:100, height:100 });
-      }
-    }
-
-    function imprimirConstancia() {
-      prepararConstancia();
-      window.print();
-    }
-
-    function guardarEmailYNotificar() {
-      const input = document.getElementById('input-email-resultado');
-      const email = input.value.trim();
-      const msg = document.getElementById('msg-email');
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        msg.style.display = 'block';
-        msg.style.color = '#991b1b';
-        msg.textContent = 'Por favor, introduce un correo válido.';
-        return;
-      }
-
-      enviarAGoogleSheet({
-        accion:'captura_email',
-        folio: estado.folio,
-        fecha: estado.fechaDiagnostico ? estado.fechaDiagnostico.toISOString() : new Date().toISOString(),
-        nivel: estado.resultadoFinal ? estado.resultadoFinal.nivelGeneral : '',
-        area: estado.resultadoFinal ? estado.resultadoFinal.areaPrincipal : '',
-        tipo: estado.respuestas.C01 || '',
-        trabajadores: estado.respuestas.C02 || '',
-        porcentaje: estado.resultadoFinal ? Math.round(estado.resultadoFinal.porcentajeGeneral) : '',
-        email: email,
-        respuestas: '{}'
-      });
-
-      const asunto = `Mi resultado del Semáforo Laboral - ${estado.folio}`;
-      const cuerpo = `Resultado de mi Semáforo Laboral%0D%0A%0D%0AFolio: ${estado.folio}%0D%0ANivel: ${estado.resultadoFinal.nivelGeneral}%0D%0AÁrea principal: ${estado.resultadoFinal.areaPrincipal}%0D%0A%0D%0A${estado.resultadoFinal.explicacion}%0D%0A%0D%0ARecomendación: ${estado.resultadoFinal.recomendacion}%0D%0A%0D%0ALaboral Click%0Ahttps://laboralclick.com.mx`;
-
-      msg.style.display = 'block';
-      msg.style.color = '#166534';
-      msg.textContent = 'Resultado registrado. Abriendo tu correo...';
-
-      setTimeout(() => {
-        window.location.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(asunto)}&body=${cuerpo}`;
-      }, 400);
-    }
-  </script>
-
+<div id="seccion-inicio" class="seccion activa">
+<div class="semaforo-hero">
+<div style="color:#d6b347;font-weight:800;letter-spacing:3px">LABORAL CLICK</div>
+<h1 style="color:white;margin:20px 0;">SEMAFORO LABORAL PARA PyMEs</h1>
+<p style="color:#d6b347;font-size:1.3rem;font-weight:700">Que tan tranquilo esta tu negocio en materia laboral?</p>
+<div style="display:inline-block;background:#d6b347;color:#10254d;padding:10px 24px;border-radius:30px;font-weight:800;margin:20px 0;">GRATIS - RESULTADO INMEDIATO</div>
+<br>
+<button onclick="iniciarCuestionario()" style="background:#d6b347;color:#10254d;padding:16px 48px;border-radius:8px;font-weight:800;border:none;cursor:pointer;font-size:1.1rem;">COMENZAR</button>
+</div>
+</div>
+
+<div id="seccion-contexto" class="seccion">
+<div class="wrap"><div class="card">
+<h2 style="text-align:center;color:#0f2a5e">Cuentanos sobre tu negocio</h2>
+<div style="margin:15px 0"><label>Tipo de negocio</label><select id="c01-tipo" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="restaurante">Restaurante</option><option value="bar">Bar</option><option value="hotel">Hotel</option><option value="comercio">Comercio</option><option value="oficina">Oficina</option><option value="taller">Taller</option><option value="construccion">Construccion</option><option value="otro">Otro</option></select></div>
+<div style="margin:15px 0"><label>Trabajadores</label><select id="c02-trabajadores" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="1-5">1-5</option><option value="6-10">6-10</option><option value="11-20">11-20</option><option value="21-50">21-50</option><option value="mas-50">Mas de 50</option></select></div>
+<div id="c03-propinas-container" style="display:none;margin:15px 0"><label>Propinas?</label><select id="c03-propinas" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="si">Si</option><option value="no">No</option><option value="no-seguro">No estoy seguro</option></select></div>
+<div id="c04-maquinas-container" style="display:none;margin:15px 0"><label>Maquinas de riesgo?</label><select id="c04-maquinas" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="si">Si</option><option value="no">No</option><option value="no-seguro">No estoy seguro</option></select></div>
+<div id="c05-quimicos-container" style="display:none;margin:15px 0"><label>Quimicos peligrosos?</label><select id="c05-quimicos" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="si">Si</option><option value="no">No</option><option value="no-seguro">No estoy seguro</option></select></div>
+<div style="margin:15px 0"><label>Jornada de pie?</label><select id="c06-bipedestacion" onchange="actualizarContexto()" style="width:100%;padding:14px;border-radius:8px;border:2px solid #d8dde6;"><option value="">Selecciona</option><option value="si">Si</option><option value="no">No</option><option value="no-seguro">No estoy seguro</option></select></div>
+<button onclick="irACuestionario()" id="btn-contexto-siguiente" class="boton-principal" disabled>SIGUIENTE</button>
+</div></div>
+</div>
+
+<div id="seccion-cuestionario" class="seccion">
+<div class="wrap"><div class="card">
+<div id="indicador-pregunta" style="text-align:center;color:#6b7280;margin-bottom:8px;"></div>
+<div style="width:100%;height:8px;background:#e2e5ea;border-radius:10px;margin:12px 0;"><div id="barra-progreso-fill" style="height:100%;background:#c9a028;width:0%;border-radius:10px;"></div></div>
+<h3 id="texto-pregunta"></h3>
+<div id="opciones-respuesta" style="margin:20px 0"></div>
+<div style="display:flex;gap:10px">
+<button id="btn-anterior" onclick="preguntaAnterior()" style="flex:0 0 120px;background:white;border:2px solid #0f2a5e;border-radius:8px;padding:12px;font-weight:800;cursor:pointer;">ANTERIOR</button>
+<button id="btn-siguiente" onclick="preguntaSiguiente()" class="boton-principal">SIGUIENTE</button>
+</div>
+</div></div>
+</div>
+
+<div id="seccion-resultado" class="seccion">
+<div class="wrap" style="max-width:820px"><div class="card">
+<div style="text-align:center"><h2>Resultado de tu Semaforo Laboral</h2><div id="nivel-badge" style="display:inline-block;padding:12px 28px;border-radius:50px;font-weight:800;margin-top:10px;"></div></div>
+<div style="background:#f3f4f6;border-radius:10px;padding:15px;margin:20px 0;text-align:center;"><span id="resultado-folio" style="font-weight:800;color:#0f2a5e"></span><br><span id="resultado-fecha" style="font-size:.8rem;color:#6b7280"></span></div>
+<div id="resultado-alerta" class="resultado-bloque" style="display:none"></div>
+<p id="resultado-explicacion"></p>
+<div class="resultado-area"><strong>Area que requiere mayor atencion:</strong><div id="resultado-area" style="margin-top:5px;font-weight:900;color:#0f2a5e;"></div></div>
+<div style="margin-top:25px"><h3 style="color:#0f2a5e">Resumen de las respuestas proporcionadas</h3><div id="lista-respuestas"></div></div>
+<div style="background:#f8fafc;border:1px solid #d8dde6;border-radius:8px;padding:12px;margin-top:20px;font-size:.78rem;color:#4b5563;"><strong>Importante:</strong> Este Semaforo Laboral es una herramienta de orientacion preventiva. El resultado no sustituye una revision profesional.</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+<button onclick="imprimirConstancia()" style="padding:14px;background:#0f2a5e;color:white;border:none;border-radius:8px;font-weight:800;cursor:pointer;">DESCARGAR / IMPRIMIR MI CONSTANCIA</button>
+<a id="btn-whatsapp" target="_blank" rel="noopener noreferrer" style="padding:14px;background:#c9a028;color:#10254d;border-radius:8px;font-weight:800;text-align:center;text-decoration:none;">QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
+</div>
+<div class="captura-email">
+<div style="font-weight:800;color:#0f2a5e;margin-bottom:5px;">Quieres conservar tu resultado?</div>
+<p style="font-size:.85rem;color:#6b7280;margin-top:5px;">Dejanos tu correo unicamente si deseas recibir o compartir tu resultado por este medio.</p>
+<input type="email" id="input-email-resultado" placeholder="Tu correo electronico" autocomplete="email">
+<button onclick="guardarEmailYNotificar()">ENVIAR</button>
+<p id="msg-email" class="mensaje-exito"></p>
+</div>
+</div></div>
+</div>
+
+<div id="constancia-print">
+<div style="max-width:800px;margin:0 auto;background:white;padding:40px;font-family:Arial,sans-serif;">
+<div style="text-align:center;border-bottom:3px solid #c9a028;padding-bottom:15px;"><div style="color:#0f2a5e;font-weight:900;">LABORAL CLICK</div><div style="font-size:.8rem;">Asesoria Legal sin Enredos</div></div>
+<div style="text-align:center;font-weight:800;font-size:1.4rem;margin:20px 0;color:#0f2a5e;">CONSTANCIA DE SEMAFORO LABORAL</div>
+<div id="constancia-nivel" style="text-align:center;font-weight:900;font-size:1.2rem;"></div>
+<div style="text-align:center;background:#f3f4f6;padding:12px;border-radius:8px;margin:15px 0;"><span id="constancia-folio-numero" style="font-weight:800"></span><br><span id="constancia-fecha" style="font-size:.85rem;"></span></div>
+<div style="display:flex;gap:15px;justify-content:center;align-items:center;"><div id="qr-code"></div><span id="constancia-url" style="font-size:.7rem;color:#6b7280;max-width:200px;word-break:break-all;"></span></div>
+<div style="margin:15px 0;"><h3 style="font-size:.85rem;color:#0f2a5e;">AREA</h3><p id="constancia-area"></p></div>
+<div style="margin:15px 0;"><h3 style="font-size:.85rem;color:#0f2a5e;">RESULTADO</h3><p id="constancia-explicacion"></p></div>
+<div style="margin:15px 0;"><h3 style="font-size:.85rem;color:#0f2a5e;">RECOMENDACION</h3><p id="constancia-recomendacion"></p></div>
+<p id="constancia-respuestas" style="font-size:.75rem;white-space:pre-wrap;"></p>
+<div style="font-size:.7rem;background:#f8fafc;border:1px solid #ddd;padding:8px;">Hash: <span id="constancia-hash"></span></div>
+<div style="margin-top:25px;border-top:1px solid #e5e7eb;padding-top:15px;text-align:center;">
+<p style="font-size:.8rem;">Documento generado a partir del diagnostico realizado en la plataforma de Laboral Click.</p>
+<div style="display:flex;justify-content:space-around;"><div><div style="border-top:1px solid #0f2a5e;width:150px;margin:30px auto 5px;"></div><strong style="font-size:.8rem;">Laboral Click</strong></div><div><div style="border-top:1px solid #0f2a5e;width:150px;margin:30px auto 5px;"></div><strong style="font-size:.8rem;">Validacion Digital</strong></div></div>
+</div>
+</div>
+</div>
+
+<footer style="background:#10254d;color:white;padding:30px 20px;text-align:center;margin-top:50px;"><p>&copy; 2026 Laboral Click - Todos los derechos reservados</p></footer>
+
+<script>
+var GOOGLE_SHEET_URL='https://script.google.com/macros/s/AKfycbw78vqMfLjAd7JYxBwES4BSaRDi2ONqWGQSNWZY3fhBZ8bHHETFgNsFnj_IF5--/exec';
+function enviarAGoogleSheet(p){if(!GOOGLE_SHEET_URL)return;fetch(GOOGLE_SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).then(function(){console.log('OK')}).catch(function(e){console.error(e)})}
+var estado={respuestas:{},preguntaActual:0,preguntasActivas:[],folio:null,fechaDiagnostico:null,resultadoFinal:null};
+var preguntasGenerales=[{id:'G01',texto:'Tus trabajadores tienen contrato escrito actualizado?',area:'Contratacion',opciones:[{texto:'Si todos',puntos:0},{texto:'Mayoria pero hay pendientes',puntos:2},{texto:'No todos o con diferencias',puntos:4}]},{id:'G02',texto:'Expediente actualizado de cada trabajador?',area:'Documentacion',opciones:[{texto:'Si actualizados',puntos:0},{texto:'Si pero incompletos',puntos:2},{texto:'No completos o dispersos',puntos:4},{texto:'No seguro',puntos:3}]},{id:'G03',texto:'Control de salarios prestaciones vacaciones aguinaldo?',area:'Salarios',opciones:[{texto:'Si con comprobantes',puntos:0},{texto:'Pagamos pero control irregular',puntos:2},{texto:'Errores o sin control',puntos:4}]},{id:'G04',texto:'Control de jornadas horas extra descansos?',area:'Jornada',opciones:[{texto:'Si confiable',puntos:0},{texto:'Alguno informal',puntos:2},{texto:'Sin control',puntos:4}]},{id:'G05',texto:'Sillas para quienes trabajan de pie?',area:'Condiciones',opciones:[{texto:'Si',puntos:0},{texto:'Algunas sin politica',puntos:2},{texto:'No o exigen estar de pie',puntos:4},{texto:'No aplica',puntos:'NO_APLICA'}]},{id:'G06',texto:'Identificacion de riesgos y medidas preventivas?',area:'Seguridad',opciones:[{texto:'Si con controles',puntos:0},{texto:'Algunas sin formalizar',puntos:2},{texto:'Sin evaluacion',puntos:4}]},{id:'G07',texto:'Procedimientos ante accidentes y emergencias?',area:'Emergencias',opciones:[{texto:'Si',puntos:0},{texto:'Algunas sin documentar',puntos:2},{texto:'Sin procedimientos',puntos:4}]},{id:'G08',texto:'Capacitacion con evidencia?',area:'Capacitacion',opciones:[{texto:'Si con programa',puntos:0},{texto:'Sin evidencia siempre',puntos:2},{texto:'Solo informal',puntos:4}]},{id:'G09',texto:'',area:'Ambiente',opciones:[]},{id:'G10',texto:'Mecanismos contra acoso y discriminacion?',area:'Ambiente',opciones:[{texto:'Si comunicados',puntos:0},{texto:'Reglas sin formalizar',puntos:2},{texto:'Sin mecanismos',puntos:3}]},{id:'G11',texto:'Procedimiento de terminacion laboral?',area:'Terminacion',opciones:[{texto:'Si con procedimiento',puntos:0},{texto:'Cada caso diferente',puntos:2},{texto:'Sin procedimiento',puntos:4}]},{id:'G12',texto:'Documentacion lista para inspeccion?',area:'Documentacion',opciones:[{texto:'Si',puntos:0},{texto:'Dispersa o incompleta',puntos:2},{texto:'No sabemos',puntos:4}]}];
+var moduloRestaurantes=[{id:'R01',texto:'Propinas distribuidas con sistema conocido?',area:'Propinas',opciones:[{texto:'Si',puntos:0},{texto:'Sistema sin documentar',puntos:2},{texto:'Patron retiene propinas',puntos:5,critico:true}]},{id:'R02',texto:'Propinas diferenciadas del salario?',area:'Propinas/salario',opciones:[{texto:'Si',puntos:0},{texto:'No seguros',puntos:3},{texto:'Sustituyen salario',puntos:5,critico:true}]},{id:'R04',texto:'Personal de pie sin descansos?',area:'Condiciones',opciones:[{texto:'No',puntos:0},{texto:'A veces',puntos:2},{texto:'Habitual',puntos:4}]}];
+var moduloMaquinaria=[{id:'M01',texto:'Maquinaria con seguridad y mantenimiento?',area:'Seguridad',opciones:[{texto:'Si',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:4}]},{id:'M02',texto:'EPP gratuito y capacitacion?',area:'EPP',opciones:[{texto:'Si con evidencia',puntos:0},{texto:'Incompleto',puntos:2},{texto:'No siempre',puntos:4},{texto:'No aplica',puntos:'NO_APLICA'}]},{id:'M03',texto:'Procedimientos de emergencia conocidos?',area:'Emergencias',opciones:[{texto:'Si',puntos:0},{texto:'Parcialmente',puntos:1},{texto:'No',puntos:2}]}];
+var moduloQuimicos=[{id:'Q01',texto:'Sustancias peligrosas identificadas?',area:'Quimicos',opciones:[{texto:'Si',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:4}]},{id:'Q02',texto:'Riesgos y prevencion conocidos?',area:'Capacitacion',opciones:[{texto:'Si',puntos:0},{texto:'Parcialmente',puntos:2},{texto:'No',puntos:3}]}];
+function iniciarCuestionario(){document.getElementById('seccion-inicio').classList.remove('activa');document.getElementById('seccion-contexto').classList.add('activa')}
+function actualizarContexto(){var c01=document.getElementById('c01-tipo').value;var c02=document.getElementById('c02-trabajadores').value;var c03=document.getElementById('c03-propinas').value;var c04=document.getElementById('c04-maquinas').value;var c05=document.getElementById('c05-quimicos').value;var c06=document.getElementById('c06-bipedestacion').value;estado.respuestas.C01=c01;estado.respuestas.C02=c02;estado.respuestas.C03=c03;estado.respuestas.C04=c04;estado.respuestas.C05=c05;estado.respuestas.C06=c06;var esR=['restaurante','bar','hotel'].indexOf(c01)!==-1;var esT=['taller','construccion'].indexOf(c01)!==-1;var esTa=c01==='taller';document.getElementById('c03-propinas-container').style.display=esR?'block':'none';document.getElementById('c04-maquinas-container').style.display=esT?'block':'none';document.getElementById('c05-quimicos-container').style.display=esTa?'block':'none';var v=c01&&c02&&c06;if(esR&&!c03)v=false;if(esT&&!c04)v=false;if(esTa&&!c05)v=false;document.getElementById('btn-contexto-siguiente').disabled=!v}
+function irACuestionario(){estado.preguntasActivas=preguntasGenerales.map(function(p){return{id:p.id,texto:p.texto,area:p.area,opciones:p.opciones.slice()}});var c02=estado.respuestas.C02;var g09=null;for(var i=0;i<estado.preguntasActivas.length;i++){if(estado.preguntasActivas[i].id==='G09'){g09=estado.preguntasActivas[i];break}}if(c02==='1-5'||c02==='6-10'){g09.texto='Reglas para prevenir problemas de ambiente laboral?';g09.opciones=[{texto:'Si',puntos:0},{texto:'Algunas sin formalizar',puntos:2},{texto:'No',puntos:3}]}else if(c02==='11-20'){g09.texto='Acciones contra riesgo psicosocial?';g09.opciones=[{texto:'Si con medidas',puntos:0},{texto:'Si sin seguimiento',puntos:2},{texto:'No',puntos:3},{texto:'No se',puntos:3}]}else{g09.texto='Evaluaciones de riesgo psicosocial?';g09.opciones=[{texto:'Si con medidas',puntos:0},{texto:'Si sin seguimiento',puntos:2},{texto:'No',puntos:3},{texto:'No se',puntos:3}]}var c01=estado.respuestas.C01;var c03=estado.respuestas.C03;var c04=estado.respuestas.C04;var c05=estado.respuestas.C05;var c06=estado.respuestas.C06;var esR=['restaurante','bar','hotel'].indexOf(c01)!==-1;var actR=esR&&(c03==='si'||c03==='no-seguro');var esT=['taller','construccion'].indexOf(c01)!==-1;var actM=esT&&(c04==='si'||c04==='no-seguro');var esTa=c01==='taller';var actQ=esTa&&(c05==='si'||c05==='no-seguro');if(actR){moduloRestaurantes.forEach(function(p){estado.preguntasActivas.push({id:p.id,texto:p.texto,area:p.area,opciones:p.opciones.slice()})})}if(actM){moduloMaquinaria.forEach(function(p){estado.preguntasActivas.push({id:p.id,texto:p.texto,area:p.area,opciones:p.opciones.slice()})})}if(actQ){moduloQuimicos.forEach(function(p){estado.preguntasActivas.push({id:p.id,texto:p.texto,area:p.area,opciones:p.opciones.slice()})})}if(c06==='no'){estado.preguntasActivas=estado.preguntasActivas.filter(function(p){return p.id!=='G05'})}estado.preguntaActual=0;document.getElementById('seccion-contexto').classList.remove('activa');document.getElementById('seccion-cuestionario').classList.add('activa');mostrarPregunta()}
+function mostrarPregunta(){var pr=estado.preguntasActivas[estado.preguntaActual];var tot=estado.preguntasActivas.length;var act=estado.preguntaActual+1;if(!pr)return;document.getElementById('indicador-pregunta').textContent='Pregunta '+act+' de '+tot;document.getElementById('barra-progreso-fill').style.width=((act/tot)*100)+'%';document.getElementById('texto-pregunta').textContent=pr.texto;var cont=document.getElementById('opciones-respuesta');cont.innerHTML='';pr.opciones.forEach(function(op,i){var b=document.createElement('button');b.className='opcion';b.type='button';b.textContent=op.texto;b.onclick=function(){seleccionarOpcion(i)};if(estado.respuestas[pr.id]===i)b.classList.add('sel');cont.appendChild(b)});document.getElementById('btn-anterior').disabled=estado.preguntaActual===0;document.getElementById('btn-siguiente').disabled=estado.respuestas[pr.id]===undefined;document.getElementById('btn-siguiente').textContent=estado.preguntaActual===tot-1?'VER MI RESULTADO':'SIGUIENTE'}
+function seleccionarOpcion(i){var pr=estado.preguntasActivas[estado.preguntaActual];estado.respuestas[pr.id]=i;var bs=document.querySelectorAll('.opcion');for(var x=0;x<bs.length;x++){if(x===i)bs[x].classList.add('sel');else bs[x].classList.remove('sel')}document.getElementById('btn-siguiente').disabled=false}
+function preguntaAnterior(){if(estado.preguntaActual>0){estado.preguntaActual--;mostrarPregunta()}}
+function preguntaSiguiente(){var t=estado.preguntasActivas.length;if(estado.preguntaActual<t-1){estado.preguntaActual++;mostrarPregunta()}else{calcularResultado()}}
+function generarFolio(){return'LC-'+new Date().getFullYear()+'-'+Math.random().toString(36).substring(2,7).toUpperCase()}
+function formatearFecha(f){return new Intl.DateTimeFormat('es-MX',{dateStyle:'long',timeStyle:'short'}).format(f)}
+function calcularResultado(){var obt=0,max=0,area={};estado.preguntasActivas.forEach(function(p){var ri=estado.respuestas[p.id];if(ri===undefined)return;var op=p.opciones[ri];if(!op||op.puntos==='NO_APLICA')return;obt+=op.puntos;var v=p.opciones.filter(function(o){return o.puntos!=='NO_APLICA'});if(v.length===0)return;var mx=Math.max.apply(null,v.map(function(o){return o.puntos}));max+=mx;if(!area[p.area])area[p.area]={puntos:0,maximo:0};area[p.area].puntos+=op.puntos;area[p.area].maximo+=mx});var perc=max>0?(obt/max)*100:0;var nivel=perc<=25?'BAJO':perc<=50?'MEDIO':'ALTO';var prio=false,areaP=null;if(estado.respuestas.R01!==undefined){var o1=moduloRestaurantes[0].opciones[estado.respuestas.R01];if(o1&&o1.critico){prio=true;areaP='Propinas'}}if(!areaP&&estado.respuestas.R02!==undefined){var o2=moduloRestaurantes[1].opciones[estado.respuestas.R02];if(o2&&o2.critico){prio=true;areaP='Propinas/salario'}}if(prio)nivel='ALTO';var areaPrin='';if(prio&&areaP){areaPrin=areaP}else{var me=-1,mp=-1;Object.keys(area).forEach(function(a){var d=area[a];d.porcentaje=d.maximo>0?(d.puntos/d.maximo)*100:0;if(d.porcentaje>me||(d.porcentaje===me&&d.puntos>mp)){me=d.porcentaje;mp=d.puntos;areaPrin=a}});if(!areaPrin)areaPrin=Object.keys(area)[0]||'General'}var res={nivelGeneral:nivel,areaPrincipal:areaPrin,porcentajeGeneral:perc,tieneSituacionPrioritaria:prio};var txtE,txtR;if(nivel==='BAJO'){txtE='No aparecen senales importantes.';txtR='Prevencion periodica.'}else if(nivel==='MEDIO'){txtE='Aspectos a revisar.';txtR='Atender area prioritaria.'}else{txtE=prio?'Situacion prioritaria detectada.':'Varias senales a atender.';txtR='Revision detallada recomendada.'}res.explicacion=txtE+' Area: '+areaPrin+'.';res.recomendacion=txtR;estado.folio=generarFolio();estado.fechaDiagnostico=new Date();estado.resultadoFinal=res;var hb=btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);try{localStorage.setItem('lc_ultimo_semaforo',JSON.stringify({folio:estado.folio,fecha:estado.fechaDiagnostico.toISOString(),nivel:res.nivelGeneral,area:res.areaPrincipal,porcentaje:Math.round(perc),respuestasRaw:estado.respuestas,preguntasActivas:estado.preguntasActivas,resultadoCompleto:res,hash:hb}))}catch(e){}enviarAGoogleSheet({folio:estado.folio,fecha:estado.fechaDiagnostico.toISOString(),nivel:res.nivelGeneral,area:res.areaPrincipal,tipo:estado.respuestas.C01,trabajadores:estado.respuestas.C02,porcentaje:Math.round(perc),explicacion:res.explicacion,email:'',respuestas:JSON.stringify(estado.respuestas)});mostrarResultado()}
+function mostrarResultado(){var res=estado.resultadoFinal;if(!res)return;document.getElementById('seccion-cuestionario').classList.remove('activa');document.getElementById('seccion-resultado').classList.add('activa');var badge=document.getElementById('nivel-badge');if(res.nivelGeneral==='ALTO'){badge.textContent='RIESGO ALTO';badge.style.background='#fee2e2';badge.style.color='#991b1b'}else if(res.nivelGeneral==='MEDIO'){badge.textContent='RIESGO MEDIO';badge.style.background='#fef3c7';badge.style.color='#92400e'}else{badge.textContent='RIESGO BAJO';badge.style.background='#dcfce7';badge.style.color='#166534'}document.getElementById('resultado-folio').textContent='FOLIO: '+estado.folio;document.getElementById('resultado-fecha').textContent=formatearFecha(estado.fechaDiagnostico);document.getElementById('resultado-explicacion').textContent=res.explicacion;document.getElementById('resultado-area').textContent=res.areaPrincipal;var alerta=document.getElementById('resultado-alerta');if(res.tieneSituacionPrioritaria){alerta.style.display='block';alerta.style.background='#fff1f2';alerta.style.borderLeft='5px solid #dc2626';alerta.innerHTML='<strong>Situacion prioritaria detectada</strong>'}else{alerta.style.display='none'}var lista=document.getElementById('lista-respuestas');lista.innerHTML='';estado.preguntasActivas.forEach(function(p){var ri=estado.respuestas[p.id];if(ri===undefined)return;var op=p.opciones[ri];if(!op)return;var item=document.createElement('div');item.className='respuesta-item';item.innerHTML='<div class="respuesta-id">'+escapeHtml(p.id)+'</div><div class="respuesta-area">'+escapeHtml(p.area)+'</div><div class="respuesta-texto">'+escapeHtml(op.texto)+'</div>';lista.appendChild(item)});prepararWhatsApp();prepararConstancia();window.scrollTo({top:0,behavior:'smooth'})}
+function escapeHtml(t){var d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML}
+function prepararWhatsApp(){var m='Hola Laboral Click.%0AFolio:'+estado.folio+'%0ANivel:'+estado.resultadoFinal.nivelGeneral+'%0AArea:'+estado.resultadoFinal.areaPrincipal;document.getElementById('btn-whatsapp').href='https://wa.me/523111869901?text='+m}
+function prepararConstancia(){var res=estado.resultadoFinal;document.getElementById('constancia-nivel').textContent='RESULTADO: '+res.nivelGeneral;document.getElementById('constancia-folio-numero').textContent='Folio: '+estado.folio;document.getElementById('constancia-fecha').textContent=formatearFecha(estado.fechaDiagnostico);document.getElementById('constancia-area').textContent=res.areaPrincipal;document.getElementById('constancia-explicacion').textContent=res.explicacion;document.getElementById('constancia-recomendacion').textContent=res.recomendacion;var rt=[];estado.preguntasActivas.forEach(function(p){var ri=estado.respuestas[p.id];if(ri===undefined)return;var op=p.opciones[ri];if(!op)return;rt.push(p.id+' - '+p.area+': '+op.texto)});document.getElementById('constancia-respuestas').textContent=rt.join('\n');document.getElementById('constancia-hash').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);document.getElementById('constancia-url').textContent=window.location.href;var qr=document.getElementById('qr-code');qr.innerHTML='';if(typeof QRCode!=='undefined'){new QRCode(qr,{text:window.location.href,width:100,height:100})}}
+function imprimirConstancia(){prepararConstancia();window.print()}
+function guardarEmailYNotificar(){var input=document.getElementById('input-email-resultado');var email=input.value.trim();var msg=document.getElementById('msg-email');if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.display='block';msg.style.color='#991b1b';msg.textContent='Correo invalido.';return}enviarAGoogleSheet({accion:'captura_email',folio:estado.folio,fecha:estado.fechaDiagnostico?estado.fechaDiagnostico.toISOString():new Date().toISOString(),nivel:estado.resultadoFinal?estado.resultadoFinal.nivelGeneral:'',area:estado.resultadoFinal?estado.resultadoFinal.areaPrincipal:'',tipo:estado.respuestas.C01||'',trabajadores:estado.respuestas.C02||'',porcentaje:estado.resultadoFinal?Math.round(estado.resultadoFinal.porcentajeGeneral):'',email:email,respuestas:'{}'});msg.style.display='block';msg.style.color='#166534';msg.textContent='Registrado. Abriendo correo...';setTimeout(function(){window.location.href='mailto:'+encodeURIComponent(email)+'?subject=Mi resultado Semaforo Laboral - '+estado.folio+'&body=Folio: '+estado.folio},400)}
+</script>
 </body>
 </html>
