@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lic. José Segura - LaboralClick</title>
 <style>
-body{background:#101835;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:Arial}
-.card{background:#fff;border-radius:30px;padding:40px 30px;max-width:380px;width:90%;text-align:center;box-sizing:border-box}
-.qr{width:260px;max-width:100%;margin:0 auto 25px;display:block}
-h2{margin:0;color:#101835}
-.gold{color:#c9a44a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f1a2e;font-family:Arial;display:flex;justify-content:center;padding:20px}
+.card{background:#152642;border-radius:28px;max-width:390px;width:100%;overflow:hidden;color:#fff;text-align:center}
+.top{padding:28px 24px 18px}
+.line-gold{width:56px;height:5px;background:#d4a017;border-radius:10px;margin:0 auto 18px}
+h1{font-size:18px;font-weight:800}
+.sub{font-size:11px;letter-spacing:2px;opacity:0.7;margin:6px 0 14px}
+.gold-text{color:#f0c040;font-size:11px;font-weight:800;margin-bottom:14px}
+.desc{font-size:11.5px;line-height:1.4;opacity:0.85}
+.brand{font-size:32px;font-weight:900;color:#f0c040;margin:22px 0 0}
+.qr-box{background:#fff;border-radius:18px;margin:16px 14px;padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left}
+.qr-box img{width:72px;height:72px;flex-shrink:0}
+.qr-text{font-size:11.5px;line-height:1.15;color:#2a2040;word-break:break-word}
+.btn{display:block;width:calc(100% - 28px);margin:12px auto;padding:15px;border-radius:30px;text-decoration:none;font-weight:700;font-size:14px}
+.btn-wa{background:#25D366;color:#fff}
+.btn-web{background:#fff;color:#152642}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 14px 0}
+.grid a{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#d0d8e8;padding:12px;border-radius:12px;font-size:11px;text-decoration:none;font-weight:600}
+.footer{font-size:9px;opacity:0.5;padding:18px 14px 20px;margin-top:10px;border-top:1px solid rgba(255,255,255,0.08)}
 </style>
 </head>
 <body>
 <div class="card">
-<img class="qr" src="https://laboralclick.com.mx/tarjeta/qr.png" alt="QR">
-<h2>ESCANEA Y GUARDA</h2>
-<div style="font-size:14px; line-height:1.2; word-wrap:break-word; overflow-wrap:break-word;">
-<b>ESCANEA Y GUARDA</b><br>
-<b style="color:#c9a44a">LaboralClick</b><br>
-Blindaje laboral para tu PyME<br>
-Evita multas STPS y demandas<br>
-Sin enredos, en tu móvil.
+  <div class="top">
+    <div class="line-gold"></div>
+    <h1>Lic. José Domiciano Segura Díaz</h1>
+    <div class="sub">FUNDADOR</div>
+    <div class="gold-text">25+ AÑOS PROTEGIENDO A LAS PyMEs</div>
+    <div class="desc">Blindamos tu empresa antes de que el problema aparezca.<br><br>El abogado común llega cuando ya hay demanda.<br><br><b>Nosotros actuamos antes: te preparamos</b> para que una inspección STPS o IMSS no te tome por sorpresa.</div>
+    <div class="brand">Laboral Click</div>
+  </div>
+  <div class="qr-box">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://laboralclick.com.mx/tarjeta/" alt="QR">
+    <div class="qr-text"><b>ESCANEA Y GUARDA</b><br><b style="color:#b68a1e">LaboralClick</b><br><b>Blindaje laboral para tu PyME</b><br>Evita multas STPS y demandas<br>Sin enredos, en tu móvil.</div>
+  </div>
+  <a class="btn btn-wa" href="https://wa.me/5255XXXXXXXX" target="_blank">WhatsApp Business</a>
+  <a class="btn btn-web" href="https://laboralclick.com.mx" target="_blank">laboralclick.com.mx</a>
+  <div class="grid"><a href="#">Guardar Contacto</a><a href="#">Compartir</a><a href="#">Copiar Link</a><a href="#">Agregar a inicio</a></div>
+  <div class="footer">CDMX • @laboralclick.mx • Cobertura Nacional y Binacional</div>
 </div>
 </body>
 </html>
