@@ -26,15 +26,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .respuesta-id{color:#c9a028;font-weight:800;font-size:.78rem}
 .respuesta-area{color:#0f2a5e;font-weight:800;font-size:.9rem}
 .respuesta-texto{font-size:.85rem;color:#374151;margin-top:3px}
-.captura-email{border:1px dashed #d1d5db;border-radius:10px;padding:15px;margin-top:20px;background:#fafafa}
-.captura-email input{width:68%;padding:11px;border-radius:6px;border:1px solid #d1d5db;box-sizing:border-box;font-size:1rem}
-.captura-email button{width:30%;padding:11px;background:white;border:2px solid #0f2a5e;border-radius:6px;font-weight:800;cursor:pointer;font-size:1rem}
-.mensaje-exito{display:none;color:#166534;font-weight:700;margin-top:8px}
 #constancia-print{display:none}
 label{display:block;font-weight:700;color:#0f2a5e;margin-bottom:6px;font-size:.9rem}
 select{font-size:1rem}
 @media print{@page{margin:10mm}header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-resultado,#seccion-inicio{display:none!important}#constancia-print{display:block!important}}
-@media(max-width:600px){.card{padding:22px}.captura-email input,.captura-email button{width:100%;margin-top:8px}}
+@media(max-width:600px){.card{padding:22px}}
 </style>
 </head>
 <body>
@@ -100,13 +96,6 @@ select{font-size:1rem}
 <button onclick="imprimirConstancia()" style="padding:14px;background:#0f2a5e;color:white;border:none;border-radius:8px;font-weight:800;cursor:pointer;">DESCARGAR / IMPRIMIR MI CONSTANCIA</button>
 <a id="btn-whatsapp" target="_blank" rel="noopener noreferrer" style="padding:14px;background:#c9a028;color:#10254d;border-radius:8px;font-weight:800;text-align:center;text-decoration:none;">QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
 </div>
-<div class="captura-email">
-<div style="font-weight:800;color:#0f2a5e;margin-bottom:5px;">¿Quieres conservar tu resultado?</div>
-<p style="font-size:.85rem;color:#6b7280;margin-top:5px;">Déjanos tu correo únicamente si deseas recibir o compartir tu resultado por este medio.</p>
-<input type="email" id="input-email-resultado" placeholder="Tu correo electrónico" autocomplete="email">
-<button onclick="guardarEmailYNotificar()">ENVIAR</button>
-<p id="msg-email" class="mensaje-exito"></p>
-</div>
 </div></div>
 </div>
 
@@ -154,7 +143,6 @@ function escapeHtml(t){var d=document.createElement('div');d.textContent=t==null
 function prepararWhatsApp(){var m='Hola, soy de Laboral Click.%0A%0ARealicé el Semáforo Laboral.%0AFolio: '+estado.folio+'%0AResultado: '+estado.resultadoFinal.nivelGeneral+'%0AÁrea principal: '+estado.resultadoFinal.areaPrincipal+'%0A%0AMe gustaría revisar mi resultado.';document.getElementById('btn-whatsapp').href='https://wa.me/523111869901?text='+m}
 function prepararConstancia(){var res=estado.resultadoFinal;document.getElementById('constancia-nivel').textContent='RESULTADO: '+res.nivelGeneral;document.getElementById('constancia-folio-numero').textContent='Folio: '+estado.folio;document.getElementById('constancia-fecha').textContent=formatearFecha(estado.fechaDiagnostico);document.getElementById('constancia-area').textContent=res.areaPrincipal;document.getElementById('constancia-explicacion').textContent=res.explicacion;document.getElementById('constancia-recomendacion').textContent=res.recomendacion;var rt=[];estado.preguntasActivas.forEach(function(p){var ri=estado.respuestas[p.id];if(ri===undefined)return;var op=p.opciones[ri];if(!op)return;rt.push(p.id+' · '+p.area+': '+op.texto)});document.getElementById('constancia-respuestas').textContent=rt.join('\n');document.getElementById('constancia-hash').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);document.getElementById('constancia-url').textContent=window.location.href;var qr=document.getElementById('qr-code');qr.innerHTML='';if(typeof QRCode!=='undefined'){new QRCode(qr,{text:window.location.href,width:100,height:100})}}
 function imprimirConstancia(){prepararConstancia();window.print()}
-function guardarEmailYNotificar(){var input=document.getElementById('input-email-resultado');var email=input.value.trim();var msg=document.getElementById('msg-email');if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.display='block';msg.style.color='#991b1b';msg.textContent='Por favor, introduce un correo válido.';return}enviarAGoogleSheet({accion:'captura_email',folio:estado.folio,fecha:estado.fechaDiagnostico?estado.fechaDiagnostico.toISOString():new Date().toISOString(),nivel:estado.resultadoFinal?estado.resultadoFinal.nivelGeneral:'',area:estado.resultadoFinal?estado.resultadoFinal.areaPrincipal:'',tipo:estado.respuestas.C01||'',trabajadores:estado.respuestas.C02||'',porcentaje:estado.resultadoFinal?Math.round(estado.resultadoFinal.porcentajeGeneral):'',fuente:estado.respuestas.C07||'',email:email,respuestas:'{}'});msg.style.display='block';msg.style.color='#166534';msg.textContent='Resultado registrado. Abriendo tu correo...';setTimeout(function(){window.location.href='mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Mi resultado del Semáforo Laboral - '+estado.folio)+'&body='+encodeURIComponent('Folio: '+estado.folio+'%0D%0ANivel: '+estado.resultadoFinal.nivelGeneral+'%0D%0AÁrea principal: '+estado.resultadoFinal.areaPrincipal+'%0D%0A%0D%0A'+estado.resultadoFinal.explicacion+'%0D%0A%0D%0ARecomendación: '+estado.resultadoFinal.recomendacion+'%0D%0A%0D%0ALaboral Click%0Ahttps://laboralclick.com.mx')},400)}
 </script>
 </body>
 </html>
