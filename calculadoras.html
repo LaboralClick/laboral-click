@@ -170,6 +170,102 @@
     }
     .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
 
+    /* ================================================================
+       BLOQUE PTU — LAYOUT INDEPENDIENTE CON JERARQUÍA PROPIA
+       ================================================================ */
+    .ptu-container {
+      max-width: 800px; margin: 50px auto; padding: 0 20px;
+    }
+    .ptu-hero {
+      background: linear-gradient(135deg, #c9a028 0%, #d6b347 100%);
+      color: #0f2a5e;
+      padding: 35px 30px;
+      border-radius: 15px 15px 0 0;
+      text-align: center;
+      border-bottom: 4px solid #0f2a5e;
+    }
+    .ptu-hero .ptu-badge {
+      display: inline-block;
+      background: #0f2a5e;
+      color: #f0c040;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .ptu-hero h2 {
+      color: #0f2a5e;
+      font-size: 28px;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    .ptu-hero .ptu-subtitulo {
+      font-size: 16px;
+      color: #1e3a5f;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .ptu-body {
+      background: white;
+      padding: 40px 20px;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      border-top: none;
+    }
+    .ptu-intro {
+      background: #fffef5;
+      border-left: 4px solid #c9a028;
+      padding: 18px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .ptu-intro strong {
+      color: #0f2a5e;
+    }
+
+    /* CTA estratégico PTU */
+    .cta-estrategico-ptu {
+      margin-top: 25px;
+      padding: 25px;
+      background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .cta-estrategico-ptu p {
+      color: #f0c040;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .cta-estrategico-ptu .btn-cta-ptu {
+      display: inline-block;
+      padding: 16px 32px;
+      background: #c9a028;
+      color: #0f2a5e;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(201, 160, 40, 0.3);
+    }
+    .cta-estrategico-ptu .btn-cta-ptu:hover {
+      background: #d6b347;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(201, 160, 40, 0.4);
+    }
+
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(15, 42, 94, 0.7); z-index: 1000;
@@ -220,6 +316,8 @@
       .hero-calc h1 { font-size: 1.7rem; }
       .form-row, .tipo-calculo, .tabs-container { flex-direction: column; gap: 10px; }
       .monto-total .valor { font-size: 32px; }
+      .ptu-hero h2 { font-size: 22px; }
+      .ptu-hero .ptu-subtitulo { font-size: 14px; }
     }
   </style>
 </head>
@@ -243,16 +341,18 @@
   </section>
 
   <div class="container">
+    <!-- ================================================================
+         BLOQUE 1: HERRAMIENTAS DEL DÍA A DÍA (Finiquito + Salario Neto)
+         ================================================================ -->
     <div class="calculadora-container">
       <div class="calculadora-header">
-        <h1>Calculadoras Laborales</h1>
-        <p>Seleccione la herramienta que necesita</p>
+        <h1>Herramientas del Día a Día</h1>
+        <p>Calculadoras prácticas para consultas frecuentes</p>
       </div>
 
       <div class="tabs-container">
         <button class="tab-btn activo" onclick="cambiarPestana('finiquito', event)">📋 Finiquito y Liquidación</button>
         <button class="tab-btn" onclick="cambiarPestana('neto', event)">💰 Salario Neto 2026</button>
-        <button class="tab-btn" onclick="cambiarPestana('ptu', event)">📊 PTU (Utilidades)</button>
       </div>
 
       <!-- CALCULADORA 1: FINIQUITO (SIN CAMBIOS) -->
@@ -298,9 +398,22 @@
           <button type="button" class="btn-whatsapp open-modal-btn">💬 Validar cálculo con un experto</button>
         </div>
       </div>
+    </div>
 
-      <!-- CALCULADORA 3: PTU (ACTUALIZADA - LFT + ISR 2026) -->
-      <div id="sec-ptu" class="calc-section">
+    <!-- ================================================================
+         BLOQUE 2: PTU 2026 (CONTENEDOR INDEPENDIENTE CON JERARQUÍA PROPIA)
+         ================================================================ -->
+    <div class="ptu-container">
+      <div class="ptu-hero">
+        <div class="ptu-badge">⚠ Temporada crítica: abril–mayo</div>
+        <h2>📊 Reparto de Utilidades 2026 (PTU)</h2>
+        <p class="ptu-subtitulo">El tema laboral más conflictivo del año. Un error en este cálculo no solo cuesta dinero: cuesta demandas, multas y relaciones rotas con tu personal.</p>
+      </div>
+      <div class="ptu-body">
+        <div class="ptu-intro">
+          <strong>Calculadora profesional con aplicación estricta de:</strong> Art. 125 y 127 LFT (topes legales, trabajador de confianza, distribución bipartita) + Art. 93 y 96 LISR (exención de 15 UMA y retención de ISR) + UMA 2026 vigente. Úsela como referencia inicial, pero <strong>no presente estos números a su equipo sin revisión jurídica previa</strong>.
+        </div>
+
         <form id="calculadoraPTUForm">
           
           <!-- DATOS DE LA EMPRESA -->
@@ -399,7 +512,12 @@
           <div class="aviso">
             <p>⚠️ <strong>AVISO LEGAL:</strong> Este cálculo aplica estrictamente los Arts. 125 y 127 de la LFT, y los Arts. 93 y 96 de la Ley del ISR, con UMA 2026. Es una estimación orientativa y no sustituye el cálculo oficial de su empresa ni la asesoría fiscal personalizada.</p>
           </div>
-          <button type="button" class="btn-whatsapp open-modal-btn">💬 Validar cálculo con un experto</button>
+
+          <!-- CTA ESTRATÉGICO ESPECÍFICO PARA PTU -->
+          <div class="cta-estrategico-ptu">
+            <p>La PTU es el momento del año donde un error se multiplica: cada trabajador recibe un número distinto, cada reclamo se vuelve colectivo. Antes de presentarle estos números a su equipo, revisemos juntos su caso.</p>
+            <button type="button" class="btn-cta-ptu open-modal-btn">📞 Revisar mi PTU con un especialista</button>
+          </div>
         </div>
       </div>
     </div>
