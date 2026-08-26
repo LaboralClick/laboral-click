@@ -22,8 +22,10 @@ h1{font-size:18px;font-weight:800}
 .btn-wa{background:#25D366;color:#fff}
 .btn-web{background:#fff;color:#152642}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 14px 0}
-.grid a{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#d0d8e8;padding:12px;border-radius:12px;font-size:11px;text-decoration:none;font-weight:600}
+.grid a{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#d0d8e8;padding:12px;border-radius:12px;font-size:11px;text-decoration:none;font-weight:600;cursor:pointer}
 .footer{font-size:9px;opacity:0.5;padding:18px 14px 20px;margin-top:10px;border-top:1px solid rgba(255,255,255,0.08)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#f0c040;color:#152642;font-weight:700;font-size:12px;padding:12px 18px;border-radius:30px;box-shadow:0 6px 20px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s;z-index:99;max-width:90%;text-align:center}
+.toast.visible{opacity:1}
 </style>
 </head>
 <body>
@@ -38,12 +40,113 @@ h1{font-size:18px;font-weight:800}
   </div>
   <div class="qr-box">
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://laboralclick.com.mx/tarjeta/" alt="QR">
-    <div class="qr-text"><b>ESCANEA Y GUARDA</b><br><b style="color:#b68a1e">LaboralClick</b><br><b>Blindaje laboral para tu PyME</b><br>Evita multas STPS y demandas<br>Sin enredos, en tu móvil.</div>
+    <div class="qr-text"><b>ESCANEA Y GUARDA</b><br><b style="color:#b68a1e">LaboralClick</b></br><b>Blindaje laboral para tu PyME</b><br>Evita multas STPS y demandas<br>Sin enredos, en tu móvil.</div>
   </div>
-  <a class="btn btn-wa" href="https://wa.me/5255XXXXXXXX" target="_blank">WhatsApp Business</a>
-  <a class="btn btn-web" href="https://laboralclick.com.mx" target="_blank">laboralclick.com.mx</a>
-  <div class="grid"><a href="#">Guardar Contacto</a><a href="#">Compartir</a><a href="#">Copiar Link</a><a href="#">Agregar a inicio</a></div>
+  <a class="btn btn-wa" href="https://wa.me/5213111866901" target="_blank" rel="noopener">WhatsApp Business</a> <!-- ← NÚMERO: verifica si es 6901 o 9901 -->
+  <a class="btn btn-web" href="https://laboralclick.com.mx" target="_blank" rel="noopener">laboralclick.com.mx</a>
+  <div class="grid">
+    <a onclick="guardarContacto();return false;">Guardar Contacto</a>
+    <a onclick="compartir();return false;">Compartir</a>
+    <a onclick="copiarLink();return false;">Copiar Link</a>
+    <a onclick="agregarInicio();return false;">Agregar a inicio</a>
+  </div>
   <div class="footer">CDMX • @laboralclick.mx • Cobertura Nacional y Binacional</div>
 </div>
+<div id="toast" class="toast"></div>
+
+<script>
+var NUM_WHATSAPP = '+523111866901'; // ← NÚMERO: mismo aviso, verifica el dígito
+var CORREO = 'contacto@laboralclick.com.mx'; // ← CAMBIA este correo si usas otro
+
+var toastTimer = null;
+function mostrarToast(msg, dur) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('visible'); }, dur || 2500);
+}
+
+function guardarContacto() {
+  var vcard = 'BEGIN:VCARD\r\n' +
+    'VERSION:3.0\r\n' +
+    'FN:José Domiciano Segura Díaz\r\n' +
+    'N:Segura Díaz;José Domiciano;;;\r\n' +
+    'ORG:Laboral Click\r\n' +
+    'TITLE:Fundador\r\n' +
+    'TEL;TYPE=CELL,WORK:' + NUM_WHATSAPP + '\r\n' +
+    'EMAIL:' + CORREO + '\r\n' +
+    'URL:https://laboralclick.com.mx\r\n' +
+    'ADR;TYPE=WORK:;;Col. Narvarte, Benito Juárez;Ciudad de México;;;México\r\n' +
+    'NOTE:Asesoría Legal sin Enredos para PyMEs. Cobertura Nacional y Binacional.\r\n' +
+    'END:VCARD';
+  var blob = new Blob([vcard], { type: 'text/vcard' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'Jose-Segura-LaboralClick.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  mostrarToast('📇 Contacto descargado. Ábrelo para guardarlo en tu teléfono.');
+}
+
+function compartir() {
+  var url = window.location.href;
+  if (navigator.share) {
+    navigator.share({
+      title: 'Lic. José Segura - Laboral Click',
+      text: 'Blindaje laboral para tu PyME. Sin enredos.',
+      url: url
+    }).catch(function(){});
+  } else {
+    copiarLink();
+  }
+}
+
+function copiarLink() {
+  var url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(
+      function(){ mostrarToast('🔗 ¡Link copiado!'); },
+      function(){ copiarFallback(url); }
+    );
+  } else {
+    copiarFallback(url);
+  }
+}
+
+function copiarFallback(texto) {
+  var ta = document.createElement('textarea');
+  ta.value = texto;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    mostrarToast('🔗 ¡Link copiado!');
+  } catch (e) {
+    mostrarToast('No se pudo copiar automáticamente. El link es: ' + texto, 5000);
+  }
+  document.body.removeChild(ta);
+}
+
+var deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function agregarInicio() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(){ deferredPrompt = null; });
+  } else {
+    mostrarToast('📱 Android: menú ⋮ → "Agregar a pantalla de inicio". iPhone: botón Compartir → "Agregar a inicio".', 6000);
+  }
+}
+</script>
 </body>
 </html>
