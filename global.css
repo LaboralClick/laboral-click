@@ -310,3 +310,53 @@ footer p { font-size: 0.9rem; opacity: 0.9; }
 .page-hero h1 { color: white; font-size: 2.2rem; margin-bottom: 0.8rem; }
 .page-hero p { color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 h1, h2 { color: #0f2a5e; }
+/* ============================================ */
+/* TARJETAS DEL BLOG                            */
+/* ============================================ */
+.blog-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 350px;
+  transition: transform 0.3s ease;
+  margin: 20px;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+.blog-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.blog-card-content {
+  padding: 20px;
+}
+.blog-card-fecha {
+  color: #c9a028;
+  font-size: 13px;
+  font-weight: bold;
+}
+.blog-card-titulo {
+  color: #0a2463;
+  font-size: 20px;
+  margin: 10px 0;
+  line-height: 1.3;
+}
+.blog-card-extracto {
+  color: #4a4a5a;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.blog-card-btn {
+  display: inline-block;
+  color: #0a2463;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #c9a028;
+  padding-bottom: 2px;
+}
+.blog-card-btn:hover {
+  color: #c9a028;
+}
