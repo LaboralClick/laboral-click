@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ED8M8E4DNP');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinco Claves para Contratar Personal sin Riesgos Legales en tu PyME - Blog Laboral Click</title>
@@ -10,7 +17,7 @@
   <style>
     .articulo-content { 
       max-width: 850px; 
-      margin: 0 auto; 
+      margin: 40px auto; 
       padding: 50px 25px; 
       background: white;
       border-radius: 15px;
@@ -156,7 +163,7 @@
     }
     .btn-volver { 
       display: inline-block; 
-      margin-top: 40px; 
+      margin-top: 30px; 
       padding: 12px 25px; 
       background: #0a2463; 
       color: white; 
@@ -189,25 +196,11 @@
   <header>
     <div class="container">
       <nav class="nav">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="images/logoH.png" alt="Laboral Click" style="height:45px;">
           <span>Asesoría Legal sin Enredos</span>
         </a>
-        <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-        <ul class="nav-links" id="navMenu">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/nosotros">Nosotros</a></li>
-          <li><a href="/servicios">Servicios</a></li>
-          <li><a href="/precios">Precios</a></li>
-          <li><a href="/promociones">Promociones</a></li>
-          <li><a href="/casos">Casos de Exito</a></li>
-          <li><a href="/testimonios">Testimonios</a></li>
-          <li><a href="/diagnostico">Diagnóstico</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/calculadoras">Calculadoras</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-        </ul>
-        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+        <div id="menu-container"></div>
       </nav>
     </div>
   </header>
@@ -278,7 +271,7 @@
     </ul>
     
     <div class="alerta">
-      <p><strong>️ IMPORTANTE:</strong> Guarda todo 5 años. La Junta ya no existe, ahora son los Tribunales Laborales y piden todo digitalizado.</p>
+      <p><strong>⚠️ IMPORTANTE:</strong> Guarda todo 5 años. La Junta ya no existe, ahora son los Tribunales Laborales y piden todo digitalizado.</p>
     </div>
 
     <h2>CLAVE 3: IMSS, INFONAVIT y SAT - La Bomba de Tiempo de "Te Pago Más Sin Seguro"</h2>
@@ -313,7 +306,7 @@
     </ul>
     
     <div class="alerta">
-      <p><strong>️ Si no cumples los 4 puntos,</strong> en juicio es despido injustificado.</p>
+      <p><strong>⚠️ Si no cumples los 4 puntos,</strong> en juicio es despido injustificado.</p>
     </div>
 
     <h2>CLAVE 5: Reglamento Interior y Actas Administrativas - Cómo Disciplinar sin que te Demanden</h2>
@@ -354,7 +347,7 @@
     </div>
 
     <div class="referencias">
-      <h3> Referencias Legales:</h3>
+      <h3>📚 Referencias Legales:</h3>
       <p>Ley Federal del Trabajo (Última reforma DOF 2023 en materia de vacaciones y 2024 salarios). Artículos 10, 20, 21, 25, 26, 35, 37, 39-A, 47, 134, 422, 784, 804. Ley del Seguro Social, Art. 15, 304-A, 304-B. Reforma de Subcontratación DOF 23/04/2021.</p>
     </div>
 
@@ -362,38 +355,34 @@
       <p><strong>Aviso:</strong> Este contenido es informativo y no constituye asesoría legal personalizada. Cada caso debe analizarse individualmente.</p>
     </div>
 
-    <a href="/blog" class="btn-volver">← Volver al Blog</a>
+    <a href="blog.html" class="btn-volver">← Volver al Blog</a>
   </article>
 
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
-        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p> <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-        <div class="footer-col"><h4>️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
       </div>
-      <div class="footer-bottom">
-        <p class="disclaimer-text">La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
       </div>
     </div>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
   </footer>
-  
-  <a href="https://wa.me/5213111866901" class="whatsapp-float" target="_blank">💬</a>
-<script>
-// Cerrar menú al hacer clic en enlaces
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.nav-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = document.getElementById('navMenu');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-});
-</script>
+
+  <script src="menu.js"></script>
 </body>
 </html>
