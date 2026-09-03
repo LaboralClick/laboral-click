@@ -124,10 +124,15 @@ input.invalid,select.invalid{border-color:var(--red)!important;box-shadow:0 0 0 
 
 <script>
 const CATALOGO=[
-{id:"1004",art:"Art 1004",desc:"No pagar el salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"La ley sanciona estrictamente el impago del salario mínimo por cada trabajador afectado, y la multa se eleva según los meses que se haya retenido el pago."},
 {id:"994-I",art:"Art 994 Fracc I",desc:"No dar condiciones de trabajo por escrito",tipo:"UNICA",min:50,max:250,explica:"Es 1 sola multa por todo tu centro de trabajo, no importa si tienes 1 o 100 empleados."},
+{id:"994-III",art:"Art 994 Fracc III",desc:"No entregar contrato a tus trabajadores",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:250,explica:"Se cobra por cada trabajador que no tenga contrato. Si son 3 sin contrato, son 3 multas."},
 {id:"995",art:"Art 995",desc:"Falta grave de Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Es 1 sola multa aunque afecte a todos, pero es la más alta por poner en riesgo la vida."},
-{id:"998",art:"Art 998",desc:"No pagar utilidades (PTU)",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Se cobra por cada trabajador que no recibió su PTU. Por cada omisión."},
+{id:"1004",art:"Art 1004",desc:"No pagar el salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"La ley sanciona estrictamente el impago del salario mínimo por cada trabajador afectado, y la multa se eleva según los meses que se haya retenido el pago."},
+{id:"998",art:"Art 998",desc:"No pagar PTU / Utilidades",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Se cobra por cada trabajador que no recibió su PTU. Por cada omisión."},
+{id:"999",art:"Art 999",desc:"No dar de alta en IMSS",tipo:"POR_TRABAJADOR_AFECTADO",min:20,max:350,explica:"Multa ajustada a rangos reales de la Ley del Seguro Social en UMAs (20 a 350). Se cobra por cada trabajador no afiliado."},
+{id:"1000",art:"Art 1000",desc:"No dar capacitación a tu personal",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Se cobra por cada trabajador que no recibió capacitación. Obligación para toda la plantilla."},
+{id:"1002",art:"Art 1002",desc:"Outsourcing ilegal",tipo:"UNICA",min:2000,max:50000,explica:"Es 1 sola multa, pero es la más cara de la LFT: de $234 mil a $5.8 millones."},
+{id:"1004-C",art:"Art 1004-C",desc:"Discriminación o acoso laboral",tipo:"UNICA",min:250,max:5000,explica:"Es 1 sola multa por acto de discriminación o acoso, aunque la STPS puede multiplicar por víctimas según criterio."},
 ];
 const UMA=117.31;
 const $=id=>document.getElementById(id);
@@ -232,13 +237,19 @@ function calcular(){
   let mult=1;
 
   if(infra.id==='1004'){
+    // LÓGICA ESPECIAL: ignora 800/800 del catálogo y usa tiempoVal del select
     const tiempoVal=parseInt($('tiempo').value)||800;
     umaBase=tiempoVal;
     mult=trab;
   }else{
-    if(infra.tipo==='UNICA'){ mult=1; }
-    else if(infra.tipo==='POR_TRABAJADOR_AFECTADO'){ mult=trab; }
-    else { mult=1; }
+    // Para todas las demás opciones usa valores fijos del catálogo
+    if(infra.tipo==='UNICA'){
+      mult=1;
+    }else if(infra.tipo==='POR_TRABAJADOR_AFECTADO'){
+      mult=trab;
+    }else{
+      mult=1;
+    }
   }
 
   let min,max;
@@ -262,20 +273,20 @@ function calcular(){
 
   if(infra.id==='1004'){
     const tempoTxt=$('tiempo').options[$('tiempo').selectedIndex].text;
-    $('formula').innerHTML=`Cálculo Art 1004: UMA $${UMA} × <b>${umaBase} UMAs</b> (${tempoTxt}) × ${trab} trabajador(es) × Factor ${tamFactor}${esReinc?' ×2 reincidencia':''}<br><b>${plantLabel} paga al ${tamFactor*100}%</b> - Min y Max iguales por ser cifra fija por temporalidad`;
+    $('formula').innerHTML=`Cálculo Art 1004: UMA $${UMA} × <b>${umaBase} UMAs</b> (${tempoTxt}) × ${trab} trab. × Factor ${tamFactor}${esReinc?' ×2':''} = <b>${fmt(prom)}</b><br><small>Ignora 800/800 del catálogo, usa valor del select tiempo directamente</small>`;
   }else{
-    $('formula').innerHTML=`Cálculo: UMA $${UMA} × [${infra.min}-${infra.max}] × ${mult} trabajador(es) × Factor ${tamFactor}${esReinc?' ×2':''}`;
+    $('formula').innerHTML=`Cálculo: UMA $${UMA} × [${infra.min}-${infra.max}] × ${mult} ${infra.tipo==='UNICA'?' (UNICA=1)':'trabajador(es)'} × Factor ${tamFactor}${esReinc?' ×2 reincidencia':''}`;
   }
 
-  $('fichaLegal').innerHTML=`<b>${infra.art}</b> - ${infra.desc}<br><b>¿Cómo se cobra?</b> ${infra.explica}<br><br><span style="background:#1e3a5f;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px">UMA 2026 $117.31 - INEGI DOF 09/01/2026</span>`;
+  $('fichaLegal').innerHTML=`<b>${infra.art}</b> - ${infra.desc}<br><b>¿Cómo se cobra?</b> ${infra.explica}<br><br><span style="background:#1e3a5f;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px">UMA 2026 $117.31 - INEGI DOF 09/01/2026 - 9 opciones</span>`;
 
   let cierre='';
   if(infra.id==='1004'){
-    cierre=`<b>⚠️ Art 1004 - Salario mínimo.</b><br>${infra.explica}<br><br>Temporalidad <b>${$('tiempo').options[$('tiempo').selectedIndex].text}</b> = ${umaBase} UMAs × ${trab} trabajador(es) × ${plantLabel} = <b>${fmt(prom)}</b>.`;
+    cierre=`<b>⚠️ Art 1004 - Salario mínimo.</b><br>${infra.explica}<br><br>Temporalidad <b>${$('tiempo').options[$('tiempo').selectedIndex].text}</b> = ${umaBase} UMAs × ${trab} trab. × ${plantLabel} = <b>${fmt(prom)}</b>.`;
   }else if(infra.tipo==='UNICA'){
-    cierre=`<b>✓ Es 1 sola multa.</b> Multiplicador = 1 obligatoriamente. Total <b>${fmt(prom)}</b> promedio.`;
+    cierre=`<b>✓ UNICA = 1 sola multa.</b><br>Multiplicador trabajadores = <b>1</b> obligatoriamente. Total <b>${fmt(prom)}</b>.`;
   }else{
-    cierre=`<b>👥 Por cada trabajador.</b> ${trab} trabajador(es) × rango [${infra.min}-${infra.max}] = <b>${fmt(prom)}</b> promedio.`;
+    cierre=`<b>👥 POR_TRABAJADOR_AFECTADO = × trabajadores.</b><br>${trab} trabajador(es) × rango = <b>${fmt(prom)}</b> promedio.`;
   }
   $('cierre').innerHTML=cierre;
   $('cierre').style.display='block';
