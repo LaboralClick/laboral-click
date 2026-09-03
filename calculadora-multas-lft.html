@@ -2,175 +2,194 @@
 <html lang="es-MX">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora Multas LFT 2026 - LaboralClick</title>
+<title>Calculadora Multas LFT 2026 - LaboralClick v2 Definitiva</title>
 <style>
 :root{--navy:#1e3a5f;--navy-dark:#0f2440;--gold:#c9a63c;--bg:#f8fafc;--text:#0f172a;--border:#cbd5e1;--red:#ef4444}
-*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-#lc{max-width:1100px;margin:0 auto;padding:24px}
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text)}
+#lc{max-width:1100px;margin:0 auto;padding:20px}
 .lc-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(30,58,95,.06)}
 .lc-note{color:#1e293b;font-size:13px;font-weight:500;line-height:1.6;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px}
-.lc-note-dark{color:#1e293b;background:#fff8e1;border:2px solid var(--gold);border-radius:12px;padding:14px;font-size:13px;line-height:1.6}
-.lc-result{background:var(--navy);color:#fff;border-radius:16px;padding:24px;min-height:160px}
-.lc-result .big{font-size:34px;font-weight:800;color:#fff;line-height:1.1}
-.lc-result .sub{font-size:14px;color:#fff;font-weight:500;margin-top:6px}
+.lc-note-gold{background:#fff8e1;border:2px solid var(--gold);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.6;color:#1e293b}
+.lc-result{background:var(--navy);color:#fff;border-radius:16px;padding:24px;min-height:120px}
+.lc-result .big{font-size:32px;font-weight:800;color:#fff;line-height:1.1}
+.lc-result .sub{font-size:13px;color:#e2e8f0;margin-top:4px}
 .lc-uma{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
 .lc-uma div{background:#f0f4f8;border:1px solid var(--gold);border-radius:12px;padding:12px;text-align:center}
 .lc-uma b{display:block;font-size:20px;color:var(--navy)}
-.lc-uma span{font-size:11px;color:#475569;font-weight:700}
 .lc-grid{display:grid;grid-template-columns:380px 1fr;gap:20px}
-label{font-size:13px;font-weight:700;color:#1e293b;display:block;margin:14px 0 6px}
-input,select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff;color:#0f172a}
-input.invalid,select.invalid{border-color:var(--red) !important;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
-.lc-type{display:inline-flex;padding:7px 12px;border-radius:999px;font-size:11px;font-weight:800;margin:6px 0}
-.lc-type.UNICA{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
-.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
-.lc-type.POR_TOTAL_PLANTILLA{background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd}
-.lc-type.POR_CADA_TRABAJADOR_OMISION{background:#ffe4e6;color:#9f1239;border:1px solid #fda4af}
-.lc-tabs{display:flex;gap:8px;margin:12px 0}
-.lc-tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:#f1f5f9;font-size:12px;font-weight:700;cursor:pointer;text-align:center}
-.lc-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+label{font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#334155;display:block;margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select{width:100%;padding:12px 12px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff;color:#0f172a}
+input.invalid{border-color:var(--red) !important;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.04em;margin:6px 0}
+.lc-type.UNICA{background:#fef3c7;color:#92400e}
+.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
+.lc-type.POR_TOTAL_PLANTILLA{background:#ede9fe;color:#5b21b6}
+.lc-type.POR_CADA_TRABAJADOR_OMISION{background:#ffe4e6;color:#9f1239}
 .btn-gold{display:block;width:100%;background:var(--gold);color:#0f2440;border:0;padding:16px 18px;border-radius:12px;font-weight:800;font-size:15px;text-align:center;text-decoration:none;box-shadow:0 6px 20px rgba(201,166,60,.35);cursor:pointer}
-@media(max-width:768px){.lc-grid{grid-template-columns:1fr;gap:16px}#lc{padding:12px}input,select{height:48px;font-size:16px}.lc-uma{grid-template-columns:1fr}.lc-result .big{font-size:28px}}
+@media(max-width:768px){.lc-grid{grid-template-columns:1fr;gap:16px}#lc{padding:12px}input,select{height:48px;font-size:16px}.lc-uma{grid-template-columns:1fr}.lc-result .big{font-size:26px}}
 </style>
 </head>
 <body>
 <div id="lc">
-<div style="background:var(--navy);color:#fff;padding:18px 20px;border-radius:16px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<div style="background:var(--navy);color:#fff;padding:16px 20px;border-radius:16px;margin-bottom:18px">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
 <div><b>LABORALCLICK</b> · Calculadora Multas LFT 2026 <span style="background:var(--gold);color:var(--navy-dark);padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;margin-left:8px">UMA $117.31</span></div>
-<div style="font-size:12px">WhatsApp 52 1 3111866901 · INEGI DOF 09/01/2026</div>
+<div style="font-size:11px">WhatsApp 52 1 3111866901</div>
+</div>
 </div>
 
 <div class="lc-card" style="margin-bottom:18px">
-<div style="font-weight:800;font-size:14px;color:var(--navy)">⚙ UMA Oficial - Edita cada febrero</div>
-<div class="lc-tabs">
-<div class="lc-tab active" id="tabM" onclick="setModo('MANUAL')">MANUAL - Recomendado</div>
-<div class="lc-tab" id="tabA" onclick="setModo('AUTO')">AUTOMÁTICO</div>
-</div>
-<div id="panelM">
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-<div><label>UMA Diaria 2026 ($)</label><input id="umaD" type="number" step="0.01" value="117.31"></div>
-<div><label>UMA Mensual ($)</label><input id="umaM" type="number" step="0.01" value="3566.22"></div>
-<div><label>UMA Anual ($)</label><input id="umaA" type="number" step="0.01" value="42794.64"></div>
-</div>
-<button class="btn-gold" style="margin-top:12px;background:var(--navy);color:#fff" onclick="guardarUMA()">Guardar UMA y Recalcular</button>
-</div>
-<div id="panelA" style="display:none"><div class="lc-note">INEGI no da CORS en frontend. Usa MANUAL con 117.31 oficial 2026.</div></div>
+<div style="font-weight:800;font-size:13px;color:var(--navy)">⚙ UMA Oficial 2026 - INEGI DOF 09/01/2026 - Vigencia 01/feb/2026 al 31/ene/2027</div>
 <div class="lc-uma">
-<div><b id="showD">$117.31</b><span>DIARIA</span></div>
-<div><b id="showM">$3,566.22</b><span>MENSUAL</span></div>
-<div><b id="showA">$42,794.64</b><span>ANUAL</span></div>
+<div><b>$117.31</b><span>DIARIA</span></div>
+<div><b>$3,566.22</b><span>MENSUAL</span></div>
+<div><b>$42,794.64</b><span>ANUAL</span></div>
 </div>
 </div>
 
 <div class="lc-grid">
 <div class="lc-card">
-<label>Tipo de infracción LFT *</label>
-<select id="infra"></select>
-<div id="fichaTipo" style="margin-top:10px"></div>
+<label>¿Qué te faltó hacer? *</label>
+<select id="infra" onchange="onInfraChange()"></select>
+<div id="fichaTipo"></div>
 
-<label>Trabajadores afectados *</label>
-<input id="trab" type="number" min="1" placeholder="Ej: 3" oninput="validate()">
-
-<label>Total plantilla *</label>
-<input id="plant" type="number" min="1" placeholder="Ej: 10" value="10" oninput="validate()">
-
-<label>Tamaño empresa * <span style="cursor:pointer;background:var(--navy);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:11px" onclick="toggleTip()">?</span></label>
-<select id="tam" onchange="calcular()">
-<option value="1">Mediana 51-250 (100%)</option>
-<option value="0.8">Pequeña 11-50 (80% - atenuante)</option>
-<option value="0.5">Micro 1-10 (50% - atenuante)</option>
-<option value="1">Grande 251+ (100%)</option>
+<div id="groupTrab">
+<label>¿Cuántos trabajadores están afectados? *</label>
+<select id="trab" onchange="validate()">
+<option value="">Selecciona...</option>
+<option value="1">1 trabajador</option>
+<option value="2">2 trabajadores</option>
+<option value="3">3 trabajadores</option>
+<option value="5">5 trabajadores</option>
+<option value="10">10 trabajadores</option>
+<option value="20">20 trabajadores</option>
+<option value="50">50 trabajadores</option>
+<option value="otro">Otro - escribir número</option>
 </select>
-<div id="tipTam" style="display:none;margin-top:8px" class="lc-note">
-<b>Tabla oficial STPS/INEGI:</b><br>
-• Micro: 1 a 10 trab → paga 50% de la multa<br>
-• Pequeña: 11 a 50 trab → paga 80%<br>
-• Mediana: 51 a 250 trab → paga 100%<br>
-• Grande: 251+ → paga 100%<br>
-<small>Elige por número de trabajadores de tu plantilla.</small>
+<input id="trabCustom" type="number" min="1" placeholder="Escribe el número" style="display:none;margin-top:8px" oninput="validate()">
 </div>
 
-<label style="display:flex;align-items:center;gap:10px;margin-top:16px"><input id="reinc" type="checkbox" style="width:18px;height:18px" onchange="calcular()"> ¿Reincidencia? Art 1001 duplica</label>
+<div id="groupPlant">
+<label>¿De cuántos es tu plantilla total? *</label>
+<select id="plant" onchange="validate()">
+<option value="">Selecciona tamaño...</option>
+<option value="1">1 a 10 - Micro</option>
+<option value="10">11 a 50 - Pequeña</option>
+<option value="50">51 a 250 - Mediana</option>
+<option value="250">251 o más - Grande</option>
+</select>
+<div style="font-size:11px;color:#64748b;margin-top:6px">Esto define si tu empresa es micro/pequeña/mediana/grande. Afecta el % de la multa.</div>
+</div>
+
+<label>¿Es reincidencia? (ya te multaron antes por lo mismo) *</label>
+<select id="reinc" onchange="validate()">
+<option value="no">No, es primera vez</option>
+<option value="si">Sí, ya me multaron antes - Art 1001 duplica</option>
+</select>
+
 </div>
 
 <div>
 <div id="res" class="lc-result">
 <div id="estado" class="big">⚠️ Faltan datos por agregar</div>
-<div id="subEstado" class="sub">Completa Trabajadores afectados y Total plantilla para ver tu multa estimada</div>
+<div id="subEstado" class="sub">Elige el tipo de falta, trabajadores afectados y plantilla total</div>
 <div id="montos" style="display:none;margin-top:16px">
-<div style="font-size:11px;letter-spacing:.06em;font-weight:700;margin-bottom:6px">💰 PROMEDIO ESTIMADO - Lo que normalmente cobra el inspector</div>
-<div id="prom" class="big" style="margin-bottom:4px">$0 MXN</div>
-<div style="font-size:12px;margin-bottom:14px">Este es el monto más probable. Ni el mínimo ni el máximo, el punto medio.</div>
+<div style="font-size:11px;font-weight:700;letter-spacing:.05em;margin-bottom:6px">💰 PROMEDIO ESTIMADO - Lo que normalmente cobra el inspector</div>
+<div id="prom" class="big">$0 MXN</div>
+<div style="font-size:12px;margin:6px 0 14px;color:#cbd5e1">Monto más probable. Ni mínimo ni máximo.</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<div style="background:rgba(255,255,255,.14);padding:12px;border-radius:10px"><div style="font-size:11px;font-weight:700">Si te va bien (mínimo legal)</div><b id="min" style="font-size:16px">$0</b></div>
-<div style="background:rgba(255,255,255,.14);padding:12px;border-radius:10px"><div style="font-size:11px;font-weight:700">Si te va mal (máximo legal)</div><b id="max" style="font-size:16px">$0</b></div>
+<div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px;font-weight:700">Si te va bien</div><b id="min" style="font-size:15px">$0</b><div style="font-size:10px">Mínimo legal</div></div>
+<div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px;font-weight:700">Si te va mal</div><b id="max" style="font-size:15px">$0</b><div style="font-size:10px">Máximo legal</div></div>
 </div>
-<div id="formula" style="margin-top:14px;font-size:11px;background:rgba(0,0,0,.25);padding:10px;border-radius:10px;word-break:break-word"></div>
+<div id="formula" style="margin-top:14px;font-size:11px;background:rgba(0,0,0,.25);padding:10px;border-radius:10px;word-break:break-word;color:#e2e8f0"></div>
 </div>
 </div>
 
-<div id="cierre" class="lc-note-dark" style="margin-top:14px;display:none"></div>
+<div id="cierre" class="lc-note-gold" style="margin-top:14px;display:none"></div>
 <a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-gold" style="margin-top:14px;display:none">Evaluar mi empresa - Riesgo $ →</a>
-<div id="waSub" style="font-size:11px;color:#475569;text-align:center;margin-top:8px;display:none">Abre WhatsApp directo a <b>52 1 3111866901</b> con mensaje pre-llenado</div>
+<div id="waSub" style="font-size:11px;color:#475569;text-align:center;margin-top:8px;display:none">WhatsApp directo 52 1 3111866901 con mensaje pre-llenado</div>
 <div class="lc-card" style="margin-top:14px"><div id="fichaLegal" style="font-size:13px;line-height:1.6;color:#1e293b"></div></div>
 </div>
 </div>
-<div style="text-align:center;font-size:11px;color:#64748b;margin-top:20px;padding-bottom:12px">LaboralClick.com.mx · UMA 117.31 diaria · Vigencia 2026-02-01 al 2027-01-31 · INEGI DOF 09/01/2026 · WhatsApp 52 1 3111866901</div>
+<div style="text-align:center;font-size:11px;color:#64748b;margin-top:18px">LaboralClick.com.mx · UMA 117.31 diaria · Cálculo orientativo, no sustituye dictamen STPS</div>
 </div>
 
 <script>
 const CATALOGO=[
-{id:"994-I",art:"Art 994 Fracc I",desc:"Condiciones generales de trabajo",tipo:"UNICA",min:50,max:250,base:"Por hecho infractor",nota:"Una sola multa por centro de trabajo, no importa si afecta a 1 o 100 trabajadores."},
-{id:"994-III",art:"Art 994 Fracc III",desc:"No entregar contrato por escrito",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:250,base:"Por cada trabajador sin contrato",nota:"Se multiplica por cada trabajador afectado."},
-{id:"995",art:"Art 995",desc:"Seguridad e Higiene - Riesgo inminente",tipo:"UNICA",min:250,max:5000,base:"Por hecho",nota:"Puede clausurarse centro. Multa única pero alta."},
-{id:"996",art:"Art 996",desc:"No pagar salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:250,base:"Por cada trabajador mal pagado",nota:"Texto LFT: por cada trabajador."},
-{id:"998",art:"Art 998",desc:"No pagar PTU",tipo:"POR_CADA_TRABAJADOR_OMISION",min:250,max:5000,base:"Por cada trabajador sin PTU",nota:"Por cada trabajador que no recibió."},
-{id:"999",art:"Art 999",desc:"No afiliar IMSS / INFONAVIT",tipo:"POR_CADA_TRABAJADOR_OMISION",min:250,max:5000,base:"Por cada trabajador no afiliado",nota:"La más común. Por cada trabajador sin alta."},
-{id:"1000",art:"Art 1000",desc:"Capacitación y adiestramiento",tipo:"POR_TOTAL_PLANTILLA",min:50,max:1500,base:"Sobre total plantilla",nota:"Obligación para toda la plantilla."},
-{id:"1002",art:"Art 1002",desc:"Outsourcing ilegal",tipo:"POR_TOTAL_PLANTILLA",min:2000,max:50000,base:"Sobre plantilla en esquema ilegal",nota:"La más alta de la LFT. 2000 a 50000 UMA."},
-{id:"1004-C",art:"Art 1004-C",desc:"Discriminación, Acoso, Hostigamiento",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,base:"Por cada víctima",nota:"Por cada trabajador afectado."},
+{id:"994-I",art:"Art 994 Fracc I",desc:"No dar condiciones de trabajo por escrito",tipo:"UNICA",min:50,max:250,explica:"Es 1 sola multa por todo tu centro de trabajo, no importa si tienes 1 o 100 empleados."},
+{id:"994-III",art:"Art 994 Fracc III",desc:"No entregar contrato a tus trabajadores",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:250,explica:"Se cobra por cada trabajador que no tenga contrato. Si son 3 sin contrato, son 3 multas."},
+{id:"995",art:"Art 995",desc:"Falta grave de Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Es 1 sola multa aunque afecte a todos, pero es la más alta por poner en riesgo la vida."},
+{id:"996",art:"Art 996",desc:"No pagar el salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:250,explica:"Se cobra por cada trabajador al que le pagaste menos del mínimo."},
+{id:"998",art:"Art 998",desc:"No pagar PTU / Utilidades",tipo:"POR_CADA_TRABAJADOR_OMISION",min:250,max:5000,explica:"Se cobra por cada trabajador que no recibió su PTU."},
+{id:"999",art:"Art 999",desc:"No dar de alta en IMSS",tipo:"POR_CADA_TRABAJADOR_OMISION",min:250,max:5000,explica:"Se cobra por cada trabajador que no diste de alta en el IMSS."},
+{id:"1000",art:"Art 1000",desc:"No dar capacitación a tu personal",tipo:"POR_TOTAL_PLANTILLA",min:50,max:1500,explica:"Es 1 sola multa, pero el inspector la calcula viendo cuánta gente tienes en total. Entre más plantilla, más cerca del máximo te ponen."},
+{id:"1002",art:"Art 1002",desc:"Outsourcing ilegal",tipo:"POR_TOTAL_PLANTILLA",min:2000,max:50000,explica:"Es 1 sola multa, pero es la más cara de la LFT: de $234 mil a $5.8 millones. Se define según tu plantilla en outsourcing."},
+{id:"1004-C",art:"Art 1004-C",desc:"Discriminación o acoso laboral",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Se cobra por cada persona que sufrió acoso o discriminación."},
 ];
-let UMA_D=117.31;
+const UMA=117.31;
 const $=id=>document.getElementById(id);
 function init(){
   const sel=$('infra');
-  CATALOGO.forEach(c=>{let o=document.createElement('option');o.value=c.id;o.textContent=`${c.art} - ${c.desc} (${c.min}-${c.max} UMA)`;sel.appendChild(o);});
-  sel.value="999";
-  sel.addEventListener('change',calcular);
-  $('tam').addEventListener('change',calcular);
-  $('reinc').addEventListener('change',calcular);
-  updateShow(); validate();
+  CATALOGO.forEach(c=>{let o=document.createElement('option');o.value=c.id;o.textContent=`${c.art} - ${c.desc}`;sel.appendChild(o);});
+  sel.value='999';
+  $('trab').addEventListener('change',()=>{ 
+    if($('trab').value==='otro'){ $('trabCustom').style.display='block'; $('trabCustom').focus(); }
+    else { $('trabCustom').style.display='none'; }
+    validate();
+  });
+  onInfraChange();
 }
-function updateShow(){
-  $('showD').textContent='$'+UMA_D.toLocaleString('es-MX',{minimumFractionDigits:2});
-  $('showM').textContent='$'+(UMA_D*30.4).toLocaleString('es-MX',{minimumFractionDigits:2});
-  $('showA').textContent='$'+(UMA_D*365).toLocaleString('es-MX',{minimumFractionDigits:2});
+function onInfraChange(){
+  const infra=CATALOGO.find(c=>c.id===$('infra').value);
+  if(infra.tipo==='UNICA'){
+    $('groupTrab').style.display='none';
+    $('groupPlant').style.display='block';
+    $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">1 SOLA MULTA</div><div class="lc-note" style="margin-top:8px">${infra.explica}</div>`;
+  }else if(infra.tipo==='POR_TOTAL_PLANTILLA'){
+    $('groupTrab').style.display='none';
+    $('groupPlant').style.display='block';
+    $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">1 SOLA MULTA - PERO SEGÚN TU PLANTILLA TOTAL</div><div class="lc-note" style="margin-top:8px"><b>${infra.explica}</b><br><br><b>¿Qué significa POR_TOTAL_PLANTILLA?</b> No es que te cobren ${infra.min} UMA por cada trabajador. Es 1 sola multa de ${infra.min} a ${infra.max} UMA. Pero el inspector usa tu plantilla total para decidir si te pone cerca del mínimo o del máximo.</div>`;
+  }else{
+    $('groupTrab').style.display='block';
+    $('groupPlant').style.display='block';
+    $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">POR CADA TRABAJADOR</div><div class="lc-note" style="margin-top:8px">${infra.explica}</div>`;
+  }
+  validate();
 }
-function setModo(m){
-  $('tabM').classList.toggle('active',m==='MANUAL');
-  $('tabA').classList.toggle('active',m==='AUTO');
-  $('panelM').style.display=m==='MANUAL'?'block':'none';
-  $('panelA').style.display=m==='AUTO'?'block':'none';
+function getTrab(){
+  let v=$('trab').value;
+  if(v==='otro') v=$('trabCustom').value;
+  return parseInt(v)||0;
 }
-function guardarUMA(){
-  UMA_D=parseFloat($('umaD').value)||117.31;
-  updateShow(); calcular();
+function getPlant(){return parseInt($('plant').value)||0;}
+function getPlantLabel(){
+  const v=$('plant').value;
+  if(v==='1') return 'Micro (1-10)';
+  if(v==='10') return 'Pequeña (11-50)';
+  if(v==='50') return 'Mediana (51-250)';
+  if(v==='250') return 'Grande (251+)';
+  return '';
 }
-function toggleTip(){
-  const t=$('tipTam');
-  t.style.display=t.style.display==='none'?'block':'none';
+function getTamFactor(){
+  const v=$('plant').value;
+  if(v==='1') return 0.5;
+  if(v==='10') return 0.8;
+  return 1;
 }
 function validate(){
-  const trab=$('trab').value.trim();
-  const plant=$('plant').value.trim();
-  const trabValid=trab!=='' && parseInt(trab)>0;
-  const plantValid=plant!=='' && parseInt(plant)>0;
-  $('trab').classList.toggle('invalid',!trabValid);
-  $('plant').classList.toggle('invalid',!plantValid);
-  if(!trabValid || !plantValid){
+  const infra=CATALOGO.find(c=>c.id===$('infra').value);
+  const trab=getTrab();
+  const plant=getPlant();
+  let valid=true;
+  if(infra.tipo!=='UNICA' && infra.tipo!=='POR_TOTAL_PLANTILLA'){
+    if(trab<=0){ $('trab').classList.add('invalid'); valid=false; } else { $('trab').classList.remove('invalid'); }
+  }
+  if(plant<=0){ $('plant').classList.add('invalid'); valid=false; } else { $('plant').classList.remove('invalid'); }
+  if(!valid){
     $('estado').textContent='⚠️ Faltan datos por agregar';
-    $('subEstado').textContent='Completa Trabajadores afectados y Total plantilla para ver tu multa estimada';
+    $('subEstado').textContent='Selecciona cuántos trabajadores y el tamaño de tu plantilla';
     $('montos').style.display='none';
     $('cierre').style.display='none';
     $('waBtn').style.display='none';
@@ -181,48 +200,47 @@ function validate(){
   return true;
 }
 function calcular(){
-  const trabVal=$('trab').value.trim();
-  const plantVal=$('plant').value.trim();
-  if(trabVal==='' || plantVal==='' || parseInt(trabVal)<=0 || parseInt(plantVal)<=0){
-    validate(); return;
-  }
   const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  const trab=parseInt($('trab').value)||0;
-  const plant=parseInt($('plant').value)||0;
-  const tam=parseFloat($('tam').value)||1;
-  const reinc=$('reinc').checked;
-  let mult=infra.tipo==='UNICA'?1:(infra.tipo==='POR_TOTAL_PLANTILLA'?plant:trab);
-  let min=UMA_D*infra.min*mult*tam;
-  let max=UMA_D*infra.max*mult*tam;
-  if(reinc){min*=2;max*=2;}
+  const trab=getTrab();
+  const plant=getPlant();
+  const plantLabel=getPlantLabel();
+  const tamFactor=getTamFactor();
+  const esReinc=$('reinc').value==='si';
+  let mult=1;
+  let explicacionMult='';
+  if(infra.tipo==='UNICA'){ mult=1; explicacionMult='1 sola multa'; }
+  else if(infra.tipo==='POR_TRABAJADOR_AFECTADO' || infra.tipo==='POR_CADA_TRABAJADOR_OMISION'){ mult=trab; explicacionMult=`${trab} trabajador(es)`; }
+  else if(infra.tipo==='POR_TOTAL_PLANTILLA'){ mult=1; explicacionMult=`1 sola multa (tu plantilla ${plantLabel} define si va al mínimo o máximo)`; }
+  let min=UMA*infra.min*mult;
+  let max=UMA*infra.max*mult;
+  min*=tamFactor; max*=tamFactor;
+  if(esReinc){ min*=2; max*=2; }
   const prom=(min+max)/2;
   const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
   $('estado').textContent='MULTA ESTIMADA LFT 2026';
-  $('subEstado').textContent=infra.art+' · '+infra.tipo.replace(/_/g,' ');
+  $('subEstado').textContent=`${infra.art} · ${plantLabel} · ${esReinc?'Con reincidencia x2':'Sin reincidencia'}`;
   $('montos').style.display='block';
   $('prom').textContent=fmt(prom);
   $('min').textContent=fmt(min);
   $('max').textContent=fmt(max);
-  $('formula').textContent=`Fórmula: UMA $${UMA_D} × Rango [${infra.min}-${infra.max}] × Mult ${mult} × Tamaño ${tam}${reinc?' ×2 reincidencia':''} = Min ${fmt(min)} Max ${fmt(max)}`;
-  $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo.replace(/_/g,' ')}</div><div class="lc-note" style="margin-top:8px"><b>${infra.tipo==='POR_TOTAL_PLANTILLA'?'POR TODA LA PLANTILLA':infra.tipo==='UNICA'?'UNICA - 1 sola vez':`POR CADA TRABAJADOR - ${mult} afectado(s)`}</b><br>${infra.nota}</div>`;
-  $('fichaLegal').innerHTML=`<b>${infra.art}</b> - ${infra.desc}<br><b>Base:</b> ${infra.base}<br><b>Rango:</b> ${infra.min} a ${infra.max} UMA<br><b>Tipo:</b> ${infra.tipo}<br><br><span style="background:#1e3a5f;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px">INEGI DOF 09/01/2026 - Vigencia 2026-02-01 al 2027-01-31</span>`;
+  $('formula').innerHTML=`Cálculo: UMA $${UMA} × [${infra.min}-${infra.max}] × ${explicacionMult} × Factor ${tamFactor}${esReinc?' ×2':''}<br><b>${plantLabel} = ${tamFactor*100}% por atenuante STPS</b>`;
+  $('fichaLegal').innerHTML=`<b>${infra.art}</b> - ${infra.desc}<br><b>¿Cómo se cobra?</b> ${infra.explica}<br><br><span style="background:#1e3a5f;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px">UMA 2026 $117.31 - INEGI DOF 09/01/2026</span>`;
   let cierre='';
   if(infra.tipo==='POR_TOTAL_PLANTILLA'){
-    cierre=`<b>⚠️ Esta multa es por TODA tu plantilla.</b><br>Si tienes ${plant} trabajadores y no cumpliste con ${infra.desc.toLowerCase()}, no es 1 multa, son ${plant} considerados. Por eso sube a <b>${fmt(prom)} promedio</b>. Aquí es donde más PyMEs quiebran en inspección.`;
+    cierre=`<b>⚠️ Esta multa es 1 sola, no es por cada trabajador.</b><br>Por eso se llama POR_TOTAL_PLANTILLA: el inspector ve que eres <b>${plantLabel}</b> y usa eso para decidir si te pone ${fmt(UMA*infra.min*tamFactor*(esReinc?2:1))} o ${fmt(UMA*infra.max*tamFactor*(esReinc?2:1))}. No es ${infra.min} × ${plant} trabajadores. Es 1 multa de ${infra.min} a ${infra.max} UMA. Pagas al <b>${tamFactor*100}%</b> por ser ${plantLabel.split(' ')[0].toLowerCase()}.`;
   }else if(infra.tipo==='UNICA'){
-    cierre=`<b>✓ Esta infracción es ÚNICA.</b><br>Da igual si tienes 1 o ${plant} trabajadores, es 1 sola multa de <b>${fmt(prom)}</b>. Pero si el inspector encuentra 2 o 3 faltas distintas (ej: sin contrato + sin lista), se suman.`;
+    cierre=`<b>✓ Es 1 sola multa.</b><br>Da igual si tienes 1 o 200 trabajadores, es 1 sola multa de <b>${fmt(prom)}</b> promedio. Si hay 2 faltas distintas, se suman.`;
   }else{
-    const real=UMA_D*((infra.min+infra.max)/2)*plant*tam*(reinc?2:1);
-    cierre=`<b>👥 Se multiplica por cada trabajador afectado.</b><br>Reportaste ${trab} afectado(s). Si en realidad son ${plant} de tu plantilla, el monto real es <b>${fmt(real)}</b>. Por eso ${infra.art} genera más demandas.`;
+    const realMax=UMA*infra.max*plant*tamFactor*(esReinc?2:1);
+    cierre=`<b>👥 Se cobra por cada afectado.</b><br>Reportaste <b>${trab} afectado(s)</b>. Si son <b>${plantLabel}</b>, tu riesgo real es hasta <b>${fmt(realMax)}</b>.`;
   }
   $('cierre').innerHTML=cierre;
   $('cierre').style.display='block';
-  const waText=`Hola LaboralClick, calculé una multa de ${Math.round(prom).toLocaleString('es-MX')} por ${infra.art} con ${infra.tipo==='POR_TOTAL_PLANTILLA'?plant:trab} trabajadores y quiero evaluar mi empresa (2 min)`;
+  const waText=`Hola LaboralClick, calculé multa ${infra.art} de ${Math.round(prom).toLocaleString('es-MX')} MXN con ${infra.tipo==='POR_TOTAL_PLANTILLA'?plantLabel:trab+' trabajadores'} (${plantLabel}) y quiero evaluar mi empresa`;
   const waLink=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
-  const btn=$('waBtn');
-  btn.href=waLink;
-  btn.textContent=`Evaluar mi empresa - Riesgo ${Math.round(prom).toLocaleString('es-MX')} MXN →`;
-  btn.style.display='block';
+  $('waBtn').href=waLink;
+  $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${Math.round(prom).toLocaleString('es-MX')} MXN →`;
+  $('waBtn').style.display='block';
   $('waSub').style.display='block';
 }
 init();
