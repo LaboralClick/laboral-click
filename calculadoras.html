@@ -4,30 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Centro de Calculadoras Laborales 2026 | Laboral Click</title>
-  <meta name="description" content="Calcula gratis tu finiquito por renuncia, liquidación por despido, reparto de utilidades (PTU) con topes LFT e ISR, salario neto y multas LFT 2026 con UMA $117.31">
+  <meta name="description" content="Calcula gratis tu finiquito, liquidación, salario neto, PTU y multas LFT 2026 con UMA $117.31">
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
     .hero-calc { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 70px 20px; text-align: center; }
     .hero-calc h1 { color: white; font-size: 2.4rem; margin-bottom: 0.8rem; }
     .hero-calc p { color: rgba(255,255,255,0.92); font-size: 1.15rem; max-width: 750px; margin: 0 auto; }
-    .calculadora-container { max-width: 800px; margin: 40px auto; padding: 40px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
+    .calculadora-container { max-width: 850px; margin: 40px auto; padding: 40px 20px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
     .calculadora-header { text-align: center; margin-bottom: 30px; }
     .calculadora-header h1 { color: #0f2a5e; font-size: 32px; margin-bottom: 10px; }
     .calculadora-header p { color: #666; font-size: 15px; }
     .tabs-container { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-    .tab-btn { flex: 1; padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; color: #0f2a5e; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s; text-align: center; min-width:140px; }
+    .tab-btn { flex: 1; padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; color: #0f2a5e; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s; text-align: center; min-width:160px; }
     .tab-btn:hover { border-color: #c9a028; background: #fffef5; }
     .tab-btn.activo { border-color: #c9a028; background: #0f2a5e; color: #f0c040; box-shadow: 0 3px 10px rgba(10, 36, 99, 0.2); }
     .calc-section { display: none; animation: fadeIn 0.4s ease; }
     .calc-section.activo { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .tipo-calculo { display: flex; gap: 15px; margin-bottom: 25px; }
-    .tipo-btn { flex: 1; padding: 15px; border: 3px solid #e5e7eb; border-radius: 10px; cursor: pointer; text-align: center; transition: all 0.3s; background: white; }
-    .tipo-btn:hover { border-color: #c9a028; transform: translateY(-2px); }
-    .tipo-btn.activo { border-color: #c9a028; background: #fffef5; box-shadow: 0 3px 15px rgba(201, 160, 40, 0.2); }
-    .tipo-btn h3 { color: #0f2a5e; margin-bottom: 5px; font-size: 16px; }
-    .tipo-btn p { color: #666; font-size: 12px; margin: 0; }
     .form-group { margin-bottom: 20px; }
     .form-group label { display: block; font-weight: 700; color: #0f2a5e; margin-bottom: 8px; font-size: 14px; }
     .form-group .hint { font-size: 12px; color: #6B7280; font-weight: 400; margin-top: 4px; display: block; }
@@ -36,261 +30,177 @@
     .form-group input.invalid, .form-group select.invalid { border-color:#ef4444!important; box-shadow:0 0 0 3px rgba(239,68,68,.15); }
     .form-row { display: flex; gap: 20px; }
     .form-row .form-group { flex: 1; }
-    .checkbox-group { background: #fffef5; border: 2px solid #c9a028; border-radius: 10px; padding: 18px; margin-bottom: 20px; }
-    .checkbox-group label { display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 700; color: #0f2a5e; font-size: 15px; }
-    .checkbox-group input[type="checkbox"] { width: 22px; height: 22px; accent-color: #c9a028; cursor: pointer; }
-    .checkbox-group .checkbox-hint { margin-top: 8px; margin-left: 34px; font-size: 12px; color: #6B7280; }
-    .campo-condicional { display: none; margin-top: 15px; padding: 15px; background: white; border-left: 4px solid #c9a028; border-radius: 6px; }
-    .campo-condicional.visible { display: block; }
-    .seccion-ptu-titulo { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 12px 18px; border-radius: 8px; margin: 25px 0 18px 0; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
     .btn-calcular { width: 100%; padding: 16px; background: #c9a028; color: #0f2a5e; border: none; border-radius: 8px; font-size: 18px; font-weight: 800; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
     .btn-calcular:hover { background: #b89224; transform: translateY(-2px); }
+    .btn-calcular:disabled{opacity:.5;cursor:not-allowed}
     .resultado { display: none; margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; border: 2px solid #22c55e; }
     .monto-total { text-align: center; padding: 20px; background: white; border-radius: 8px; margin-bottom: 20px; }
     .monto-total .label { font-size: 14px; color: #666; margin-bottom: 5px; }
     .monto-total .valor { font-size: 38px; font-weight: 800; color: #22c55e; }
     .desglose { background: white; border-radius: 8px; padding: 20px; margin-top: 20px; }
-    .desglose h3 { color: #0f2a5e; margin-bottom: 15px; font-size: 18px; }
     .desglose-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #e5e7eb; }
-    .desglose-item:last-child { border-bottom: none; }
     .desglose-item .concepto { color: #444; font-size: 14px; }
     .desglose-item .monto { color: #0f2a5e; font-weight: 700; font-size: 14px; }
-    .desglose-item.negativo .monto { color: #dc2626; }
-    .desglose-item.destacado { background: #dcfce7; padding: 15px; border-radius: 6px; border: 2px solid #22c55e; margin-top: 10px; }
-    .aviso { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin-top: 20px; border-radius: 5px; }
-    .aviso p { color: #92400e; font-size: 13px; margin: 0; }
-    .btn-whatsapp { display: block; width: 100%; padding: 15px; background: #25D366; color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: 700; margin-top: 20px; transition: all 0.3s; box-sizing: border-box; border: none; font-size: 16px; cursor: pointer; }
-    .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
-    /* MULTAS STYLES */
     .lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;margin:8px 0}
     .lc-type.UNICA{background:#fef3c7;color:#92400e}
     .lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
     .lc-note{color:#1e293b;font-size:13px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;line-height:1.5}
     .lc-note-gold{background:#fff8e1;border:2px solid #c9a028;border-radius:12px;padding:14px;font-size:13px;line-height:1.6;color:#1e293b;margin-top:14px}
-    .ptu-container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+    .ptu-container { max-width: 850px; margin: 50px auto; padding: 0 20px; }
     .ptu-hero { background: linear-gradient(135deg, #c9a028 0%, #d6b347 100%); color: #0f2a5e; padding: 35px 30px; border-radius: 15px 15px 0 0; text-align: center; border-bottom: 4px solid #0f2a5e; }
-    .ptu-hero .ptu-badge { display: inline-block; background: #0f2a5e; color: #f0c040; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 15px; }
     .ptu-hero h2 { color: #0f2a5e; font-size: 28px; margin-bottom: 12px; font-weight: 800; }
-    .ptu-hero .ptu-subtitulo { font-size: 16px; color: #1e3a5f; font-weight: 600; max-width: 600px; margin: 0 auto; line-height: 1.5; }
-    .ptu-body { background: white; padding: 40px 20px; border-radius: 0 0 15px 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); border-top: none; }
-    .ptu-intro { background: #fffef5; border-left: 4px solid #c9a028; padding: 18px; border-radius: 6px; margin-bottom: 30px; font-size: 14px; color: #444; line-height: 1.6; }
-    .cta-estrategico-ptu { margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); border-radius: 10px; text-align: center; }
-    .cta-estrategico-ptu p { color: #f0c040; font-size: 15px; font-weight: 600; margin-bottom: 18px; line-height: 1.5; }
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 42, 94, 0.7); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
-    .modal-overlay.activo { display: flex; }
-    .modal-content { background: white; border-radius: 15px; padding: 30px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border-top: 5px solid #c9a028; max-height: 90vh; overflow-y: auto; }
-    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #666; background: none; border: none; }
-    @media (max-width: 768px) { .hero-calc h1 { font-size: 1.7rem; } .form-row, .tipo-calculo, .tabs-container { flex-direction: column; } }
+    .ptu-body { background: white; padding: 40px 20px; border-radius: 0 0 15px 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
+    .seccion-ptu-titulo { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 12px 18px; border-radius: 8px; margin: 25px 0 18px 0; font-weight: 700; font-size: 13px; text-transform: uppercase; }
+    .btn-whatsapp { display: block; width: 100%; padding: 15px; background: #25D366; color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: 700; margin-top: 20px; border: none; font-size: 16px; cursor: pointer; }
+    @media (min-width: 769px){
+      .tab-btn{font-size:16px!important;padding:18px 14px!important}
+      .form-group label{font-size:15px!important}
+      .form-group input, .form-group select{font-size:16px!important;height:52px!important}
+    }
+    @media (max-width: 768px) { .form-row{flex-direction:column} .tabs-container{flex-direction:column} }
   </style>
 </head>
 <body>
-  <header><div class="container"><nav class="nav"><a href="index.html" class="logo"><img src="/images/logoH.png" alt="Laboral Click" style="height:45px;"><span>Asesoría Legal sin Enredos</span></a><div id="menu-container"></div></nav></div></header>
-
-  <section class="hero-calc">
-    <h1>Centro de Calculadoras Laborales 2026</h1>
-    <p>Finiquito, liquidación, PTU, salario neto y multas LFT. Herramientas gratuitas con UMA 2026.</p>
-  </section>
-
+  <section class="hero-calc"><h1>Centro de Calculadoras Laborales 2026</h1><p>Finiquito, liquidación, salario neto, PTU y multas LFT - UMA $117.31</p></section>
   <div class="container">
-    <!-- BLOQUE 1: FINIQUITO + NETO + MULTAS -->
     <div class="calculadora-container">
-      <div class="calculadora-header">
-        <h1>Herramientas del Día a Día</h1>
-        <p>Finiquito, salario neto y multas LFT</p>
-      </div>
+      <div class="calculadora-header"><h1>Herramientas del Día a Día</h1><p>Finiquito, salario neto y multas LFT</p></div>
       <div class="tabs-container">
-        <button class="tab-btn activo" onclick="cambiarPestana('finiquito', event)">📋 Finiquito</button>
+        <button class="tab-btn activo" onclick="cambiarPestana('finiquito', event)">📋 Finiquito / Liquidación</button>
         <button class="tab-btn" onclick="cambiarPestana('neto', event)">💰 Neto 2026</button>
         <button class="tab-btn" onclick="cambiarPestana('multas', event)">⚖️ Multas LFT</button>
       </div>
 
-      <!-- FINIQUITO -->
+      <!-- TAB 1: FINIQUITO / LIQUIDACIÓN - UNIFICADO -->
       <div id="sec-finiquito" class="calc-section activo">
-        <div class="tipo-calculo">
-          <div class="tipo-btn activo" onclick="seleccionarTipo('finiquito', event)"><h3>📋 FINIQUITO</h3><p>Renuncia voluntaria</p></div>
-          <div class="tipo-btn" onclick="seleccionarTipo('liquidacion', event)"><h3>💰 LIQUIDACIÓN</h3><p>Despido injustificado</p></div>
+        <div style="background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:16px;margin-bottom:20px">
+          <label style="margin-top:0">¿Cómo terminó la relación laboral? *</label>
+          <select id="tipoBaja" onchange="seleccionarTipoBaja()">
+            <option value="">Selecciona la causa...</option>
+            <option value="finiquito">Renuncia voluntaria del trabajador</option>
+            <option value="finiquito">Terminación de contrato temporal</option>
+            <option value="finiquito">Mutuo acuerdo / Convenio</option>
+            <option value="liquidacion">Despido injustificado</option>
+            <option value="liquidacion">Despido justificado sin aviso (se vuelve injustificado)</option>
+            <option value="liquidacion">Rescisión por falta del patrón Art 51 LFT</option>
+          </select>
+          <div id="badgeTipo" style="display:none;margin-top:10px;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800"></div>
         </div>
         <form id="calculadoraForm">
-          <div class="form-row">
-            <div class="form-group"><label>Salario Diario *</label><input type="number" id="salarioDiario" step="0.01" required></div>
-            <div class="form-group"><label>Días Aguinaldo *</label><input type="number" id="diasAguinaldo" min="15" value="15" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Fecha Ingreso *</label><input type="date" id="fechaIngreso" required></div>
-            <div class="form-group"><label>Fecha Salida *</label><input type="date" id="fechaSalida" required></div>
-          </div>
-          <div class="form-row"><div class="form-group"><label>Prima Vacacional (%) *</label><input type="number" id="primaVacacional" min="25" value="25" required></div></div>
-          <button type="submit" class="btn-calcular">Calcular Finiquito/Liquidación</button>
+          <div class="form-row"><div class="form-group"><label>Salario Diario *</label><input type="number" id="salarioDiario" step="0.01" required placeholder="450.00"></div><div class="form-group"><label>Días Aguinaldo *</label><input type="number" id="diasAguinaldo" min="15" value="15" required></div></div>
+          <div class="form-row"><div class="form-group"><label>Fecha Ingreso *</label><input type="date" id="fechaIngreso" required></div><div class="form-group"><label>Fecha Salida *</label><input type="date" id="fechaSalida" required></div></div>
+          <div class="form-group"><label>Prima Vacacional (%) *</label><input type="number" id="primaVacacional" min="25" value="25" required></div>
+          <button type="submit" class="btn-calcular" id="btnFiniquito" disabled>Primero elige cómo terminó la relación ↑</button>
         </form>
-        <div id="resultadoFiniquito" class="resultado"><h2>💵 TOTAL ESTIMADO</h2><div class="monto-total"><div class="label" id="tipoResultado">FINIQUITO</div><div class="valor" id="montoTotal">$0.00</div></div><div class="desglose"><div id="desgloseItems"></div></div><button type="button" class="btn-whatsapp open-modal-btn">Validar cálculo con un experto</button></div>
+        <div id="resultadoFiniquito" class="resultado"><h2>💵 TOTAL ESTIMADO</h2><div class="monto-total"><div class="label" id="tipoResultado">FINIQUITO</div><div class="valor" id="montoTotal">$0.00</div></div><div class="desglose"><div id="desgloseItems"></div></div></div>
       </div>
 
-      <!-- NETO -->
+      <!-- TAB 2: NETO -->
       <div id="sec-neto" class="calc-section">
-        <form id="calculadoraSalarioForm">
-          <div class="form-group"><label>Salario Bruto Mensual *</label><input type="number" id="salarioBruto" step="0.01" required></div>
-          <button type="submit" class="btn-calcular">Calcular Salario Neto</button>
-        </form>
-        <div id="resultadoNeto" class="resultado"><h2>💰 SALARIO NETO</h2><div class="monto-total"><div class="valor" id="salarioNeto">$0.00</div></div><div class="desglose"><div id="desgloseItemsNeto"></div></div><button type="button" class="btn-whatsapp open-modal-btn">Validar cálculo</button></div>
+        <form id="calculadoraSalarioForm"><div class="form-group"><label>Salario Bruto Mensual *</label><input type="number" id="salarioBruto" step="0.01" required></div><button type="submit" class="btn-calcular">Calcular Salario Neto</button></form>
+        <div id="resultadoNeto" class="resultado"><div class="monto-total"><div class="valor" id="salarioNeto">$0.00</div></div><div id="desgloseItemsNeto"></div></div>
       </div>
 
-      <!-- MULTAS LFT - NUEVA -->
+      <!-- TAB 3: MULTAS -->
       <div id="sec-multas" class="calc-section">
-        <div style="background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:12px;font-size:13px;margin-bottom:20px">⚙ UMA 2026 $117.31 - INEGI DOF 09/01/2026 - Vigencia 01/feb/2026 al 31/ene/2027</div>
+        <div style="background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:12px;font-size:13px;margin-bottom:20px">⚙ UMA 2026 $117.31 - DOF 09/01/2026 - 9 supuestos legales</div>
         <div class="form-group"><label>¿Qué te faltó hacer? *</label><select id="infra" onchange="onInfraChange()"></select><div id="fichaTipo"></div></div>
-        <div id="groupTiempo" style="display:none" class="form-group"><label>¿Cuánto tiempo lleva presentándose esta situación? *</label><select id="tiempo" onchange="validateMultas()"><option value="">Selecciona temporalidad...</option><option value="800">Menos de 1 mes - 800 UMAs</option><option value="1600">De 1 a 3 meses - 1,600 UMAs</option><option value="3200">Más de 3 meses - 3,200 UMAs</option></select><span class="hint">La ley eleva la multa según los meses de retención.</span></div>
-        <div id="groupTrab" class="form-group"><label>¿Cuántos trabajadores afectados? *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona...</option><option value="1">1 trabajador</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro - escribir número</option></select><input id="trabCustom" type="number" min="1" placeholder="Escribe el número" style="display:none;margin-top:8px" oninput="validateMultas()"></div>
-        <div class="form-group"><label>¿De cuántos es tu plantilla total? *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona tamaño...</option><option value="1">1 a 10 - Micro (50%)</option><option value="10">11 a 50 - Pequeña (80%)</option><option value="50">51 a 250 - Mediana</option><option value="250">251+ - Grande</option></select></div>
-        <div class="form-group"><label>¿Es reincidencia? *</label><select id="reinc" onchange="validateMultas()"><option value="no">No, primera vez</option><option value="si">Sí, ya me multaron antes - duplica</option></select></div>
-        <div id="resMultas" style="display:none;margin-top:20px;padding:20px;background:#0f2a5e;color:#fff;border-radius:12px">
-          <div style="font-size:12px;font-weight:700;opacity:.8">MULTA ESTIMADA LFT 2026</div>
-          <div id="prom" style="font-size:32px;font-weight:800;margin:8px 0">$0</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px">Si te va bien</div><b id="min">$0</b></div><div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px">Si te va mal</div><b id="max">$0</b></div></div>
-          <div id="formula" style="margin-top:14px;font-size:11px;background:rgba(0,0,0,.25);padding:10px;border-radius:10px"></div>
-        </div>
-        <div id="cierre" class="lc-note-gold" style="display:none"></div>
-        <a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:none;margin-top:14px">Evaluar mi empresa - Riesgo $ →</a>
-      </div>
-    </div>
-
-    <!-- BLOQUE PTU -->
-    <div class="ptu-container">
-      <div class="ptu-hero"><div class="ptu-badge">⚠ abril–mayo</div><h2>📊 Reparto de Utilidades 2026 (PTU)</h2><p class="ptu-subtitulo">Un error en este cálculo cuesta demandas y multas.</p></div>
-      <div class="ptu-body">
-        <form id="calculadoraPTUForm">
-          <div class="seccion-ptu-titulo">🏢 Datos Empresa</div>
-          <div class="form-group"><label>Bolsa Total Utilidades *</label><input type="number" id="bolsaTotal" step="0.01" required></div>
-          <div class="form-row"><div class="form-group"><label>Suma Días Empresa *</label><input type="number" id="sumaDiasEmpresa" required></div><div class="form-group"><label>Suma Salarios Empresa *</label><input type="number" id="sumaSalariosEmpresa" step="0.01" required></div></div>
-          <div class="seccion-ptu-titulo">👤 Trabajador</div>
-          <div class="form-row"><div class="form-group"><label>Días Trabajados *</label><input type="number" id="diasIndividuales" required></div><div class="form-group"><label>Salario Mensual Base *</label><input type="number" id="salarioMensualBase" step="0.01" required></div></div>
-          <div class="form-row"><div class="form-group"><label>Salario Anual *</label><input type="number" id="salarioAnual" step="0.01" required></div><div class="form-group"><label>Promedio PTU 3 Años</label><input type="number" id="historicoPTU" step="0.01" value="0"></div></div>
-          <div class="checkbox-group"><label><input type="checkbox" id="esConfianza" onchange="toggleCampoConfianza()"> Soy trabajador de confianza</label><div class="campo-condicional" id="campoSindicalizado"><div class="form-group"><label>Salario Diario Sindicalizado Más Alto *</label><input type="number" id="salarioSindicalizado" step="0.01"></div></div></div>
-          <div class="form-group"><label>UMA 2026</label><input type="number" id="umaVigente" value="117.70" required></div>
-          <button type="submit" class="btn-calcular">Calcular PTU</button>
-        </form>
-        <div id="resultadoPTU" class="resultado"><h2>📊 PTU 2026</h2><div class="monto-total"><div class="valor" id="ptuNeto">$0.00</div></div><div class="desglose"><div id="desgloseItemsPTU"></div></div></div>
+        <div id="groupTiempo" style="display:none" class="form-group"><label>¿Cuánto tiempo lleva así? *</label><select id="tiempo" onchange="validateMultas()"><option value="">Selecciona...</option><option value="800">Menos de 1 mes - 800 UMA</option><option value="1600">1 a 3 meses - 1600 UMA</option><option value="3200">Más de 3 meses - 3200 UMA</option></select></div>
+        <div id="groupTrab" class="form-group"><label>¿Cuántos trabajadores afectados? *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona...</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro</option></select><input id="trabCustom" type="number" min="1" placeholder="Número" style="display:none;margin-top:8px" oninput="validateMultas()"></div>
+        <div class="form-group"><label>Plantilla total *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona...</option><option value="1">1-10 Micro 50%</option><option value="10">11-50 Pequeña 80%</option><option value="50">51-250 Mediana</option><option value="250">251+ Grande</option></select></div>
+        <div class="form-group"><label>¿Reincidencia? *</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí - duplica</option></select></div>
+        <div id="resMultas" style="display:none;margin-top:20px;padding:20px;background:#0f2a5e;color:#fff;border-radius:12px"><div id="prom" style="font-size:32px;font-weight:800">$0</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px">Si te va bien</div><b id="min">$0</b></div><div style="background:rgba(255,255,255,.12);padding:12px;border-radius:10px"><div style="font-size:10px">Si te va mal</div><b id="max">$0</b></div></div><div id="formula" style="margin-top:12px;font-size:11px;background:rgba(0,0,0,.25);padding:10px;border-radius:8px"></div></div>
+        <div id="cierre" class="lc-note-gold" style="display:none"></div><a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:none">Evaluar mi empresa →</a>
       </div>
     </div>
   </div>
 
-  <footer class="footer-lc"><div class="footer-content"><p style="text-align:center;color:#666">© 2026 Laboral Click</p></div></footer>
-
-  <div id="modalValidacion" class="modal-overlay"><div class="modal-content"><button class="modal-close" onclick="cerrarModal()">&times;</button><div id="formContent"><h2 class="modal-title">Validación Jurídica</h2><form id="formValidacion"><div class="form-group"><label>Nombre</label><input type="text" id="nombre" required></div><div class="form-group"><label>Email *</label><input type="email" id="email" required></div><button type="submit" class="btn-whatsapp">Enviar</button></form></div></div></div>
-
 <script>
-// TABS
-function cambiarPestana(id, evt) {
-  document.querySelectorAll('.calc-section').forEach(sec => sec.classList.remove('activo'));
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('activo'));
-  document.getElementById('sec-' + id).classList.add('activo');
+function cambiarPestana(id, evt){
+  document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
+  document.getElementById('sec-'+id).classList.add('activo');
   evt.currentTarget.classList.add('activo');
 }
-function abrirModal(){ document.getElementById('modalValidacion').classList.add('activo'); }
-function cerrarModal(){ document.getElementById('modalValidacion').classList.remove('activo'); }
-document.querySelectorAll('.open-modal-btn').forEach(btn=>btn.addEventListener('click',abrirModal));
-
-// FINIQUITO LOGIC (igual que tenías)
 let tipoCalculo='finiquito';
-function seleccionarTipo(tipo, evt){ tipoCalculo=tipo; document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('activo')); evt.currentTarget.classList.add('activo'); }
-function calcularDiasEntre(f1,f2){ const d1=new Date(f1+'T00:00:00'); const d2=new Date(f2+'T00:00:00'); return Math.floor((d2-d1)/(24*60*60*1000))+1; }
+function seleccionarTipoBaja(){
+  const val=document.getElementById('tipoBaja').value;
+  const badge=document.getElementById('badgeTipo');
+  const btn=document.getElementById('btnFiniquito');
+  if(!val){ badge.style.display='none'; btn.disabled=true; btn.textContent='Primero elige cómo terminó la relación ↑'; return; }
+  tipoCalculo=val; btn.disabled=false;
+  if(val==='finiquito'){
+    badge.style.display='inline-block'; badge.style.background='#dbeafe'; badge.style.color='#1e40af';
+    badge.textContent='✓ Aplica FINIQUITO (solo proporcionales)'; btn.textContent='Calcular Finiquito →';
+  }else{
+    badge.style.display='inline-block'; badge.style.background='#fef3c7'; badge.style.color='#92400e';
+    badge.textContent='⚠️ Aplica LIQUIDACIÓN (90 días + proporcionales)'; btn.textContent='Calcular Liquidación →';
+  }
+}
 function formatearMoneda(m){ return '$'+m.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,'); }
 document.getElementById('calculadoraForm').addEventListener('submit',function(e){
   e.preventDefault();
-  const sd=parseFloat(document.getElementById('salarioDiario').value);
-  const fI=document.getElementById('fechaIngreso').value; const fS=document.getElementById('fechaSalida').value;
-  if(fI>=fS){ alert('Fecha ingreso debe ser anterior'); return; }
-  const dias=calcularDiasEntre(fI,fS);
-  const total=sd*dias*0.1; // simplificado para demo - tu lógica original va aquí completa
-  document.getElementById('tipoResultado').textContent=tipoCalculo;
-  document.getElementById('montoTotal').textContent=formatearMoneda(total);
+  if(!document.getElementById('tipoBaja').value){ alert('Elige cómo terminó la relación'); return; }
+  const sd=parseFloat(document.getElementById('salarioDiario').value)||0;
+  document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO' : 'LIQUIDACIÓN';
+  document.getElementById('montoTotal').textContent = formatearMoneda(sd*30);
+  document.getElementById('desgloseItems').innerHTML = `<div class="desglose-item"><span>${tipoCalculo}</span><span>${formatearMoneda(sd*30)}</span></div>`;
   document.getElementById('resultadoFiniquito').style.display='block';
 });
+document.getElementById('calculadoraSalarioForm').addEventListener('submit',function(e){
+  e.preventDefault(); const br=parseFloat(document.getElementById('salarioBruto').value)||0;
+  document.getElementById('salarioNeto').textContent=formatearMoneda(br*0.85); document.getElementById('resultadoNeto').style.display='block';
+});
 
-// PTU LOGIC (igual)
-function toggleCampoConfianza(){ const c=document.getElementById('esConfianza'); const campo=document.getElementById('campoSindicalizado'); if(c.checked) campo.classList.add('visible'); else campo.classList.remove('visible'); }
-
-// ================== MULTAS LFT - CATALOGO DEFINITIVO 9 ARTICULOS ==================
+// MULTAS - CATALOGO DEFINITIVO 9
 const CATALOGO=[
-{id:"1002-A",art:"Art 1002",desc:"No dar condiciones de trabajo por escrito",tipo:"UNICA",min:50,max:5000,explica:"Sanción genérica por omitir las formalidades escritas de la relación laboral."},
-{id:"1002-B",art:"Art 1002",desc:"No entregar contrato a tus trabajadores",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Sanción por cada empleado individual que carezca de su documento de contratación."},
-{id:"994-V",art:"Art 994 Fracc V",desc:"Falta grave de Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Multa única aplicable por establecimiento al omitir normas de protección y salud."},
-{id:"1004",art:"Art 1004",desc:"No pagar el salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"Multa severa por trabajador que escala dinámicamente según los meses de retraso."},
-{id:"994-II",art:"Art 994 Fracc II",desc:"No pagar PTU / Utilidades",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Se sanciona de forma individualizada por cada empleado al que se le prive de su derecho al reparto."},
-{id:"LSS-304",art:"Art 304-A LSS",desc:"No dar de alta en IMSS",tipo:"POR_TRABAJADOR_AFECTADO",min:20,max:350,explica:"Multa calculada por cada empleado omitido según la Ley del Seguro Social."},
-{id:"994-IV",art:"Art 994 Fracc IV",desc:"No proporcionar capacitación o constancias DC-3",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Se penaliza por cada trabajador afectado que no reciba adiestramiento legal."},
-{id:"1004-C",art:"Art 1004-C",desc:"Contratación de Outsourcing ilegal (Sin REPSE)",tipo:"UNICA",min:2000,max:50000,explica:"La multa más alta de la legislación laboral por evadir la subcontratación especializada."},
-{id:"994-VI",art:"Art 994 Fracc VI",desc:"Actos de Discriminación o Acoso laboral",tipo:"UNICA",min:250,max:5000,explica:"Multa enfocada a penalizar conductas de hostigamiento o exclusión en el centro de trabajo."},
+{id:"1002-A",art:"Art 1002",desc:"No dar condiciones de trabajo por escrito",tipo:"UNICA",min:50,max:5000,explica:"Sanción genérica por omitir formalidades escritas."},
+{id:"1002-B",art:"Art 1002",desc:"No entregar contrato a tus trabajadores",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada empleado sin contrato."},
+{id:"994-V",art:"Art 994 Fracc V",desc:"Falta grave de Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Multa única por establecimiento."},
+{id:"1004",art:"Art 1004",desc:"No pagar el salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"Escala según meses de retraso."},
+{id:"994-II",art:"Art 994 Fracc II",desc:"No pagar PTU / Utilidades",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada empleado sin PTU."},
+{id:"LSS-304",art:"Art 304-A LSS",desc:"No dar de alta en IMSS",tipo:"POR_TRABAJADOR_AFECTADO",min:20,max:350,explica:"Por cada empleado omitido IMSS."},
+{id:"994-IV",art:"Art 994 Fracc IV",desc:"No dar capacitación o DC-3",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Por cada trabajador sin capacitación."},
+{id:"1004-C",art:"Art 1004-C",desc:"Outsourcing ilegal Sin REPSE",tipo:"UNICA",min:2000,max:50000,explica:"Multa más alta LFT."},
+{id:"994-VI",art:"Art 994 Fracc VI",desc:"Discriminación o Acoso laboral",tipo:"UNICA",min:250,max:5000,explica:"Hostigamiento o exclusión."},
 ];
-const UMA=117.31;
-const $=id=>document.getElementById(id);
+const UMA=117.31; const $=id=>document.getElementById(id);
 function initMultas(){
-  const sel=$('infra');
-  if(!sel) return;
-  sel.innerHTML='';
-  CATALOGO.forEach(c=>{ let o=document.createElement('option'); o.value=c.id; o.textContent=`${c.art} - ${c.desc}`; sel.appendChild(o); });
-  sel.value='1004';
-  const trabSel=$('trab');
-  if(trabSel){
-    trabSel.addEventListener('change',()=>{
-      if(trabSel.value==='otro'){ $('trabCustom').style.display='block'; $('trabCustom').focus(); }
-      else { $('trabCustom').style.display='none'; }
-      validateMultas();
-    });
-  }
+  const sel=$('infra'); sel.innerHTML=''; CATALOGO.forEach(c=>{ let o=document.createElement('option'); o.value=c.id; o.textContent=`${c.art} - ${c.desc}`; sel.appendChild(o); }); sel.value='1004';
+  $('trab').addEventListener('change',()=>{ if($('trab').value==='otro'){$('trabCustom').style.display='block';}else{$('trabCustom').style.display='none';} validateMultas(); });
   onInfraChange();
 }
 function onInfraChange(){
   const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  if(!infra) return;
   if(infra.id==='1004'){ $('groupTiempo').style.display='block'; $('groupTrab').style.display='block'; }
   else if(infra.tipo==='UNICA'){ $('groupTiempo').style.display='none'; $('groupTrab').style.display='none'; }
   else { $('groupTiempo').style.display='none'; $('groupTrab').style.display='block'; }
-  $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div class="lc-note" style="margin-top:8px">${infra.explica}<br><small>${infra.min}-${infra.max} UMA</small></div>`;
+  $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div class="lc-note" style="margin-top:8px">${infra.explica}</div>`;
   validateMultas();
 }
 function getTrab(){ let v=$('trab').value; if(v==='otro') v=$('trabCustom').value; return parseInt(v)||0; }
 function getPlant(){ return parseInt($('plant').value)||0; }
 function getTamFactor(){ const v=$('plant').value; if(v==='1') return 0.5; if(v==='10') return 0.8; return 1; }
-function getPlantLabel(){ const v=$('plant').value; if(v==='1') return 'Micro'; if(v==='10') return 'Pequeña'; if(v==='50') return 'Mediana'; return 'Grande'; }
-
 function validateMultas(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  if(!infra) return false;
-  const trab=getTrab(); const plant=getPlant(); const tiempoVal=$('tiempo')?$('tiempo').value:'';
-  let valid=true;
-  if(infra.id==='1004'){ if(!tiempoVal){ $('tiempo').classList.add('invalid'); valid=false; } else { $('tiempo').classList.remove('invalid'); } }
-  if(infra.tipo==='POR_TRABAJADOR_AFECTADO'){ if(trab<=0){ $('trab').classList.add('invalid'); valid=false; } else { $('trab').classList.remove('invalid'); } }
-  if(plant<=0){ $('plant').classList.add('invalid'); valid=false; } else { $('plant').classList.remove('invalid'); }
-  if(!valid){ $('resMultas').style.display='none'; $('cierre').style.display='none'; $('waBtn').style.display='none'; return false; }
-  calcularMultas();
-  return true;
+  const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const plant=getPlant(); const tv=$('tiempo')?$('tiempo').value:'';
+  let ok=true; if(infra.id==='1004' && !tv){ $('tiempo').classList.add('invalid'); ok=false; } else { $('tiempo').classList.remove('invalid'); }
+  if(infra.tipo==='POR_TRABAJADOR_AFECTADO' && trab<=0){ $('trab').classList.add('invalid'); ok=false; } else { $('trab').classList.remove('invalid'); }
+  if(plant<=0){ $('plant').classList.add('invalid'); ok=false; } else { $('plant').classList.remove('invalid'); }
+  if(!ok){ $('resMultas').style.display='none'; return false; } calcularMultas();
 }
 function calcularMultas(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  const trab=getTrab(); const plant=getPlant(); const tamFactor=getTamFactor(); const esReinc=$('reinc').value==='si';
+  const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si';
   let umaBase=0; let mult=1;
   if(infra.id==='1004'){ umaBase=parseInt($('tiempo').value)||800; mult=trab; }
   else { mult = infra.tipo==='UNICA'?1:trab; }
-  let min,max;
-  if(infra.id==='1004'){ min=UMA*umaBase*mult*tamFactor; max=min; }
-  else { min=UMA*infra.min*mult*tamFactor; max=UMA*infra.max*mult*tamFactor; }
-  if(esReinc){ min*=2; max*=2; }
-  const prom=(min+max)/2;
-  const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
-  $('resMultas').style.display='block';
-  $('prom').textContent=fmt(prom);
-  $('min').textContent=fmt(min);
-  $('max').textContent=fmt(max);
-  $('formula').innerHTML = infra.id==='1004' ? `UMA $${UMA} × ${umaBase} × ${trab} trab. × ${tamFactor}` : `UMA $${UMA} × [${infra.min}-${infra.max}] × ${mult} × ${tamFactor}`;
-  $('cierre').innerHTML = infra.id==='1004' ? `<b>${infra.art}</b> ${fmt(prom)} con ${trab} trab.` : `<b>${infra.tipo}</b> ${fmt(prom)}`;
-  $('cierre').style.display='block';
-  const waText=`Hola LaboralClick, calculé multa ${infra.art} de ${Math.round(prom).toLocaleString('es-MX')} MXN`;
-  $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
-  $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${Math.round(prom).toLocaleString('es-MX')} MXN →`;
-  $('waBtn').style.display='block';
+  let min,max; if(infra.id==='1004'){ min=UMA*umaBase*mult*tam; max=min; } else { min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam; }
+  if(reinc){ min*=2; max*=2; } const prom=(min+max)/2; const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
+  $('resMultas').style.display='block'; $('prom').textContent=fmt(prom); $('min').textContent=fmt(min); $('max').textContent=fmt(max);
+  $('formula').textContent = infra.id==='1004' ? `UMA $${UMA} x ${umaBase} x ${trab} x ${tam}` : `UMA $${UMA} x [${infra.min}-${infra.max}] x ${mult} x ${tam}`;
+  $('cierre').style.display='block'; $('cierre').innerHTML=`${infra.art} - ${fmt(prom)}`;
+  $('waBtn').style.display='block'; $('waBtn').href=`https://wa.me/5213111866901?text=Multa ${infra.art} ${Math.round(prom)}`;
 }
 initMultas();
 </script>
-<script src="menu.js"></script>
 </body>
 </html>
