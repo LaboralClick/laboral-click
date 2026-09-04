@@ -21,9 +21,9 @@
 .monto-total{text-align:center;padding:20px;background:#fff;border-radius:8px;margin-bottom:20px}
 .monto-total .valor{font-size:38px;font-weight:800;color:#22c55e}
 .desglose{background:#fff;border-radius:8px;padding:20px;margin-top:20px}
-.desglose-item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e5e7eb}
-.desglose-item.destacado{background:#dcfce7;padding:15px;border-radius:6px;border:2px solid #22c55e;margin-top:10px}
-.desglose-item.alerta{background:#fff8e1;padding:12px;border-radius:6px;border:1px solid #c9a028;margin-top:8px}
+.desglose-item{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #e5e7eb}
+.desglose-item.destacado{background:#dcfce7;padding:15px;border-radius:6px;border:2px solid #22c55e;margin-top:10px;font-weight:800}
+.desglose-item.alerta{background:#fff8e1;padding:14px;border-radius:6px;border:1px solid #c9a028;margin-top:8px}
 .lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;margin:8px 0}
 .lc-type.UNICA{background:#fef3c7;color:#92400e}.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
 .btn-whatsapp{display:none;width:100%;padding:15px;background:#25D366;color:#fff;text-align:center;text-decoration:none;border-radius:8px;font-weight:700;margin-top:15px}
@@ -58,28 +58,25 @@
 <div class="form-row"><div class="form-group"><label>Salario Diario del colaborador *</label><input type="number" id="salarioDiario" step="0.01" required placeholder="Ej: 400"></div><div class="form-group"><label>Días Aguinaldo según contrato *</label><input type="number" id="diasAguinaldo" value="15" required></div></div>
 <div class="form-row"><div class="form-group"><label>Fecha Ingreso *</label><input type="date" id="fechaIngreso" required></div><div class="form-group"><label>Fecha Salida *</label><input type="date" id="fechaSalida" required></div></div>
 <div class="form-group"><label>Prima Vacacional (%) *</label><input type="number" id="primaVacacional" value="25" required></div>
-
 <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:10px;padding:14px;margin-bottom:20px">
 <div class="form-group" style="margin-bottom:10px">
 <label style="display:flex;align-items:center;gap:8px;font-size:14px"><input type="checkbox" id="tieneVencidas" onchange="toggleVencidas()"> ¿Existen vacaciones de ejercicios anteriores pendientes de otorgar?</label>
-<span style="font-size:11px;color:#475569">Caso común en PyMEs: vacaciones no disfrutadas que aún son exigibles. Si no se otorgaron, se liquidan en finiquito y generan riesgo de multa Art 79 y 994 LFT. Útil tanto para cálculo patronal como para validación del colaborador.</span>
 </div>
 <div id="boxVencidas" style="display:none">
 <div class="form-row">
-<div class="form-group"><label>Días pendientes de ejercicios anteriores *</label><input type="number" id="diasVencidas" min="0" placeholder="Ej: 12 días 2024 no otorgados"></div>
+<div class="form-group"><label>Días pendientes de ejercicios anteriores</label><input type="number" id="diasVencidas" min="0" placeholder="Ej: 10"></div>
 <div class="form-group"><label>Prima de esos días pendientes (%)</label><input type="number" id="primaVencidas" value="25"></div>
 </div>
 </div>
 </div>
-
 <button type="submit" class="btn-calcular" id="btnFiniquito" disabled>Elige cómo terminó la relación ↑</button>
 </form>
 <div id="resultadoFiniquito" class="resultado">
-<h2 id="tituloResultado">💵 TOTAL</h2>
+<h2 id="tituloResultado">💵 TOTAL A PAGAR</h2>
 <div class="monto-total"><div id="tipoResultado">FINIQUITO</div><div class="valor" id="montoTotal">$0.00</div></div>
 <div class="desglose"><div id="desgloseItems"></div></div>
-<div id="alertaVencidas" style="display:none;margin-top:15px;background:#fff8e1;border-left:4px solid #c9a028;padding:12px;border-radius:0 8px 8px 0;font-size:12px;color:#92400e;line-height:1.4"></div>
-<a id="waFiniquito" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:block">Validar este cálculo y blindaje con LaboralClick →</a>
+<div id="alertaVencidas" style="display:none;margin-top:15px;background:#fff8e1;border-left:4px solid #c9a028;padding:12px;border-radius:0 8px 8px 0;font-size:12px;color:#92400e"></div>
+<a id="waFiniquito" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:block">Validar este cálculo con LaboralClick →</a>
 </div>
 </div>
 
@@ -96,20 +93,10 @@
 <div class="form-group"><label>Reincidencia?</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí - duplica</option></select></div>
 <div id="resMultas" style="display:none;margin-top:20px">
   <div style="background:#fff;border:2px solid #0f2a5e;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,42,94,.15)">
-    <div style="background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);padding:18px 20px;display:flex;justify-content:space-between;align-items:center">
-      <div><div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div><div style="color:#fff;font-size:16px;font-weight:800;margin-top:2px">⚖️ Multa Estimada por Inspección STPS</div></div>
-      <div style="background:rgba(201,160,40,.2);border:1px solid #c9a028;color:#f0c040;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800">UMA $117.31</div>
-    </div>
-    <div style="padding:22px 20px;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)">
-      <div style="font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase">VALOR MÁS PROBABLE QUE TE IMPONDRÍA EL INSPECTOR</div>
-      <div id="prom" style="font-size:42px;font-weight:900;color:#0f2a5e;line-height:1;margin:8px 0 4px 0">$0.00 MXN</div>
-      <div style="font-size:12px;color:#444;background:#eef2ff;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:6px">💡 <b>Promedio técnico</b> entre el mínimo y máximo legal.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px 20px;background:#fff">
-      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#166534">🟢 SI TE VA BIEN - Mínimo</div><div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div></div>
-      <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#dc2626">🔴 SI TE VA MAL - Máximo</div><div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div></div>
-    </div>
-    <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px"><div id="formula" style="font-size:12px;color:#1e293b;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div><div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px"></div></div>
+    <div style="background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);padding:18px 20px;display:flex;justify-content:space-between;align-items:center"><div><div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div><div style="color:#fff;font-size:16px;font-weight:800;margin-top:2px">⚖️ Multa Estimada</div></div><div style="background:rgba(201,160,40,.2);border:1px solid #c9a028;color:#f0c040;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800">UMA $117.31</div></div>
+    <div style="padding:22px 20px"><div style="font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase">VALOR MÁS PROBABLE</div><div id="prom" style="font-size:42px;font-weight:900;color:#0f2a5e;line-height:1;margin:8px 0 4px 0">$0.00 MXN</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px 20px;background:#fff"><div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#166534">🟢 Mínimo</div><div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div></div><div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#dc2626">🔴 Máximo</div><div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div></div></div>
+    <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px"><div id="formula" style="font-size:12px;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div><div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px"></div></div>
   </div>
   <div id="cierre" style="display:none;margin-top:12px;background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:12px;font-size:12px"></div>
   <a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp">Evaluar mi empresa →</a>
@@ -123,9 +110,8 @@
 <script>
 function cambiarPestana(id,evt){document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));document.getElementById('sec-'+id).classList.add('activo');evt.currentTarget.classList.add('activo');}
 let tipoCalculo='finiquito';
-function seleccionarTipoBaja(){const v=document.getElementById('tipoBaja').value; const badge=document.getElementById('badgeTipo'); const btn=document.getElementById('btnFiniquito'); if(!v){badge.style.display='none';btn.disabled=true;btn.textContent='Elige cómo terminó ↑';return;} tipoCalculo=v; btn.disabled=false; if(v==='finiquito'){badge.style.display='inline-block';badge.style.background='#dbeafe';badge.style.color='#1e40af';badge.textContent='✓ FINIQUITO - Renuncia / Término / Acuerdo';btn.textContent='Calcular Finiquito →';} else{badge.style.display='inline-block';badge.style.background='#fef3c7';badge.style.color='#92400e';badge.textContent='⚠️ LIQUIDACIÓN - Despido / Art 51';btn.textContent='Calcular Liquidación →';}}
-function toggleVencidas(){const chk=document.getElementById('tieneVencidas').checked; document.getElementById('boxVencidas').style.display=chk?'block':'none';}
-const SALARIO_MINIMO=248.93; const TOPE_PRIMA=SALARIO_MINIMO*2;
+function seleccionarTipoBaja(){const v=document.getElementById('tipoBaja').value; const badge=document.getElementById('badgeTipo'); const btn=document.getElementById('btnFiniquito'); if(!v){badge.style.display='none';btn.disabled=true;btn.textContent='Elige cómo terminó ↑';return;} tipoCalculo=v; btn.disabled=false; if(v==='finiquito'){badge.style.display='inline-block';badge.style.background='#dbeafe';badge.style.color='#1e40af';badge.textContent='✓ FINIQUITO';btn.textContent='Calcular Finiquito →';} else{badge.style.display='inline-block';badge.style.background='#fef3c7';badge.style.color='#92400e';badge.textContent='⚠️ LIQUIDACIÓN';btn.textContent='Calcular Liquidación →';}}
+function toggleVencidas(){document.getElementById('boxVencidas').style.display=document.getElementById('tieneVencidas').checked?'block':'none';}
 function calcularDiasEntre(f1,f2){const d1=new Date(f1+'T00:00:00');const d2=new Date(f2+'T00:00:00');return Math.floor((d2-d1)/(86400000))+1;}
 function formatearMoneda(m){return '$'+m.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,');}
 function getVacaciones(anos){if(anos<1)return 12; if(anos===1)return 14; if(anos===2)return 16; if(anos===3)return 18; if(anos===4)return 20; if(anos<=9)return 22; if(anos<=14)return 24; if(anos<=19)return 26; if(anos<=24)return 28; if(anos<=29)return 30; return 32;}
@@ -142,11 +128,21 @@ const ingreso=new Date(fI+'T00:00:00'); const anosComp=Math.floor(anos);
 let ultimoAniv=new Date(ingreso); ultimoAniv.setFullYear(ingreso.getFullYear()+anosComp);
 let diasPeriodo=Math.floor((salida-ultimoAniv)/86400000)+1; if(diasPeriodo<0) diasPeriodo=diasAnio;
 const vacAnual=getVacaciones(anosComp);
+const diasAguinaldoProporcional = diasAnio * diasAg / 365;
+const diasVacacionesProporcional = diasPeriodo * vacAnual / 365;
 const factorInt=1+(diasAg/365)+(vacAnual*(primaPct/100)/365); const sdi=sd*factorInt;
 let desglose=[]; let total=0;
-const aguiProp=diasAnio*(diasAg/365)*sd; desglose.push({c:`Aguinaldo proporcional (${diasAnio} días)`,m:aguiProp}); total+=aguiProp;
-const vacProp=diasPeriodo*(vacAnual/365)*sd; desglose.push({c:`Vacaciones proporcionales (${vacAnual} días LFT)`,m:vacProp}); total+=vacProp;
-const primaM=vacProp*(primaPct/100); desglose.push({c:`Prima vacacional (${primaPct}%)`,m:primaM}); total+=primaM;
+
+// SIMPLIFICADO - SIN ENREDO - SOLO LO QUE DEBE
+const aguiProp=diasAguinaldoProporcional*sd; 
+desglose.push({c:`Aguinaldo proporcional de este periodo`, m:aguiProp}); total+=aguiProp;
+
+const vacProp=diasVacacionesProporcional*sd; 
+desglose.push({c:`Vacaciones proporcionales de este periodo`, m:vacProp}); total+=vacProp;
+
+const primaM=vacProp*(primaPct/100); 
+desglose.push({c:`Prima vacacional de este periodo (${primaPct}%)`, m:primaM}); total+=primaM;
+
 const tieneVencidas=document.getElementById('tieneVencidas').checked;
 if(tieneVencidas){
   const diasV=parseFloat(document.getElementById('diasVencidas').value)||0;
@@ -154,24 +150,24 @@ if(tieneVencidas){
   if(diasV>0){
     const vacVencidasMonto=diasV*sd;
     const primaVencidasMonto=vacVencidasMonto*(primaV/100);
-    desglose.push({c:`⚠️ Vacaciones de ejercicios anteriores pendientes de otorgar (${diasV} días)`,m:vacVencidasMonto});
-    desglose.push({c:`Prima vacacional de ejercicios anteriores (${primaV}%)`,m:primaVencidasMonto});
+    desglose.push({c:`Vacaciones de ejercicios anteriores pendientes`, m:vacVencidasMonto});
+    desglose.push({c:`Prima vacacional de ejercicios anteriores (${primaV}%)`, m:primaVencidasMonto});
     total+=vacVencidasMonto+primaVencidasMonto;
     document.getElementById('alertaVencidas').style.display='block';
-    document.getElementById('alertaVencidas').innerHTML=`⚠️ <b>Riesgo patronal detectado:</b> Las vacaciones no otorgadas se liquidan al 100% + prima y constituyen incumplimiento al Art 79 LFT. Multa potencial de 50 a 250 UMA por colaborador ($${(50*117.31).toLocaleString()} a $${(250*117.31).toLocaleString()}). Recomendación LaboralClick: documentar otorgamiento o provisionar pago en finiquito para evitar demanda.`;
+    document.getElementById('alertaVencidas').innerHTML=`⚠️ <b>Pendiente con riesgo:</b> Estas vacaciones no otorgadas se pagan al 100% + prima. Generan multa de 50 a 250 UMA por colaborador.`;
   }
 } else {document.getElementById('alertaVencidas').style.display='none';}
+
 if(tipoCalculo==='liquidacion'){
-const ind90=90*sdi; desglose.push({c:`Indemnización 90 días (90 x SDI ${formatearMoneda(sdi)})`,m:ind90}); total+=ind90;
-const veinte=20*sdi*anos; desglose.push({c:`20 días por año (20 x SDI x ${anos.toFixed(2)} años)`,m:veinte}); total+=veinte;
-const tope=Math.min(sd,TOPE_PRIMA); const primaAnt=12*tope*anos; desglose.push({c:`Prima antigüedad (12 días x ${formatearMoneda(tope)} x ${anos.toFixed(2)} años)`,m:primaAnt}); total+=primaAnt;
+const ind90=90*sdi; desglose.push({c:`Indemnización 90 días`, m:ind90}); total+=ind90;
+const veinte=20*sdi*anos; desglose.push({c:`20 días por año`, m:veinte}); total+=veinte;
+const tope=Math.min(sd,248.93*2); const primaAnt=12*tope*anos; desglose.push({c:`Prima de antigüedad`, m:primaAnt}); total+=primaAnt;
 }
-document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO - Renuncia / Término' : 'LIQUIDACIÓN - Despido';
-document.getElementById('tituloResultado').textContent = tipoCalculo==='finiquito' ? '💵 FINIQUITO ESTIMADO' : '💰 LIQUIDACIÓN ESTIMADA';
+document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO' : 'LIQUIDACIÓN';
 document.getElementById('montoTotal').textContent=formatearMoneda(total);
-document.getElementById('desgloseItems').innerHTML=desglose.map(i=>`<div class="desglose-item ${i.c.includes('pendientes')?'alerta':''}"><span>${i.c}</span><span>${formatearMoneda(i.m)}</span></div>`).join('') + `<div class="desglose-item destacado"><span>TOTAL</span><span>${formatearMoneda(total)}</span></div>`;
+document.getElementById('desgloseItems').innerHTML=desglose.map(i=>`<div class="desglose-item ${i.c.includes('pendientes')?'alerta':''}"><span>${i.c}</span><span>${formatearMoneda(i.m)}</span></div>`).join('') + `<div class="desglose-item destacado"><span>TOTAL A PAGAR</span><span>${formatearMoneda(total)}</span></div>`;
 document.getElementById('resultadoFiniquito').style.display='block';
-const waText=`Hola LaboralClick, calculé un ${tipoCalculo} de ${formatearMoneda(total)} ${tieneVencidas? 'con '+document.getElementById('diasVencidas').value+' días de ejercicios anteriores pendientes' : ''}. Quiero validación y blindaje patronal.`;
+const waText=`Hola LaboralClick, calculé un ${tipoCalculo} de ${formatearMoneda(total)} ${tieneVencidas? 'con '+document.getElementById('diasVencidas').value+' días pendientes' : ''}. Quiero validación.`;
 document.getElementById('waFiniquito').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
 });
 document.getElementById('calculadoraSalarioForm').addEventListener('submit',function(e){e.preventDefault();const br=parseFloat(document.getElementById('salarioBruto').value)||0;document.getElementById('salarioNeto').textContent=formatearMoneda(br*0.85);document.getElementById('resultadoNeto').style.display='block';});
