@@ -5,6 +5,7 @@
 <title>Centro de Calculadoras Laborales 2026 | Laboral Click</title>
 <style>
 .hero-calc{background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);color:#fff;padding:70px 20px;text-align:center}
+.hero-calc h1{color:#fff;margin:0}
 .calculadora-container{max-width:850px;margin:40px auto;padding:40px 20px;background:#fff;border-radius:15px;box-shadow:0 5px 30px rgba(0,0,0,.1)}
 .tabs-container{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
 .tab-btn{flex:1;padding:18px 14px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;color:#0f2a5e;font-weight:700;font-size:16px;cursor:pointer;min-width:160px}
@@ -14,7 +15,7 @@
 .form-group input,.form-group select{width:100%;padding:12px 15px;border:2px solid #e5e7eb;border-radius:8px;font-size:16px;height:52px;box-sizing:border-box;background:#fff}
 .form-row{display:flex;gap:20px}.form-row .form-group{flex:1}
 .btn-calcular{width:100%;padding:16px;background:#c9a028;color:#0f2a5e;border:0;border-radius:8px;font-size:18px;font-weight:800;cursor:pointer;margin-top:10px}
-.btn-calcular:disabled{opacity:.5}
+.btn-calcular:disabled{opacity:.5;cursor:not-allowed}
 .resultado{display:none;margin-top:30px;padding:30px;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border-radius:10px;border:2px solid #22c55e}
 .monto-total{text-align:center;padding:20px;background:#fff;border-radius:8px;margin-bottom:20px}
 .monto-total .valor{font-size:38px;font-weight:800;color:#22c55e}
@@ -23,11 +24,12 @@
 .desglose-item.destacado{background:#dcfce7;padding:15px;border-radius:6px;border:2px solid #22c55e;margin-top:10px}
 .lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;margin:8px 0}
 .lc-type.UNICA{background:#fef3c7;color:#92400e}.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
+.btn-whatsapp{display:none;width:100%;padding:15px;background:#25D366;color:#fff;text-align:center;text-decoration:none;border-radius:8px;font-weight:700;margin-top:15px}
 @media(max-width:768px){.form-row,.tabs-container{flex-direction:column}}
 </style>
 </head>
 <body>
-<section class="hero-calc"><h1>Centro de Calculadoras Laborales 2026</h1><p>Finiquito, liquidación, neto, PTU y multas LFT</p></section>
+<section class="hero-calc"><h1>Centro de Calculadoras Laborales 2026</h1><p>Finiquito, liquidación, neto, PTU y multas LFT - UMA $117.31</p></section>
 <div class="container">
 <div class="calculadora-container">
 <div class="tabs-container">
@@ -70,15 +72,14 @@
 
 <div id="sec-multas" class="calc-section">
 <div class="form-group"><label>¿Qué te faltó hacer? *</label><select id="infra" onchange="onInfraChange()"></select><div id="fichaTipo"></div></div>
-<div id="groupTiempo" style="display:none" class="form-group"><label>¿Cuánto tiempo? *</label><select id="tiempo" onchange="validateMultas()"><option value="">Selecciona</option><option value="800"><1 mes 800 UMA</option><option value="1600">1-3 meses 1600 UMA</option><option value="3200">>3 meses 3200 UMA</option></select></div>
-<div id="groupTrab" class="form-group"><label>Trabajadores afectados *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro</option></select><input id="trabCustom" type="number" style="display:none;margin-top:8px" oninput="validateMultas()"></div>
-<div class="form-group"><label>Plantilla total *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1-10 Micro 50%</option><option value="10">11-50 Pequeña 80%</option><option value="50">51-250</option><option value="250">251+</option></select></div>
-<div class="form-group"><label>Reincidencia?</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí</option></select></div>
-<!-- RESULTADO MULTAS LFT - DISEÑO PROFESIONAL NUEVO -->
+<div id="groupTiempo" style="display:none" class="form-group"><label>¿Cuánto tiempo? *</label><select id="tiempo" onchange="validateMultas()"><option value="">Selecciona</option><option value="800">Menos de 1 mes - 800 UMA</option><option value="1600">1 a 3 meses - 1600 UMA</option><option value="3200">Más de 3 meses - 3200 UMA</option></select></div>
+<div id="groupTrab" class="form-group"><label>Trabajadores afectados *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro</option></select><input id="trabCustom" type="number" style="display:none;margin-top:8px" placeholder="¿Cuántos?" oninput="validateMultas()"></div>
+<div class="form-group"><label>Plantilla total *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1-10 Micro 50%</option><option value="10">11-50 Pequeña 80%</option><option value="50">51-250 Mediana</option><option value="250">251+ Grande</option></select></div>
+<div class="form-group"><label>Reincidencia?</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí - duplica</option></select></div>
+
+<!-- RESULTADO PROFESIONAL NUEVO - YA NO ES EL CUADRO FEO -->
 <div id="resMultas" style="display:none;margin-top:20px">
   <div style="background:#fff;border:2px solid #0f2a5e;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,42,94,.15)">
-    
-    <!-- Header -->
     <div style="background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);padding:18px 20px;display:flex;justify-content:space-between;align-items:center">
       <div>
         <div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div>
@@ -86,50 +87,47 @@
       </div>
       <div style="background:rgba(201,160,40,.2);border:1px solid #c9a028;color:#f0c040;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800">UMA $117.31</div>
     </div>
-
-    <!-- Valor principal -->
     <div style="padding:22px 20px;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)">
       <div style="font-size:11px;color:#6b7280;font-weight:700;letter-spacing:.5px;text-transform:uppercase">VALOR MÁS PROBABLE QUE TE IMPONDRÍA EL INSPECTOR</div>
       <div id="prom" style="font-size:42px;font-weight:900;color:#0f2a5e;line-height:1;margin:8px 0 4px 0">$0.00 MXN</div>
       <div style="font-size:12px;color:#444;background:#eef2ff;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:6px">
-        💡 <b>Promedio técnico</b> entre el criterio mínimo y máximo del inspector. Es la cifra que usan 8 de cada 10 empresas para provisionar.
+        💡 <b>Promedio técnico</b> entre el mínimo y máximo legal. Es la cifra que usan 8 de cada 10 empresas para provisionar.
       </div>
     </div>
-
-    <!-- Min y Max explicados -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px 20px;background:#fff">
       <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px">
-        <div style="font-size:10px;font-weight:800;color:#166534;letter-spacing:1px">🟢 SI TE VA BIEN - Criterio mínimo</div>
+        <div style="font-size:10px;font-weight:800;color:#166534">🟢 SI TE VA BIEN - Mínimo</div>
         <div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div>
-        <div style="font-size:11px;color:#4a7a5a;margin-top:4px;line-height:1.3">Cuando acreditas buena fe, es primera vez y subsanas en 5 días.</div>
+        <div style="font-size:11px;color:#4a7a5a;margin-top:4px">Buena fe, primera vez, subsanas en 5 días.</div>
       </div>
       <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px">
-        <div style="font-size:10px;font-weight:800;color:#dc2626;letter-spacing:1px">🔴 SI TE VA MAL - Criterio máximo</div>
+        <div style="font-size:10px;font-weight:800;color:#dc2626">🔴 SI TE VA MAL - Máximo</div>
         <div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div>
-        <div style="font-size:11px;color:#7a4a4a;margin-top:4px;line-height:1.3">Reincidencia, negativa a recibir inspección o afectación a varios trabajadores.</div>
+        <div style="font-size:11px;color:#7a4a4a;margin-top:4px">Reincidencia o negativa a inspección.</div>
       </div>
     </div>
-
-    <!-- Fórmula y detalle -->
     <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px">
-      <div style="font-size:10px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:6px">CÓMO SE CALCULÓ - ART. 1002 LFT</div>
+      <div style="font-size:10px;font-weight:800;color:#6b7280;margin-bottom:6px">CÓMO SE CALCULÓ</div>
       <div id="formula" style="font-size:12px;color:#1e293b;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div>
       <div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px;line-height:1.4"></div>
     </div>
-
-    <!-- Alerta -->
-    <div style="margin:0 20px 20px 20px;background:#fff8e1;border-left:4px solid #c9a028;padding:10px 12px;border-radius:0 8px 8px 0;font-size:11px;color:#92400e;line-height:1.4">
-      ⚠️ Esta cifra no incluye actualización, recargos ni posible clausura. La STPS puede imponer medidas precautorias adicionales. Cálculo con UMA $117.31 DOF 09/01/2026.
-    </div>
-
   </div>
+  <div id="cierre" style="display:none;margin-top:12px;background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:12px;font-size:12px"></div>
+  <a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp">Evaluar mi empresa →</a>
+</div>
+
+</div>
+
+</div>
+</div>
 </div>
 
 <script>
 function cambiarPestana(id,evt){
 document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));
 document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
-document.getElementById('sec-'+id).classList.add('activo');evt.currentTarget.classList.add('activo');
+document.getElementById('sec-'+id).classList.add('activo');
+evt.currentTarget.classList.add('activo');
 }
 let tipoCalculo='finiquito';
 function seleccionarTipoBaja(){
@@ -160,18 +158,15 @@ let ultimoAniv=new Date(ingreso); ultimoAniv.setFullYear(ingreso.getFullYear()+a
 let diasPeriodo=Math.floor((salida-ultimoAniv)/86400000)+1; if(diasPeriodo<0) diasPeriodo=diasAnio;
 const vacAnual=getVacaciones(anosComp);
 const factorInt=1+(diasAg/365)+(vacAnual*(primaPct/100)/365); const sdi=sd*factorInt;
-
 let desglose=[]; let total=0;
 const aguiProp=diasAnio*(diasAg/365)*sd; desglose.push({c:`Aguinaldo proporcional (${diasAnio} días)`,m:aguiProp}); total+=aguiProp;
 const vacProp=diasPeriodo*(vacAnual/365)*sd; desglose.push({c:`Vacaciones proporcionales (${vacAnual} días LFT)`,m:vacProp}); total+=vacProp;
 const primaM=vacProp*(primaPct/100); desglose.push({c:`Prima vacacional (${primaPct}%)`,m:primaM}); total+=primaM;
-
 if(tipoCalculo==='liquidacion'){
 const ind90=90*sdi; desglose.push({c:`Indemnización 90 días (90 x SDI ${formatearMoneda(sdi)})`,m:ind90}); total+=ind90;
 const veinte=20*sdi*anos; desglose.push({c:`20 días por año (20 x SDI x ${anos.toFixed(2)} años)`,m:veinte}); total+=veinte;
 const tope=Math.min(sd,TOPE_PRIMA); const primaAnt=12*tope*anos; desglose.push({c:`Prima antigüedad (12 días x ${formatearMoneda(tope)} x ${anos.toFixed(2)} años)`,m:primaAnt}); total+=primaAnt;
 }
-
 document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO - Renuncia / Término' : 'LIQUIDACIÓN - Despido injustificado';
 document.getElementById('tituloResultado').textContent = tipoCalculo==='finiquito' ? '💵 FINIQUITO ESTIMADO' : '💰 LIQUIDACIÓN ESTIMADA';
 document.getElementById('montoTotal').textContent=formatearMoneda(total);
@@ -192,38 +187,71 @@ const CATALOGO=[
 {id:"1004-C",art:"Art 1004-C",desc:"Outsourcing ilegal",tipo:"UNICA",min:2000,max:50000,explica:"Más alta LFT"},
 {id:"994-VI",art:"Art 994-VI",desc:"Discriminación o Acoso",tipo:"UNICA",min:250,max:5000,explica:"Hostigamiento"},
 ];
-const UMA=117.31; const $=id=>document.getElementById(id);
-function initMultas(){const sel=$('infra');sel.innerHTML='';CATALOGO.forEach(c=>{let o=document.createElement('option');o.value=c.id;o.textContent=`${c.art} - ${c.desc}`;sel.appendChild(o);});sel.value='1004';$('trab').addEventListener('change',()=>{if($('trab').value==='otro')$('trabCustom').style.display='block';else $('trabCustom').style.display='none';validateMultas();});onInfraChange();}
-function onInfraChange(){const infra=CATALOGO.find(c=>c.id===$('infra').value);if(infra.id==='1004'){$('groupTiempo').style.display='block';$('groupTrab').style.display='block';}else if(infra.tipo==='UNICA'){$('groupTiempo').style.display='none';$('groupTrab').style.display='none';}else{$('groupTiempo').style.display='none';$('groupTrab').style.display='block';}$('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div style="font-size:13px;margin-top:6px">${infra.explica}</div>`;validateMultas();}
-function getTrab(){let v=$('trab').value;if(v==='otro')v=$('trabCustom').value;return parseInt(v)||0;}
-function getTamFactor(){const v=$('plant').value;if(v==='1')return 0.5;if(v==='10')return 0.8;return 1;}
-function validateMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value);const trab=getTrab();const plant=parseInt($('plant').value)||0;const tv=$('tiempo')?$('tiempo').value:'';let ok=true;if(infra.id==='1004'&&!tv)ok=false;if(infra.tipo==='POR_TRABAJADOR_AFECTADO'&&trab<=0)ok=false;if(plant<=0)ok=false;if(!ok){$('resMultas').style.display='none';return;}calcularMultas();}
+const UMA=117.31;
+const $=id=>document.getElementById(id);
+function getPlantLabel(){
+  const v=$('plant').value;
+  if(v==='1') return 'Micro 1-10 (50%)';
+  if(v==='10') return 'Pequeña 11-50 (80%)';
+  if(v==='50') return 'Mediana 51-250 (100%)';
+  if(v==='250') return 'Grande 251+ (100%)';
+  return '';
+}
+function initMultas(){
+  const sel=$('infra'); sel.innerHTML='';
+  CATALOGO.forEach(c=>{let o=document.createElement('option'); o.value=c.id; o.textContent=`${c.art} - ${c.desc}`; sel.appendChild(o);});
+  sel.value='1004';
+  $('trab').addEventListener('change',()=>{
+    if($('trab').value==='otro'){$('trabCustom').style.display='block';} else {$('trabCustom').style.display='none';}
+    validateMultas();
+  });
+  onInfraChange();
+}
+function onInfraChange(){
+  const infra=CATALOGO.find(c=>c.id===$('infra').value);
+  if(infra.id==='1004'){$('groupTiempo').style.display='block'; $('groupTrab').style.display='block';}
+  else if(infra.tipo==='UNICA'){$('groupTiempo').style.display='none'; $('groupTrab').style.display='none';}
+  else {$('groupTiempo').style.display='none'; $('groupTrab').style.display='block';}
+  $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div style="font-size:13px;margin-top:6px">${infra.explica}</div>`;
+  validateMultas();
+}
+function getTrab(){let v=$('trab').value; if(v==='otro') v=$('trabCustom').value; return parseInt(v)||0;}
+function getTamFactor(){const v=$('plant').value; if(v==='1') return 0.5; if(v==='10') return 0.8; return 1;}
+function validateMultas(){
+  const infra=CATALOGO.find(c=>c.id===$('infra').value);
+  const trab=getTrab(); const plant=parseInt($('plant').value)||0;
+  const tv=$('tiempo')?$('tiempo').value:'';
+  let ok=true;
+  if(infra.id==='1004' && !tv) ok=false;
+  if(infra.tipo==='POR_TRABAJADOR_AFECTADO' && trab<=0) ok=false;
+  if(plant<=0) ok=false;
+  if(!ok){$('resMultas').style.display='none'; return;}
+  calcularMultas();
+}
 function calcularMultas(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si';
-  let umaBase=0,mult=1;
+  const infra=CATALOGO.find(c=>c.id===$('infra').value);
+  const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si';
+  let umaBase=0, mult=1;
   if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800; mult=trab;} else {mult=infra.tipo==='UNICA'?1:trab;}
-  let min,max; 
+  let min,max;
   if(infra.id==='1004'){min=UMA*umaBase*mult*tam; max=min;} else {min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam;}
   if(reinc){min*=2; max*=2;}
   const prom=(min+max)/2;
   const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
-  
-  $('resMultas').style.display='block'; 
-  $('prom').textContent=fmt(prom); 
-  $('min').textContent=fmt(min); 
+  $('resMultas').style.display='block';
+  $('prom').textContent=fmt(prom);
+  $('min').textContent=fmt(min);
   $('max').textContent=fmt(max);
-  $('formula').textContent = infra.id==='1004' 
-    ? `${fmt(UMA).replace('MXN','')} × ${umaBase} UMA × ${mult} trabajador(es) × factor ${tam} ${reinc ? '×2 reincidencia' : ''}` 
-    : `${fmt(UMA).replace('MXN','')} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc ? '×2 reincidencia' : ''}`;
-  
-  $('detalleLegal').innerHTML = `<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | Plantilla: ${getPlantLabel()}`;
-
-  // Actualiza el botón de WhatsApp
+  $('formula').textContent = infra.id==='1004' ? `UMA $${UMA} × ${umaBase} UMA × ${mult} trab × factor ${tam} ${reinc?'×2 reincidencia':''}` : `UMA $${UMA} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc?'×2 reincidencia':''}`;
+  $('detalleLegal').innerHTML=`<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | ${getPlantLabel()}`;
   const waText=`Hola LaboralClick, mi riesgo estimado es ${fmt(prom)} por ${infra.art} - ${infra.desc}. Quiero auditoría.`;
   $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
   $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${fmt(prom)} →`;
   $('waBtn').style.display='block';
-  document.getElementById('cierre').style.display='block';
+  $('cierre').style.display='block';
+  $('cierre').innerHTML=`<b>${infra.art}</b> - Riesgo promedio: ${fmt(prom)} | Min ${fmt(min)} | Max ${fmt(max)}`;
 }
+initMultas();
+</script>
 </body>
 </html>
