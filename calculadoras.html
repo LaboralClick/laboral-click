@@ -13,6 +13,7 @@
 .calc-section{display:none}.calc-section.activo{display:block}
 .form-group{margin-bottom:20px}.form-group label{display:block;font-weight:700;color:#0f2a5e;margin-bottom:8px;font-size:15px}
 .form-group input,.form-group select{width:100%;padding:12px 15px;border:2px solid #e5e7eb;border-radius:8px;font-size:16px;height:52px;box-sizing:border-box;background:#fff}
+.form-group input[type="checkbox"]{width:auto;height:auto}
 .form-row{display:flex;gap:20px}.form-row .form-group{flex:1}
 .btn-calcular{width:100%;padding:16px;background:#c9a028;color:#0f2a5e;border:0;border-radius:8px;font-size:18px;font-weight:800;cursor:pointer;margin-top:10px}
 .btn-calcular:disabled{opacity:.5;cursor:not-allowed}
@@ -22,6 +23,7 @@
 .desglose{background:#fff;border-radius:8px;padding:20px;margin-top:20px}
 .desglose-item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e5e7eb}
 .desglose-item.destacado{background:#dcfce7;padding:15px;border-radius:6px;border:2px solid #22c55e;margin-top:10px}
+.desglose-item.alerta{background:#fff8e1;padding:12px;border-radius:6px;border:1px solid #c9a028;margin-top:8px}
 .lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;margin:8px 0}
 .lc-type.UNICA{background:#fef3c7;color:#92400e}.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
 .btn-whatsapp{display:none;width:100%;padding:15px;background:#25D366;color:#fff;text-align:center;text-decoration:none;border-radius:8px;font-weight:700;margin-top:15px}
@@ -43,7 +45,7 @@
 <label>¿Cómo terminó la relación laboral? *</label>
 <select id="tipoBaja" onchange="seleccionarTipoBaja()">
 <option value="">Selecciona la causa...</option>
-<option value="finiquito">Renuncia voluntaria</option>
+<option value="finiquito">Renuncia voluntaria del colaborador</option>
 <option value="finiquito">Terminación de contrato temporal</option>
 <option value="finiquito">Mutuo acuerdo</option>
 <option value="liquidacion">Despido injustificado</option>
@@ -53,15 +55,31 @@
 <div id="badgeTipo" style="display:none;margin-top:10px;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800"></div>
 </div>
 <form id="calculadoraForm">
-<div class="form-row"><div class="form-group"><label>Salario Diario *</label><input type="number" id="salarioDiario" step="0.01" required></div><div class="form-group"><label>Días Aguinaldo *</label><input type="number" id="diasAguinaldo" value="15" required></div></div>
+<div class="form-row"><div class="form-group"><label>Salario Diario del colaborador *</label><input type="number" id="salarioDiario" step="0.01" required placeholder="Ej: 400"></div><div class="form-group"><label>Días Aguinaldo según contrato *</label><input type="number" id="diasAguinaldo" value="15" required></div></div>
 <div class="form-row"><div class="form-group"><label>Fecha Ingreso *</label><input type="date" id="fechaIngreso" required></div><div class="form-group"><label>Fecha Salida *</label><input type="date" id="fechaSalida" required></div></div>
 <div class="form-group"><label>Prima Vacacional (%) *</label><input type="number" id="primaVacacional" value="25" required></div>
+
+<div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:10px;padding:14px;margin-bottom:20px">
+<div class="form-group" style="margin-bottom:10px">
+<label style="display:flex;align-items:center;gap:8px;font-size:14px"><input type="checkbox" id="tieneVencidas" onchange="toggleVencidas()"> ¿Existen vacaciones de ejercicios anteriores pendientes de otorgar?</label>
+<span style="font-size:11px;color:#475569">Caso común en PyMEs: vacaciones no disfrutadas que aún son exigibles. Si no se otorgaron, se liquidan en finiquito y generan riesgo de multa Art 79 y 994 LFT. Útil tanto para cálculo patronal como para validación del colaborador.</span>
+</div>
+<div id="boxVencidas" style="display:none">
+<div class="form-row">
+<div class="form-group"><label>Días pendientes de ejercicios anteriores *</label><input type="number" id="diasVencidas" min="0" placeholder="Ej: 12 días 2024 no otorgados"></div>
+<div class="form-group"><label>Prima de esos días pendientes (%)</label><input type="number" id="primaVencidas" value="25"></div>
+</div>
+</div>
+</div>
+
 <button type="submit" class="btn-calcular" id="btnFiniquito" disabled>Elige cómo terminó la relación ↑</button>
 </form>
 <div id="resultadoFiniquito" class="resultado">
 <h2 id="tituloResultado">💵 TOTAL</h2>
 <div class="monto-total"><div id="tipoResultado">FINIQUITO</div><div class="valor" id="montoTotal">$0.00</div></div>
 <div class="desglose"><div id="desgloseItems"></div></div>
+<div id="alertaVencidas" style="display:none;margin-top:15px;background:#fff8e1;border-left:4px solid #c9a028;padding:12px;border-radius:0 8px 8px 0;font-size:12px;color:#92400e;line-height:1.4"></div>
+<a id="waFiniquito" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:block">Validar este cálculo y blindaje con LaboralClick →</a>
 </div>
 </div>
 
@@ -76,46 +94,26 @@
 <div id="groupTrab" class="form-group"><label>Trabajadores afectados *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro</option></select><input id="trabCustom" type="number" style="display:none;margin-top:8px" placeholder="¿Cuántos?" oninput="validateMultas()"></div>
 <div class="form-group"><label>Plantilla total *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1-10 Micro 50%</option><option value="10">11-50 Pequeña 80%</option><option value="50">51-250 Mediana</option><option value="250">251+ Grande</option></select></div>
 <div class="form-group"><label>Reincidencia?</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí - duplica</option></select></div>
-
-<!-- RESULTADO PROFESIONAL NUEVO - YA NO ES EL CUADRO FEO -->
 <div id="resMultas" style="display:none;margin-top:20px">
   <div style="background:#fff;border:2px solid #0f2a5e;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,42,94,.15)">
     <div style="background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);padding:18px 20px;display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div>
-        <div style="color:#fff;font-size:16px;font-weight:800;margin-top:2px">⚖️ Multa Estimada por Inspección STPS</div>
-      </div>
+      <div><div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div><div style="color:#fff;font-size:16px;font-weight:800;margin-top:2px">⚖️ Multa Estimada por Inspección STPS</div></div>
       <div style="background:rgba(201,160,40,.2);border:1px solid #c9a028;color:#f0c040;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800">UMA $117.31</div>
     </div>
     <div style="padding:22px 20px;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)">
-      <div style="font-size:11px;color:#6b7280;font-weight:700;letter-spacing:.5px;text-transform:uppercase">VALOR MÁS PROBABLE QUE TE IMPONDRÍA EL INSPECTOR</div>
+      <div style="font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase">VALOR MÁS PROBABLE QUE TE IMPONDRÍA EL INSPECTOR</div>
       <div id="prom" style="font-size:42px;font-weight:900;color:#0f2a5e;line-height:1;margin:8px 0 4px 0">$0.00 MXN</div>
-      <div style="font-size:12px;color:#444;background:#eef2ff;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:6px">
-        💡 <b>Promedio técnico</b> entre el mínimo y máximo legal. Es la cifra que usan 8 de cada 10 empresas para provisionar.
-      </div>
+      <div style="font-size:12px;color:#444;background:#eef2ff;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:6px">💡 <b>Promedio técnico</b> entre el mínimo y máximo legal.</div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px 20px;background:#fff">
-      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px">
-        <div style="font-size:10px;font-weight:800;color:#166534">🟢 SI TE VA BIEN - Mínimo</div>
-        <div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div>
-        <div style="font-size:11px;color:#4a7a5a;margin-top:4px">Buena fe, primera vez, subsanas en 5 días.</div>
-      </div>
-      <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px">
-        <div style="font-size:10px;font-weight:800;color:#dc2626">🔴 SI TE VA MAL - Máximo</div>
-        <div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div>
-        <div style="font-size:11px;color:#7a4a4a;margin-top:4px">Reincidencia o negativa a inspección.</div>
-      </div>
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#166534">🟢 SI TE VA BIEN - Mínimo</div><div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div></div>
+      <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px"><div style="font-size:10px;font-weight:800;color:#dc2626">🔴 SI TE VA MAL - Máximo</div><div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div></div>
     </div>
-    <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px">
-      <div style="font-size:10px;font-weight:800;color:#6b7280;margin-bottom:6px">CÓMO SE CALCULÓ</div>
-      <div id="formula" style="font-size:12px;color:#1e293b;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div>
-      <div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px;line-height:1.4"></div>
-    </div>
+    <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px"><div id="formula" style="font-size:12px;color:#1e293b;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div><div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px"></div></div>
   </div>
   <div id="cierre" style="display:none;margin-top:12px;background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:12px;font-size:12px"></div>
   <a id="waBtn" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp">Evaluar mi empresa →</a>
 </div>
-
 </div>
 
 </div>
@@ -123,27 +121,14 @@
 </div>
 
 <script>
-function cambiarPestana(id,evt){
-document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));
-document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
-document.getElementById('sec-'+id).classList.add('activo');
-evt.currentTarget.classList.add('activo');
-}
+function cambiarPestana(id,evt){document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));document.getElementById('sec-'+id).classList.add('activo');evt.currentTarget.classList.add('activo');}
 let tipoCalculo='finiquito';
-function seleccionarTipoBaja(){
-const v=document.getElementById('tipoBaja').value; const badge=document.getElementById('badgeTipo'); const btn=document.getElementById('btnFiniquito');
-if(!v){badge.style.display='none';btn.disabled=true;btn.textContent='Elige cómo terminó ↑';return;}
-tipoCalculo=v; btn.disabled=false;
-if(v==='finiquito'){badge.style.display='inline-block';badge.style.background='#dbeafe';badge.style.color='#1e40af';badge.textContent='✓ FINIQUITO - solo proporcionales';btn.textContent='Calcular Finiquito →';}
-else{badge.style.display='inline-block';badge.style.background='#fef3c7';badge.style.color='#92400e';badge.textContent='⚠️ LIQUIDACIÓN - 90 días + 20 días + antigüedad';btn.textContent='Calcular Liquidación →';}
-}
+function seleccionarTipoBaja(){const v=document.getElementById('tipoBaja').value; const badge=document.getElementById('badgeTipo'); const btn=document.getElementById('btnFiniquito'); if(!v){badge.style.display='none';btn.disabled=true;btn.textContent='Elige cómo terminó ↑';return;} tipoCalculo=v; btn.disabled=false; if(v==='finiquito'){badge.style.display='inline-block';badge.style.background='#dbeafe';badge.style.color='#1e40af';badge.textContent='✓ FINIQUITO - Renuncia / Término / Acuerdo';btn.textContent='Calcular Finiquito →';} else{badge.style.display='inline-block';badge.style.background='#fef3c7';badge.style.color='#92400e';badge.textContent='⚠️ LIQUIDACIÓN - Despido / Art 51';btn.textContent='Calcular Liquidación →';}}
+function toggleVencidas(){const chk=document.getElementById('tieneVencidas').checked; document.getElementById('boxVencidas').style.display=chk?'block':'none';}
 const SALARIO_MINIMO=248.93; const TOPE_PRIMA=SALARIO_MINIMO*2;
 function calcularDiasEntre(f1,f2){const d1=new Date(f1+'T00:00:00');const d2=new Date(f2+'T00:00:00');return Math.floor((d2-d1)/(86400000))+1;}
 function formatearMoneda(m){return '$'+m.toFixed(2).replace(/\d(?=(\d{3})+\.)/g,'$&,');}
-function getVacaciones(anos){
-if(anos<1)return 12; if(anos===1)return 14; if(anos===2)return 16; if(anos===3)return 18; if(anos===4)return 20;
-if(anos<=9)return 22; if(anos<=14)return 24; if(anos<=19)return 26; if(anos<=24)return 28; if(anos<=29)return 30; return 32;
-}
+function getVacaciones(anos){if(anos<1)return 12; if(anos===1)return 14; if(anos===2)return 16; if(anos===3)return 18; if(anos===4)return 20; if(anos<=9)return 22; if(anos<=14)return 24; if(anos<=19)return 26; if(anos<=24)return 28; if(anos<=29)return 30; return 32;}
 document.getElementById('calculadoraForm').addEventListener('submit',function(e){
 e.preventDefault();
 const sd=parseFloat(document.getElementById('salarioDiario').value); const diasAg=parseFloat(document.getElementById('diasAguinaldo').value);
@@ -162,95 +147,43 @@ let desglose=[]; let total=0;
 const aguiProp=diasAnio*(diasAg/365)*sd; desglose.push({c:`Aguinaldo proporcional (${diasAnio} días)`,m:aguiProp}); total+=aguiProp;
 const vacProp=diasPeriodo*(vacAnual/365)*sd; desglose.push({c:`Vacaciones proporcionales (${vacAnual} días LFT)`,m:vacProp}); total+=vacProp;
 const primaM=vacProp*(primaPct/100); desglose.push({c:`Prima vacacional (${primaPct}%)`,m:primaM}); total+=primaM;
+const tieneVencidas=document.getElementById('tieneVencidas').checked;
+if(tieneVencidas){
+  const diasV=parseFloat(document.getElementById('diasVencidas').value)||0;
+  const primaV=parseFloat(document.getElementById('primaVencidas').value)||25;
+  if(diasV>0){
+    const vacVencidasMonto=diasV*sd;
+    const primaVencidasMonto=vacVencidasMonto*(primaV/100);
+    desglose.push({c:`⚠️ Vacaciones de ejercicios anteriores pendientes de otorgar (${diasV} días)`,m:vacVencidasMonto});
+    desglose.push({c:`Prima vacacional de ejercicios anteriores (${primaV}%)`,m:primaVencidasMonto});
+    total+=vacVencidasMonto+primaVencidasMonto;
+    document.getElementById('alertaVencidas').style.display='block';
+    document.getElementById('alertaVencidas').innerHTML=`⚠️ <b>Riesgo patronal detectado:</b> Las vacaciones no otorgadas se liquidan al 100% + prima y constituyen incumplimiento al Art 79 LFT. Multa potencial de 50 a 250 UMA por colaborador ($${(50*117.31).toLocaleString()} a $${(250*117.31).toLocaleString()}). Recomendación LaboralClick: documentar otorgamiento o provisionar pago en finiquito para evitar demanda.`;
+  }
+} else {document.getElementById('alertaVencidas').style.display='none';}
 if(tipoCalculo==='liquidacion'){
 const ind90=90*sdi; desglose.push({c:`Indemnización 90 días (90 x SDI ${formatearMoneda(sdi)})`,m:ind90}); total+=ind90;
 const veinte=20*sdi*anos; desglose.push({c:`20 días por año (20 x SDI x ${anos.toFixed(2)} años)`,m:veinte}); total+=veinte;
 const tope=Math.min(sd,TOPE_PRIMA); const primaAnt=12*tope*anos; desglose.push({c:`Prima antigüedad (12 días x ${formatearMoneda(tope)} x ${anos.toFixed(2)} años)`,m:primaAnt}); total+=primaAnt;
 }
-document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO - Renuncia / Término' : 'LIQUIDACIÓN - Despido injustificado';
+document.getElementById('tipoResultado').textContent = tipoCalculo==='finiquito' ? 'FINIQUITO - Renuncia / Término' : 'LIQUIDACIÓN - Despido';
 document.getElementById('tituloResultado').textContent = tipoCalculo==='finiquito' ? '💵 FINIQUITO ESTIMADO' : '💰 LIQUIDACIÓN ESTIMADA';
 document.getElementById('montoTotal').textContent=formatearMoneda(total);
-document.getElementById('desgloseItems').innerHTML=desglose.map(i=>`<div class="desglose-item"><span>${i.c}</span><span>${formatearMoneda(i.m)}</span></div>`).join('') + `<div class="desglose-item destacado"><span>TOTAL</span><span>${formatearMoneda(total)}</span></div>`;
+document.getElementById('desgloseItems').innerHTML=desglose.map(i=>`<div class="desglose-item ${i.c.includes('pendientes')?'alerta':''}"><span>${i.c}</span><span>${formatearMoneda(i.m)}</span></div>`).join('') + `<div class="desglose-item destacado"><span>TOTAL</span><span>${formatearMoneda(total)}</span></div>`;
 document.getElementById('resultadoFiniquito').style.display='block';
+const waText=`Hola LaboralClick, calculé un ${tipoCalculo} de ${formatearMoneda(total)} ${tieneVencidas? 'con '+document.getElementById('diasVencidas').value+' días de ejercicios anteriores pendientes' : ''}. Quiero validación y blindaje patronal.`;
+document.getElementById('waFiniquito').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
 });
 document.getElementById('calculadoraSalarioForm').addEventListener('submit',function(e){e.preventDefault();const br=parseFloat(document.getElementById('salarioBruto').value)||0;document.getElementById('salarioNeto').textContent=formatearMoneda(br*0.85);document.getElementById('resultadoNeto').style.display='block';});
-
-// MULTAS
-const CATALOGO=[
-{id:"1002-A",art:"Art 1002",desc:"No dar condiciones por escrito",tipo:"UNICA",min:50,max:5000,explica:"Formalidades escritas"},
-{id:"1002-B",art:"Art 1002",desc:"No entregar contrato",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada trabajador"},
-{id:"994-V",art:"Art 994-V",desc:"Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Por establecimiento"},
-{id:"1004",art:"Art 1004",desc:"No pagar salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"Escala por meses"},
-{id:"994-II",art:"Art 994-II",desc:"No pagar PTU",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada trabajador"},
-{id:"LSS-304",art:"Art 304-A LSS",desc:"No dar alta IMSS",tipo:"POR_TRABAJADOR_AFECTADO",min:20,max:350,explica:"Por cada omitido"},
-{id:"994-IV",art:"Art 994-IV",desc:"No dar capacitación DC-3",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Por trabajador"},
-{id:"1004-C",art:"Art 1004-C",desc:"Outsourcing ilegal",tipo:"UNICA",min:2000,max:50000,explica:"Más alta LFT"},
-{id:"994-VI",art:"Art 994-VI",desc:"Discriminación o Acoso",tipo:"UNICA",min:250,max:5000,explica:"Hostigamiento"},
-];
-const UMA=117.31;
-const $=id=>document.getElementById(id);
-function getPlantLabel(){
-  const v=$('plant').value;
-  if(v==='1') return 'Micro 1-10 (50%)';
-  if(v==='10') return 'Pequeña 11-50 (80%)';
-  if(v==='50') return 'Mediana 51-250 (100%)';
-  if(v==='250') return 'Grande 251+ (100%)';
-  return '';
-}
-function initMultas(){
-  const sel=$('infra'); sel.innerHTML='';
-  CATALOGO.forEach(c=>{let o=document.createElement('option'); o.value=c.id; o.textContent=`${c.art} - ${c.desc}`; sel.appendChild(o);});
-  sel.value='1004';
-  $('trab').addEventListener('change',()=>{
-    if($('trab').value==='otro'){$('trabCustom').style.display='block';} else {$('trabCustom').style.display='none';}
-    validateMultas();
-  });
-  onInfraChange();
-}
-function onInfraChange(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  if(infra.id==='1004'){$('groupTiempo').style.display='block'; $('groupTrab').style.display='block';}
-  else if(infra.tipo==='UNICA'){$('groupTiempo').style.display='none'; $('groupTrab').style.display='none';}
-  else {$('groupTiempo').style.display='none'; $('groupTrab').style.display='block';}
-  $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div style="font-size:13px;margin-top:6px">${infra.explica}</div>`;
-  validateMultas();
-}
+const CATALOGO=[{id:"1002-A",art:"Art 1002",desc:"No dar condiciones por escrito",tipo:"UNICA",min:50,max:5000,explica:"Formalidades escritas"},{id:"1002-B",art:"Art 1002",desc:"No entregar contrato",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada trabajador"},{id:"994-V",art:"Art 994-V",desc:"Seguridad e Higiene",tipo:"UNICA",min:250,max:5000,explica:"Por establecimiento"},{id:"1004",art:"Art 1004",desc:"No pagar salario mínimo",tipo:"POR_TRABAJADOR_AFECTADO",min:800,max:800,explica:"Escala por meses"},{id:"994-II",art:"Art 994-II",desc:"No pagar PTU",tipo:"POR_TRABAJADOR_AFECTADO",min:50,max:5000,explica:"Por cada trabajador"},{id:"LSS-304",art:"Art 304-A LSS",desc:"No dar alta IMSS",tipo:"POR_TRABAJADOR_AFECTADO",min:20,max:350,explica:"Por cada omitido"},{id:"994-IV",art:"Art 994-IV",desc:"No dar capacitación DC-3",tipo:"POR_TRABAJADOR_AFECTADO",min:250,max:5000,explica:"Por trabajador"},{id:"1004-C",art:"Art 1004-C",desc:"Outsourcing ilegal",tipo:"UNICA",min:2000,max:50000,explica:"Más alta LFT"},{id:"994-VI",art:"Art 994-VI",desc:"Discriminación o Acoso",tipo:"UNICA",min:250,max:5000,explica:"Hostigamiento"},];
+const UMA=117.31; const $=id=>document.getElementById(id);
+function getPlantLabel(){const v=$('plant').value; if(v==='1') return 'Micro 1-10 (50%)'; if(v==='10') return 'Pequeña 11-50 (80%)'; if(v==='50') return 'Mediana 51-250 (100%)'; if(v==='250') return 'Grande 251+ (100%)'; return '';}
+function initMultas(){const sel=$('infra'); sel.innerHTML=''; CATALOGO.forEach(c=>{let o=document.createElement('option'); o.value=c.id; o.textContent=`${c.art} - ${c.desc}`; sel.appendChild(o);}); sel.value='1004'; $('trab').addEventListener('change',()=>{if($('trab').value==='otro'){$('trabCustom').style.display='block';} else {$('trabCustom').style.display='none';} validateMultas();}); onInfraChange();}
+function onInfraChange(){const infra=CATALOGO.find(c=>c.id===$('infra').value); if(infra.id==='1004'){$('groupTiempo').style.display='block'; $('groupTrab').style.display='block';} else if(infra.tipo==='UNICA'){$('groupTiempo').style.display='none'; $('groupTrab').style.display='none';} else {$('groupTiempo').style.display='none'; $('groupTrab').style.display='block';} $('fichaTipo').innerHTML=`<div class="lc-type ${infra.tipo}">${infra.tipo}</div><div style="font-size:13px;margin-top:6px">${infra.explica}</div>`; validateMultas();}
 function getTrab(){let v=$('trab').value; if(v==='otro') v=$('trabCustom').value; return parseInt(v)||0;}
 function getTamFactor(){const v=$('plant').value; if(v==='1') return 0.5; if(v==='10') return 0.8; return 1;}
-function validateMultas(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  const trab=getTrab(); const plant=parseInt($('plant').value)||0;
-  const tv=$('tiempo')?$('tiempo').value:'';
-  let ok=true;
-  if(infra.id==='1004' && !tv) ok=false;
-  if(infra.tipo==='POR_TRABAJADOR_AFECTADO' && trab<=0) ok=false;
-  if(plant<=0) ok=false;
-  if(!ok){$('resMultas').style.display='none'; return;}
-  calcularMultas();
-}
-function calcularMultas(){
-  const infra=CATALOGO.find(c=>c.id===$('infra').value);
-  const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si';
-  let umaBase=0, mult=1;
-  if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800; mult=trab;} else {mult=infra.tipo==='UNICA'?1:trab;}
-  let min,max;
-  if(infra.id==='1004'){min=UMA*umaBase*mult*tam; max=min;} else {min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam;}
-  if(reinc){min*=2; max*=2;}
-  const prom=(min+max)/2;
-  const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
-  $('resMultas').style.display='block';
-  $('prom').textContent=fmt(prom);
-  $('min').textContent=fmt(min);
-  $('max').textContent=fmt(max);
-  $('formula').textContent = infra.id==='1004' ? `UMA $${UMA} × ${umaBase} UMA × ${mult} trab × factor ${tam} ${reinc?'×2 reincidencia':''}` : `UMA $${UMA} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc?'×2 reincidencia':''}`;
-  $('detalleLegal').innerHTML=`<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | ${getPlantLabel()}`;
-  const waText=`Hola LaboralClick, mi riesgo estimado es ${fmt(prom)} por ${infra.art} - ${infra.desc}. Quiero auditoría.`;
-  $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
-  $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${fmt(prom)} →`;
-  $('waBtn').style.display='block';
-  $('cierre').style.display='block';
-  $('cierre').innerHTML=`<b>${infra.art}</b> - Riesgo promedio: ${fmt(prom)} | Min ${fmt(min)} | Max ${fmt(max)}`;
-}
+function validateMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const plant=parseInt($('plant').value)||0; const tv=$('tiempo')?$('tiempo').value:''; let ok=true; if(infra.id==='1004' && !tv) ok=false; if(infra.tipo==='POR_TRABAJADOR_AFECTADO' && trab<=0) ok=false; if(plant<=0) ok=false; if(!ok){$('resMultas').style.display='none'; return;} calcularMultas();}
+function calcularMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si'; let umaBase=0, mult=1; if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800; mult=trab;} else {mult=infra.tipo==='UNICA'?1:trab;} let min,max; if(infra.id==='1004'){min=UMA*umaBase*mult*tam; max=min;} else {min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam;} if(reinc){min*=2; max*=2;} const prom=(min+max)/2; const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'}); $('resMultas').style.display='block'; $('prom').textContent=fmt(prom); $('min').textContent=fmt(min); $('max').textContent=fmt(max); $('formula').textContent = infra.id==='1004' ? `UMA $${UMA} × ${umaBase} UMA × ${mult} trab × factor ${tam} ${reinc?'×2':''}` : `UMA $${UMA} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc?'×2':''}`; $('detalleLegal').innerHTML=`<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | ${getPlantLabel()}`; const waText=`Hola LaboralClick, mi riesgo estimado es ${fmt(prom)} por ${infra.art} - ${infra.desc}. Quiero auditoría.`; $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`; $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${fmt(prom)} →`; $('waBtn').style.display='block'; $('cierre').style.display='block'; $('cierre').innerHTML=`<b>${infra.art}</b> - Riesgo promedio: ${fmt(prom)} | Min ${fmt(min)} | Max ${fmt(max)}`;}
 initMultas();
 </script>
 </body>
