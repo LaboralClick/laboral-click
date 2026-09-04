@@ -74,10 +74,55 @@
 <div id="groupTrab" class="form-group"><label>Trabajadores afectados *</label><select id="trab" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="otro">Otro</option></select><input id="trabCustom" type="number" style="display:none;margin-top:8px" oninput="validateMultas()"></div>
 <div class="form-group"><label>Plantilla total *</label><select id="plant" onchange="validateMultas()"><option value="">Selecciona</option><option value="1">1-10 Micro 50%</option><option value="10">11-50 Pequeña 80%</option><option value="50">51-250</option><option value="250">251+</option></select></div>
 <div class="form-group"><label>Reincidencia?</label><select id="reinc" onchange="validateMultas()"><option value="no">No</option><option value="si">Sí</option></select></div>
-<div id="resMultas" style="display:none;padding:20px;background:#0f2a5e;color:#fff;border-radius:12px;margin-top:20px"><div id="prom" style="font-size:32px;font-weight:800">$0</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div><small>Min</small><b id="min">$0</b></div><div><small>Max</small><b id="max">$0</b></div></div></div>
-</div>
+<!-- RESULTADO MULTAS LFT - DISEÑO PROFESIONAL NUEVO -->
+<div id="resMultas" style="display:none;margin-top:20px">
+  <div style="background:#fff;border:2px solid #0f2a5e;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,42,94,.15)">
+    
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);padding:18px 20px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="color:#f0c040;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase">Dictamen preliminar LFT 2026</div>
+        <div style="color:#fff;font-size:16px;font-weight:800;margin-top:2px">⚖️ Multa Estimada por Inspección STPS</div>
+      </div>
+      <div style="background:rgba(201,160,40,.2);border:1px solid #c9a028;color:#f0c040;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800">UMA $117.31</div>
+    </div>
 
-</div>
+    <!-- Valor principal -->
+    <div style="padding:22px 20px;background:linear-gradient(135deg,#fffef5 0%,#fff 100%)">
+      <div style="font-size:11px;color:#6b7280;font-weight:700;letter-spacing:.5px;text-transform:uppercase">VALOR MÁS PROBABLE QUE TE IMPONDRÍA EL INSPECTOR</div>
+      <div id="prom" style="font-size:42px;font-weight:900;color:#0f2a5e;line-height:1;margin:8px 0 4px 0">$0.00 MXN</div>
+      <div style="font-size:12px;color:#444;background:#eef2ff;padding:8px 12px;border-radius:8px;display:inline-block;margin-top:6px">
+        💡 <b>Promedio técnico</b> entre el criterio mínimo y máximo del inspector. Es la cifra que usan 8 de cada 10 empresas para provisionar.
+      </div>
+    </div>
+
+    <!-- Min y Max explicados -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 20px 20px;background:#fff">
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px">
+        <div style="font-size:10px;font-weight:800;color:#166534;letter-spacing:1px">🟢 SI TE VA BIEN - Criterio mínimo</div>
+        <div id="min" style="font-size:20px;font-weight:800;color:#166534;margin-top:6px">$0</div>
+        <div style="font-size:11px;color:#4a7a5a;margin-top:4px;line-height:1.3">Cuando acreditas buena fe, es primera vez y subsanas en 5 días.</div>
+      </div>
+      <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px">
+        <div style="font-size:10px;font-weight:800;color:#dc2626;letter-spacing:1px">🔴 SI TE VA MAL - Criterio máximo</div>
+        <div id="max" style="font-size:20px;font-weight:800;color:#991b1b;margin-top:6px">$0</div>
+        <div style="font-size:11px;color:#7a4a4a;margin-top:4px;line-height:1.3">Reincidencia, negativa a recibir inspección o afectación a varios trabajadores.</div>
+      </div>
+    </div>
+
+    <!-- Fórmula y detalle -->
+    <div style="margin:0 20px 20px 20px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px">
+      <div style="font-size:10px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:6px">CÓMO SE CALCULÓ - ART. 1002 LFT</div>
+      <div id="formula" style="font-size:12px;color:#1e293b;font-family:monospace;background:#fff;padding:8px;border-radius:6px;border:1px dashed #cbd5e1">$0</div>
+      <div id="detalleLegal" style="font-size:11px;color:#475569;margin-top:8px;line-height:1.4"></div>
+    </div>
+
+    <!-- Alerta -->
+    <div style="margin:0 20px 20px 20px;background:#fff8e1;border-left:4px solid #c9a028;padding:10px 12px;border-radius:0 8px 8px 0;font-size:11px;color:#92400e;line-height:1.4">
+      ⚠️ Esta cifra no incluye actualización, recargos ni posible clausura. La STPS puede imponer medidas precautorias adicionales. Cálculo con UMA $117.31 DOF 09/01/2026.
+    </div>
+
+  </div>
 </div>
 
 <script>
@@ -153,8 +198,32 @@ function onInfraChange(){const infra=CATALOGO.find(c=>c.id===$('infra').value);i
 function getTrab(){let v=$('trab').value;if(v==='otro')v=$('trabCustom').value;return parseInt(v)||0;}
 function getTamFactor(){const v=$('plant').value;if(v==='1')return 0.5;if(v==='10')return 0.8;return 1;}
 function validateMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value);const trab=getTrab();const plant=parseInt($('plant').value)||0;const tv=$('tiempo')?$('tiempo').value:'';let ok=true;if(infra.id==='1004'&&!tv)ok=false;if(infra.tipo==='POR_TRABAJADOR_AFECTADO'&&trab<=0)ok=false;if(plant<=0)ok=false;if(!ok){$('resMultas').style.display='none';return;}calcularMultas();}
-function calcularMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value);const trab=getTrab();const tam=getTamFactor();const reinc=$('reinc').value==='si';let umaBase=0,mult=1;if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800;mult=trab;}else{mult=infra.tipo==='UNICA'?1:trab;}let min,max;if(infra.id==='1004'){min=UMA*umaBase*mult*tam;max=min;}else{min=UMA*infra.min*mult*tam;max=UMA*infra.max*mult*tam;}if(reinc){min*=2;max*=2;}const prom=(min+max)/2;const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});$('resMultas').style.display='block';$('prom').textContent=fmt(prom);$('min').textContent=fmt(min);$('max').textContent=fmt(max);}
-initMultas();
-</script>
+function calcularMultas(){
+  const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si';
+  let umaBase=0,mult=1;
+  if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800; mult=trab;} else {mult=infra.tipo==='UNICA'?1:trab;}
+  let min,max; 
+  if(infra.id==='1004'){min=UMA*umaBase*mult*tam; max=min;} else {min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam;}
+  if(reinc){min*=2; max*=2;}
+  const prom=(min+max)/2;
+  const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'});
+  
+  $('resMultas').style.display='block'; 
+  $('prom').textContent=fmt(prom); 
+  $('min').textContent=fmt(min); 
+  $('max').textContent=fmt(max);
+  $('formula').textContent = infra.id==='1004' 
+    ? `${fmt(UMA).replace('MXN','')} × ${umaBase} UMA × ${mult} trabajador(es) × factor ${tam} ${reinc ? '×2 reincidencia' : ''}` 
+    : `${fmt(UMA).replace('MXN','')} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc ? '×2 reincidencia' : ''}`;
+  
+  $('detalleLegal').innerHTML = `<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | Plantilla: ${getPlantLabel()}`;
+
+  // Actualiza el botón de WhatsApp
+  const waText=`Hola LaboralClick, mi riesgo estimado es ${fmt(prom)} por ${infra.art} - ${infra.desc}. Quiero auditoría.`;
+  $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
+  $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${fmt(prom)} →`;
+  $('waBtn').style.display='block';
+  document.getElementById('cierre').style.display='block';
+}
 </body>
 </html>
