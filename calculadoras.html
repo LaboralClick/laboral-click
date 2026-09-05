@@ -6,11 +6,14 @@
 <style>
 .hero-calc{background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);color:#fff;padding:70px 20px;text-align:center}
 .hero-calc h1{color:#fff;margin:0}
-.calculadora-container{max-width:850px;margin:40px auto;padding:40px 20px;background:#fff;border-radius:15px;box-shadow:0 5px 30px rgba(0,0,0,.1)}
-.tabs-container{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
-.tab-btn{flex:1;padding:18px 14px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;color:#0f2a5e;font-weight:700;font-size:16px;cursor:pointer;min-width:160px}
-.tab-btn.activo{border-color:#c9a028;background:#0f2a5e;color:#f0c040}
-.calc-section{display:none}.calc-section.activo{display:block}
+.calculadora-container{max-width:850px;margin:40px auto;padding:20px 20px;background:#fff;border-radius:15px;box-shadow:0 5px 30px rgba(0,0,0,.1)}
+.selector-label{text-align:center;font-weight:800;color:#0f2a5e;margin:15px 0 12px 0;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.tabs-container{display:flex;gap:10px;margin-bottom:25px;overflow-x:auto;padding:12px;background:#f1f5f9;border-radius:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.tabs-container::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto;scroll-snap-align:start;padding:14px 18px;border:2px solid #e5e7eb;border-radius:999px;background:#fff;color:#0f2a5e;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.tab-btn.activo{border-color:#0f2a5e;background:#0f2a5e;color:#f0c040;box-shadow:0 4px 12px rgba(15,42,94,.3)}
+.calc-section{display:none;animation:fade .25s ease}.calc-section.activo{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .form-group{margin-bottom:20px}.form-group label{display:block;font-weight:700;color:#0f2a5e;margin-bottom:8px;font-size:15px}
 .form-group input,.form-group select{width:100%;padding:12px 15px;border:2px solid #e5e7eb;border-radius:8px;font-size:16px;height:52px;box-sizing:border-box;background:#fff}
 .form-group input[type="checkbox"]{width:auto;height:auto}
@@ -27,19 +30,21 @@
 .lc-type{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;margin:8px 0}
 .lc-type.UNICA{background:#fef3c7;color:#92400e}.lc-type.POR_TRABAJADOR_AFECTADO{background:#dbeafe;color:#1e40af}
 .btn-whatsapp{display:none;width:100%;padding:15px;background:#25D366;color:#fff;text-align:center;text-decoration:none;border-radius:8px;font-weight:700;margin-top:15px}
-@media(max-width:768px){.form-row,.tabs-container{flex-direction:column}}
+@media(max-width:768px){.form-row{flex-direction:column} .tabs-container{gap:8px;padding:10px} .tab-btn{font-size:13px;padding:12px 14px}}
 </style>
 </head>
 <body>
 <section class="hero-calc"><h1>Centro de Calculadoras Laborales 2026</h1><p>Finiquito, liquidación, neto, PTU y multas LFT - UMA $117.31</p></section>
 <div class="container">
 <div class="calculadora-container">
+<div class="selector-label">👇 Elige qué quieres calcular</div>
 <div class="tabs-container">
-<button class="tab-btn activo" onclick="cambiarPestana('finiquito',event)">📋 Finiquito / Liquidación</button>
+<button class="tab-btn activo" onclick="cambiarPestana('finiquito',event)">📋 Finiquito</button>
 <button class="tab-btn" onclick="cambiarPestana('neto',event)">💰 Neto 2026</button>
 <button class="tab-btn" onclick="cambiarPestana('multas',event)">⚖ Multas LFT</button>
 <button class="tab-btn" onclick="cambiarPestana('ptu',event)">🏦 PTU 2026</button>
 </div>
+<div style="height:2px;background:linear-gradient(90deg,#0f2a5e,#c9a028);border-radius:2px;margin-bottom:25px"></div>
 
 <div id="sec-finiquito" class="calc-section activo">
 <div style="background:#fff8e1;border:2px solid #c9a028;border-radius:10px;padding:16px;margin-bottom:20px">
@@ -107,30 +112,30 @@
 <div id="sec-ptu" class="calc-section">
 <div style="background:#0f2a5e;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px">
 <h2 style="margin:0;color:#f0c040">🏦 Calculadora PTU 2026</h2>
-<p style="margin:8px 0 0 0;font-size:13px;color:#cbd5e1">Con tope de 3 meses de salario o promedio de 3 años - Art. 127 Fracc VIII LFT reforma 2021</p>
+<p style="margin:8px 0 0 0;font-size:13px;color:#cbd5e1">Con tope de 3 meses de salario o promedio de 3 años - Art. 127 Fracc VIII LFT</p>
 </div>
 <form id="formPTU">
 <div class="form-row">
-<div class="form-group"><label>Utilidad a repartir (10% de la empresa) *</label><input type="number" id="ptuMonto" required placeholder="Ej: 500000"></div>
-<div class="form-group"><label>Salario Diario del colaborador *</label><input type="number" id="ptuSalarioDiario" step="0.01" required placeholder="Ej: 400"></div>
+<div class="form-group"><label>Utilidad a repartir (10% empresa) *</label><input type="number" id="ptuMonto" required placeholder="Ej: 500000"></div>
+<div class="form-group"><label>Salario Diario colaborador *</label><input type="number" id="ptuSalarioDiario" step="0.01" required placeholder="Ej: 400"></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label>Días trabajados del colaborador en el año *</label><input type="number" id="ptuDiasColab" required placeholder="Ej: 300" min="1" max="365" value="365"></div>
-<div class="form-group"><label>Días totales trabajados por TODOS *</label><input type="number" id="ptuDiasTotales" required placeholder="Ej: 5000"></div>
+<div class="form-group"><label>Días trabajados del colaborador *</label><input type="number" id="ptuDiasColab" required placeholder="Ej: 300" min="1" max="365" value="365"></div>
+<div class="form-group"><label>Días totales de TODOS *</label><input type="number" id="ptuDiasTotales" required placeholder="Ej: 5000"></div>
 </div>
 <div class="form-row">
 <div class="form-group"><label>Salario anual del colaborador *</label><input type="number" id="ptuSalAnualColab" required placeholder="Ej: 146000"></div>
-<div class="form-group"><label>Salario anual de TODOS los trabajadores *</label><input type="number" id="ptuSalAnualTotal" required placeholder="Ej: 2500000"></div>
+<div class="form-group"><label>Salario anual de TODOS *</label><input type="number" id="ptuSalAnualTotal" required placeholder="Ej: 2500000"></div>
 </div>
-<div class="form-group"><label>¿Cuánto PTU recibió en promedio los últimos 3 años? (opcional)</label><input type="number" id="ptuPromedio3" placeholder="Ej: 25000 - Si no lo tienes, deja en blanco y se usa 3 meses de salario"></div>
-<div style="background:#fff8e1;border:1px solid #c9a028;border-radius:8px;padding:12px;font-size:12px;color:#92400e;margin-bottom:15px">💡 <b>Tope legal Art 127:</b> La PTU por trabajador no puede exceder 3 meses de su salario <b>O</b> el promedio de lo que recibió en los últimos 3 años, lo que resulte más favorable al trabajador.</div>
+<div class="form-group"><label>¿Promedio PTU últimos 3 años? (opcional)</label><input type="number" id="ptuPromedio3" placeholder="Deja en blanco y se usa 3 meses de salario"></div>
+<div style="background:#fff8e1;border:1px solid #c9a028;border-radius:8px;padding:12px;font-size:12px;color:#92400e;margin-bottom:15px">💡 <b>Tope legal Art 127:</b> No puede exceder 3 meses de salario <b>O</b> el promedio de últimos 3 años, lo que sea más favorable al trabajador.</div>
 <button type="submit" class="btn-calcular">Calcular PTU con Tope →</button>
 </form>
 <div id="resultadoPTU" class="resultado" style="display:none">
 <div class="monto-total"><div style="font-size:12px;color:#6b7280;font-weight:800">PTU FINAL CON TOPE LEGAL</div><div class="valor" id="ptuTotalFinal" style="color:#0f2a5e">$0.00</div><div id="ptuAvisoTope" style="font-size:12px;font-weight:700;margin-top:8px"></div></div>
 <div class="desglose"><div id="desglosePTU"></div></div>
 <a id="waPTU" href="https://wa.me/5213111866901" target="_blank" class="btn-whatsapp" style="display:block">Validar mi PTU con LaboralClick →</a>
-<div style="margin-top:15px;text-align:center"><a href="/calculadora-ptu.html" style="font-size:12px;color:#0f2a5e">Ver calculadora PTU completa en página independiente →</a></div>
+<div style="margin-top:15px;text-align:center"><a href="/calculadora-ptu.html" style="font-size:12px;color:#0f2a5e">Ver calculadora PTU completa →</a></div>
 </div>
 </div>
 
@@ -139,7 +144,7 @@
 </div>
 
 <script>
-function cambiarPestana(id,evt){document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));document.getElementById('sec-'+id).classList.add('activo');evt.currentTarget.classList.add('activo');}
+function cambiarPestana(id,evt){document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('activo'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));document.getElementById('sec-'+id).classList.add('activo');evt.currentTarget.classList.add('activo'); window.scrollTo({top: document.querySelector('.calculadora-container').offsetTop - 20, behavior:'smooth'});}
 let tipoCalculo='finiquito';
 function seleccionarTipoBaja(){const v=document.getElementById('tipoBaja').value; const badge=document.getElementById('badgeTipo'); const btn=document.getElementById('btnFiniquito'); if(!v){badge.style.display='none';btn.disabled=true;btn.textContent='Elige cómo terminó la relación ↑';return;} tipoCalculo=v; btn.disabled=false; if(v==='finiquito'){badge.style.display='inline-block';badge.style.background='#dbeafe';badge.style.color='#1e40af';badge.textContent='✓ FINIQUITO';btn.textContent='Calcular Finiquito →';} else{badge.style.display='inline-block';badge.style.background='#fef3c7';badge.style.color='#92400e';badge.textContent='⚠ LIQUIDACIÓN';btn.textContent='Calcular Liquidación →';}}
 function toggleVencidas(){document.getElementById('boxVencidas').style.display=document.getElementById('tieneVencidas').checked?'block':'none';}
@@ -206,8 +211,6 @@ function getTamFactor(){const v=$('plant').value; if(v==='1') return 0.5; if(v==
 function validateMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const plant=parseInt($('plant').value)||0; const tv=$('tiempo')?$('tiempo').value:''; let ok=true; if(infra.id==='1004' && !tv) ok=false; if(infra.tipo==='POR_TRABAJADOR_AFECTADO' && trab<=0) ok=false; if(plant<=0) ok=false; if(!ok){$('resMultas').style.display='none'; return;} calcularMultas();}
 function calcularMultas(){const infra=CATALOGO.find(c=>c.id===$('infra').value); const trab=getTrab(); const tam=getTamFactor(); const reinc=$('reinc').value==='si'; let umaBase=0, mult=1; if(infra.id==='1004'){umaBase=parseInt($('tiempo').value)||800; mult=trab;} else {mult=infra.tipo==='UNICA'?1:trab;} let min,max; if(infra.id==='1004'){min=UMA*umaBase*mult*tam; max=min;} else {min=UMA*infra.min*mult*tam; max=UMA*infra.max*mult*tam;} if(reinc){min*=2; max*=2;} const prom=(min+max)/2; const fmt=n=>n.toLocaleString('es-MX',{style:'currency',currency:'MXN'}); $('resMultas').style.display='block'; $('prom').textContent=fmt(prom); $('min').textContent=fmt(min); $('max').textContent=fmt(max); $('formula').textContent = infra.id==='1004' ? `UMA $${UMA} × ${umaBase} UMA × ${mult} trab × factor ${tam} ${reinc?'×2':''}` : `UMA $${UMA} × [${infra.min}-${infra.max}] UMA × ${mult} × factor ${tam} ${reinc?'×2':''}`; $('detalleLegal').innerHTML=`<b>${infra.art} - ${infra.desc}</b><br>Tipo: ${infra.tipo.replace('_',' ')} | ${infra.explica} | Trabajadores: ${mult} | ${getPlantLabel()}`; const waText=`Hola LaboralClick, mi riesgo estimado es ${fmt(prom)} por ${infra.art} - ${infra.desc}. Quiero auditoría.`; $('waBtn').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`; $('waBtn').textContent=`Evaluar mi empresa - Riesgo ${fmt(prom)} →`; $('waBtn').style.display='block'; $('cierre').style.display='block'; $('cierre').innerHTML=`<b>${infra.art}</b> - Riesgo promedio: ${fmt(prom)} | Min ${fmt(min)} | Max ${fmt(max)}`;}
 initMultas();
-
-// LOGICA PTU 2026 CON TOPE
 document.getElementById('formPTU').addEventListener('submit',function(e){
 e.preventDefault();
 const montoTotal=parseFloat(document.getElementById('ptuMonto').value)||0;
@@ -217,35 +220,28 @@ const diasTotales=parseFloat(document.getElementById('ptuDiasTotales').value)||0
 const salAnualColab=parseFloat(document.getElementById('ptuSalAnualColab').value)||0;
 const salAnualTotal=parseFloat(document.getElementById('ptuSalAnualTotal').value)||0;
 const promedio3=parseFloat(document.getElementById('ptuPromedio3').value)||0;
-
 if(diasTotales===0 || salAnualTotal===0){alert('Días totales y salario total no pueden ser 0');return;}
-
 const mitad=montoTotal*0.5;
 const ptuPorDias = mitad * (diasColab / diasTotales);
 const ptuPorSalario = mitad * (salAnualColab / salAnualTotal);
 const sinTope = ptuPorDias + ptuPorSalario;
-
 const tope3Meses = salDiario * 90;
 let topeAplicar = tope3Meses;
 if(promedio3>0){ topeAplicar = Math.max(tope3Meses, promedio3); }
-
 const finalPTU = Math.min(sinTope, topeAplicar);
 const seAplicoTope = sinTope > topeAplicar;
-
 document.getElementById('resultadoPTU').style.display='block';
 document.getElementById('ptuTotalFinal').textContent=formatearMoneda(finalPTU);
 document.getElementById('ptuAvisoTope').textContent = seAplicoTope ? `⚠ Se aplicó tope legal Art 127: ${formatearMoneda(topeAplicar)}` : `✓ No aplica tope - recibe completo`;
 document.getElementById('ptuAvisoTope').style.color = seAplicoTope ? '#92400e' : '#166534';
-
 document.getElementById('desglosePTU').innerHTML=`
-<div class="desglose-item"><span>PTU por días trabajados (50%)</span><span>${formatearMoneda(ptuPorDias)}</span></div>
+<div class="desglose-item"><span>PTU por días (50%)</span><span>${formatearMoneda(ptuPorDias)}</span></div>
 <div class="desglose-item"><span>PTU por salario (50%)</span><span>${formatearMoneda(ptuPorSalario)}</span></div>
 <div class="desglose-item"><span>Total sin tope</span><span>${formatearMoneda(sinTope)}</span></div>
-<div class="desglose-item" style="background:#f8fafc"><span>Tope 3 meses salario (90 días)</span><span>${formatearMoneda(tope3Meses)}</span></div>
-${promedio3>0?`<div class="desglose-item" style="background:#f8fafc"><span>Promedio últimos 3 años</span><span>${formatearMoneda(promedio3)}</span></div>`:''}
+<div class="desglose-item" style="background:#f8fafc"><span>Tope 3 meses (90 días)</span><span>${formatearMoneda(tope3Meses)}</span></div>
+${promedio3>0?`<div class="desglose-item" style="background:#f8fafc"><span>Promedio 3 años</span><span>${formatearMoneda(promedio3)}</span></div>`:''}
 <div class="desglose-item destacado"><span>PTU FINAL A PAGAR</span><span>${formatearMoneda(finalPTU)}</span></div>
 `;
-
 const waText=`Hola LaboralClick, calculé PTU 2026: ${formatearMoneda(finalPTU)} (sin tope ${formatearMoneda(sinTope)}, tope ${formatearMoneda(topeAplicar)}). Quiero validación.`;
 document.getElementById('waPTU').href=`https://wa.me/5213111866901?text=${encodeURIComponent(waText)}`;
 window.scrollTo({top: document.getElementById('resultadoPTU').offsetTop - 80, behavior:'smooth'});
