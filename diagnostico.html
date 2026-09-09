@@ -1,94 +1,49 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semáforo Laboral | Laboral Click</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo de Multas STPS 2026 - Calcula tu riesgo en 3 min | LaboralClick</title>
 <style>
-body{font-family:Inter,Arial,sans-serif;background:#f8fafc;margin:0;padding:20px;color:#0f2a5e}
+body{font-family:Inter,Arial,sans-serif;background:#f8fafc;margin:0;padding:0;color:#0f2a5e}
+.header{background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);color:#fff;padding:20px;text-align:center}
 .card{max-width:700px;margin:20px auto;background:#fff;border-radius:16px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
-.badge{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:900;font-size:12px;letter-spacing:1px}
+.badge{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:900;font-size:13px}
 .badge.alto{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
-h1{font-size:22px;text-align:center}
 .resumen{margin:16px 0;padding:14px;background:#fffbeb;border-left:4px solid #c9a028;border-radius:8px;font-size:13px}
-.lista{font-size:13px;line-height:1.6}
-.lista b{color:#0f2a5e}
 .botones{display:flex;flex-direction:column;gap:12px;margin-top:22px}
-.btn{width:100%;box-sizing:border-box;padding:16px 20px;border-radius:12px;font-weight:900;font-size:14px;text-align:center;text-decoration:none;display:block;cursor:pointer;text-transform:uppercase;letter-spacing:.5px}
+.btn{width:100%;box-sizing:border-box;padding:16px 20px;border-radius:12px;font-weight:900;font-size:14px;text-align:center;text-decoration:none;display:block;cursor:pointer;text-transform:uppercase}
 .btn-azul{background:#0f2a5e;color:#fff}
-.btn-dorado{background:#c9a028;color:#0f2a5e;box-shadow:0 4px 12px rgba(201,160,40,.3)}
-.hash{margin-top:18px;padding:10px;border:1px solid #e5e7eb;border-radius:8px;font-size:11px;color:#6b7280;word-break:break-all}
+.btn-dorado{background:#c9a028;color:#0f2a5e}
+.small{font-size:11px;color:#64748b;text-align:center;margin-top:12px}
 </style>
 </head>
 <body>
-
-<div class="card" id="resultado-final">
-  <h1>Resultado de tu Semáforo Laboral</h1>
-  <div style="text-align:center;margin:12px 0;">
-    <span class="badge alto">🔴 RIESGO ALTO</span>
-  </div>
-  <div style="text-align:center;font-size:13px;color:#475569;">PROCESO DE DIAGNÓSTICO LABORAL<br><b>Folio: <span id="folioTxt">LC-2026-16KLB</span></b><br><span id="fechaTxt">9 de septiembre de 2026</span></div>
-
-  <div class="resumen">
-    Se identifican varias señales que conviene atender. <b>Área: Contratación.</b><br>
-    <small>3 áreas requieren revisión</small>
-  </div>
-
-  <div class="lista">
-    <p><b>Resumen de las respuestas proporcionadas:</b></p>
-    <p>G01 - Contratación: No todos tienen contrato, o no refleja cómo trabajan realmente<br>
-    G02 - Documentación: Si, aunque a algunos les falta documentación<br>
-    G03 - Salarios: No llevamos un control claro de esos pagos<br>
-    G04 - Jornada: Tenemos algún control, pero es informal o incompleto<br>
-    G05 - Condiciones: Tenemos algunas, pero sin una política clara<br>
-    G06 - Seguridad: No hemos identificado los riesgos de forma formal<br>
-    G07 - Emergencias: Tenemos algunas medidas, pero no están escritas ni se practican<br>
-    G08 - Capacitación: Capacitamos, pero no siempre conservamos constancias<br>
-    G09 - Ambiente: Hay algunas, pero no están escritas<br>
-    G10 - Ambiente: No tenemos mecanismos establecidos<br>
-    G11 - Terminación: Lo hacemos, pero cada caso se resuelve de forma distinta<br>
-    G12 - Documentación: Tenemos la documentación, pero está dispersa o incompleta<br>
-    R01 - Propinas: Existe un sistema, pero no está documentado ni es claro para todos<br>
-    R02 - Propinas/salario: Si, siempre separadas<br>
-    R04 - Condiciones: Puede ocurrir en algunos puestos</p>
-  </div>
-
-  <div class="hash">Hash: eyJDMDE0QjYXI | https://laboralclick.com.mx/diagnostico.html</div>
-
-  <!-- BLOQUE DE BOTONES YA ARREGLADO -->
-  <div class="botones">
-    <a href="#" onclick="window.print(); return false;" class="btn btn-azul">
-      DESCARGAR / IMPRIMIR MI CONSTANCIA
-    </a>
-
-    <a id="btnRevisarMulta" 
-       href="https://wa.me/5213111866901?text=Hola%20Domiciano%2C%20hice%20el%20Sem%C3%A1foro%20y%20me%20sali%C3%B3%20RIESGO%20ALTO.%20Folio%3A%20LC-2026-16KLB%20Quiero%20revisar%20cu%C3%A1nto%20me%20tocar%C3%ADa%20pagar."
-       target="_blank" rel="noopener" class="btn btn-dorado">
-      QUIERO REVISAR CUÁNTO ME TOCARÍA PAGAR
-    </a>
-  </div>
-
-  <p style="font-size:11px;color:#64748b;text-align:center;margin-top:14px;">Documento generado a partir del diagnóstico realizado en la plataforma de Laboral Click.</p>
+<div class="header">
+<h1 style="margin:0;font-size:20px;">Resultado de tu Semáforo Laboral</h1>
 </div>
 
-<script>
-// Actualiza folio automaticamente en el link de WhatsApp
-(function(){
-  function getFolio(){
-    var el = document.getElementById('folioTxt');
-    return el ? el.textContent.trim() : 'LC-2026-XXXX';
-  }
-  function upd(){
-    var folio = getFolio();
-    var btn = document.getElementById('btnRevisarMulta');
-    if(!btn) return;
-    var msg = `Hola Domiciano, hice el Semáforo y me salió RIESGO ALTO. Folio: ${folio} Quiero revisar cuánto me tocaría pagar.`;
-    btn.href = `https://wa.me/5213111866901?text=${encodeURIComponent(msg)}`;
-  }
-  document.addEventListener('DOMContentLoaded', upd);
-  setTimeout(upd, 800);
-})();
-</script>
+<div class="card">
+<div style="text-align:center;">
+<span class="badge alto">🔴 RIESGO ALTO</span>
+<p style="font-size:13px;color:#475569;margin-top:10px;">PROCESO DE DIAGNOSTICO LABORAL LEGAL<br><b>Folio: LC-2026-16KLB</b><br>9 de septiembre de 2026 a las 11:18 a.m.</p>
+</div>
 
-</body>
-</html>
+<div class="resumen">
+Se identifican varias señales que conviene atender. Área: Contratación.<br>
+<small>Resumen de las respuestas proporcionadas - Ver PDF completo</small>
+</div>
+
+<p style="font-size:12px;">G01 Contratacion: No todos tienen contrato<br>
+G02 Documentacion: Si, aunque a algunos les falta<br>
+G03 Salarios: No llevamos control claro<br>
+G04 Jornada: Tenemos control informal<br>
+G05 Condiciones: Tenemos algunas, sin politica clara<br>
+... (resto de respuestas)</p>
+
+<div class="botones">
+<a href="#" onclick="window.print(); return false;" class="btn btn-azul">DESCARGAR / IMPRIMIR MI CONSTANCIA</a>
+<a href="https://wa.me/5213111866901" target="_blank" class="btn btn-dorado">QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
+</div>
+
+<p class="small">Documento generado a partir del diagnóstico realizado en la plataforma de Laboral Click.<br>https://laboralclick.com.mx/diagnostico.html</p>
+</div>
