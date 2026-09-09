@@ -1,172 +1,128 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semáforo de Multas STPS 2026 - Diagnóstico Laboral | LaboralClick</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo Laboral - Diagnóstico | LaboralClick</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Inter,system-ui,Arial,sans-serif;background:#f1f5f9;margin:0;color:#0f2a5e;line-height:1.5}
-.hero{background:linear-gradient(135deg,#0f2a5e 0%,#1e3a5f 100%);color:#fff;padding:28px 16px;text-align:center}
-.hero h1{margin:0;font-size:22px}
-.hero p{margin:8px 0 0;opacity:.9;font-size:13px}
-.container{max-width:760px;margin:20px auto;padding:0 12px}
-.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.08);margin-bottom:16px}
-.pregunta{border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-bottom:12px;background:#fff}
-.pregunta b{font-size:13px}
-.pregunta select{width:100%;margin-top:8px;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:13px}
-.btn{width:100%;padding:16px;border-radius:12px;font-weight:900;border:0;cursor:pointer;font-size:14px;text-transform:uppercase}
+*{box-sizing:border-box}body{font-family:Inter,Arial,sans-serif;background:#f1f5f9;margin:0;color:#0f2a5e}
+.hero{background:linear-gradient(135deg,#0f2a5e,#1e3a5f);color:#fff;padding:20px;text-align:center}
+.progress{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin:12px 0}
+.progress-bar{height:100%;background:linear-gradient(90deg,#0f2a5e,#c9a028);width:0%;transition:width .4s}
+.card{max-width:640px;margin:16px auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.pregunta-card{min-height:280px;display:flex;flex-direction:column;justify-content:center}
+.pregunta-card h2{font-size:16px;margin:0 0 6px}
+.pregunta-card small{color:#64748b;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.opcion{width:100%;padding:14px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;text-align:left;font-size:13px;margin-top:10px;cursor:pointer;transition:.2s}
+.opcion:hover{border-color:#0f2a5e;background:#f8fafc}
+.opcion.selected{border-color:#0f2a5e;background:#0f2a5e;color:#fff;font-weight:700}
+.btn{width:100%;padding:14px;border-radius:10px;border:0;font-weight:900;cursor:pointer;margin-top:14px;text-transform:uppercase}
 .btn-dorado{background:#c9a028;color:#0f2a5e}
+.btn:disabled{opacity:.4;cursor:not-allowed}
 .btn-azul{background:#0f2a5e;color:#fff}
-.badge{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:900;font-size:13px}
+.badge{padding:8px 16px;border-radius:999px;font-weight:900}
 .badge.alto{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
-.lista{font-size:12px;background:#f8fafc;padding:12px;border-radius:8px;margin:12px 0}
-.botones{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.lista{font-size:11px;background:#f8fafc;padding:10px;border-radius:8px}
+.botones{display:flex;flex-direction:column;gap:10px;margin-top:16px}
 .hide{display:none}
-.resumen{padding:14px;background:#fffbeb;border-left:4px solid #c9a028;border-radius:8px;font-size:13px;margin:12px 0}
 </style>
 </head>
 <body>
 <div class="hero">
-<h1>Semáforo de Multas STPS 2026</h1>
-<p>Calcula tu riesgo en 3 min | LaboralClick - 15 preguntas</p>
+<h1 style="margin:0;font-size:18px;">Semáforo de Multas STPS 2026</h1>
+<p style="margin:4px 0 0;font-size:12px;opacity:.9;">Pregunta <span id="num">1</span> de 15 | <span id="pct">0%</span></p>
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
 </div>
 
-<div class="container">
-<!-- CUESTIONARIO -->
-<div id="formulario" class="card">
-<h2 style="font-size:16px;margin:0 0 12px;text-align:center;">Autodiagnóstico Laboral (15 preguntas)</h2>
-
-<div class="pregunta"><b>G01 - Contratación: ¿Todos tienen contrato por escrito?</b>
-<select id="g01"><option value="">Selecciona...</option><option value="No todos tienen contrato, o no refleja cómo trabajan realmente">No todos tienen contrato, o no refleja cómo trabajan realmente</option><option value="Si, todos con contrato y actualizado">Si, todos con contrato y actualizado</option></select></div>
-
-<div class="pregunta"><b>G02 - Documentación: ¿Expedientes completos?</b>
-<select id="g02"><option value="">Selecciona...</option><option value="Si, aunque a algunos les falta documentación">Si, aunque a algunos les falta documentación</option><option value="Si, todos completos">Si, todos completos</option></select></div>
-
-<div class="pregunta"><b>G03 - Salarios: ¿Control claro de pagos?</b>
-<select id="g03"><option value="">Selecciona...</option><option value="No llevamos un control claro de esos pagos">No llevamos un control claro de esos pagos</option><option value="Si, control claro y recibos CFDI">Si, control claro y recibos CFDI</option></select></div>
-
-<div class="pregunta"><b>G04 - Jornada: ¿Control de jornada?</b>
-<select id="g04"><option value="">Selecciona...</option><option value="Tenemos algún control, pero es informal o incompleto">Tenemos algún control, pero es informal o incompleto</option><option value="Si, control formal con registros">Si, control formal con registros</option></select></div>
-
-<div class="pregunta"><b>G05 - Condiciones: ¿Política clara de condiciones?</b>
-<select id="g05"><option value="">Selecciona...</option><option value="Tenemos algunas, pero sin una política clara">Tenemos algunas, pero sin una política clara</option><option value="Si, políticas claras por escrito">Si, políticas claras por escrito</option></select></div>
-
-<div class="pregunta"><b>G06 - Seguridad: ¿Identificación de riesgos?</b>
-<select id="g06"><option value="">Selecciona...</option><option value="No hemos identificado los riesgos de forma formal">No hemos identificado los riesgos de forma formal</option><option value="Si, análisis de riesgos formal">Si, análisis de riesgos formal</option></select></div>
-
-<div class="pregunta"><b>G07 - Emergencias: ¿Medidas de emergencia escritas?</b>
-<select id="g07"><option value="">Selecciona...</option><option value="Tenemos algunas medidas, pero no están escritas ni se practican">Tenemos algunas medidas, pero no están escritas ni se practican</option><option value="Si, plan escrito y simulacros">Si, plan escrito y simulacros</option></select></div>
-
-<div class="pregunta"><b>G08 - Capacitación: ¿Constancias DC-3?</b>
-<select id="g08"><option value="">Selecciona...</option><option value="Capacitamos, pero no siempre conservamos constancias">Capacitamos, pero no siempre conservamos constancias</option><option value="Si, constancias DC-3 al día">Si, constancias DC-3 al día</option></select></div>
-
-<div class="pregunta"><b>G09 - Ambiente: ¿Reglamento interior?</b>
-<select id="g09"><option value="">Selecciona...</option><option value="Hay algunas, pero no están escritas">Hay algunas, pero no están escritas</option><option value="Si, reglamento depositado">Si, reglamento depositado</option></select></div>
-
-<div class="pregunta"><b>G10 - Ambiente: ¿Mecanismos para quejas?</b>
-<select id="g10"><option value="">Selecciona...</option><option value="No tenemos mecanismos establecidos">No tenemos mecanismos establecidos</option><option value="Si, mecanismos establecidos">Si, mecanismos establecidos</option></select></div>
-
-<div class="pregunta"><b>G11 - Terminación: ¿Proceso de baja?</b>
-<select id="g11"><option value="">Selecciona...</option><option value="Lo hacemos, pero cada caso se resuelve de forma distinta">Lo hacemos, pero cada caso se resuelve de forma distinta</option><option value="Si, proceso estandarizado">Si, proceso estandarizado</option></select></div>
-
-<div class="pregunta"><b>G12 - Documentación: ¿Documentación organizada?</b>
-<select id="g12"><option value="">Selecciona...</option><option value="Tenemos la documentación, pero está dispersa o incompleta">Tenemos la documentación, pero está dispersa o incompleta</option><option value="Si, todo centralizado y digital">Si, todo centralizado y digital</option></select></div>
-
-<div class="pregunta"><b>R01 - Propinas: ¿Sistema claro?</b>
-<select id="r01"><option value="">Selecciona...</option><option value="Existe un sistema, pero no está documentado ni es claro para todos">Existe un sistema, pero no está documentado ni es claro para todos</option><option value="Si, sistema claro y documentado">Si, sistema claro y documentado</option></select></div>
-
-<div class="pregunta"><b>R02 - Propinas/salario: ¿Separadas?</b>
-<select id="r02"><option value="">Selecciona...</option><option value="Si, siempre separadas">Si, siempre separadas</option><option value="No, se mezclan">No, se mezclan</option></select></div>
-
-<div class="pregunta"><b>R04 - Condiciones: ¿Propinas en algunos puestos?</b>
-<select id="r04"><option value="">Selecciona...</option><option value="Puede ocurrir en algunos puestos">Puede ocurrir en algunos puestos</option><option value="No aplica">No aplica</option></select></div>
-
-<button class="btn btn-dorado" onclick="calcular()">VER MI RESULTADO SEMÁFORO</button>
-<p style="font-size:11px;color:#64748b;text-align:center;margin-top:10px;">Tarda 10 seg - Genera folio LC-2026 y constancia</p>
+<div class="card">
+<div id="wizard"></div>
+<button id="btnNext" class="btn btn-dorado" disabled onclick="next()">SIGUIENTE →</button>
 </div>
 
-<!-- RESULTADO - EL QUE ME MANDASTE EN LAS FOTOS -->
-<div id="resultado" class="card hide">
-<h2 style="text-align:center;font-size:18px;margin:0;">Resultado de tu Semáforo Laboral</h2>
+<div id="resultado" class="card hide" style="max-width:700px;">
+<h2 style="text-align:center;margin:0;">Resultado de tu Semáforo Laboral</h2>
 <div style="text-align:center;margin:12px 0;">
 <span id="badge" class="badge alto">RIESGO ALTO</span>
-<div style="margin-top:10px;font-size:12px;color:#475569;">
-PROCESO DE DIAGNOSTICO LABORAL<br>
-<b>Folio: <span id="folioTxt">LC-2026-XXXX</span></b><br>
-<span id="fechaTxt"></span>
+<p style="font-size:12px;color:#475569;"><b>Folio: <span id="folioTxt"></span></b><br><span id="fechaTxt"></span></p>
 </div>
-</div>
-
-<div class="resumen" id="resumenArea">
-Se identifican varias señales que conviene atender. Área: Contratación.
-</div>
-
-<div style="font-size:11px;color:#334155;margin-bottom:6px;"><b>Resumen de las respuestas proporcionadas:</b></div>
-<div id="listaRespuestas" class="lista"></div>
-
-<div style="margin-top:10px;padding:10px;border:1px dashed #cbd5e1;border-radius:8px;font-size:10px;color:#64748b;">
-Hash: <span id="hashTxt"></span> | https://laboralclick.com.mx/diagnostico.html
-</div>
-
+<div style="background:#fffbeb;border-left:4px solid #c9a028;padding:12px;border-radius:8px;font-size:13px;" id="resumen"></div>
+<div style="font-size:11px;margin:10px 0;"><b>Resumen de las respuestas proporcionadas:</b></div>
+<div id="lista" class="lista"></div>
 <div class="botones">
-<a href="#" onclick="window.print(); return false;" class="btn btn-azul">DESCARGAR / IMPRIMIR MI CONSTANCIA</a>
-<a id="btnWhats" href="https://wa.me/5213111866901" target="_blank" class="btn btn-dorado">QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
+<a href="#" onclick="window.print();return false;" class="btn btn-azul">DESCARGAR / IMPRIMIR MI CONSTANCIA</a>
+<a id="btnWA" href="https://wa.me/5213111866901" target="_blank" class="btn btn-dorado">QUIERO REVISAR MI RESULTADO CON LABORAL CLICK</a>
 </div>
-
-<p style="font-size:10px;color:#94a3b8;text-align:center;margin-top:12px;">Documento generado a partir del diagnóstico realizado en la plataforma de Laboral Click.<br>Semáforo de Multas STPS 2026 - Calcula tu riesgo en 3 min | LaboralClick</p>
-</div>
-
 </div>
 
 <script>
-function generarFolio(){
-  const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let r=''; for(let i=0;i<4;i++) r+=chars.charAt(Math.floor(Math.random()*chars.length));
-  return 'LC-2026-'+Math.floor(Math.random()*90+10)+r;
+const PREGUNTAS=[
+{id:'G11',titulo:'G11 - Terminación: ¿Proceso de baja?',opciones:['Lo tenemos estandarizado y por escrito','Lo hacemos, pero cada caso se resuelve de forma distinta','Tenemos algo informal, sin formato','No tenemos proceso definido']},
+{id:'G12',titulo:'G12 - Documentación: ¿Documentación organizada?',opciones:['Si, todo centralizado y digital al día','Tenemos la documentación, pero está dispersa o incompleta','Tenemos parte, pero desorganizada','No tenemos control de documentación']},
+{id:'R01',titulo:'R01 - Propinas: ¿Sistema claro?',opciones:['Si, sistema claro, documentado y transparente','Existe un sistema, pero no está documentado ni es claro para todos','Tenemos un sistema informal, de palabra','No tenemos sistema definido']},
+{id:'R02',titulo:'R02 - Propinas/salario: ¿Separadas?',opciones:['Si, siempre separadas y comprobables','Casi siempre separadas','A veces se mezclan','No, se mezclan en el mismo pago']},
+{id:'R04',titulo:'R04 - Condiciones: ¿Propinas en algunos puestos?',opciones:['No aplica, todos con salario fijo','Puede ocurrir en algunos puestos pero está controlado','Puede ocurrir en algunos puestos sin control claro','Ocurre frecuentemente sin política']},
+// Añadimos las 10 anteriores para completar 15
+{id:'G01',titulo:'G01 - Contratación: ¿Contratos por escrito?',opciones:['Si, todos con contrato vigente y actualizado','Si, pero algunos vencidos o sin actualizar','No todos tienen contrato, o no refleja cómo trabajan realmente','No tenemos contratos por escrito']},
+{id:'G02',titulo:'G02 - Documentación: ¿Expedientes?',opciones:['Si, todos completos y al día','Si, aunque a algunos les falta documentación','Incompletos, muchos sin documentos','No llevamos expedientes']},
+{id:'G03',titulo:'G03 - Salarios: ¿Control de nómina?',opciones:['Si, control claro con CFDI y recibos','Llevamos control, pero sin CFDI','No llevamos un control claro de esos pagos','No hay control']},
+{id:'G04',titulo:'G04 - Jornada: ¿Control de horarios?',opciones:['Si, control formal con checador','Tenemos algún control, pero es informal o incompleto','Control muy básico, de palabra','Sin control de jornada']},
+{id:'G05',titulo:'G05 - Condiciones: ¿Políticas?',opciones:['Si, políticas claras por escrito y firmadas','Tenemos algunas, pero sin una política clara','Muy pocas políticas, informales','Sin políticas']},
+{id:'G06',titulo:'G06 - Seguridad: ¿Riesgos identificados?',opciones:['Si, análisis formal y matriz de riesgos','Identificación parcial','No hemos identificado los riesgos de forma formal','No sabemos qué es eso']},
+{id:'G07',titulo:'G07 - Emergencias: ¿Plan de emergencia?',opciones:['Si, plan escrito, señalizado y simulacros','Tenemos algunas medidas, pero no están escritas ni se practican','Solo extintores, sin plan','Sin medidas']},
+{id:'G08',titulo:'G08 - Capacitación: ¿DC-3?',opciones:['Si, constancias DC-3 al día y plan anual','Capacitamos, pero no siempre conservamos constancias','Capacitación esporádica sin constancias','Sin capacitación']},
+{id:'G09',titulo:'G09 - Ambiente: ¿Reglamento?',opciones:['Si, reglamento interior depositado en JLCA','Hay algunas reglas, pero no están escritas','Reglamento de palabra','Sin reglamento']},
+{id:'G10',titulo:'G10 - Ambiente: ¿Canales de queja?',opciones:['Si, mecanismos formales y protocolo','Tenemos un buzón pero sin proceso','No tenemos mecanismos establecidos','No hay nada']},
+];
+
+let idx=0;
+let respuestas={};
+let seleccionActual=null;
+
+function render(){
+  const p=PREGUNTAS[idx];
+  document.getElementById('num').textContent=idx+1;
+  document.getElementById('pct').textContent=Math.round(((idx)/PREGUNTAS.length)*100)+'%';
+  document.getElementById('bar').style.width=((idx)/PREGUNTAS.length*100)+'%';
+  const html=`
+    <div class="pregunta-card">
+      <small>${p.id} • Pregunta ${idx+1} de ${PREGUNTAS.length}</small>
+      <h2>${p.titulo}</h2>
+      ${p.opciones.map((op,i)=>`<button class="opcion" onclick="selectOpt(this,'${op.replace(/'/g,"\\'")}')">${op}</button>`).join('')}
+    </div>`;
+  document.getElementById('wizard').innerHTML=html;
+  document.getElementById('btnNext').disabled=true;
+  seleccionActual=null;
 }
-function calcular(){
-  const ids=['g01','g02','g03','g04','g05','g06','g07','g08','g09','g10','g11','g12','r01','r02','r04'];
-  let incompletas=[];
-  let respuestas=[];
-  let puntosRiesgo=0;
-  ids.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el.value){ incompletas.push(id.toUpperCase()); }
-    else{
-      respuestas.push(`${id.toUpperCase()} - ${el.options[el.selectedIndex].text}`);
-      // Si la respuesta contiene "No", "falta", "informal", "dispersa", "distinta", "No tenemos" = riesgo
-      const txt=el.value.toLowerCase();
-      if(txt.includes('no ') || txt.includes('falta') || txt.includes('informal') || txt.includes('dispersa') || txt.includes('distinta') || txt.includes('no tenemos') || txt.includes('no está')) puntosRiesgo++;
-    }
-  });
-  if(incompletas.length>0){ alert('Te faltan por contestar: '+incompletas.join(', ')); return; }
-
-  const folio=generarFolio();
-  const fecha=new Date().toLocaleString('es-MX',{dateStyle:'full',timeStyle:'short'});
-  document.getElementById('folioTxt').textContent=folio;
-  document.getElementById('fechaTxt').textContent=fecha;
-  document.getElementById('hashTxt').textContent=btoa(folio+Date.now()).substring(0,16);
-  document.getElementById('listaRespuestas').innerHTML=respuestas.join('<br>');
-
-  let badge=document.getElementById('badge');
-  let resumen=document.getElementById('resumenArea');
-  if(puntosRiesgo>=5){
-    badge.textContent='🔴 RIESGO ALTO'; badge.className='badge alto'; resumen.textContent='Se identifican varias señales que conviene atender. Área: Contratación.';
-  } else if(puntosRiesgo>=2){
-    badge.textContent='🟡 RIESGO MEDIO'; badge.className='badge'; badge.style.background='#fef3c7'; badge.style.color='#92400e'; resumen.textContent='Se identifican algunas señales. Conviene revisar documentación.';
-  } else {
-    badge.textContent='🟢 RIESGO BAJO'; badge.className='badge'; badge.style.background='#dcfce7'; badge.style.color='#166534'; resumen.textContent='Buen control. Mantén tu documentación al día.';
-  }
-
-  // Actualiza WhatsApp con folio
-  const msg=`Hola Domiciano, hice el Semáforo y me salió ${badge.textContent}. Folio: ${folio} Quiero revisar mi resultado con LaboralClick.`;
-  document.getElementById('btnWhats').href=`https://wa.me/5213111866901?text=${encodeURIComponent(msg)}`;
-
-  document.getElementById('formulario').classList.add('hide');
+function selectOpt(btn,valor){
+  document.querySelectorAll('.opcion').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  seleccionActual=valor;
+  document.getElementById('btnNext').disabled=false;
+}
+function next(){
+  if(!seleccionActual) return;
+  const p=PREGUNTAS[idx];
+  respuestas[p.id]=seleccionActual;
+  idx++;
+  if(idx<PREGUNTAS.length){ render(); }
+  else{ mostrarResultado(); }
+}
+function mostrarResultado(){
+  document.querySelector('.card').classList.add('hide');
   document.getElementById('resultado').classList.remove('hide');
-  window.scrollTo(0,0);
+  const folio='LC-2026-'+Math.floor(Math.random()*90+10)+'KLB';
+  document.getElementById('folioTxt').textContent=folio;
+  document.getElementById('fechaTxt').textContent=new Date().toLocaleString('es-MX');
+  let riesgo=Object.values(respuestas).filter(v=>v.toLowerCase().includes('no ')||v.toLowerCase().includes('dispersa')||v.toLowerCase().includes('distinta')||v.toLowerCase().includes('informal')||v.toLowerCase().includes('incompleta')||v.toLowerCase().includes('esporádica')||v.toLowerCase().includes('sin ')).length;
+  const badge=document.getElementById('badge');
+  const resumen=document.getElementById('resumen');
+  if(riesgo>=5){ badge.textContent='🔴 RIESGO ALTO - REQUIERE ATENCIÓN'; resumen.textContent='Se identifican varias señales que conviene atender. Área: Contratación. Documentación dispersa.'; }
+  else if(riesgo>=2){ badge.textContent='🟡 RIESGO MEDIO'; badge.style.background='#fef3c7'; resumen.textContent='Algunas áreas requieren revisión.'; }
+  else{ badge.textContent='🟢 RIESGO BAJO'; badge.style.background='#dcfce7'; resumen.textContent='Buen control general.'; }
+  document.getElementById('lista').innerHTML=Object.entries(respuestas).map(([k,v])=>`${k} - ${v}`).join('<br>');
+  const msg=`Hola Domiciano, hice el Semáforo y me salió ${badge.textContent}. Folio: ${folio} Quiero revisar mi resultado con LaboralClick.`;
+  document.getElementById('btnWA').href=`https://wa.me/5213111866901?text=${encodeURIComponent(msg)}`;
 }
+render();
 </script>
 </body>
 </html>
