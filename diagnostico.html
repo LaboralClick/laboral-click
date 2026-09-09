@@ -1,65 +1,94 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-<head><meta charset="UTF-8"><title>BOTONES RESULTADO ROJO - PEGAR EN DIAGNOSTICO.HTML</title></head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo Laboral | Laboral Click</title>
+<style>
+body{font-family:Inter,Arial,sans-serif;background:#f8fafc;margin:0;padding:20px;color:#0f2a5e}
+.card{max-width:700px;margin:20px auto;background:#fff;border-radius:16px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.badge{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:900;font-size:12px;letter-spacing:1px}
+.badge.alto{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
+h1{font-size:22px;text-align:center}
+.resumen{margin:16px 0;padding:14px;background:#fffbeb;border-left:4px solid #c9a028;border-radius:8px;font-size:13px}
+.lista{font-size:13px;line-height:1.6}
+.lista b{color:#0f2a5e}
+.botones{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.btn{width:100%;box-sizing:border-box;padding:16px 20px;border-radius:12px;font-weight:900;font-size:14px;text-align:center;text-decoration:none;display:block;cursor:pointer;text-transform:uppercase;letter-spacing:.5px}
+.btn-azul{background:#0f2a5e;color:#fff}
+.btn-dorado{background:#c9a028;color:#0f2a5e;box-shadow:0 4px 12px rgba(201,160,40,.3)}
+.hash{margin-top:18px;padding:10px;border:1px solid #e5e7eb;border-radius:8px;font-size:11px;color:#6b7280;word-break:break-all}
+</style>
+</head>
 <body>
-<!-- 
-COPIA TODO ESTE BLOQUE Y PEGALO DONDE TIENES TUS 2 BOTONES ACTUALES EN diagnostico.html
-Reemplaza tus 2 botones por este bloque completo
--->
 
-<div id="bloque-botones-final" style="display:flex;flex-direction:column;gap:12px;margin-top:20px;max-width:600px;margin-left:auto;margin-right:auto;">
+<div class="card" id="resultado-final">
+  <h1>Resultado de tu Semáforo Laboral</h1>
+  <div style="text-align:center;margin:12px 0;">
+    <span class="badge alto">🔴 RIESGO ALTO</span>
+  </div>
+  <div style="text-align:center;font-size:13px;color:#475569;">PROCESO DE DIAGNÓSTICO LABORAL<br><b>Folio: <span id="folioTxt">LC-2026-16KLB</span></b><br><span id="fechaTxt">9 de septiembre de 2026</span></div>
 
-  <!-- BOTON 1: DESCARGAR CONSTANCIA - SE QUEDA IGUAL -->
-  <a id="btnDescargaConstancia" href="#" onclick="window.print(); return false;" 
-     style="display:block;width:100%;box-sizing:border-box;background:#0f2a5e;color:#ffffff;padding:16px 20px;text-align:center;border-radius:12px;font-weight:900;font-size:14px;letter-spacing:0.5px;text-decoration:none;cursor:pointer;text-transform:uppercase;">
-    DESCARGAR / IMPRIMIR MI CONSTANCIA
-  </a>
+  <div class="resumen">
+    Se identifican varias señales que conviene atender. <b>Área: Contratación.</b><br>
+    <small>3 áreas requieren revisión</small>
+  </div>
 
-  <!-- BOTON 2: REVISAR MULTA - EL NUEVO PARA ROJO -->
-  <a id="btnRevisarMulta" 
-     href="https://wa.me/5213111866901?text=Hola%20Domiciano%2C%20hice%20el%20Sem%C3%A1foro%20y%20me%20sali%C3%B3%20RIESGO%20ALTO.%20Quiero%20revisar%20cu%C3%A1nto%20me%20tocar%C3%ADa%20pagar."
-     target="_blank" rel="noopener"
-     style="display:block;width:100%;box-sizing:border-box;background:#c9a028;color:#0f2a5e;padding:16px 20px;text-align:center;border-radius:12px;font-weight:900;font-size:14px;letter-spacing:0.5px;text-decoration:none;cursor:pointer;text-transform:uppercase;box-shadow:0 4px 12px rgba(201,160,40,0.3);">
-    QUIERO REVISAR CUÁNTO ME TOCARÍA PAGAR
-  </a>
+  <div class="lista">
+    <p><b>Resumen de las respuestas proporcionadas:</b></p>
+    <p>G01 - Contratación: No todos tienen contrato, o no refleja cómo trabajan realmente<br>
+    G02 - Documentación: Si, aunque a algunos les falta documentación<br>
+    G03 - Salarios: No llevamos un control claro de esos pagos<br>
+    G04 - Jornada: Tenemos algún control, pero es informal o incompleto<br>
+    G05 - Condiciones: Tenemos algunas, pero sin una política clara<br>
+    G06 - Seguridad: No hemos identificado los riesgos de forma formal<br>
+    G07 - Emergencias: Tenemos algunas medidas, pero no están escritas ni se practican<br>
+    G08 - Capacitación: Capacitamos, pero no siempre conservamos constancias<br>
+    G09 - Ambiente: Hay algunas, pero no están escritas<br>
+    G10 - Ambiente: No tenemos mecanismos establecidos<br>
+    G11 - Terminación: Lo hacemos, pero cada caso se resuelve de forma distinta<br>
+    G12 - Documentación: Tenemos la documentación, pero está dispersa o incompleta<br>
+    R01 - Propinas: Existe un sistema, pero no está documentado ni es claro para todos<br>
+    R02 - Propinas/salario: Si, siempre separadas<br>
+    R04 - Condiciones: Puede ocurrir en algunos puestos</p>
+  </div>
 
+  <div class="hash">Hash: eyJDMDE0QjYXI | https://laboralclick.com.mx/diagnostico.html</div>
+
+  <!-- BLOQUE DE BOTONES YA ARREGLADO -->
+  <div class="botones">
+    <a href="#" onclick="window.print(); return false;" class="btn btn-azul">
+      DESCARGAR / IMPRIMIR MI CONSTANCIA
+    </a>
+
+    <a id="btnRevisarMulta" 
+       href="https://wa.me/5213111866901?text=Hola%20Domiciano%2C%20hice%20el%20Sem%C3%A1foro%20y%20me%20sali%C3%B3%20RIESGO%20ALTO.%20Folio%3A%20LC-2026-16KLB%20Quiero%20revisar%20cu%C3%A1nto%20me%20tocar%C3%ADa%20pagar."
+       target="_blank" rel="noopener" class="btn btn-dorado">
+      QUIERO REVISAR CUÁNTO ME TOCARÍA PAGAR
+    </a>
+  </div>
+
+  <p style="font-size:11px;color:#64748b;text-align:center;margin-top:14px;">Documento generado a partir del diagnóstico realizado en la plataforma de Laboral Click.</p>
 </div>
 
 <script>
-// ESTE SCRIPT PONE EL FOLIO AUTOMATICO - NO TOQUES NADA
-// Busca el folio que ya generas como LC-2026-16KLB en tu pagina y lo mete al WhatsApp
-(function() {
-  function actualizarLinkWhatsApp() {
-    var folioEl = document.querySelector('[id*="folio"], [class*="folio"], .folio');
-    var folioTexto = '';
-    
-    // Intenta sacar el folio de tu texto actual (ej: Folio: LC-2026-16KLB)
-    if (folioEl) {
-      folioTexto = folioEl.textContent || folioEl.innerText || '';
-    } else {
-      // Si no lo encuentra por clase, busca en todo el body el patron LC-2026-
-      var bodyText = document.body.innerHTML;
-      var match = bodyText.match(/LC-2026-[A-Z0-9]+/);
-      if (match) folioTexto = match[0];
-    }
-    
-    // Limpia y deja solo el codigo LC-2026-XXXX
-    var folioLimpio = (folioTexto.match(/LC-2026-[A-Z0-9]+/) || ['LC-2026-XXXX'])[0];
-    
-    var btn = document.getElementById('btnRevisarMulta');
-    if (btn) {
-      var mensaje = `Hola Domiciano, hice el Semáforo y me salió RIESGO ALTO. Folio: ${folioLimpio} Quiero revisar cuánto me tocaría pagar.`;
-      btn.href = `https://wa.me/5213111866901?text=${encodeURIComponent(mensaje)}`;
-    }
+// Actualiza folio automaticamente en el link de WhatsApp
+(function(){
+  function getFolio(){
+    var el = document.getElementById('folioTxt');
+    return el ? el.textContent.trim() : 'LC-2026-XXXX';
   }
-  
-  // Ejecuta al cargar y 1 seg despues por si tu folio tarda
-  document.addEventListener('DOMContentLoaded', actualizarLinkWhatsApp);
-  setTimeout(actualizarLinkWhatsApp, 1000);
-  setTimeout(actualizarLinkWhatsApp, 2500);
+  function upd(){
+    var folio = getFolio();
+    var btn = document.getElementById('btnRevisarMulta');
+    if(!btn) return;
+    var msg = `Hola Domiciano, hice el Semáforo y me salió RIESGO ALTO. Folio: ${folio} Quiero revisar cuánto me tocaría pagar.`;
+    btn.href = `https://wa.me/5213111866901?text=${encodeURIComponent(msg)}`;
+  }
+  document.addEventListener('DOMContentLoaded', upd);
+  setTimeout(upd, 800);
 })();
 </script>
 
-<!-- FIN DEL BLOQUE A PEGAR -->
 </body>
 </html>
