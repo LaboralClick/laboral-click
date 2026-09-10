@@ -58,11 +58,11 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-re
 .cst-sec-title{color:#b68a1e;font-weight:800;font-size:7.5pt;text-transform:uppercase;letter-spacing:.6px;border-left:3px solid #c9a028;padding-left:5px;margin-bottom:3px}
 .cst-sec p{font-size:8.5pt;margin:0}
 .cst-respuestas{columns:2;column-gap:12px;white-space:pre-wrap;font-size:6.8pt;line-height:1.35;color:#374151;border-top:1px solid #e5e7eb;padding-top:5px}
-.cst-firmas{display:flex;gap:30px;justify-content:space-between;margin-top:14px;page-break-inside:avoid}
+.cst-firmas{display:flex;gap:30px;justify-content:space-between;margin-top:30px;page-break-inside:avoid}
 .cst-firma{flex:1;text-align:center;font-size:7.5pt;color:#0f2a5e;font-weight:700}
 .cst-linea{border-top:1px solid #0f2a5e;width:80%;margin:0 auto 4px}
 .cst-firma-sub{font-weight:400;color:#6b7280;font-size:6.5pt}
-.cst-note{margin-top:8px;text-align:center;font-size:6.5pt;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:5px}
+.cst-note{margin-top:10px;text-align:center;font-size:6.5pt;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:5px}
 }
 @media(max-width:600px){.card{padding:22px}.captura-email input,.captura-email button{width:100%;margin-top:8px}}
 </style>
@@ -132,7 +132,7 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-re
 </div>
 <div class="captura-email">
 <div style="font-weight:800;color:#0f2a5e;margin-bottom:5px;">¿Quieres conservar tu resultado?</div>
-<p style="font-size:.85rem;color:#6b7280;margin-top:5px;">Déjanos tu correo únicamente si deseas recibir o compartir tu resultado por este medio.</p>
+<p style="font-size:.85rem;color:#6b7280;margin-top:5px;">Déjanos tu correo y te enviaremos tu resultado completo por ese medio.</p>
 <input type="email" id="input-email-resultado" placeholder="Tu correo electrónico" autocomplete="email">
 <button onclick="guardarEmailYNotificar()">ENVIAR</button>
 <p id="msg-email" class="mensaje-exito"></p>
@@ -198,7 +198,7 @@ function escapeHtml(t){var d=document.createElement('div');d.textContent=t==null
 function prepararWhatsApp(){var m='Hola, soy de Laboral Click.%0A%0ARealicé el Semáforo Laboral.%0AFolio: '+estado.folio+'%0AResultado: '+estado.resultadoFinal.nivelGeneral+'%0AÁrea principal: '+estado.resultadoFinal.areaPrincipal+'%0A%0AMe gustaría revisar mi resultado.';document.getElementById('btn-whatsapp').href='https://wa.me/523111869901?text='+m}
 function prepararConstancia(){var res=estado.resultadoFinal;document.getElementById('constancia-nivel').textContent=res.nivelGeneral;document.getElementById('constancia-folio-numero').textContent=estado.folio;document.getElementById('constancia-fecha').textContent=formatearFecha(estado.fechaDiagnostico);document.getElementById('constancia-area').textContent=res.areaPrincipal;document.getElementById('constancia-explicacion').textContent=res.explicacion;document.getElementById('constancia-recomendacion').textContent=res.recomendacion;var rt=[];estado.preguntasActivas.forEach(function(p){var ri=estado.respuestas[p.id];if(ri===undefined)return;var op=p.opciones[ri];if(!op)return;rt.push(p.id+' · '+p.area+': '+op.texto)});document.getElementById('constancia-respuestas').textContent=rt.join('\n');document.getElementById('constancia-hash').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(estado.respuestas)))).substring(0,16);document.getElementById('constancia-url').textContent=window.location.href;var qr=document.getElementById('qr-code');qr.innerHTML='';if(typeof QRCode!=='undefined'){new QRCode(qr,{text:window.location.href,width:100,height:100})}}
 function imprimirConstancia(){prepararConstancia();window.print()}
-function guardarEmailYNotificar(){var input=document.getElementById('input-email-resultado');var email=input.value.trim();var msg=document.getElementById('msg-email');if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.display='block';msg.style.color='#991b1b';msg.textContent='Por favor, introduce un correo válido.';return}enviarAGoogleSheet({accion:'captura_email',folio:estado.folio,fecha:estado.fechaDiagnostico?estado.fechaDiagnostico.toISOString():new Date().toISOString(),nivel:estado.resultadoFinal?estado.resultadoFinal.nivelGeneral:'',area:estado.resultadoFinal?estado.resultadoFinal.areaPrincipal:'',tipo:estado.respuestas.C01||'',trabajadores:estado.respuestas.C02||'',porcentaje:estado.resultadoFinal?Math.round(estado.resultadoFinal.porcentajeGeneral):'',fuente:estado.respuestas.C07||'',email:email,respuestas:'{}'});msg.style.display='block';msg.style.color='#166534';msg.textContent='Resultado registrado. Abriendo tu correo...';setTimeout(function(){window.location.href='mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('Mi resultado del Semáforo Laboral - '+estado.folio)+'&body='+encodeURIComponent('Folio: '+estado.folio+'%0D%0ANivel: '+estado.resultadoFinal.nivelGeneral+'%0D%0AÁrea principal: '+estado.resultadoFinal.areaPrincipal+'%0D%0A%0D%0A'+estado.resultadoFinal.explicacion+'%0D%0A%0D%0ARecomendación: '+estado.resultadoFinal.recomendacion+'%0D%0A%0D%0ALaboral Click%0Ahttps://laboralclick.com.mx')},400)}
+function guardarEmailYNotificar(){var input=document.getElementById('input-email-resultado');var email=input.value.trim();var msg=document.getElementById('msg-email');if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.display='block';msg.style.color='#991b1b';msg.textContent='Por favor, introduce un correo válido.';return}enviarAGoogleSheet({accion:'captura_email',folio:estado.folio,fecha:estado.fechaDiagnostico?estado.fechaDiagnostico.toISOString():new Date().toISOString(),nivel:estado.resultadoFinal?estado.resultadoFinal.nivelGeneral:'',area:estado.resultadoFinal?estado.resultadoFinal.areaPrincipal:'',tipo:estado.respuestas.C01||'',trabajadores:estado.respuestas.C02||'',porcentaje:estado.resultadoFinal?Math.round(estado.resultadoFinal.porcentajeGeneral):'',fuente:estado.respuestas.C07||'',email:email,explicacion:estado.resultadoFinal?estado.resultadoFinal.explicacion:'',recomendacion:estado.resultadoFinal?estado.resultadoFinal.recomendacion:'',respuestas:'{}'});msg.style.display='block';msg.style.color='#166534';msg.textContent='Listo. Tu resultado quedó registrado y lo enviaremos a '+email+' en unos minutos.';input.value=''}
 </script>
 </body>
 </html>
