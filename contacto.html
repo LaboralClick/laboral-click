@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-ED8M8E4DNP');
 </script>
   <meta charset="UTF-8">
@@ -27,8 +26,6 @@
     .btn-contacto:hover { transform: translateY(-2px); }
     .btn-whatsapp-card { background-color: #25D366; color: white; }
     .btn-whatsapp-card:hover { background-color: #1da851; }
-    .btn-telegram { background-color: #0088cc; color: white; }
-    .btn-telegram:hover { background-color: #0077b5; }
     
     .form-group { margin-bottom: 18px; text-align: left; }
     .form-group label { font-weight: 600; margin-bottom: 6px; display: block; color: #0a2463; }
@@ -47,38 +44,11 @@
   <header>
     <div class="container">
       <nav class="nav">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-          <span>Asesoria Legal sin Enredos</span>
+          <span>Asesoría Legal sin Enredos</span>
         </a>
-      <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-        <ul class="nav-links" id="navMenu">
-          <button class="menu-close-btn" onclick="document.getElementById('navMenu').classList.remove('open')">✕</button>
-    <li><a href="index.html">Inicio</a></li>
-    
-    <li class="has-dropdown">
-        <a href="nosotros.html">Nosotros</a>
-        <ul class="dropdown">
-            <li><a href="nosotros.html">Filosofía</a></li>
-            <li><a href="equipo.html">Equipo</a></li>
-        </ul>
-    </li>
-    
-    <li class="has-dropdown">
-       <a href="restaurantes.html">Servicios</a>
-        <ul class="dropdown">
-            <li><a href="pymes.html">PyMEs en General</a></li>
-            <li><a href="
-            <li><a href="pymes.html">PyMEs en General</a></li>
-            <li><a href="restaurantes.html">Restaurantes</a></li>
-        </ul>
-    </li>
-    
-    <li><a href="calculadoras.html">Calculadoras</a></li>
-    <li><a href="diagnostico.html">Diagnóstico</a></li>
-    <li><a href="contacto.html">Contacto</a></li>
-</ul>
-        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+        <div id="menu-container"></div>
       </nav>
     </div>
   </header>
@@ -94,13 +64,13 @@
     <div class="container" style="padding: 0;">
       <div class="contacto-card whatsapp">
         <h2>💬 WhatsApp</h2>
-        <p>El canal más rápido y directo para resolver tus dudas.</p>
-        <a href="https://wa.me/523111866901?text=Hola%20Laboral%20Click%2C%20quiero%20informes" class="btn-contacto btn-whatsapp-card" target="_blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'contacto', 'event_label': 'boton_whatsapp_contacto'});">Enviar WhatsApp</a> 
+        <p>El canal más rápido y directo para resolver tus dudas laborales.</p>
+        <a href="https://wa.me/5213111866901?text=Hola%20Laboral%20Click%2C%20quiero%20informes" class="btn-contacto btn-whatsapp-card" target="_blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'contacto', 'event_label': 'boton_whatsapp_contacto'});">Enviar WhatsApp</a>
       </div>
       <div class="contacto-card" style="margin-top:25px;">
-        <h2>📱 Telegram</h2>
-        <p>Comunicación segura y alternativa.</p>
-        <a href="https://t.me/LaboralClick" class="btn-contacto btn-telegram" target="_blank">Contactar por Telegram</a>
+        <h2>📧 Correo Electrónico</h2>
+        <p>Para consultas formales, documentación o temas que requieren seguimiento por escrito.</p>
+        <a href="mailto:contacto@laboralclick.com.mx" class="btn-contacto" style="background-color:#0a2463;color:white;">contacto@laboralclick.com.mx</a>
       </div>
     </div>
 
@@ -135,7 +105,7 @@
         <div class="form-group" style="font-size: 14px; color: #4a4a5a;">
           <label style="display: flex; align-items: flex-start; gap: 8px; font-weight: 400; cursor: pointer;">
             <input type="checkbox" required style="width: auto; margin-top: 4px;">
-            He leído y acepto el <a href="/aviso" target="_blank" style="color: #c9a028; font-weight: 600;">Aviso de Privacidad</a>.
+            He leído y acepto el <a href="/aviso.html" target="_blank" style="color: #c9a028; font-weight: 600;">Aviso de Privacidad</a>.
           </label>
         </div>
         <p style="font-size:12px; color:#6B7280; margin-top: -10px; margin-bottom: 20px;">
@@ -148,20 +118,30 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs.</p></div>
-        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
       </div>
-      <div class="footer-bottom">
-        <p class="disclaimer-text">La información es de carácter orientativo.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
       </div>
     </div>
-   </footer>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
 
   <script src="menu.js"></script>
 </body>
