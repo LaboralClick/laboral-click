@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Semáforo Laboral | Laboral Click</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>LC</text></svg>">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -69,14 +70,16 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-re
 </head>
 <body>
 
-<header style="background:#10254d;padding:15px 20px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.15);">
-<div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-<a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-<img src="/images/logoH.png" alt="Laboral Click" style="height:45px;" onerror="this.style.display='none'">
-<span style="color:white;font-weight:700;font-size:1rem;">Asesoría Legal sin Enredos</span>
-</a>
-<a href="index.html" style="color:#d6b347;font-weight:700;text-decoration:none;font-size:.9rem;border:2px solid #d6b347;padding:8px 20px;border-radius:6px;">Volver al inicio</a>
-</div>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
+        <span>Asesoría Legal sin Enredos</span>
+      </a>
+      <div id="menu-container"></div>
+    </nav>
+  </div>
 </header>
 
 <div id="seccion-inicio" class="seccion activa">
@@ -84,7 +87,7 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-re
 <div style="color:#d6b347;font-weight:800;letter-spacing:3px">LABORAL CLICK</div>
 <h1 style="color:white;margin:20px 0;">SEMÁFORO LABORAL PARA PyMEs</h1>
 <p style="color:#d6b347;font-size:1.3rem;font-weight:700">¿Qué tan tranquilo está tu negocio en materia laboral?</p>
-<div style="display:inline-block;background:#d6b347;color:#10254d;padding:10px 24px;border-radius:30px;font-weight:800;margin:20px 0;">GRATIS · RESULTADO INMEDIATO</div>
+<div style="display:inline-block;background:#d6b347;color:#10254d;padding:10px 24px;border-radius:30px;font-weight:800;margin:20px 0;">GRATIS · SOLO 3 MINUTOS · RESULTADO INMEDIATO</div>
 <br>
 <button onclick="iniciarCuestionario()" style="background:#d6b347;color:#10254d;padding:16px 48px;border-radius:8px;font-weight:800;border:none;cursor:pointer;font-size:1.1rem;">COMENZAR</button>
 </div>
@@ -173,7 +176,30 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-re
 </div>
 </div>
 
-<footer style="background:#10254d;color:white;padding:30px 20px;text-align:center;margin-top:50px;"><p>&copy; 2026 Laboral Click - Todos los derechos reservados</p></footer>
+<footer class="footer-lc">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Laboral Click</h3>
+      <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+    </div>
+    <div class="footer-col">
+      <h3>📍 Ubicación</h3>
+      <p>Col. Narvarte, Benito Juárez, CDMX</p>
+      <h3>📱 WhatsApp</h3>
+      <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>⚖️ Información Legal</h3>
+      <p><a href="aviso.html">Aviso de Privacidad</a></p>
+      <p><a href="terminos.html">Términos y Condiciones</a></p>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+    <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+  </div>
+</footer>
 
 <script>
 var GOOGLE_SHEET_URL='https://script.google.com/macros/s/AKfycbw78vqMfLjAd7JYxBwES4BSaRDi2ONqWGQSNWZY3fhBZ8bHHETFgNsFnj_IF5--/exec';
@@ -200,5 +226,6 @@ function prepararConstancia(){var res=estado.resultadoFinal;document.getElementB
 function imprimirConstancia(){prepararConstancia();window.print()}
 function guardarEmailYNotificar(){var input=document.getElementById('input-email-resultado');var email=input.value.trim();var msg=document.getElementById('msg-email');if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.display='block';msg.style.color='#991b1b';msg.textContent='Por favor, introduce un correo válido.';return}enviarAGoogleSheet({accion:'captura_email',folio:estado.folio,fecha:estado.fechaDiagnostico?estado.fechaDiagnostico.toISOString():new Date().toISOString(),nivel:estado.resultadoFinal?estado.resultadoFinal.nivelGeneral:'',area:estado.resultadoFinal?estado.resultadoFinal.areaPrincipal:'',tipo:estado.respuestas.C01||'',trabajadores:estado.respuestas.C02||'',porcentaje:estado.resultadoFinal?Math.round(estado.resultadoFinal.porcentajeGeneral):'',fuente:estado.respuestas.C07||'',email:email,explicacion:estado.resultadoFinal?estado.resultadoFinal.explicacion:'',recomendacion:estado.resultadoFinal?estado.resultadoFinal.recomendacion:'',respuestas:'{}'});msg.style.display='block';msg.style.color='#166534';msg.textContent='Listo. Tu resultado quedó registrado y lo enviaremos a '+email+' en unos minutos.';input.value=''}
 </script>
+<script src="menu.js"></script>
 </body>
 </html>
