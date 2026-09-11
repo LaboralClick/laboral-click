@@ -35,6 +35,8 @@
         .features-list { list-style: none; margin: 1.5rem 0; flex-grow: 1; }
         .features-list li { padding: 10px 0; border-bottom: 1px solid #edf2f7; font-size: 0.9rem; color: #1a202c; }
         .features-list li::before { content: '✓'; color: #c9a028; font-weight: 900; margin-right: 10px; }
+        .features-list li.cloud::before { content: '☁'; color: #0f2a5e; font-weight: 900; }
+        .features-list li.cloud { background: #f0f9ff; padding: 12px 10px; border-radius: 8px; border: 1px solid #bae6fd; margin: 10px 0; font-weight: 600; }
         .enterprise-card { background: #fffef5; border: 2px solid #c9a028; border-radius: 12px; padding: 40px; margin-top: 40px; text-align: center; }
         .btn { display: inline-block; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.3s; cursor: pointer; border: none; text-align: center; font-size: 1rem; }
         .btn-gold { background-color: #c9a028; color: white; }
@@ -46,6 +48,9 @@
         .cta-final { background-color: #0f2a5e; color: white; text-align: center; padding: 60px 20px; }
         .cta-final h2 { color: white; }
         .cta-final p { color: rgba(255,255,255,0.9); }
+        .nube-destacado { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; border-radius: 12px; padding: 40px; margin-top: 40px; text-align: center; box-shadow: 0 8px 24px rgba(15,42,94,0.2); }
+        .nube-destacado h3 { color: #f0c040; margin-bottom: 1rem; }
+        .nube-destacado p { color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; }
         @media (max-width: 768px) { .hero-pyme h1 { font-size: 1.8rem; } h2 { font-size: 1.6rem; } .pricing-card.featured { transform: scale(1); } }
     </style>
 </head>
@@ -108,6 +113,7 @@
                         <li>1 hora de asesoría mensual</li>
                         <li>Soporte WhatsApp (L-V 9:00-18:00)</li>
                         <li>Visita inicial a su negocio</li>
+                        <li class="cloud">☁ Nube Laboral Click (1 GB): tus contratos firmados y constancias, respaldados y localizables al instante</li>
                     </ul>
                     <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
                 </div>
@@ -125,6 +131,7 @@
                         <li>Protocolo de despidos y NOM-035</li>
                         <li>3 horas de asesoría mensual</li>
                         <li>Soporte prioritario (menos de 2 hrs)</li>
+                        <li class="cloud">☁ Nube Laboral Click (5 GB): expediente completo por trabajador, contratos, políticas y reglamentos con control de versiones</li>
                     </ul>
                     <a href="diagnostico.html" class="btn btn-filled">Elegir Plan</a>
                 </div>
@@ -141,16 +148,23 @@
                         <li>Gerencia de cuenta dedicada</li>
                         <li>Visitas presenciales mensuales</li>
                         <li>Soporte de emergencias 24/7</li>
+                        <li class="cloud">☁ Nube Laboral Click (10 GB): expediente total de tu empresa listo para inspección STPS/IMSS, con acceso seguro compartido con tu asesor</li>
                     </ul>
                     <a href="diagnostico.html" class="btn btn-outline">Elegir Plan</a>
                 </div>
             </div>
         </div>
+        
+        <div class="nube-destacado">
+            <h3>☁ Tu expediente laboral digital, siempre disponible</h3>
+            <p>Porque blindar no es solo documentar: es poder poner el documento correcto sobre la mesa en el momento correcto. Con la Nube Laboral Click, tu historia laboral nunca depende de una carpeta perdida.</p>
+        </div>
+
         <div class="enterprise-card">
             <h3>🏢 Plan Empresarial</h3>
             <p class="plan-subtitle">Para 61+ empleados o operaciones diversificadas</p>
             <div class="price">Cotización <span>personalizada</span></div>
-            <p style="max-width: 700px; margin: 0 auto;">Cobertura binacional México-USA, equipo legal dedicado, reportes ejecutivos mensuales y capacitación para todo su equipo.</p>
+            <p style="max-width: 700px; margin: 0 auto;">Cobertura binacional México-USA, equipo legal dedicado, reportes ejecutivos mensuales, capacitación para todo su equipo y Nube Laboral Click a medida de tu operación.</p>
             <a href="contacto.html" class="btn btn-gold" style="margin-top: 1.5rem;">Solicitar Cotización</a>
         </div>
     </section>
@@ -162,7 +176,7 @@
 
     <section class="cta-final">
         <h2>¿Su empresa está protegida hoy?</h2>
-        <p>Realice nuestro Diagnóstico Express de 1 Minuto (completamente gratis) y detecte los riesgos ocultos en su operación.</p>
+        <p>Realice nuestro Diagnóstico Express de 3 Minutos (completamente gratis) y detecte los riesgos ocultos en su operación.</p>
         <a href="diagnostico.html" class="btn btn-gold">👉 EVALUAR MI EMPRESA AQUÍ</a>
         <p style="margin-top: 2rem; font-size: 0.9rem;">WhatsApp directo: 311 186 6901 | Web: laboralclick.com.mx</p>
     </section>
