@@ -65,12 +65,14 @@
       <div class="contacto-card whatsapp">
         <h2>💬 WhatsApp</h2>
         <p>El canal más rápido y directo para resolver tus dudas laborales.</p>
-        <a href="https://wa.me/5213111866901?text=Hola%20Laboral%20Click%2C%20quiero%20informes" class="btn-contacto btn-whatsapp-card" target="_blank" onclick="gtag('event', 'click_whatsapp', {'event_category': 'contacto', 'event_label': 'boton_whatsapp_contacto'});">Enviar WhatsApp</a>
+        <a href="https://wa.me/5213111866901?text=Hola%20Laboral%20Click%2C%20quiero%20informes" class="btn-contacto btn-whatsapp-card" target="_blank" rel="noopener" onclick="gtag('event', 'click_whatsapp', {'event_category': 'contacto', 'event_label': 'boton_whatsapp_contacto'});">Enviar WhatsApp</a>
       </div>
       <div class="contacto-card" style="margin-top:25px;">
         <h2>📧 Correo Electrónico</h2>
         <p>Para consultas formales, documentación o temas que requieren seguimiento por escrito.</p>
-        <a href="mailto:contacto@laboralclick.com.mx" class="btn-contacto" style="background-color:#0a2463;color:white;">contacto@laboralclick.com.mx</a>
+        <div style="background:#f1f5f9;border:2px dashed #0a2463;border-radius:12px;padding:12px;font-weight:800;color:#0a2463;font-size:15px;word-break:break-all;">contacto@laboralclick.com.mx</div>
+        <button type="button" class="btn-contacto" style="background-color:#0a2463;color:white;border:none;cursor:pointer;width:100%;" onclick="copiarCorreo()">📋 Copiar correo</button>
+        <p id="msgCorreo" style="display:none;color:#166534;font-weight:700;font-size:13px;margin-top:8px;">✅ Correo copiado. Pégalo en tu aplicación de correo.</p>
       </div>
     </div>
 
@@ -105,7 +107,7 @@
         <div class="form-group" style="font-size: 14px; color: #4a4a5a;">
           <label style="display: flex; align-items: flex-start; gap: 8px; font-weight: 400; cursor: pointer;">
             <input type="checkbox" required style="width: auto; margin-top: 4px;">
-            He leído y acepto el <a href="/aviso.html" target="_blank" style="color: #c9a028; font-weight: 600;">Aviso de Privacidad</a>.
+            He leído y acepto el <a href="aviso.html" target="_blank" style="color: #c9a028; font-weight: 600;">Aviso de Privacidad</a>.
           </label>
         </div>
         <p style="font-size:12px; color:#6B7280; margin-top: -10px; margin-bottom: 20px;">
@@ -144,5 +146,45 @@
   </footer>
 
   <script src="menu.js"></script>
+  <script>
+    function copiarCorreo(){
+      var correo='contacto@laboralclick.com.mx';
+      function avisoOk(){
+        var m=document.getElementById('msgCorreo');
+        m.style.display='block';
+        setTimeout(function(){ m.style.display='none'; },2500);
+      }
+      function fallback(){
+        var ta=document.createElement('textarea');
+        ta.value=correo;
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand('copy'); avisoOk(); }
+        catch(e){ alert('Copia manualmente el correo: '+correo); }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(correo).then(avisoOk, fallback);
+      } else {
+        fallback();
+      }
+    }
+
+    document.getElementById('formContacto').addEventListener('submit', function(e){
+      e.preventDefault();
+      var nombre=document.getElementById('nombre').value.trim();
+      var telefono=document.getElementById('telefono').value.trim();
+      var servicio=document.getElementById('servicio').value || 'No especificado';
+      var mensaje=document.getElementById('mensaje').value.trim();
+      var texto='Hola Laboral Click.%0A%0A'
+        + 'Nombre: '+encodeURIComponent(nombre)+'%0A'
+        + 'Teléfono: '+encodeURIComponent(telefono)+'%0A'
+        + 'Servicio de interés: '+encodeURIComponent(servicio)+'%0A%0A'
+        + encodeURIComponent(mensaje || 'Sin mensaje adicional.');
+      window.open('https://wa.me/5213111866901?text='+texto, '_blank');
+    });
+  </script>
 </body>
 </html>
