@@ -70,9 +70,8 @@
       <div class="contacto-card" style="margin-top:25px;">
         <h2>📧 Correo Electrónico</h2>
         <p>Para consultas formales, documentación o temas que requieren seguimiento por escrito.</p>
-        <div style="background:#f1f5f9;border:2px dashed #0a2463;border-radius:12px;padding:12px;font-weight:800;color:#0a2463;font-size:15px;word-break:break-all;">contacto@laboralclick.com.mx</div>
-        <button type="button" class="btn-contacto" style="background-color:#0a2463;color:white;border:none;cursor:pointer;width:100%;" onclick="copiarCorreo()">📋 Copiar correo</button>
-        <p id="msgCorreo" style="display:none;color:#166534;font-weight:700;font-size:13px;margin-top:8px;">✅ Correo copiado. Pégalo en tu aplicación de correo.</p>
+        <a href="mailto:laboral.click2023@gmail.com" class="btn-contacto" style="background-color:#0a2463;color:white;">Escribir por correo</a>
+        <p style="font-size:12px;color:#6B7280;margin-top:6px;word-break:break-all;">laboral.click2023@gmail.com</p>
       </div>
     </div>
 
@@ -147,31 +146,6 @@
 
   <script src="menu.js"></script>
   <script>
-    function copiarCorreo(){
-      var correo='contacto@laboralclick.com.mx';
-      function avisoOk(){
-        var m=document.getElementById('msgCorreo');
-        m.style.display='block';
-        setTimeout(function(){ m.style.display='none'; },2500);
-      }
-      function fallback(){
-        var ta=document.createElement('textarea');
-        ta.value=correo;
-        ta.style.position='fixed';
-        ta.style.opacity='0';
-        document.body.appendChild(ta);
-        ta.select();
-        try{ document.execCommand('copy'); avisoOk(); }
-        catch(e){ alert('Copia manualmente el correo: '+correo); }
-        document.body.removeChild(ta);
-      }
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(correo).then(avisoOk, fallback);
-      } else {
-        fallback();
-      }
-    }
-
     document.getElementById('formContacto').addEventListener('submit', function(e){
       e.preventDefault();
       var nombre=document.getElementById('nombre').value.trim();
