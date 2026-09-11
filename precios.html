@@ -37,6 +37,7 @@
     .plan-features { list-style: none; padding: 0; text-align: left; flex-grow: 1; }
     .plan-features li { padding: 10px 0; color: #4a4a5a; font-size: 14px; border-bottom: 1px solid #f0f0f0; line-height: 1.5; }
     .plan-features li strong { color: #0a2463; }
+    .plan-features li.cloud { background: #e3f2fd; border: 1px solid #90caf9; border-left: 4px solid #0a2463; border-radius: 6px; padding: 12px; margin: 10px 0; color: #0a2463; font-weight: 600; }
     
     .plan-btn { display: block; margin-top: 20px; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; text-align: center; transition: all 0.3s; }
     .btn-outline { border: 2px solid #c9a028; color: #c9a028; }
@@ -56,11 +57,9 @@
     .faq-item p { color: #6B7280; margin-top: 12px; display: none; line-height: 1.6; }
     .faq-item.open p { display: block; }
 
-        <div class="cta-final">
-      <h2>☁ Tu expediente laboral digital, siempre disponible</h2>
-      <p>Porque blindar no es solo guardar archivos: es tener la prueba legal exacta frente a un inspector de la STPS o en una audiencia del Centro de Conciliación de la CDMX. Con la Nube Laboral Click, la defensa de tu patrimonio nunca vuelve a depender de una carpeta perdida.</p>
-      <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20mi%20diagnostico%20gratuito%20para%20elegir%20un%20plan" class="btn-dorado" target="_blank" style="display:inline-block; padding:14px 28px; border-radius:30px; text-decoration:none; font-weight:700; font-size:16px;">💬 Agendar Diagnóstico Gratis</a>
-    </div>
+    .cta-final { text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #0a2463 0%, #1a3a7a 100%); border-radius: 15px; color: white; margin: 40px 0; }
+    .cta-final h2 { color: #f0c040; margin-bottom: 15px; }
+    .cta-final p { font-size: 18px; margin-bottom: 25px; opacity: 0.9; }
 
     @media (max-width: 768px) {
       .plan-card.popular { transform: none; }
@@ -73,25 +72,11 @@
   <header>
     <div class="container">
       <nav class="nav">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
           <span>Asesoría Legal sin Enredos</span>
         </a>
-       <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
-        <ul class="nav-links" id="navMenu">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/nosotros">Nosotros</a></li>
-          <li><a href="/servicios">Servicios</a></li>
-          <li><a href="/precios" class="active">Precios</a></li>
-          <li><a href="/promociones">Promociones</a></li>
-          <li><a href="/casos">Casos de Exito</a></li>
-          <li><a href="/testimonios">Testimonios</a></li>
-          <li><a href="/diagnostico">Diagnóstico</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/calculadoras">Calculadoras</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-        </ul>
-        <a href="https://wa.me/5213111866901" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+        <div id="menu-container"></div>
       </nav>
     </div>
   </header>
@@ -111,7 +96,7 @@
 
     <div class="precios-grid">
       
-           <!-- EMPRENDE -->
+      <!-- EMPRENDE -->
       <div class="plan-card">
         <div class="plan-nombre">🛡️ Plan Emprende</div>
         <div class="plan-desc">"Tranquilidad Mínima"<br>Ideal para 1 a 5 empleados</div>
@@ -123,12 +108,12 @@
           <li><strong>1 Hora de Asesoría Mensual:</strong> Por teléfono o WhatsApp para dudas rápidas.</li>
           <li><strong>Soporte WhatsApp (L-V, 9:00 - 18:00 hrs):</strong> Respuesta ágil en horario hábil.</li>
           <li><strong>🚗 Visita Inicial a tu Empresa:</strong> Levantamiento de información y entrega de documentos en persona.</li>
-          <li style="background:#e3f2fd;border-left:4px solid #0a2463;padding:12px;border-radius:6px;margin:10px 0;color:#0a2463;"><strong>☁ Nube Laboral Click (1 GB):</strong> tus contratos firmados y constancias por empleado, respaldados y localizables al instante.</li>
+          <li class="cloud">☁ Nube Laboral Click (1 GB): tus contratos firmados y constancias por empleado, respaldados y localizables al instante.</li>
         </ul>
         <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Plan%20Emprende" class="plan-btn btn-outline" target="_blank">Elegir Emprende</a>
       </div>
 
-            <!-- PRO -->
+      <!-- PRO -->
       <div class="plan-card popular">
         <div class="plan-badge">⭐ MÁS POPULAR</div>
         <div class="plan-nombre">🚀 Plan Pro</div>
@@ -144,12 +129,12 @@
           <li><strong>3 Horas de Asesoría Mensual:</strong> Para resolver temas complejos o planificar estrategias.</li>
           <li><strong>1 Visita Presencial Trimestral:</strong> Revisión in situ cada 3 meses.</li>
           <li><strong>Soporte Prioritario:</strong> Respuesta en menos de 2 horas en horario hábil.</li>
-          <li style="background:#e3f2fd;border-left:4px solid #0a2463;padding:12px;border-radius:6px;margin:10px 0;color:#0a2463;"><strong>☁ Nube Laboral Click (5 GB):</strong> expediente completo por trabajador, contratos, comisiones mixtas, políticas y reglamentos con control de versiones.</li>
+          <li class="cloud">☁ Nube Laboral Click (5 GB): expediente completo por trabajador, contratos, comisiones mixtas, políticas y reglamentos con control de versiones.</li>
         </ul>
         <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Plan%20Pro" class="plan-btn btn-dorado" target="_blank">Elegir Pro</a>
       </div>
 
-            <!-- MASTER -->
+      <!-- MASTER -->
       <div class="plan-card">
         <div class="plan-nombre">🏆 Plan Master</div>
         <div class="plan-desc">"Blindaje Total"<br>Ideal para 16 a 30 empleados</div>
@@ -164,7 +149,7 @@
           <li><strong>Gerente de Cuenta Dedicado:</strong> Un especialista asignado que conoce tu caso de memoria.</li>
           <li><strong>Visitas Presenciales Mensuales:</strong> Seguimiento continuo en tu negocio.</li>
           <li><strong>Soporte de Emergencias 24/7:</strong> Atención prioritaria para contingencias laborales urgentes.</li>
-          <li style="background:#e3f2fd;border-left:4px solid #0a2463;padding:12px;border-radius:6px;margin:10px 0;color:#0a2463;"><strong>☁ Nube Laboral Click (10 GB):</strong> expediente total de tu empresa con formatos DC-3, listo para inspección STPS/IMSS, con acceso seguro compartido con tu asesor.</li>
+          <li class="cloud">☁ Nube Laboral Click (10 GB): expediente total de tu empresa con formatos DC-3, listo para inspección STPS/IMSS, con acceso seguro compartido con tu asesor.</li>
         </ul>
         <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Plan%20Master" class="plan-btn btn-outline" target="_blank">Elegir Master</a>
       </div>
@@ -172,11 +157,11 @@
       <!-- EMPRESARIAL -->
       <div class="plan-card plan-empresarial">
         <div class="plan-nombre">🏢 Empresarial</div>
-        <div class="plan-desc">"Solución a Medida"<br>50+ empleados u operaciones binacionales</div>
+        <div class="plan-desc">"Solución a Medida"<br>31+ empleados u operaciones binacionales</div>
         <div class="plan-precio">Cotización</div>
         <div class="plan-ahorro">Personalizada</div>
         <ul class="plan-features">
-          <li><strong>Todo lo del Premium, MÁS:</strong></li>
+          <li><strong>Todo lo del Master, MÁS:</strong></li>
           <li><strong>Cobertura Binacional México-USA:</strong> Asesoría en ambas fronteras.</li>
           <li><strong>Equipo Legal Dedicado:</strong> Dos o más especialistas asignados a tu cuenta.</li>
           <li><strong>Reportes Ejecutivos Mensuales:</strong> Métricas claras de cumplimiento y riesgos.</li>
@@ -187,6 +172,11 @@
         <a href="https://wa.me/5213111866901?text=Hola%2C%20me%20interesa%20el%20Plan%20Empresarial" class="plan-btn btn-outline" target="_blank">Agendar Reunión Ejecutiva</a>
       </div>
 
+    </div>
+
+    <div style="text-align:center;padding:40px 30px;background:linear-gradient(135deg,#0a2463 0%,#1a3a7a 100%);border-radius:15px;color:white;margin:10px 0 30px 0;">
+      <h2 style="color:#f0c040;margin-bottom:15px;">☁ Tu expediente laboral digital, siempre disponible</h2>
+      <p style="font-size:16px;opacity:.9;max-width:750px;margin:0 auto;">Porque blindar no es solo guardar archivos: es tener la prueba legal exacta frente a un inspector de la STPS o en una audiencia del Centro de Conciliación de la CDMX. Con la Nube Laboral Click, la defensa de tu patrimonio nunca vuelve a depender de una carpeta perdida.</p>
     </div>
 
     <div class="garantia">
@@ -216,26 +206,36 @@
 
     <div class="cta-final">
       <h2>¿No sabes cuál plan elegir?</h2>
-      <p>Agenda tu diagnóstico gratuito de 30 minutos. Analizamos tu caso y te recomendamos el mejor plan.</p>
-      <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20mi%20diagnostico%20gratuito%20para%20elegir%20un%20plan" class="btn-dorado" target="_blank" style="display:inline-block; padding:14px 28px; border-radius:30px; text-decoration:none; font-weight:700; font-size:16px;">💬 Agendar Diagnóstico Gratis</a>
+      <p>Agenda tu <strong>Diagnóstico Acompañado</strong> gratuito de 30 minutos: un especialista de Laboral Click revisa tu caso en vivo y te recomienda el plan exacto.</p>
+      <a href="https://wa.me/5213111866901?text=Hola%2C%20quiero%20agendar%20mi%20Diagnostico%20Acompanado%20gratuito%20de%2030%20minutos%20para%20elegir%20un%20plan" class="btn-dorado" target="_blank" style="display:inline-block; padding:14px 28px; border-radius:30px; text-decoration:none; font-weight:700; font-size:16px;">💬 Agendar mi sesión de 30 minutos</a>
     </div>
 
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>Laboral Click</h4><p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p></div>
-        <div class="footer-col"><h4>📍 Ubicación</h4><p>Col. Narvarte, Benito Juárez, CDMX</p><p>📱 <a href="https://wa.me/5213111866901">WhatsApp: 311-186-6901</a></p></div>
-        <div class="footer-col"><h4>⚖️ Información Legal</h4><p><a href="/aviso">Aviso de Privacidad</a></p><p><a href="/terminos">Términos y Condiciones</a></p></div>
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
       </div>
-      <div class="footer-bottom">
-        <p class="disclaimer-text">La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-        <p class="privacidad-text">🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-        <p class="copy">© 2026 Laboral Click - Todos los derechos reservados</p>
+      <div class="footer-col">
+        <h3>📍 Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso-privacidad.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
       </div>
     </div>
-    </footer>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
 
   <script src="menu.js"></script>
 </body>
