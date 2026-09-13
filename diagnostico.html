@@ -40,6 +40,9 @@ select{font-size:1rem}
 .privacy-box a{color:#0f2a5e;text-decoration:underline;font-weight:700}
 .privacy-box a:hover{color:#c9a028}
 @media print{
+  header,footer,.footer-lc,#whatsapp-widget,.whatsapp-float,[class*="whatsapp"],[id*="whatsapp"]{display:none!important}
+  html,body{height:auto!important;min-height:0!important}
+
 @page{size:letter;margin:9mm 14mm 9mm 14mm}
 header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-privacidad,#seccion-resultado,#seccion-inicio{display:none!important}
 #constancia-print{display:block!important;font-family:Arial,Helvetica,sans-serif;color:#1f2937}
@@ -88,6 +91,9 @@ header,footer,.semaforo-hero,#seccion-contexto,#seccion-cuestionario,#seccion-pr
 .cst-wrap.multi .cst-respuestas{font-size:6.2pt;row-gap:3px}
 .cst-wrap.multi .cst-sec p{font-size:7.8pt}
 @media print{
+  header,footer,.footer-lc,#whatsapp-widget,.whatsapp-float,[class*="whatsapp"],[id*="whatsapp"]{display:none!important}
+  html,body{height:auto!important;min-height:0!important}
+
   .cst-page-break{display:block;page-break-before:always;margin-top:8px}
 }
 .cst-page-break{display:none}
