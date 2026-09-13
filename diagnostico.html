@@ -41,17 +41,24 @@ select{font-size:1rem}
 .privacy-box a:hover{color:#c9a028}
 @media(max-width:600px){.card{padding:22px}.captura-email input,.captura-email button{width:100%;margin-top:8px}}
 
+/* ===== REGLAS DE PANTALLA (no impresas) ===== */
 .cst-page-break{display:none}
 .cst-sec-respuestas{page-break-inside:auto!important}
 .cst-wrap.multi .cst-respuestas{font-size:6.8pt;row-gap:5px}
 .cst-wrap.multi .cst-sec p{font-size:8.5pt}
 
+/* ===== IMPRESIÓN PROFESIONAL ===== */
 @media print{
   @page{size:letter;margin:0}
   html,body{height:auto!important;min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
+
+  /* Oculta TODO lo que no es constancia, INCLUIDO el botón flotante de menu.js */
   header,footer,.footer-lc,.semaforo-hero,
   #seccion-inicio,#seccion-contexto,#seccion-cuestionario,#seccion-privacidad,#seccion-resultado,
-  #whatsapp-widget,.whatsapp-float,[class*="whatsapp"],[id*="whatsapp"]{display:none!important}
+  #whatsapp-widget,.whatsapp-float,[class*="whatsapp"],[id*="whatsapp"],
+  #lcWhatsappFloat,#menuOverlay,.menu-overlay,.menu-toggle,.nav-links,#menu-container,
+  a[style*="position:fixed"]{display:none!important}
+
   #constancia-print{display:block!important;width:100%!important;font-family:Arial,Helvetica,sans-serif;color:#1f2937}
   .cst-wrap{
     width:100%!important;max-width:100%!important;margin:0!important;
@@ -80,12 +87,16 @@ select{font-size:1rem}
   .cst-sec p{font-size:9pt;margin:0 0 2px 0;overflow-wrap:anywhere;word-break:break-word;line-height:1.5}
   .cst-respuestas{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:6px;font-size:7pt;line-height:1.4;color:#374151;border-top:1px solid #e5e7eb;padding-top:8px;white-space:normal}
   .cst-resp-item{break-inside:avoid;page-break-inside:avoid;overflow-wrap:anywhere;word-break:break-word;padding:4px 0;border-bottom:1px dotted #e5e7eb}
-  .cst-firmas{display:flex;gap:40px;justify-content:space-between;margin-top:35px;page-break-inside:avoid}
+
+  /* Firmas pegadas al contenido: ya no se destierran solas a hoja 2 */
+  .cst-firmas{display:flex;gap:40px;justify-content:space-between;margin-top:10mm;page-break-inside:avoid}
   .cst-firma{flex:1;text-align:center;font-size:7.5pt;color:#0f2a5e;font-weight:700}
   .cst-linea{border-top:1px solid #0f2a5e;width:80%;margin:0 auto 5px}
   .cst-firma-sub{font-weight:400;color:#6b7280;font-size:6.5pt;margin-top:2px}
-  .cst-note{margin-top:14px;text-align:center;font-size:6.5pt;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:8px;line-height:1.4}
-  .cst-page-break{display:block!important;page-break-before:always;margin-top:6mm}
+  .cst-note{margin-top:8px;text-align:center;font-size:6.5pt;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:8px;line-height:1.4;page-break-inside:avoid}
+
+  /* El salto de hoja SOLO cuando JavaScript lo autoriza (modo multi-página) */
+  .cst-page-break{page-break-before:always;margin-top:6mm}
 }
 </style>
 </head>
