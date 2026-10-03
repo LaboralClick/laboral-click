@@ -1,182 +1,145 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8M8E4DNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ED8M8E4DNP');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CDMX elimina las clausuras exprés: lo que todo dueño de PyME debe saber | Laboral Click</title>
-  <meta name="description" content="El nuevo Código Avisa del INVEA cambia las reglas para PyMEs en CDMX. Descubre qué sí cambió, qué no, y por qué el riesgo laboral sigue intacto.">
+  <title>Blog Laboral - Laboral Click</title>
   <link rel="stylesheet" href="global.css">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <style>
-    .blog-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-    .blog-header h1 { color: #0f2a5e; font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
-    .blog-intro { font-size: 1.15rem; color: #4a5568; line-height: 1.7; margin-bottom: 30px; }
-    .blog-section { margin-bottom: 40px; }
-    .blog-section h2 { color: #0f2a5e; font-size: 1.6rem; margin-bottom: 20px; margin-top: 30px; }
-    .blog-section h3 { color: #0f2a5e; font-size: 1.3rem; margin-bottom: 15px; margin-top: 25px; }
-    .blog-section p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
-    .blog-section ol, .blog-section ul { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; padding-left: 30px; }
-    .blog-section li { margin-bottom: 10px; }
-    
-    .dato-duro { background: #fff9df; border-left: 5px solid #c9a028; padding: 20px; margin: 30px 0; border-radius: 8px; }
-    .dato-duro strong { color: #0f2a5e; font-size: 1.1rem; }
-    
-    .blog-image { width: 100%; height: auto; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .image-caption { text-align: center; color: #6b7280; font-size: 0.9rem; font-style: italic; margin-top: -15px; margin-bottom: 25px; }
-    
-    .comparativa-lista { background: #f8f9fa; padding: 25px 30px; border-radius: 8px; margin: 25px 0; list-style-type: none; border-left: 4px solid #0f2a5e; }
-    .comparativa-lista li { margin-bottom: 20px; }
-    .comparativa-lista li:last-child { margin-bottom: 0; }
-    .comparativa-lista strong { color: #0f2a5e; font-size: 1.1rem; display: block; margin-bottom: 5px; }
-    
-    .cta-box { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 40px 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
-    .cta-box h2 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
-    .cta-box p { color: rgba(255,255,255,0.92); font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
-    .btn-dorado { display: inline-block; background: #c9a028; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; }
-    .btn-dorado:hover { background: #b89224; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(201,160,40,0.4); }
-    
-    .cierre-final { background: #f8f9fa; padding: 30px; border-radius: 12px; margin-top: 40px; text-align: center; }
-    .cierre-final p { color: #0f2a5e; font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; }
-    .cierre-final .subtexto { font-weight: 400; font-size: 1rem; color: #4a5568; }
-    .cierre-final a { color: #c9a028; text-decoration: none; font-weight: 700; }
-
-    @media (max-width: 768px) {
-      .blog-header h1 { font-size: 1.6rem; }
-      .blog-section h2 { font-size: 1.3rem; }
-      .cta-box h2 { font-size: 1.4rem; }
-      .comparativa-lista { padding: 20px; }
-    }
+    .page-hero { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 70px 20px; text-align: center; }
+    .page-hero h1 { color: white; font-size: 2.4rem; margin-bottom: 0.8rem; }
+    .page-hero p { color: rgba(255,255,255,0.92); font-size: 1.15rem; max-width: 700px; margin: 0 auto; }
+    .blog-grid { padding: 60px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+    .blog-card { background: white; border-radius: 12px; border: 2px solid #c9a028; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(201,160,40,0.2); }
+    .blog-card-image { background: linear-gradient(135deg, #0f2a5e, #1e3a5f); height: 160px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .blog-card-image img { width: 100%; height: 100%; object-fit: cover; }
+    .blog-card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+    .blog-category { background: #fef9e7; color: #c9a028; border: 1px solid #c9a028; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; align-self: flex-start; }
+    .blog-card h2 { font-size: 1.25rem; margin-bottom: 10px; color: #0f2a5e; line-height: 1.4; }
+    .blog-card p { color: #4a5568; line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; flex-grow: 1; }
+    .blog-card .leer-mas { color: white; background: #c9a028; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.3s; align-self: flex-start; }
+    .blog-card .leer-mas:hover { background: #b89224; }
+    .blog-card.destacada { border: 3px solid #c9a028; background: #fffef5; }
+    @media (max-width: 768px) { .page-hero h1 { font-size: 1.7rem; } .blog-grid { padding: 40px 20px; } }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <nav class="nav">
-      <a href="index.html" class="logo">
-        <img src="/images/logoH.png" alt="Laboral Click" style="height:45px;">
-        <span>Asesoría Legal sin Enredos</span>
-      </a>
-      <div id="menu-container"></div>
-    </nav>
-  </div>
-</header>
-
-<div class="blog-container">
-
-  <div class="blog-header">
-    <h1>CDMX elimina las clausuras exprés: lo que todo dueño de PyME debe saber (y lo que no cambió)</h1>
-    <p class="blog-intro">El pasado 1 de octubre de 2026, la Jefa de Gobierno Clara Brugada anunció un nuevo modelo de verificación del INVEA que abandona las clausuras inmediatas para los negocios de bajo impacto. Nace el Código Avisa: primero se notifica, se explica cómo corregir y se otorgan hasta tres oportunidades antes de una suspensión. El modelo entra en vigor el lunes 5 de octubre.</p>
-    <p class="blog-intro">En Laboral Click hemos analizado el anuncio a fondo, porque hay un detalle que casi ningún medio está explicando y que usted debe conocer antes de relajarse.</p>
-  </div>
-
-  <div class="blog-section">
-    <h2>El nuevo modelo: Código Avisa</h2>
-    <p>El esquema "Prevención, Corrección y Cero Corrupción" clasifica los establecimientos en tres niveles:</p>
-    
-    <h3>1. Bajo impacto: tres avisos antes de suspender</h3>
-    <p>Papelerías, tiendas de abarrotes, cafeterías y talleres mecánicos. El procedimiento contempla una primera notificación con explicación de cómo corregir, una segunda reiteración, un tercer apercibimiento y, solo si persiste el incumplimiento, la suspensión.</p>
-    
-    <h3>2. Impacto vecinal: dos avisos</h3>
-    <p>Aquí entran los restaurantes, salones de fiestas y establecimientos de hospedaje. Tendrán dos avisos antes de una eventual suspensión.</p>
-    
-    <h3>3. Alto impacto: no aplica el Código Avisa</h3>
-    <p>Bares, cantinas, centros nocturnos y discotecas mantienen controles estrictos por los riesgos de aforo y protección civil.</p>
-    
-    <p>El modelo tampoco aplica cuando existe riesgo para la integridad de las personas o se detecta venta de alcohol a menores de edad: en esos casos la actuación es inmediata.</p>
-  </div>
-
-  <div class="dato-duro">
-    <strong>💡 El dato duro</strong>
-    <p style="margin-top: 10px; margin-bottom: 0;">La jefa de Gobierno fue clara: "cero clausuras a los negocios de bajo impacto". Pero esa frase aplica únicamente al INVEA, es decir, a la verificación de su local. No existe una medida equivalente para las inspecciones laborales.</p>
-  </div>
-
-  <img src="/images/blog-invea-restaurante.jpg" alt="Restaurante en CDMX con aviso en la puerta" class="blog-image">
-  <p class="image-caption">El Código Avisa protege su local, no su nómina.</p>
-
-  <div class="blog-section">
-    <h2>Lo que no cambió: el IMSS y la STPS</h2>
-    <p>Este es el punto que usted no debe perder de vista. El INVEA revisa su local: permisos, uso de suelo, protección civil. El IMSS y la STPS revisan a su personal: contratos, nómina, jornadas, altas ante el Seguro Social. Son autoridades distintas, con facultades distintas, y el régimen de inspección laboral no se suavizó ni un poco.</p>
-
-    <ul class="comparativa-lista">
-      <li>
-        <strong>🏢 INVEA (su local)</strong>
-        Revisa: Permisos, protección civil.<br>
-        <span style="color: #c9a028; font-weight: 600;">Novedad:</span> Código Avisa: hasta 3 avisos (2 para restaurantes).
-      </li>
-      <li>
-        <strong>👷 IMSS / STPS (su personal)</strong>
-        Revisa: Contratos, nómina, jornadas, altas.<br>
-        <span style="color: #dc2626; font-weight: 600;">Novedad:</span> Sin cambios: inspección y sanción directa, igual que siempre.
-      </li>
-    </ul>
-
-    <p>Que ya no le clausuren el local de inmediato no significa que pueda tener trabajadores sin contrato o sin alta en el IMSS. Cada infracción laboral puede sancionarse con multas de hasta $586,550 MXN, y esas llegan sin aviso previo.</p>
-  </div>
-
-  <div class="blog-section">
-    <h2>El riesgo real: la falsa tranquilidad</h2>
-    <p>El verdadero peligro de esta noticia no es la noticia en sí, sino lo que va a provocar en muchos dueños: "ya no pasa nada, puedo relajarme". Esa relajación es cara. Mientras el comerciante celebra los avisos del INVEA, el riesgo laboral sigue intacto, silencioso, acumulando meses de pasivos.</p>
-    
-    <img src="/images/blog-invea-documentos.jpg" alt="Dueño de PyME revisando documentos laborales" class="blog-image">
-    <p class="image-caption">La prevención del local ya llegó. La de su personal depende de usted.</p>
-  </div>
-
-  <div class="blog-section">
-    <h2>Qué puede hacer esta semana</h2>
-    <p>En Laboral Click no le damos teoría, le damos pasos concretos:</p>
-    <ol>
-      <li><strong>Ubique su negocio en el nivel correcto.</strong> Si tiene un restaurante, sepa que son 2 avisos, no 3.</li>
-      <li><strong>No confunda una tregua con una amnistía.</strong> Los avisos del INVEA no lo protegen de una inspección del IMSS o la STPS.</li>
-      <li><strong>Mida su riesgo laboral hoy.</strong> El Semáforo Laboral es un test gratuito de 3 minutos que le dice si su negocio está en verde, amarillo o rojo. Sin enviar documentos, 100% confidencial, lo contesta usted mismo.</li>
-    </ol>
-  </div>
-
-  <div class="blog-section">
-    <h2>El semáforo en verde: su negocio en regla</h2>
-  </div>
-
-  <img src="/images/blog-invea-semaforo.jpg" alt="Empresario sonriente frente a su negocio con semáforo en verde" class="blog-image">
-
-  <div class="cta-box">
-    <h2>¿Su negocio pasaría hoy una revisión del IMSS o la STPS?</h2>
-    <p>No espere a que llegue la inspección para descubrirlo. Conozca su nivel de riesgo con el Semáforo Laboral de Laboral Click.</p>
-    <a href="diagnostico.html" class="btn-dorado">Hacer el Semáforo Laboral (3 min)</a>
-  </div>
-
-  <div class="cierre-final">
-    <p>Recuerde: la prevención es más barata que una multa</p>
-    <p class="subtexto">El costo de revisar su situación laboral hoy es una fracción de lo que le costaría una sola sanción del IMSS o la STPS. La CDMX ya puso la prevención en sus locales; póngala usted también en su nómina.</p>
-    <p style="margin-top: 20px;"><strong>¿Necesita ayuda inmediata?</strong> Contáctenos por WhatsApp al <a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a> o solicite su Semáforo Laboral gratuito.</p>
-  </div>
-
-</div>
-
-<footer class="footer-lc">
-  <div class="footer-content">
-    <div class="footer-col">
-      <h3>Laboral Click</h3>
-      <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <img src="images/logoH.png" alt="Laboral Click" style="height:45px;">
+          <span>Asesoría Legal sin Enredos</span>
+        </a>
+        <div id="menu-container"></div>
+      </nav>
     </div>
-    <div class="footer-col">
-      <h3>📍 Ubicación</h3>
-      <p>Col. Narvarte, Benito Juárez, CDMX</p>
-      <h3>📱 WhatsApp</h3>
-      <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
-    </div>
-    <div class="footer-col">
-      <h3>⚖️ Información Legal</h3>
-      <p><a href="aviso.html">Aviso de Privacidad</a></p>
-      <p><a href="terminos.html">Términos y Condiciones</a></p>
-    </div>
-  </div>
-  <div class="footer-legal">
-    <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
-    <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
-    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
-  </div>
-</footer>
+  </header>
 
-<script src="menu.js"></script>
+  <section class="page-hero">
+    <h1>Blog Laboral</h1>
+    <p>Información clara, práctica y sin tecnicismos para su PyME</p>
+  </section>
+
+  <section class="blog-grid">
+
+    <!-- ARTÍCULO DESTACADO: RESTAURANTES -->
+    <article class="blog-card destacada">
+      <div class="blog-card-image">
+        <img src="images/blog-restaurantes-hero.jpg" alt="Restaurante con equipo trabajando">
+      </div>
+      <div class="blog-card-content">
+        <span class="blog-category">⭐ Restaurantes</span>
+        <h2>Los 3 errores que su restaurante comete hoy (y que solo descubrirá cuando llegue la demanda)</h2>
+        <p>La informalidad en la contratación, la gestión de propinas y las jornadas excedidas son bombas de tiempo. Conozca los 3 errores más costosos detectados en campo y cómo blindarse hoy mismo.</p>
+        <a href="blog-restaurantes.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+    <!-- ARTÍCULO NUEVO: INVEA CÓDIGO AVISA -->
+    <article class="blog-card">
+      <div class="blog-card-image">
+        <img src="images/blog-invea-restaurante.jpg" alt="Restaurante en CDMX con aviso del INVEA">
+      </div>
+      <div class="blog-card-content">
+        <span class="blog-category">️ Actualidad Laboral</span>
+        <h2>CDMX elimina las clausuras exprés: lo que todo dueño de PyME debe saber</h2>
+        <p>El nuevo Código Avisa del INVEA cambia las reglas. Descubre qué sí cambió, qué no, y por qué el riesgo laboral sigue intacto.</p>
+        <a href="blog-invea-codigo-avisa.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+    <!-- ARTÍCULO: IMSS -->
+    <article class="blog-card">
+      <div class="blog-card-image">🏥</div>
+      <div class="blog-card-content">
+        <span class="blog-category">Seguridad Social</span>
+        <h2>"Te ahorro $800 en IMSS": La mentira que está destruyendo PyMEs mexicanas</h2>
+        <p>No dar de alta al IMSS o registrar con salario menor no es ahorro, es una bomba de tiempo. Conozca los Capitales Constitutivos y cómo una multa puede quebrar su negocio.</p>
+        <a href="blog-imss-mentira.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+    <!-- ARTÍCULO: DESPIDO VERBAL -->
+    <article class="blog-card">
+      <div class="blog-card-image">⚠️</div>
+      <div class="blog-card-content">
+        <span class="blog-category">Despido Laboral</span>
+        <h2>Nunca digas "ya no vengas mañana": la frase que está quebrando PyMEs en México</h2>
+        <p>Despedir de palabra le puede costar 3 meses de salario + 20 días por año + prima de antigüedad. Aprenda por qué el despido verbal es el error más caro.</p>
+        <a href="blog-despido-verbal.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+    <!-- ARTÍCULO: CONTRATAR PERSONAL -->
+    <article class="blog-card">
+      <div class="blog-card-image">
+        <img src="images/blog-portada.jpeg" alt="Contratación legal de personal">
+      </div>
+      <div class="blog-card-content">
+        <span class="blog-category">Contratación Segura</span>
+        <h2>5 claves para contratar personal sin riesgos legales en su PyME</h2>
+        <p>Contratar de palabra le puede costar caro. Conozca las 5 claves legales para blindarse ante demandas, multas del IMSS y juicios laborales.</p>
+        <a href="cinco-claves-contratacion.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+  </section>
+
+  <footer class="footer-lc">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Laboral Click</h3>
+        <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+      </div>
+      <div class="footer-col">
+        <h3> Ubicación</h3>
+        <p>Col. Narvarte, Benito Juárez, CDMX</p>
+        <h3>📱 WhatsApp</h3>
+        <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>⚖️ Información Legal</h3>
+        <p><a href="aviso.html">Aviso de Privacidad</a></p>
+        <p><a href="terminos.html">Términos y Condiciones</a></p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+      <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+      <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="menu.js"></script>
 </body>
 </html>
