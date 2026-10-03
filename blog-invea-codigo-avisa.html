@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="global.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
-    /* Estilos específicos para el artículo */
     .blog-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
     .blog-header h1 { color: #0f2a5e; font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
     .blog-intro { font-size: 1.15rem; color: #4a5568; line-height: 1.7; margin-bottom: 30px; }
@@ -16,7 +15,7 @@
     .blog-section h2 { color: #0f2a5e; font-size: 1.6rem; margin-bottom: 20px; margin-top: 30px; }
     .blog-section h3 { color: #0f2a5e; font-size: 1.3rem; margin-bottom: 15px; margin-top: 25px; }
     .blog-section p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
-    .blog-section ol { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; padding-left: 30px; }
+    .blog-section ol, .blog-section ul { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; padding-left: 30px; }
     .blog-section li { margin-bottom: 10px; }
     
     .dato-duro { background: #fff9df; border-left: 5px solid #c9a028; padding: 20px; margin: 30px 0; border-radius: 8px; }
@@ -25,10 +24,10 @@
     .blog-image { width: 100%; height: auto; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .image-caption { text-align: center; color: #6b7280; font-size: 0.9rem; font-style: italic; margin-top: -15px; margin-bottom: 25px; }
     
-    .tabla-comparativa { width: 100%; border-collapse: collapse; margin: 25px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    .tabla-comparativa th { background: #0f2a5e; color: white; padding: 15px; text-align: left; font-weight: 700; }
-    .tabla-comparativa td { padding: 12px 15px; border-bottom: 1px solid #e5e7eb; color: #4a5568; }
-    .tabla-comparativa tr:last-child td { border-bottom: none; }
+    .comparativa-lista { background: #f8f9fa; padding: 25px 30px; border-radius: 8px; margin: 25px 0; list-style-type: none; border-left: 4px solid #0f2a5e; }
+    .comparativa-lista li { margin-bottom: 20px; }
+    .comparativa-lista li:last-child { margin-bottom: 0; }
+    .comparativa-lista strong { color: #0f2a5e; font-size: 1.1rem; display: block; margin-bottom: 5px; }
     
     .cta-box { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 40px 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
     .cta-box h2 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
@@ -45,8 +44,7 @@
       .blog-header h1 { font-size: 1.6rem; }
       .blog-section h2 { font-size: 1.3rem; }
       .cta-box h2 { font-size: 1.4rem; }
-      .tabla-comparativa { font-size: 0.9rem; }
-      .tabla-comparativa th, .tabla-comparativa td { padding: 10px; }
+      .comparativa-lista { padding: 20px; }
     }
   </style>
 </head>
@@ -93,41 +91,25 @@
     <p style="margin-top: 10px; margin-bottom: 0;">La jefa de Gobierno fue clara: "cero clausuras a los negocios de bajo impacto". Pero esa frase aplica únicamente al INVEA, es decir, a la verificación de su local. No existe una medida equivalente para las inspecciones laborales.</p>
   </div>
 
-  <!-- IMAGEN 1 -->
-  <img src="images/blog-invea-restaurante.jpg" alt="Restaurante en CDMX con aviso en la puerta" class="blog-image">
+  <img src="/images/blog-invea-restaurante.jpg" alt="Restaurante en CDMX con aviso en la puerta" class="blog-image">
   <p class="image-caption">El Código Avisa protege su local, no su nómina.</p>
 
   <div class="blog-section">
     <h2>Lo que no cambió: el IMSS y la STPS</h2>
     <p>Este es el punto que usted no debe perder de vista. El INVEA revisa su local: permisos, uso de suelo, protección civil. El IMSS y la STPS revisan a su personal: contratos, nómina, jornadas, altas ante el Seguro Social. Son autoridades distintas, con facultades distintas, y el régimen de inspección laboral no se suavizó ni un poco.</p>
 
-    <!-- TABLA COMPARATIVA -->
-    <table class="tabla-comparativa">
-      <thead>
-        <tr>
-          <th></th>
-          <th>INVEA (su local)</th>
-          <th>IMSS / STPS (su personal)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Qué revisa</strong></td>
-          <td>Permisos, protección civil</td>
-          <td>Contratos, nómina, jornadas, altas</td>
-        </tr>
-        <tr>
-          <td><strong>Novedad</strong></td>
-          <td>Código Avisa: hasta 3 avisos</td>
-          <td>Sin cambios: inspección y sanción directa</td>
-        </tr>
-        <tr>
-          <td><strong>Restaurantes</strong></td>
-          <td>2 avisos (impacto vecinal)</td>
-          <td>Igual que siempre</td>
-        </tr>
-      </tbody>
-    </table>
+    <ul class="comparativa-lista">
+      <li>
+        <strong>🏢 INVEA (su local)</strong>
+        Revisa: Permisos, protección civil.<br>
+        <span style="color: #c9a028; font-weight: 600;">Novedad:</span> Código Avisa: hasta 3 avisos (2 para restaurantes).
+      </li>
+      <li>
+        <strong>👷 IMSS / STPS (su personal)</strong>
+        Revisa: Contratos, nómina, jornadas, altas.<br>
+        <span style="color: #dc2626; font-weight: 600;">Novedad:</span> Sin cambios: inspección y sanción directa, igual que siempre.
+      </li>
+    </ul>
 
     <p>Que ya no le clausuren el local de inmediato no significa que pueda tener trabajadores sin contrato o sin alta en el IMSS. Cada infracción laboral puede sancionarse con multas de hasta $586,550 MXN, y esas llegan sin aviso previo.</p>
   </div>
@@ -136,8 +118,7 @@
     <h2>El riesgo real: la falsa tranquilidad</h2>
     <p>El verdadero peligro de esta noticia no es la noticia en sí, sino lo que va a provocar en muchos dueños: "ya no pasa nada, puedo relajarme". Esa relajación es cara. Mientras el comerciante celebra los avisos del INVEA, el riesgo laboral sigue intacto, silencioso, acumulando meses de pasivos.</p>
     
-    <!-- IMAGEN 2 -->
-    <img src="images/blog-invea-documentos.jpg" alt="Dueño de PyME revisando documentos laborales" class="blog-image">
+    <img src="/images/blog-invea-documentos.jpg" alt="Dueño de PyME revisando documentos laborales" class="blog-image">
     <p class="image-caption">La prevención del local ya llegó. La de su personal depende de usted.</p>
   </div>
 
@@ -155,8 +136,7 @@
     <h2>El semáforo en verde: su negocio en regla</h2>
   </div>
 
-  <!-- IMAGEN 3 -->
-  <img src="images/blog-invea-semaforo.jpg" alt="Empresario sonriente frente a su negocio" class="blog-image">
+  <img src="/images/blog-invea-semaforo.jpg" alt="Empresario sonriente frente a su negocio con semáforo en verde" class="blog-image">
 
   <div class="cta-box">
     <h2>¿Su negocio pasaría hoy una revisión del IMSS o la STPS?</h2>
