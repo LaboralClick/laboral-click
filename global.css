@@ -360,3 +360,23 @@ h1, h2 { color: #0f2a5e; }
 .blog-card-btn:hover {
   color: #c9a028;
 }
+
+/* Botón flotante Canal de WhatsApp: versión compacta en móvil */
+@media (max-width: 640px) {
+  #lcWaChannelBtn {
+    font-size: 0.8rem;
+    padding: 10px 14px;
+    max-width: 60vw;
+  }
+}
+@media (max-width: 420px) {
+  #lcWaChannelBtn .lc-canal-texto { display: none; }
+  #lcWaChannelBtn {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+  #lcWaChannelBtn .lc-canal-icono { font-size: 1.4rem !important; }
+}

@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         canal.className = 'lc-wa-channel-btn';
         canal.setAttribute('aria-label', 'Seguir el canal de WhatsApp de Laboral Click');
         canal.style.cssText = 'position:fixed;bottom:20px;left:20px;background:#0F2A5E;color:#fff;padding:12px 18px;border-radius:30px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;box-shadow:0 4px 15px rgba(15,42,94,0.35);z-index:9999;text-decoration:none;border:2px solid #C9A028;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:78vw;';
-        canal.innerHTML = '<span style="font-size:1.1rem;line-height:1;">📢</span><span>Síguenos en WhatsApp: alertas laborales sin enredos</span>';
+        canal.innerHTML = '<span class="lc-canal-icono" style="font-size:1.1rem;line-height:1;">📢</span><span class="lc-canal-texto">Síguenos en WhatsApp: alertas laborales sin enredos</span>';
         document.body.appendChild(canal);
     }
 
