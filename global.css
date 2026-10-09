@@ -356,6 +356,60 @@ h1, h2 { color: #0f2a5e; }
   font-weight: bold;
   border-bottom: 2px solid #c9a028;
   padding-bottom: 2px;
+    /* ========================================== */
+/* BOTÓN FLOTANTE CANAL WHATSAPP              */
+/* ========================================== */
+.lc-canale-wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0F2A5E; /* Azul marino de marca */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(15, 42, 94, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid #C9A028; /* Dorado de marca */
+}
+
+.lc-canale-wa:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(15, 42, 94, 0.4);
+  background-color: #1e3a5f; /* Un tono ligeramente más claro al pasar el mouse */
+}
+
+.lc-canale-wa span.icono {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Adaptación para móviles: texto más corto o solo icono si es necesario */
+@media (max-width: 600px) {
+  .lc-canale-wa {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    bottom: 15px;
+    right: 15px;
+  }
+  /* Opcional: ocultar el texto largo en pantallas muy pequeñas y dejar solo el ícono */
+  @media (max-width: 400px) {
+    .lc-canale-wa span.texto-largo {
+      display: none;
+    }
+    .lc-canale-wa {
+      padding: 12px;
+      border-radius: 50%; /* Botón circular */
+    }
+  }
+}
 }
 .blog-card-btn:hover {
   color: #c9a028;
