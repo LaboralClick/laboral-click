@@ -1,8 +1,8 @@
-// menu.js - Versión Final Corregida (Menú Restaurado + Botón Canal WA)
+// menu.js - Versión Final Completa (Menú Restaurado + Botón Canal WA)
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  // 1. Cargar/Restaurar el Menú de Navegación
+  // 1. Cargar/Restaurar el Menú de Navegación Completo
   loadNavigationMenu();
 
   // 2. Inyectar el Botón Flotante del Canal de WhatsApp
@@ -10,19 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * FUNCION DE MENÚ (Reconstruida para asegurar visibilidad)
- * Si tenías enlaces específicos diferentes, ajústalos aquí en el array 'links'.
+ * FUNCION DE MENÚ (Actualizada con TODOS los enlaces principales)
  */
 function loadNavigationMenu() {
   const container = document.getElementById('menu-container');
   if (!container) return; 
 
-  // Define tus enlaces de navegación estándar
+  // Lista completa de enlaces según la estructura de tu sitio
   const links = [
     { text: 'Inicio', href: 'index.html' },
     { text: 'Diagnóstico', href: 'diagnostico.html' },
     { text: 'Calculadoras', href: 'calculadoras.html' },
     { text: 'Blog', href: 'blog.html' },
+    { text: 'Promociones', href: 'promociones.html' }, // <-- Agregado este que faltaba
     { text: 'Contacto', href: 'contacto.html' }
   ];
 
