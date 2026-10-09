@@ -1,149 +1,362 @@
-/* ========================================== */
-/* GLOBAL.CSS - LABORAL CLICK                 */
-/* ========================================== */
+/* ============================================ */
+/* LABORAL CLICK - HOJA DE ESTILOS GLOBAL       */
+/* Versión: 2026.1 - Definitiva                 */
+/* ============================================ */
 
-/* Reset básico */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #1f2937;
-  line-height: 1.6;
-  background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1a202c;
+    line-height: 1.6;
+    background: #ffffff;
 }
 
-/* Contenedores */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
 
-/* HEADER Y NAVIGACIÓN (Restaurado y Estilizado) */
+/* --- CONTENEDOR --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================ */
+/* HEADER Y NAVEGACIÓN                          */
+/* ============================================ */
 header {
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
+
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #0f2a5e;
-  font-weight: 800;
-  font-size: 1.2rem;
-}
-.logo img { height: 45px; width: auto; }
-
-/* El contenedor donde JS mete los enlaces */
-#menu-container {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    color: #0f2a5e;
+    font-size: 1rem;
 }
 
-/* Estilo específico para los enlaces del menú inyectados por JS */
-#menu-container a.nav-link {
-  text-decoration: none;
-  color: #4a5568;
-  font-weight: 600;
-  transition: color 0.3s;
-  font-size: 1rem;
-  padding: 5px 10px; /* Espacio extra para clic fácil */
-  border-radius: 4px;
+.logo img { height: 45px; }
+
+/* --- MENÚ DESKTOP --- */
+.nav-links {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
-#menu-container a.nav-link:hover {
-  color: #c9a028;
-  background-color: #fffdf4; /* Fondo suave al pasar mouse */
+.nav-links > li {
+    position: relative;
 }
 
-/* FOOTER GLOBAL */
-.footer-lc {
-  background: #0f2a5e;
-  color: white;
-  padding: 60px 20px 30px;
-  margin-top: 60px;
-}
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-}
-.footer-col h3 { color: #c9a028; margin-bottom: 20px; font-size: 1.1rem; }
-.footer-col p, .footer-col a {
-  color: rgba(255,255,255,0.8);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  text-decoration: none;
-}
-.footer-col a:hover { color: white; text-decoration: underline; }
-.footer-legal {
-  max-width: 1200px;
-  margin: 40px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
+.nav-links > li > a {
+    display: block;
+    padding: 12px 16px;
+    color: #0f2a5e;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.3s;
 }
 
-/* BOTÓN FLOTANTE CANAL WHATSAPP (Texto Corregido) */
-.lc-wa-channel-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #0F2A5E; /* Azul marino */
-  color: white;
-  padding: 12px 20px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  border: 2px solid #C9A028; /* Dorado */
+.nav-links > li > a:hover {
+    background: #f0f4f8;
+    color: #c9a028;
 }
 
-.lc-wa-channel-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(15, 42, 94, 0.4);
-  background-color: #1e3a5f;
+/* Flechita para items con dropdown */
+.nav-links > li.has-dropdown > a::after {
+    content: ' ▾';
+    font-size: 0.8rem;
+    color: #c9a028;
 }
 
-.lc-wa-channel-btn .wa-icon { font-size: 1.2rem; }
+/* --- DROPDOWN (submenú) --- */
+/* --- DROPDOWN (submenú) --- */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(15, 42, 94, 0.15);
+    border-radius: 8px;
+    border-top: 3px solid #c9a028;
+    padding: 8px 0;
+    z-index: 1001;
+    padding-top: 13px; /* Antes era margin-top: 5px. El padding mantiene el hover activo */
+}
 
-/* Responsive Móvil */
+/* Puente invisible más robusto para garantizar continuidad */
+.has-dropdown { position: relative; }
+.has-dropdown:hover .dropdown { display: block; }
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: #1a202c;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.dropdown li a:hover {
+    background: #fffef5;
+    color: #c9a028;
+    padding-left: 25px;
+}
+
+@media (min-width: 769px) {
+    .nav-links > li.has-dropdown:hover .dropdown {
+        display: block;
+    }
+}
+
+/* --- BOTÓN WHATSAPP --- */
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+.btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+/* --- BOTÓN HAMBURGUESA (móvil) --- */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #0f2a5e;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* --- BOTÓN CERRAR (X) --- */
+.menu-close-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #0f2a5e;
+    cursor: pointer;
+    z-index: 10002;
+    padding: 10px;
+    line-height: 1;
+}
+.menu-close-btn:hover { color: #c9a028; }
+
+/* ============================================ */
+/* MENÚ MÓVIL (menos de 768px)                  */
+/* ============================================ */
 @media (max-width: 768px) {
-  .nav { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; }
-  #menu-container { flex-wrap: wrap; justify-content: center; gap: 15px; }
-  
-  .lc-wa-channel-btn {
-    padding: 10px 15px;
-    font-size: 0.85rem;
-    bottom: 15px;
-    right: 15px;
-  }
+    .menu-toggle {
+        display: block;
+    }
+    
+    .btn-whatsapp {
+        display: none; /* Ocultamos el botón de WhatsApp en el header móvil para espacio */
+    }
+    
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: 10001;
+        overflow-y: auto;
+        padding: 80px 20px 30px;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+    }
+    
+    .nav-links.open {
+        display: flex;
+    }
+    
+    .nav-links > li > a {
+        display: block;
+        padding: 16px 20px;
+        border-bottom: 1px solid #f0f4f8;
+        font-size: 1.05rem;
+    }
+    
+    /* Dropdown en móvil: siempre visible, indentado */
+    .dropdown {
+        display: block;
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-left: 3px solid #c9a028;
+        margin: 0;
+        background: #f8f9fa;
+        padding: 5px 0;
+    }
+    
+    .dropdown li a {
+        padding-left: 35px;
+        font-size: 0.95rem;
+    }
+    
+    .menu-close-btn {
+        display: block;
+    }
 }
 
-@media (max-width: 480px) {
-  /* En pantallas muy chicas, ocultar texto y dejar solo icono circular */
-  .lc-wa-channel-btn span.texto { display: none; }
-  .lc-wa-channel-btn { 
-    padding: 12px; 
-    border-radius: 50%; 
-    width: 50px; 
-    height: 50px; 
-    justify-content: center; 
-  }
+/* ============================================ */
+/* OVERLAY OSCURO (fondo cuando menú abierto)   */
+/* ============================================ */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 42, 94, 0.6);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+}
+.menu-overlay.activo {
+    display: block;
+}
+
+/* ============================================ */
+/* FOOTER BÁSICO                                */
+/* ============================================ */
+footer {
+    background: #0f2a5e;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+footer p { font-size: 0.9rem; opacity: 0.9; }
+/* ============================================ */
+/* AJUSTE ENCABEZADO: todo en un renglón        */
+/* ============================================ */
+@media (min-width: 769px) {
+    .nav { gap: 10px; }
+    .logo span { font-size: 0.85rem; }
+    .nav-links > li > a { padding: 10px 10px; font-size: 0.88rem; }
+    .btn-whatsapp { padding: 8px 14px; font-size: 0.8rem; white-space: nowrap; }
+}
+/* ============================================ */
+/* FOOTER COMPLETO - LABORAL CLICK              */
+/* ============================================ */
+.footer-lc { background: #0f2a5e; color: white; padding: 50px 20px 25px; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 30px; }
+@media (min-width: 768px) { .footer-content { grid-template-columns: repeat(3, 1fr); } }
+.footer-col h3 { color: #c9a028; font-size: 1.05rem; margin-bottom: 0.8rem; }
+.footer-col p { color: rgba(255,255,255,0.85); font-size: 0.92rem; margin-bottom: 0.5rem; }
+.footer-col a { color: rgba(255,255,255,0.85); text-decoration: none; }
+.footer-col a:hover { color: #c9a028; }
+.footer-legal { max-width: 1200px; margin: 35px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center; }
+.footer-legal p { color: rgba(255,255,255,0.7); font-size: 0.82rem; margin-bottom: 0.4rem; }
+/* ============================================ */
+/* ARMONIZACIÓN DE MARCA - AZUL LABORAL CLICK   */
+/* ============================================ */
+.page-hero {
+    background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%);
+    color: white;
+    padding: 70px 20px;
+    text-align: center;
+}
+.page-hero h1 { color: white; font-size: 2.2rem; margin-bottom: 0.8rem; }
+.page-hero p { color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+h1, h2 { color: #0f2a5e; }
+/* ============================================ */
+/* TARJETAS DEL BLOG                            */
+/* ============================================ */
+.blog-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 350px;
+  transition: transform 0.3s ease;
+  margin: 20px;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+.blog-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.blog-card-content {
+  padding: 20px;
+}
+.blog-card-fecha {
+  color: #c9a028;
+  font-size: 13px;
+  font-weight: bold;
+}
+.blog-card-titulo {
+  color: #0a2463;
+  font-size: 20px;
+  margin: 10px 0;
+  line-height: 1.3;
+}
+.blog-card-extracto {
+  color: #4a4a5a;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.blog-card-btn {
+  display: inline-block;
+  color: #0a2463;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #c9a028;
+  padding-bottom: 2px;
+}
+.blog-card-btn:hover {
+  color: #c9a028;
 }
