@@ -147,3 +147,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Inyectar botón flotante de Canal de WhatsApp en todas las páginas
+document.addEventListener('DOMContentLoaded', function() {
+    // Evitar duplicados si por alguna razón se carga dos veces
+    if(document.querySelector('.lc-canale-wa')) return;
+
+    const waLink = document.createElement('a');
+    waLink.href = "https://whatsapp.com/channel/0029VaZuGSxEawvhKZGwuT0V"; // Reemplaza esto con tu enlace real de canal
+    waLink.target = "_blank";
+    waLink.rel = "noopener noreferrer";
+    waLink.className = "lc-canale-wa";
+    
+    // Estructura interna con clases para controlar responsive
+    waLink.innerHTML = '<span class="icono">📢</span> <span class="texto-largo">Síguenos en WhatsApp: alertas laborales sin enredos</span>';
+    
+    document.body.appendChild(waLink);
+});
