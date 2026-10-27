@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════════
+  Artículo del aguinaldo 2026 — titular A elegido por Domiciano el
+  26 oct 2026 (widget): «Dueño de PyME: la multa por no pagar el
+  aguinaldo llega a $586 mil por trabajador. ¿Cuánto le tocaría a la
+  suya?» — usado verbatim como H1 y texto de tarjeta; en <title> lleva
+  el sufijo del sitio " | Laboral Click" como todos los artículos.
+
+  Categoría PROPUESTA (aún por confirmar con Domiciano):
+  «Nómina y Prestaciones».
+
+  Convertido del borrador articulo-aguinaldo-2026-borrador.md (v2,
+  17 oct 2026). Texto completo del borrador, sin recortes ni cambios
+  de cifras. Las secciones de producción del borrador (prompts de
+  imágenes, filtro 4C, pendientes) NO se publican.
+  Plantilla: blog-seguridad-nom035.html (misma estructura y estilos).
+
+  IMÁGENES A SUBIR a images/ del sitio (están en
+  ~/workspace/laboral-click/blog/imagenes/):
+    blog-aguinaldo-nomina.jpg      → images/blog-aguinaldo-nomina.jpg
+    blog-aguinaldo-calendario.jpg  → images/blog-aguinaldo-calendario.jpg
+
+  SNIPPET PARA blog.html — pegar como PRIMERA card dentro de
+  <section class="blog-grid"> (y renumerar los comentarios):
+
+    <article class="blog-card">
+      <div class="blog-card-image">
+        <img src="images/blog-aguinaldo-nomina.jpg" alt="Dueño de restaurante revisando la nómina de diciembre en la oficina de su negocio, con gesto de preocupación">
+      </div>
+      <div class="blog-card-content">
+        <span class="blog-category">Nómina y Prestaciones</span>
+        <h2>Dueño de PyME: la multa por no pagar el aguinaldo llega a $586 mil por trabajador. ¿Cuánto le tocaría a la suya?</h2>
+        <p>El 20 de diciembre de 2026 cae en domingo: pague a más tardar el viernes 18. La multa por no pagar el aguinaldo va de $5,865.50 a $586,550 por trabajador (art. 1002 LFT). Mínimo legal: 15 días de salario (art. 87 LFT).</p>
+        <a href="blog-aguinaldo-2026.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+  NO SUBIR al sitio sin el visto bueno final de Domiciano (fecha y
+  categoría). Domiciano sube por GitHub web; nada se sube desde aquí.
+═══════════════════════════════════════════════════════════════════ -->
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dueño de PyME: la multa por no pagar el aguinaldo llega a $586 mil por trabajador. ¿Cuánto le tocaría a la suya? | Laboral Click</title>
+  <meta name="description" content="El 20 de diciembre de 2026 cae en domingo: pague el aguinaldo a más tardar el viernes 18. La multa por no pagarlo va de $5,865.50 a $586,550 por trabajador (art. 1002 LFT). Mínimo legal: 15 días de salario (art. 87 LFT).">
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <style>
+    .blog-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .blog-header h1 { color: #0f2a5e; font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
+    .blog-intro { font-size: 1.15rem; color: #4a5568; line-height: 1.7; margin-bottom: 20px; }
+    .blog-section { margin-bottom: 40px; }
+    .blog-section h2 { color: #0f2a5e; font-size: 1.6rem; margin-bottom: 20px; margin-top: 30px; }
+    .blog-section h3 { color: #0f2a5e; font-size: 1.3rem; margin-bottom: 15px; margin-top: 25px; }
+    .blog-section p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+    .blog-section ol, .blog-section ul { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; padding-left: 30px; }
+    .blog-section li { margin-bottom: 10px; }
+
+    .blog-image { width: 100%; height: auto; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .image-caption { text-align: center; color: #6b7280; font-size: 0.9rem; font-style: italic; margin-top: -15px; margin-bottom: 25px; }
+
+    .multas-lista { list-style: none; padding: 0; margin: 25px 0; display: flex; flex-direction: column; gap: 14px; }
+    .multas-lista li { background: white; border: 1px solid #e5e7eb; border-left: 5px solid #c9a028; border-radius: 8px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .multa-concepto { color: #0f2a5e; font-weight: 700; font-size: 1rem; margin-bottom: 6px; display: block; line-height: 1.4; }
+    .multa-monto { color: #dc2626; font-weight: 800; font-size: 1.15rem; display: block; line-height: 1.4; }
+
+    .cta-box { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 40px 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+    .cta-box h2 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
+    .cta-box p { color: rgba(255,255,255,0.92); font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
+    .btn-dorado { display: inline-block; background: #c9a028; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; }
+    .btn-dorado:hover { background: #b89224; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(201,160,40,0.4); }
+
+    .nota-transparencia { background: #f3f4f6; border-radius: 8px; padding: 16px 18px; margin-top: 30px; font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
+    .nota-transparencia strong { color: #0f2a5e; }
+
+    @media (max-width: 768px) {
+      .blog-header h1 { font-size: 1.6rem; }
+      .blog-section h2 { font-size: 1.3rem; }
+      .cta-box h2 { font-size: 1.4rem; }
+      .multas-lista li { padding: 14px; }
+      .multa-monto { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <img src="images/logoH.png" alt="Laboral Click" style="height:45px;">
+        <span>Asesoría Legal sin Enredos</span>
+      </a>
+      <div id="menu-container"></div>
+    </nav>
+  </div>
+</header>
+
+<div class="blog-container">
+
+  <div class="blog-header">
+    <h1>Dueño de PyME: la multa por no pagar el aguinaldo llega a $586 mil por trabajador. ¿Cuánto le tocaría a la suya?</h1>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <div class="blog-section">
+    <p class="blog-intro">Este año el calendario le juega una pasada a su negocio: <strong>el 20 de diciembre cae en domingo</strong>. Si usted deja el pago del aguinaldo para el último día, el depósito puede no reflejarse a tiempo — y "cayó en fin de semana" no es defensa ante la autoridad. La fecha realista para pagar es el <strong>viernes 18 de diciembre</strong>.</p>
+    <p class="blog-intro">El aguinaldo no es un gasto de diciembre: es un compromiso que se cocina todo el año. Para un negocio con diez empleados, son 150 días de salario que deben salir de la caja en una sola exhibición, justo en el mes donde también suben todos los gastos. Quien lo planea en octubre lo paga tranquilo; quien lo descubre en diciembre lo paga con tarjeta o con susto.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>Lo que dice la ley, sin enredos</h2>
+    <p>El <strong>artículo 87 de la Ley Federal del Trabajo</strong> es claro y no ha cambiado:</p>
+    <ul>
+      <li>Todo trabajador tiene derecho a un aguinaldo anual de <strong>por lo menos 15 días de salario</strong>, pagado <strong>antes del 20 de diciembre</strong>.</li>
+      <li>Quien no cumplió el año completo también tiene derecho: se le paga <strong>la parte proporcional</strong> al tiempo trabajado, <strong>aunque ya no esté en la empresa</strong> en diciembre. El finiquito no borra el aguinaldo devengado.</li>
+      <li>Las incapacidades y las licencias de maternidad <strong>cuentan como tiempo trabajado</strong> para este cálculo.</li>
+      <li>No se puede pagar en especie, ni en despensa, ni en vales: <strong>es dinero, en moneda nacional</strong>.</li>
+      <li>Y ojo: 15 días es el <strong>piso, no el techo</strong>. Si su contrato individual o colectivo dice 20 o 30 días, lo pactado es lo que aplica.</li>
+    </ul>
+  </div>
+
+  <!-- IMAGEN 1 -->
+  <img src="images/blog-aguinaldo-nomina.jpg" alt="Dueño de restaurante revisando la nómina de diciembre en la oficina de su negocio, con gesto de preocupación" class="blog-image">
+  <p class="image-caption">Diciembre llega rápido. El aguinaldo se planea en octubre.</p>
+
+  <div class="blog-section">
+    <h2>El rumor del "doble aguinaldo": desarmado</h2>
+    <p>Se habló mucho este año de subirlo a 30 días o de hacerlo progresivo por antigüedad. Ninguna propuesta se aprobó: las iniciativas siguen atoradas en la Comisión de Trabajo de la Cámara de Diputados. <strong>Para 2026, la obligación sigue siendo el mínimo de ley: 15 días de salario.</strong> No se deje presionar por rumores ni se confíe esperando un cambio que no llegó.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>La multa: de $5,865 a $586,550… por cada trabajador</h2>
+    <p>Aquí está el dato que casi nadie calcula. El <strong>artículo 1002 de la Ley Federal del Trabajo</strong> sanciona el incumplimiento —pago incompleto, tardío o inexistente— con multa de <strong>50 a 5,000 veces la UMA</strong>. Con la UMA 2026 ($117.31), eso es:</p>
+    <ul>
+      <li><strong>Mínimo:</strong> $5,865.50</li>
+      <li><strong>Máximo:</strong> $586,550.00</li>
+    </ul>
+    <p>Y la ley agrega algo decisivo: <strong>cuando un solo acto u omisión afecta a varios trabajadores, la sanción se impone por cada uno de los trabajadores afectados</strong>. No pagarle el aguinaldo a tiempo a diez empleados no es una multa: son diez.</p>
+    <p>Además, el trabajador tiene <strong>hasta un año</strong> para reclamar el pago ante la autoridad laboral. El riesgo no se acaba el 21 de diciembre.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>El riesgo que nadie calcula: una queja abre la puerta</h2>
+    <p>Un aguinaldo mal pagado rara vez viaja solo. Cuando un trabajador denuncia ante la STPS o la Profedet, la autoridad puede ordenar una <strong>inspección extraordinaria</strong> —sin aviso previo— para verificar el pago. Y una inspección que encuentra una irregularidad suele buscar más: nómina, altas en el IMSS, cuotas, utilidades. Como lo han advertido los especialistas: <strong>el incumplimiento del aguinaldo pone a la empresa bajo la lupa</strong>, y de ahí a una revisión del IMSS hay un paso.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>Qué puede hacer esta semana (todavía octubre)</h2>
+    <ol>
+      <li><strong>Calcule hoy su aguinaldo total 2026:</strong> número de trabajadores × 15 días de salario diario. Esa es la cifra que debe tener apartada antes de diciembre.</li>
+      <li><strong>Programe el depósito para el viernes 18 de diciembre</strong>, no para el 20. Si paga por transferencia, el dinero necesita un día hábil para reflejarse.</li>
+      <li><strong>Revise quiénes entraron y salieron este año:</strong> a cada uno le toca su parte proporcional, aunque ya no labore con usted.</li>
+      <li><strong>Verifique que su nómina esté en regla antes de diciembre.</strong> Si hay trabajadores sin alta correcta en el IMSS, el aguinaldo es solo uno de varios pasivos acumulados.</li>
+      <li><strong>Ojo con el ISR:</strong> el aguinaldo está exento hasta 30 UMA ($3,519.30 en 2026); lo que exceda esa cantidad sí lleva retención. Confírmelo con su contador antes de dispersar.</li>
+    </ol>
+  </div>
+
+  <!-- IMAGEN 2 -->
+  <img src="images/blog-aguinaldo-calendario.jpg" alt="Don Beto señalando un calendario de pared con el viernes 18 de diciembre marcado, mientras Toño toma nota" class="blog-image">
+  <p class="image-caption">Programe el depósito para el viernes 18 de diciembre, no para el 20.</p>
+
+  <div class="cta-box">
+    <h2>¿Su nómina aguantaría hoy una revisión?</h2>
+    <p>No espere a diciembre para descubrirlo. Conozca su nivel de riesgo con el <strong>Semáforo Laboral</strong> de Laboral Click: sin enviar documentos, 100% confidencial, lo contesta usted mismo en 3 minutos.</p>
+    <a href="https://wa.me/5213111866901" target="_blank" class="btn-dorado">Pídelo por WhatsApp: 311 186 6901</a>
+  </div>
+
+  <div class="nota-transparencia">
+    <strong>Nota de transparencia:</strong> las cifras de este artículo usan la UMA 2026 ($117.31 diarios, vigente desde el 1 de febrero de 2026) y los textos vigentes de los artículos 87 y 1002 de la Ley Federal del Trabajo. Los montos de multa son los rangos legales; la cantidad exacta la determina la autoridad en cada caso. Nada aquí sustituye la asesoría de su caso concreto.
+  </div>
+
+</div>
+
+<footer class="footer-lc">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Laboral Click</h3>
+      <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+    </div>
+    <div class="footer-col">
+      <h3>📍 Ubicación</h3>
+      <p>Col. Narvarte, Benito Juárez, CDMX</p>
+      <h3>📱 WhatsApp</h3>
+      <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>⚖️ Información Legal</h3>
+      <p><a href="aviso.html">Aviso de Privacidad</a></p>
+      <p><a href="terminos.html">Términos y Condiciones</a></p>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+    <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<script src="menu.js"></script>
+</body>
+</html>
+
+<!--
+  FUENTES (consultadas el 17 de octubre de 2026) — trazabilidad, no visibles:
+  - Ley Federal del Trabajo, artículos 87 (aguinaldo) y 1002 (sanciones de 50 a 5,000 UMA; sanción por cada trabajador afectado).
+  - UMA 2026: $117.31 diarios (vigente desde el 1 de febrero de 2026); exención de ISR del aguinaldo: 30 UMA = $3,519.30 (art. 93, fracc. XIV, Ley del ISR).
+  - STPS / Profedet: el aguinaldo debe pagarse antes del 20 de diciembre; el trabajador cuenta con un año para reclamarlo.
+  - STyFE CDMX: recordatorio del aguinaldo anual mínimo de 15 días (art. 87 LFT).
+  - Estatus de las iniciativas de "doble aguinaldo" (30 días / progresivo por antigüedad): no aprobadas; turnadas a la Comisión de Trabajo y Previsión Social de la Cámara de Diputados (nota del 5 de octubre de 2026).
+  - Calendario 2026 verificado: el 20 de diciembre de 2026 es domingo; el 18 de diciembre es viernes.
+-->
