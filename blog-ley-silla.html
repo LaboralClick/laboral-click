@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════════
+  Artículo Ley Silla — texto APROBADO por Domiciano el 28 oct 2026
+  (sin cambios, "Adelante"). Imágenes y HTML generados el 28 oct 2026.
+  SUBIDA PROGRAMADA: jue 29 oct 2026 vía GitHub web.
+
+  IMÁGENES A SUBIR a images/ del sitio (están en
+  ~/workspace/laboral-click/blog/):
+    ley-silla-equipo-de-pie.jpg  → images/ley-silla-equipo-de-pie.jpg
+    ley-silla-silla-respaldo.jpg → images/ley-silla-silla-respaldo.jpg
+    ley-silla-reglamento.jpg     → images/ley-silla-reglamento.jpg
+
+  PASOS (en bloque: primero los archivos, luego el código):
+    1. Subir blog-ley-silla.html + las 3 imágenes a images/.
+    2. Pegar el snippet abajo como PRIMERA card en blog.html.
+
+  SNIPPET PARA blog.html — pegar como PRIMERA card dentro de
+  <section class="blog-grid">:
+
+    <article class="blog-card">
+      <div class="blog-card-image">
+        <img src="images/ley-silla-equipo-de-pie.jpg" alt="Equipo de restaurante de pie durante la jornada">
+      </div>
+      <div class="blog-card-content">
+        <span class="blog-category">🛡️ Seguridad Laboral</span>
+        <h2>Dueño de PyME: vienen los criterios de inspección de la Ley Silla. ¿Su negocio ya cumple lo que es obligatorio desde diciembre?</h2>
+        <p>La STPS publicará en octubre los criterios de inspección de la Ley Silla, pero la obligación ya existe desde diciembre de 2025: sillas con respaldo, pausas y reglamento actualizado. Multas de $29,327 a $586,550 por trabajador.</p>
+        <a href="blog-ley-silla.html" class="leer-mas">Leer artículo completo →</a>
+      </div>
+    </article>
+
+  NOTA: categoría sugerida Seguridad Laboral (pendiente confirmación
+  final de Domiciano al subir). El documento de criterios de octubre
+  estaba ANUNCIADO, no publicado, al 28 oct 2026 (verificado hoy).
+  Si se publica antes de la subida, actualizar el primer párrafo.
+═══════════════════════════════════════════════════════════════════ -->
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dueño de PyME: vienen los criterios de inspección de la Ley Silla | Laboral Click</title>
+  <meta name="description" content="La STPS publicará en octubre los criterios de inspección de la Ley Silla, pero la obligación ya es exigible desde diciembre de 2025: sillas con respaldo, pausas y reglamento actualizado. Multas de $29,327 a $586,550 por trabajador.">
+  <link rel="stylesheet" href="global.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <style>
+    .blog-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .blog-header h1 { color: #0f2a5e; font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
+    .blog-intro { font-size: 1.15rem; color: #4a5568; line-height: 1.7; margin-bottom: 20px; }
+    .blog-section { margin-bottom: 40px; }
+    .blog-section h2 { color: #0f2a5e; font-size: 1.6rem; margin-bottom: 20px; margin-top: 30px; }
+    .blog-section h3 { color: #0f2a5e; font-size: 1.3rem; margin-bottom: 15px; margin-top: 25px; }
+    .blog-section p { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+    .blog-section ol, .blog-section ul { color: #4a5568; font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; padding-left: 30px; }
+    .blog-section li { margin-bottom: 10px; }
+
+    .blog-image { width: 100%; height: auto; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .image-caption { text-align: center; color: #6b7280; font-size: 0.9rem; font-style: italic; margin-top: -15px; margin-bottom: 25px; }
+
+    .multas-lista { list-style: none; padding: 0; margin: 25px 0; display: flex; flex-direction: column; gap: 14px; }
+    .multas-lista li { background: white; border: 1px solid #e5e7eb; border-left: 5px solid #c9a028; border-radius: 8px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .multa-concepto { color: #0f2a5e; font-weight: 700; font-size: 1rem; margin-bottom: 6px; display: block; line-height: 1.4; }
+    .multa-monto { color: #dc2626; font-weight: 800; font-size: 1.15rem; display: block; line-height: 1.4; }
+
+    .fe-erratas { background: #fffbeb; border: 1px solid #f59e0b; border-left: 5px solid #f59e0b; border-radius: 8px; padding: 16px 18px; margin: 25px 0; color: #4a5568; font-size: 1rem; line-height: 1.7; }
+    .fe-erratas strong { color: #0f2a5e; }
+
+    .cta-box { background: linear-gradient(135deg, #0f2a5e 0%, #1e3a5f 100%); color: white; padding: 40px 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+    .cta-box h2 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
+    .cta-box p { color: rgba(255,255,255,0.92); font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; }
+    .btn-dorado { display: inline-block; background: #c9a028; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; }
+    .btn-dorado:hover { background: #b89224; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(201,160,40,0.4); }
+
+    .nota-transparencia { background: #f3f4f6; border-radius: 8px; padding: 16px 18px; margin-top: 30px; font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
+    .nota-transparencia strong { color: #0f2a5e; }
+
+    @media (max-width: 768px) {
+      .blog-header h1 { font-size: 1.6rem; }
+      .blog-section h2 { font-size: 1.3rem; }
+      .cta-box h2 { font-size: 1.4rem; }
+      .multas-lista li { padding: 14px; }
+      .multa-monto { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <img src="images/logoH.png" alt="Laboral Click" style="height:45px;">
+        <span>Asesoría Legal sin Enredos</span>
+      </a>
+      <div id="menu-container"></div>
+    </nav>
+  </div>
+</header>
+
+<div class="blog-container">
+
+  <div class="blog-header">
+    <h1>Dueño de PyME: vienen los criterios de inspección de la Ley Silla. ¿Su negocio ya cumple lo que es obligatorio desde diciembre?</h1>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <div class="blog-section">
+    <p class="blog-intro">En octubre de 2026, la STPS publicará en el Diario Oficial de la Federación un documento con los criterios que usarán los inspectores para revisar la Ley Silla. Lo anunció Ricardo Barbosa, secretario del Trabajo de Jalisco, en el foro <em>Futuro laboral local y nacional</em>: una vez publicado, habrá capacitaciones para que los patrones sepan cómo cumplir antes de que empiecen las inspecciones con esa vara.</p>
+    <p class="blog-intro">Ojo con la trampa de ese anuncio: los criterios nuevos no crean la obligación. La obligación ya existe, y desde diciembre de 2025 es exigible en su totalidad. Quien espere a que salga el documento para acomodar su negocio, llega tarde.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>Lo que la ley ya le exige hoy, en lenguaje de dueño</h2>
+    <p>La Ley Silla es la reforma a la Ley Federal del Trabajo publicada el 19 de diciembre de 2024 y vigente desde el 17 de junio de 2025. En la práctica, le pide cuatro cosas:</p>
+    <ol>
+      <li><strong>Sillas con respaldo, suficientes.</strong> Para el personal que trabaja de pie en comercio, servicios y centros análogos: meseros, cocineros, vendedores de piso, cajeros. Si la tarea lo permite, la silla va en el puesto; si no, debe haber un área cercana con asientos. Y dice <em>con respaldo</em>: un banco alto sin respaldo o una caja volteada no cumplen.</li>
+      <li><strong>Prohibido tenerlos de pie todo el turno.</strong> La ley prohíbe obligar al personal a permanecer de pie durante toda la jornada y negarle sus pausas (artículo 133, fracción XVII Bis).</li>
+      <li><strong>Reglamento interior actualizado.</strong> Su Reglamento Interior de Trabajo debe decir, por escrito: los riesgos de trabajar de pie, las pausas autorizadas, cuánto duran y dónde están los asientos (artículo 423). El plazo para adecuarlo venció en diciembre de 2025.</li>
+      <li><strong>El papel que lo comprueba.</strong> La autoridad no se conforma con ver sillas: pide el análisis de riesgo de cada puesto y la evidencia de que el descanso es real, registrada en las actas de la Comisión de Seguridad e Higiene. Tener las sillas pero no el papel no basta: sin reglamento, análisis y registro, el inspector no tiene con qué comprobar el cumplimiento.</li>
+    </ol>
+  </div>
+
+  <!-- IMAGEN 1 -->
+  <img src="images/ley-silla-equipo-de-pie.jpg" alt="Equipo de restaurante de pie durante la jornada" class="blog-image">
+  <p class="image-caption">La jornada se pasa de pie, pero la ley no permite que sea toda la jornada sin descanso.</p>
+
+  <div class="blog-section">
+    <h2>El error típico: "se ve mal que se sienten"</h2>
+    <p>Hay reportes documentados de trabajadores a los que se les exige seguir de pie "para no dar mala imagen", o con plazos rígidos como 3 horas de pie por 8 minutos de descanso. La autoridad ya vio venir ese argumento: la imagen del negocio no está por encima del derecho al descanso. Y en septiembre de 2026, Movimiento Ciudadano pidió en la Cámara que la STPS intensifique las inspecciones por evasión y simulación de esta norma. El tema ya está en la calle, no en los libros.</p>
+  </div>
+
+  <div class="blog-section">
+    <h2>Los números, sin inflar</h2>
+    <p>El incumplimiento de la obligación de asientos y pausas se sanciona con multa de <strong>250 a 5,000 UMA por cada trabajador afectado</strong> (artículo 1000 de la LFT). Con la UMA 2026 de $117.31 (INEGI), eso es de <strong>$29,327 a $586,550 por trabajador</strong>. Y la falta de actualización del reglamento interior tiene su propia sanción: de 50 a 5,000 UMA (artículo 1002), es decir, de $5,865 a $586,550.</p>
+    <p>Fíjese en el detalle que multiplica: la multa es <em>por trabajador afectado</em>. En un negocio con varios empleados de pie, el número crece rápido. El monto final depende de la gravedad de la falta y del criterio de la autoridad.</p>
+
+    <div class="fe-erratas">
+      <strong>Fe de erratas:</strong> En nuestro post del 14 de octubre citamos la multa de la Ley Silla de 250 a 2,500 UMA. La revisión actualizada de las fuentes (art. 1000 de la LFT) establece <strong>250 a 5,000 UMA por trabajador afectado</strong> ($29,327 a $586,550 con UMA 2026). Esa es la cifra correcta. La corregimos aquí porque lo que usted lee debe ser verificable.
+    </div>
+  </div>
+
+  <div class="blog-section">
+    <h2>Los famosos 5 minutos: qué son y qué no son</h2>
+    <p>Entre lo que se ha comentado del documento de octubre destaca una cifra: 5 minutos de descanso por cada 3 horas de pie. Hay que decirlo con claridad: <strong>eso es una recomendación técnica, no una norma publicada</strong>. Lo dijo el propio Barbosa: la Secretaría de Jalisco la recomienda como práctica laboral y la envió a la STPS federal, "pero no está publicado en ningún documento oficial".</p>
+    <p>La ley, hoy, no fija un número de minutos. Las pausas se definen con el análisis de riesgo de cada puesto y quedan escritas en su reglamento interior. Cuando salga el documento de octubre, sabremos la vara exacta del inspector; mientras tanto, lo que lo protege es tener las pausas definidas, registradas y cumplidas, no adivinar un número.</p>
+  </div>
+
+  <!-- IMAGEN 2 -->
+  <img src="images/ley-silla-silla-respaldo.jpg" alt="Silla con respaldo junto a un puesto de trabajo" class="blog-image">
+  <p class="image-caption">Con respaldo: un banco alto sin respaldo o una caja volteada no cumplen.</p>
+
+  <div class="blog-section">
+    <h2>Qué revisar esta semana</h2>
+    <ol>
+      <li><strong>Cuente sus sillas con respaldo.</strong> ¿Alcanzan para el personal que trabaja de pie? ¿Están en el puesto o en un área cercana accesible?</li>
+      <li><strong>Abra su reglamento interior.</strong> ¿Dice las pausas, su duración y la ubicación de los asientos? Si no lo dice, ese es su primer pendiente.</li>
+      <li><strong>Deje constancia.</strong> Registre las pausas y guarde las actas de la Comisión de Seguridad e Higiene. El descanso que no se puede comprobar, ante el inspector no existe.</li>
+      <li><strong>Revise los puestos de más tiempo de pie.</strong> Ahí está su mayor riesgo: a más horas continuas de pie, más debe cuidarse el descanso.</li>
+    </ol>
+  </div>
+
+  <!-- IMAGEN 3 -->
+  <img src="images/ley-silla-reglamento.jpg" alt="Dueño de PyME revisando el reglamento interior con un empleado" class="blog-image">
+  <p class="image-caption">Tener las sillas pero no el papel no basta: el reglamento dice las pausas y dónde están los asientos.</p>
+
+  <div class="cta-box">
+    <h2>Mida su riesgo hoy</h2>
+    <p>Dueño de PyME: el Semáforo Laboral le dice en 3 minutos qué tan expuesto está su negocio. Pídelo gratis por WhatsApp: 311 186 6901. Sin enviar documentos, 100% confidencial, lo contesta usted mismo.</p>
+    <a href="https://wa.me/5213111866901" target="_blank" class="btn-dorado">Pedir el Semáforo Laboral (3 min)</a>
+  </div>
+
+  <div class="nota-transparencia">
+    <strong>Nota de transparencia:</strong> las cifras de inspecciones en estados (Sinaloa, Quintana Roo, Durango) provienen de reportes de prensa de septiembre de 2026, no de un consolidado oficial de la STPS. El documento de criterios de octubre estaba anunciado, no publicado, al cierre de este artículo (27 de octubre de 2026). Las multas aquí citadas son los rangos de ley; el monto concreto de cada caso lo fija la autoridad según la gravedad y las circunstancias.
+  </div>
+
+</div>
+
+<footer class="footer-lc">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Laboral Click</h3>
+      <p>Asesoría Legal sin Enredos para PyMEs. Equipo con cobertura binacional.</p>
+    </div>
+    <div class="footer-col">
+      <h3>📍 Ubicación</h3>
+      <p>Col. Narvarte, Benito Juárez, CDMX</p>
+      <h3>📱 WhatsApp</h3>
+      <p><a href="https://wa.me/5213111866901" target="_blank">311-186-6901</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>⚖️ Información Legal</h3>
+      <p><a href="aviso.html">Aviso de Privacidad</a></p>
+      <p><a href="terminos.html">Términos y Condiciones</a></p>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <p>La información es de carácter orientativo. Para asesoría legal personalizada, contáctanos directamente.</p>
+    <p>🔒 Tus datos están protegidos conforme a la LFPDPPP.</p>
+    <p>© 2026 Laboral Click - Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<script src="menu.js"></script>
+</body>
+</html>
+
+<!--
+  FUENTES (fecha de consulta: 27 oct 2026) — trazabilidad, no visibles:
+  - Reforma LFT DOF 19 dic 2024, vigor 17 jun 2025; exigible en su totalidad desde diciembre de 2025.
+  - Art. 132 fracc. V, 133 fracc. XVII Bis, 423 LFT (sillas con respaldo, prohibición de pie todo el turno, reglamento).
+  - Art. 1000 LFT: 250 a 5,000 UMA por trabajador afectado; art. 1002 LFT: 50 a 5,000 UMA por reglamento sin actualizar.
+  - INEGI: UMA 2026 $117.31 diarios.
+  - Foro Futuro laboral local y nacional, 21 oct 2026 (Ricardo Barbosa): documento de criterios anunciado para octubre de 2026, sin publicar al 28 oct 2026; 5 minutos por cada 3 horas = recomendación técnica de Jalisco, no norma publicada.
+-->
